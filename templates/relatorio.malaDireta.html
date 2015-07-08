@@ -1,0 +1,153 @@
+<script>
+$(document).ready(function(){
+$("#ano").change(function(){
+   		$("#idGrupo").load('ajax/comboGruposPorAno.php?Ano='+$(this).val());
+   })
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ }); 
+});
+
+</script>
+
+<section>
+<h1>Relatório de Mala Direta</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="relatorio.malaDiretaPrint.php" target="_blank">
+        <fieldset>
+          <legend>Dados de Pesquisa</legend>
+         <div class="control-group"> 
+    <label for="etiqueta" class="control-label">Etiqueta:</label>
+    <div class="controls"> 
+      <SELECT name="etiqueta" id="etiqueta" class="span2">
+        <option value="pimaco6181">PIMACO 6181</option>
+      </SELECT>   
+    </div>
+  </div>
+		
+	<div class="row">
+		<div class="span5">
+			<div class="control-group"> 
+			<label for="dataValidadePassaporte" class="control-label">Passaporte Válido até:</label>
+			<div class="controls"> 
+			  <input type="text" name="dataValidadePassaporte" id="dataValidadePassaporte" data-datepicker="datepicker" placeholder="Data de Validade do Passaporte" class="span2 " value="">
+			</div>
+		  </div>
+		 </div>
+		 <div class="span6">
+		  <div class="control-group"> 
+			<label for="sexo" class="control-label">Sexo:</label>
+			<div class="controls"> 
+			  <SELECT name="sexo" id="sexo" class="span2">
+			  <option value="">Selecione</option>
+				<option value="M">Masculino</option>
+				<option value="F">Feminino</option>
+			  </SELECT>   
+			</div>
+		  </div>
+		  </div>
+  </div>
+  
+  <div class="row">
+		<div class="span5">
+			<div class="control-group"> 
+			<label for="dataValidadePassaporte" class="control-label">Aniversário:</label>
+			<div class="controls"> 
+			 <SELECT name="mesAniversario" id="mesAniversario" class="span2">
+        <option value="" >Selecione</option>
+       <option value="1">Janeiro</option>
+             <option value="2">Fevereiro</option>
+             <option value="3">Março</option>
+             <option value="4">Abril</option>
+             <option value="5">Maio</option>
+             <option value="6">Junho</option>
+             <option value="7">Julho</option>
+             <option value="8">Agosto</option>
+             <option value="9">Setembro</option>
+             <option value="10">Outubro</option>
+             <option value="11">Novembro</option>
+             <option value="12">Dezembro</option>
+      </SELECT>
+			</div>
+		  </div>
+		 </div>
+		 <div class="span6">
+		 <div class="control-group"> 
+    <label for="estadoCivil" class="control-label">Estado Civil:</label>
+    <div class="controls"> 
+      <SELECT name="estadoCivil" id="estadoCivil" class="span2">
+        <option value="" >Selecione</option>
+        <!-- BEGIN BLOCK_ESTADOCIVIL -->
+        <option value="{ID_ESTCIVIL}">{LABEL_ESTCIVIL}</option>
+        <!-- END BLOCK_ESTADOCIVIL -->
+      </SELECT>
+    </div>
+  </div>
+		  </div>
+  </div>
+  
+   </fieldset>
+   <fieldset>
+   <legend>Grupos</legend>
+    <div class="control-group">
+            <label for="ano" class="control-label">Ano:</label>
+            <div class="controls">
+             <SELECT name="ano" id="ano" class="span2">	
+             <option value="" selected="selected">Selecione</option>
+             <!-- BEGIN BLOCK_ANO -->
+             <option value="{ID_ANO}">{LABEL_ANO}</option>
+             <!-- END BLOCK_ANO -->		 	
+			 </SELECT>
+            </div>
+          </div>	
+		  
+		  <div class="control-group">
+            <label for="idGrupo" class="control-label">Grupo:</label>
+            <div class="controls">
+             <SELECT name="idGrupo" id="idGrupo" class="span5">	
+             <option value="" selected="selected">Selecione</option>            
+			 </SELECT>
+            </div>
+          </div>	
+   </fieldset>
+   
+  <fieldset>
+  <legend>Endereço de Contato</legend>
+  <div class="row"> 
+    <div class="span5"> 
+      <div class="control-group"> 
+        <label for="pais" class="control-label">País:</label>
+        <div class="controls"> 
+          <input type="text" name="pais" id="pais" value="" class="span2">
+        </div>
+      </div>
+    </div>
+    <div class="span6"> 
+      <div class="control-group"> 
+        <label for="estado" class="control-label">UF:</label>
+        <div class="controls"> 
+          <input type="text" name="estado" id="estado" value="" class="span1">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row"> 
+    <div class="span11"> 
+      <div class="control-group"> 
+        <label for="cidade" class="control-label">Cidade:</label>
+        <div class="controls"> 
+          <input type="text" name="cidade" id="cidade" value="" class="span3">
+        </div>
+      </div>
+    </div>   
+  </div>
+		  	
+	<div class="form-actions">
+            <button class="btn btn-primary" type="submit">Gerar Etiquetas</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

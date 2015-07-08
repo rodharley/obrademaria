@@ -1,0 +1,114 @@
+<script>
+$(document).ready(function(){
+ 
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+
+});
+</script>
+
+<section>
+<h1>Edita Participante </h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="participante.response.php">
+        <fieldset>
+          <legend>Dados do Cliente </legend>
+           <div class="control-group">
+            <label for="cpf" class="control-label">CPF / Nome:</label>
+            <div class="controls">{CPF}-{NOME}</div>
+          </div>
+          <div class="control-group">
+            <label for="cpf" class="control-label">Grupo:</label>
+            <div class="controls">{NOME_GRUPO}</div>
+          </div>
+          <div class="control-group"></div>	
+    </fieldset>
+		  <fieldset>
+          <legend>Dados da Participa&ccedil;&atilde;o no grupo </legend>	 
+	<div class="row">
+      <div class="span10">
+        <div class="control-group">
+          <label for="custoTotal" class="control-label">Opcional:</label>
+          <div class="controls">
+            <select name="opcional" id="opcional">
+			<option value="0" {SELECTED_OPCIONAL_NAO}>Não</option>
+			<option value="1" {SELECTED_OPCIONAL_SIM}>Sim</option>
+			</select>
+            &nbsp; </div>
+        </div>
+      </div>
+    </div> 
+<!-- BEGIN BLOCK_EDICAO -->
+	<div class="row">
+      <div class="span12">
+        <div class="control-group">
+          <label for="custoTotal" class="control-label">Data Inscrição:</label>
+          <div class="controls">
+            <input type="text" id="dataInscricao" class="input-xlarge span2 required" name="dataInscricao" value="{dt_inscr}"  data-datepicker="datepicker" placeholder="Data da Inscrição">
+            &nbsp; </div>
+        </div>
+      </div>      
+      </div>
+    <div class="row">
+      <div class="span4">
+        <div class="control-group">
+          <label for="custoTotal" class="control-label">Custo Total {CIFRAO}:</label>
+          <div class="controls">
+            <input type="text" id="custoTotal" class="input-xlarge span2 required" name="custoTotal" value="{custoTotal}" placeholder="Custo do Participante" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+            &nbsp; </div>
+        </div>
+      </div>
+      <div class="span8">
+        <div class="control-group">
+          <label for="valorTotal" class="control-label">Valor Total {CIFRAO}:</label>
+          <div class="controls">
+            <input type="text" id="valorTotal" class="input-xlarge span2 required" name="valorTotal" value="{valorTotal}" placeholder="Valor Total" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+          </div>
+        </div>
+      </div>
+    </div>
+	<!-- END BLOCK_EDICAO -->
+	<!-- BEGIN BLOCK_NAOEDICAO -->
+	<input type="hidden" id="valorTotal" name="valorTotal" value="{valorTotal}">
+	<input type="hidden" id="custoTotal" name="custoTotal" value="{custoTotal}">
+	<!-- END BLOCK_NAOEDICAO-->
+      </fieldset>
+      
+	  <div class="well">
+	<fieldset>
+	 <legend>Histórico de Alterações</legend>
+	 <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th width="150">Data</th>
+            <th width="100">Usuário</th>
+            <th >Valor</th>
+			<th >Custo</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LOG -->
+          <tr>
+            <td>{DATA}</td>
+            <td>{USUARIO}</td>
+            <td>{VALOR}</td>
+			<td>{CUSTO}</td>
+          </tr>
+         <!-- END BLOCK_ITEM_LOG -->
+        </tbody>
+      </table>
+	</fieldset>
+	</div>
+          <fieldset>		  
+          <div class="form-actions">
+          <input type="hidden" value="{ID_GRUPO_HASH}" name="idGrupo" id="idGrupo" />
+		  <input type="hidden" value="{ID}" name="id" id="id" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary" type="submit">Salvar</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

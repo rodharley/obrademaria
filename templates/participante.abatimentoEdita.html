@@ -1,0 +1,77 @@
+<script>
+$(document).ready(function(){
+	$("#ano").change(function(){
+   		$("#grupo").load('ajax/comboGruposPorAno.php?Ano='+$(this).val());
+   });
+
+	  $("#grupo").change(function(){
+   		$("#participante").load('ajax/comboParticipantesPorGrupo.php?idGrupo='+$(this).val());
+   });
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+
+
+});
+
+</script>
+
+<section>
+<h2>{NOME_GRUPO}- Moeda: {MOEDA_GRUPO}</h2>
+<h1>Editar Abatimento<br/><small>
+Moeda do Pagamento: {MOEDA_PAG}, Valor Total do Pagamento: {VALOR_TOTAL_PAG}</small></h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="participante.response.php">
+        <fieldset>
+         <legend>Dados para abatimento</legend>
+		    <div class="control-group">
+             <label for="Ano" class="control-label">Ano:</label>
+            <div class="controls">   
+            <select id="ano" name="ano" class="span5 required">
+            <option value="">Ano</option>
+             <!-- BEGIN BLOCK_ANO -->
+             <option value="{ID_ANO}" {SELECTED_ANO}>{LABEL_ANO}</option>
+             <!-- END BLOCK_ANO -->
+             </select>
+            </div>
+          </div>
+		   <div class="control-group">
+             <label for="grupo" class="control-label">Grupo:</label>
+            <div class="controls">   
+            <select id="grupo" name="grupo" class="span5 required">
+            <option value="">Grupo</option>
+             <!-- BEGIN BLOCK_GRUPO -->
+             <option value="{ID_GRUPO}" {SELECTED_GRUPO}>{LABEL_GRUPO}</option>
+             <!-- END BLOCK_GRUPO -->
+             </select>
+            </div>
+          </div>		   
+		   <div class="control-group">
+             <label for="participante" class="control-label">Participante:</label>
+            <div class="controls">   
+            <select id="participante" name="participante" class="span2 required">
+            <option value="">Participante</option>
+             <!-- BEGIN BLOCK_PARTICIPANTE -->
+             <option value="{ID_PARTICIPANTE}" {SELECTED_PARTICIPANTE}>{LABEL_PARTICIPANTE}</option>
+             <!-- END BLOCK_PARTICIPANTE -->
+             </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label for="valor" class="control-label">Valor {MOEDA_PAG}:</label>
+            <div class="controls">
+				<input type="text" id="valor" class="input-xlarge span2 required" name="valor" value="{VALOR_ABATIMENTO}" placeholder="Valor do Pagamento" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			</div>
+          </div>	
+         <div class="form-actions">
+          <input type="hidden" value="{ID}" name="id" id="id" />		  
+		  <input type="hidden" value="{ID_PAGAMENTO_HASH}" name="idPagamento" id="idPagamento" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary" type="submit">Salvar Abatimento</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

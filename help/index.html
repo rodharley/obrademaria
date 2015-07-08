@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Help Sistema Obra de Maria</title>
+<link href="../css/bootstrap.css" rel="stylesheet">
+<script src="../js/jquery-1.7.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<style>
+.scrollspy-example {
+  height: 500px;
+  overflow: auto;
+  position: relative;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h2><img src="../img/help_icon.png" />&nbsp;Help do Sistema</h2>
+<p>Acesse pela estrutura de menus do sistema os helps.</p>
+	<div class="navbar">
+		<div class="navbar-inner">
+		  <div style="width: auto;" class="container">
+			<a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			</a>
+			<a href="index.php" class="brand"><img width="116" height="31" align="absmiddle" src="../img/logo.png"></a>
+			
+			<div class="nav-collapse">
+			  <ul class="nav">
+				 <li class="active"><a href="#home">Home</a></li>           			
+				<li select""="" class="dropdown class="> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Cadastro<b class="caret"></b></a> 
+				  <ul class="dropdown-menu">
+				   <li><a href="#cadastroCliente">Clientes</a></li>					
+					<li><a href="#cadastroGrupo">Grupos</a></li>					
+				  </ul>
+				</li>
+				<li select""="" class="dropdown class="> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Grupos<b class="caret"></b></a> 
+				  <ul class="dropdown-menu">
+				   <li><a href="#listaGrupo">Lista de Grupos</a></li>					
+					 <li><a href="#vooGrupo">Vôos</a></li>					
+					 <li><a href="#quartoGrupo">Quartos</a></li>					
+					 <li><a href="#participanteGrupo">Participantes</a></li>					
+					 </ul>
+				</li>
+				<li select""="" class="dropdown class="> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Gestão<b class="caret"></b></a> 
+				  <ul class="dropdown-menu">
+				   <li><a href="#contas">Contas a Pagar</a></li>					
+					 </ul>
+				</li>
+				<li select""="" class="dropdown class="> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Relatórios<b class="caret"></b></a> 
+				  <ul class="dropdown-menu">
+				   <li class="divider"></li>
+				  <li class="nav-header">Grupos</li>
+				  <li><a href="relatorio.listaPassaporte.php">Lista de Passaportes</a></li>					
+					 <li><a href="relatorio.distribuicaoQuartos.php">Distribuição em Quartos</a></li>					
+					 <li><a href="relatorio.cobranca.php">Cobrança por grupo</a></li>					
+					 <li><a href="relatorio.pagamento.php">Pagamentos Por Grupo</a></li>					
+					 <li><a href="relatorio.listaParticipante.php">Lista de Participantes</a></li>					
+					 <li><a href="relatorio.cracha.php">Crachás</a></li>					
+					 <li><a href="relatorio.listaCamiseta.php">Lista de Camisetas</a></li>					
+					 <li><a href="relatorio.cartoes.php">Cartoes de Crédito</a></li>					
+					 <li><a href="relatorio.envelopes.php">Envelopes</a></li>					
+					 <li class="divider"></li>
+				  <li class="nav-header">Gestão</li>
+				  <li><a href="relatorio.contasAPagar.php">Contas a Pagar</a></li>					
+					 <li><a href="relatorio.malaDireta.php">Mala Direta</a></li>					
+					 <li><a href="relatorio.fidelizacaoPrint.php">Fidelização</a></li>					
+					 <li class="divider"></li>
+				  <li class="nav-header">Financeiro</li>
+				  <li><a href="relatorio.mensalFormaPagamento.php">Mensal Por Forma de Pagamento</a></li>					
+					 <li><a href="relatorio.chequesPre.php">Cheques Pré-datados</a></li>					
+					 <li><a href="relatorio.geralPeriodo.php">Geral por período</a></li>					
+					 <li><a href="relatorio.desistentesPeriodo.php">Desistentes Por Período</a></li>					
+					 <li><a href="relatorio.geralGrupo.php">Geral por Grupo</a></li>					
+					 </ul>
+				</li>
+				</ul>
+			 <ul class="nav pull-right">
+				   <li class="divider-vertical"></li>
+				<li class="dropdown">
+				  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Rodrigo Cruz - Opções<b class="caret"></b></a>
+				  <ul class="dropdown-menu">
+					<li><a href="tupi.alterarSenha.php">Alterar Senha</a></li>
+				   <li><a href="tupi.dadosPessoais.php">Dados Pessoais</a></li>
+					<li class="divider"></li>
+					<li><a href="logoff.php"><i class="icon-remove"></i>Sair</a></li>
+				  </ul>
+				</li>
+				</ul>
+			</div><!-- /.nav-collapse -->
+			
+			
+			<!-- /.nav-collapse -->
+		  </div>
+		</div><!-- /navbar-inner -->
+	  </div>
+	  <div data-spy="scroll" data-target="#navbarExample" data-offset="0" class="scrollspy-example"  id="content">
+        <div class="well"> 
+		 <h4 id="cadastroCliente">1. Cadastro de Clientes</h4>
+            <p>
+            1.1. Sistema apresenta lista dos clientes cadastrados no sistema, com paginação de 10 registros por página.
+			<br />
+			1.2. Opções da Lista:
+			</p>
+				<h5>1.2.1. Edição</h5>
+				<p>Ao Clicar no ícone Alterar <i class="icon-pencil"></i>, o sistema mostra um formulário para edição dos dados do cliente selecionado.  Clicar em Salvar.
+                  </p>
+           
+				<h5>1.2.2 Exclus&atilde;o     </h5>
+		        <p>Ao Clicar no &iacute;cone Excluir <i class="icon-trash"></i>, o sistema excluirá o cliente se ele não for participante de algum grupo, caso contrario não é possível excluir. </p>
+		<h5>1.2.3 Atalho para inclusão em grupo</h5>
+		<p>Ao Clicar no &iacute;cone Incluir em Grupo <i class="icon-user"></i>, o apresenta uma nova janela onde o usuário deve escolher o grupo a ser inscrito o cliente. Observar que para grupos com Opcional cadastrado, o sistema apresenta duas opçoes de escolha.</p>
+		<h5>1.2.4 Inclusão de Novo Cliente</h5>
+		<p>Ao Clicar no botão <a class="btn btn-small btn-primary" href="#">Novo cliente</a>,  o sistema mostra um formulário para inclusão dos dados do cliente. Clicar em Salvar.</p>
+		<h5>1.3 Pesquisa </h5>
+		<p>Usuário pode filtrar a lista através da opção de pesquisa, pode ser pesquisado pelo nome ou pelo cpf, ou ainda parte dos dois campoas.</p>
+		</div>
+		<div class="well">
+		 <h4 id="cadastroGrupo">2. Cadastro de Grupos</h4>
+           <p>
+            2.1. Sistema apresenta lista dos grupos cadastrados no sistema, com paginação de 10 registros por página.
+			<br />
+			2.2. Opções da Lista:
+			</p>
+				<h5>2.2.1. Edição</h5>
+				<p>Ao Clicar no ícone Alterar <i class="icon-pencil"></i>, o sistema mostra um formulário para edição dos dados do grupo selecionado. Clicar em Salvar</p>
+				<h5>2.2.2 Exclus&atilde;o     </h5>
+		        <p>Ao Clicar no &iacute;cone Excluir <i class="icon-trash"></i>, o sistema excluirá o grupo se ele não possuir participantes, quartos ou vôos, caso contrario não é possível excluir. </p>
+		<h5>2.2.4 Inclusão de Novo Grupo</h5>
+		<p>Ao Clicar no botão <a class="btn btn-small btn-primary" href="#">Novo grupo</a>,  o sistema mostra um formulário para inclusão dos dados do grupo. Clicar em Salvar.</p>
+		<h5>2.3 Pesquisa </h5>
+		<p>Usuário pode filtrar a lista através da opção de pesquisa, pode ser pesquisado pelo Ano.</p>
+		<h5>Observações:</h5>
+		<p>
+				- Apenas o Status "Em Andamento" fará com que o grupo apareça nas opções de administração do sistema. outros Status, somente em relatórios.<br />
+				- Para novos registros no campo modelo do contrato, deve ser feito solicitação ao administrador do sistema.
+				</p>
+		</p>
+		</div>
+		<div class="well">
+		 <h4 id="listaGrupo">3. Lista de Grupos</h4>
+           <p>
+            3.1. Sistema apresenta lista dos grupos com Status "Em Andamento" no sistema, com paginação de 10 registros por página.
+			<br />
+			3.2. Opções da Lista:
+		  </p>
+				<h5>3.2.1. Cadastro de Participante</h5>
+				<p>Ao Clicar no ícone Participantes <i class="icon-user"></i>, o sistema mostra lista de participantes do grupo selecioando. <a class="btn btn-small btn-success" href="#listaParticipantes">Detalhe Item 7</a>				
+		  </p>
+				<h5>3.2.2 Cadastro de Quartos    </h5>
+		        <p>Ao Clicar no &iacute;cone Quartos <i class="icon-tags"></i>, o sistema mostra lista de quartos cadastrados no grupo selecionado </p>
+		        <h5>3.2.4 Cadastro de Vôos</h5>
+				 <p>Ao Clicar no &iacute;cone Vôos <i class="icon-plane"></i>, o sistema mostra lista de vôos cadastrados no grupo selecionado </p>
+				 <h5>3.2.5 Roteiro do Grupo</h5>
+				 <p>Ao Clicar no &iacute;cone Baixar Roteiro <i class="icon-file"></i>, o sistema apresenta opção de download do roteiro previamente cadastrado no grupo selecionado.</p>
+				  <h5>3.2.6 Pauta de Reunião</h5>
+				 <p>Ao Clicar no &iacute;cone Baixar Pauta de Reunião <i class="icon-list-alt"></i>, o sistema apresenta opção de download da pauta de reunião previamente cadastrado no grupo selecionado.</p>
+				  <h5>3.2.7 Ficha de Inscrição</h5>
+				 <p>Ao Clicar no &iacute;cone Ficha de Inscrição<i class="icon-book"></i>, o sistema apresenta a ficha de inscrição do grupo em branco.</p>
+		
+		</div>
+		
+		<div class="well">
+		 <h4 id="vooGrupo">4. Vôos</h4>
+           <p>
+            4.1 - Atalho para lista de Vôos <i class="icon-plane"></i> da Lista de Grupos item 3
+		  </p>		
+		</div>
+		<div class="well">
+		 <h4 id="quartoGrupo"> 5. Quartos</h4>
+           <p>
+            5.1 - Atalho para lista de Quartos <i class="icon-tags"></i> da Lista de Grupos item 3
+		  </p>		
+		</div>
+		<div class="well">
+		 <h4 id="participanteGrupo"> 6. Participantes</h4>
+           <p>
+            6.1 - Atalho para lista de Partitipantes <i class="icon-user"></i> da Lista de Grupos item 3 <a class="btn btn-small btn-success" href="#listaParticipantes">Detalhe Item 7</a>
+		  </p>		
+		</div>
+		<div class="well">
+		 <h4 id="listaParticipantes"> 7. Lista de Participantes no Grupo</h4>
+           <p>
+            7.1 - Sistema apresenta lista de participantes do grupo com 10 registros por página.<br>
+			7.2 - Opções da Lista:		
+		  </p>		
+		  <h5>7.2.1 Edição de Dados de Participação</h5>
+				<p>Opção apenas para usuários com permissão de alteração de grupo. Ao Clicar no ícone Editar Valores do Participante <i class="icon-pencil"></i>, o sistema mostra formulário com os valores e a opção de opcional de grupo para alteração. Clicar em Salvar, o sistema guarda em Log a alteração, o usuário e a data da transação.				
+		  </p>
+		  <h5>7.2.2 Cadastro de Pagamentos</h5>
+		  <p>Ao Clicar no ícone Pagamentos <i class="icon-currency"></i>, o sistema mostra apresenta lista de pagamentos cadastrados para o participante selecionado.<a class="btn btn-small btn-success" href="#listaParticipantes">Detalhe Item 9</a>			
+		  </p>
+		  <h5>7.2.3 Distribuição em Quartos</h5>
+		  <p>Ao Clicar no ícone Distribuir em Quartos <i class="icon-tags"></i>, o sistema apresenta quadro dos quartos do grupo. Clicando nos nomes dos quartos é possível abrir e fechar Quartos. Visualizando os ocupantes dos quartos em cinza. Opção de remoção do Participante do quarto em VERMELHO, e opção de inclusão do participante no quarto, em VERDE.
+		  </p>
+		  <h5>7.2.4 Imprimir Contrato</h5>
+		  <p>Ao Clicar no ícone Imprimir Contrato <i class="icon-file"></i>, o sistema apresenta janela com opção de preenchimento do valor das Passagens, após clicar em Confirmar, sistema apresenta em formato de impressão A4, Contrato do participante, já preenchido com os dados dinamicos.
+		  </p>
+		   <h5>7.2.5 Ficha de Inscrição</h5>
+		  <p>Ao Clicar no ícone Ficha de Inscrição <i class="icon-book"></i>, o sistema apresenta em formato de Impressão A4 a ficha de inscrição previamente preenchida com os dados do cliente e grupo em questão.
+		  </p>
+		</div>
+  </div>
+	
+	<div class="rodape">
+	<center>Informações do Desenvolvedor: Rodrigo Armênio Camilo Cruz - rodrigo.cruz76@gmail.com - Fone: 61 8432-8555</center>
+	</div>
+</div>
+
+</body>
+</html>

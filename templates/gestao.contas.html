@@ -1,0 +1,88 @@
+<script>
+$(document).ready(function(){
+	
+	$('#excluirConta').click(function(){
+		document.location.href= 'gestao.contaResponse.php?acao=ExcluirConta&idConta='+$('#manipulacao').val();
+	});
+	
+		
+	$('.paginar').click(function(){
+		jQuery.ajax({
+		type: "GET",
+		url: "gestao.contas.php?ajax=1&descricao="+$("#descricao").val()+"&mes="+$("#mes").val()+"&ano="+$("#ano").val()+"&pagina="+$('#manipulacao').val(),
+		beforeSend: function( ) {
+		jQuery('#content').html('<p align="center">Processando...<br /><img src="img/ajax_loading_pequeno.gif" /></p>');
+		  },
+		success: function(msg){
+		jQuery("#content").html(msg);
+		}
+		});
+	});
+});
+
+</script>
+<section>
+<h1>Contas<br/><small>Lista de contas a pagar.</small></h1>
+<form class="well form-search" action="gestao.contas.php">
+        Descrição: <input type="text" class="input-medium search-query" name="descricao" id="descricao" value="{DESCRICAO_FORM}"/>&nbsp;&nbsp;&nbsp; Mês:<input name="mes" id="mes" size="4" class="input-medium search-query" style="width:15px;" value="{MES_FORM}" />&nbsp;&nbsp;&nbsp; Ano:<input name="ano" id="ano" size="4" class="input-medium search-query" style="width:30px;" VALUE="{ANO_FORM}" />
+        <button class="btn" type="submit">Filtrar</button>
+      </form>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th width="50">#</th>
+            <th class="yellow">Descrição</th>
+			<th class="yellow">Data</th>
+			<th class="yellow">Valor</th>
+			<th class="yellow">Tipo</th>
+            <th class="yellow"  width="80">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+            <td>{ID}</td>
+            <td>{DESCRICAO}</td>
+			<td>{DATA}</td>
+			<td>{VALOR}</td>
+			<td>{TIPO}</td>
+           	<td align="center" >
+			<div class="btn-group">
+          <a href="gestao.contaEdita.php?idConta={ID_HASH}" class="btn" title="Editar"><i class="icon-pencil"></i></a>
+		  <a class="btn" title="Excluir"  data-toggle="modal" href="#myModal" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-trash"></i></a>
+        </div>
+			</td>
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+        </tbody>
+      </table>
+</section>
+<!-- BEGIN BLOCK_PAGINACAO -->
+<section>
+    <ul class="pager">
+    <li class="previous">
+    <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PAGINA_ANTERIOR}';">&larr; Anterior</a>
+    </li>
+    <li>Total de Páginas: {PAGINA}/{TOTAL_PAGINAS}</li>
+    <li class="next">
+    <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PROXIMA_PAGINA}';">Próxima &rarr;</a>
+    </li>
+    </ul>
+	</section>
+<!-- END BLOCK_PAGINACAO -->    
+<section>
+<a class="btn btn-small btn-primary" href="gestao.contaEdita.php">Nova Conta a Pagar</a> <button class="btn btn-small" id="bt_voltar">Voltar</button>
+</section>
+<div class="modal hide fade" id="myModal" >
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Aviso de Exclusão</h3>
+  </div>
+  <div class="modal-body">
+    <p>Tem certeza que deseja excluir essa conta a pagar?</p>
+  </div>
+  <div class="modal-footer">
+    <a data-toggle="modal" href="#myModal" class="btn">Cancelar</a>
+    <a href="#" class="btn btn-primary" id="excluirConta">Confirmar</a>
+  </div>
+</div>

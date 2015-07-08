@@ -1,0 +1,37 @@
+<script>
+$(document).ready(function(){
+
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ }); 
+});
+
+</script>
+
+<section>
+<h1>Seleciona Grupo</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="participante.lista.php">
+        <fieldset>
+          <legend>Cadastro de Participantes</legend>
+          <div class="control-group">
+            <label for="idGrupo" class="control-label">Grupo:</label>
+            <div class="controls">
+             <SELECT name="idGrupo" id="idGrupo" class="span5 required">	
+             <option value="" selected="selected">Selecione</option>
+             <!-- BEGIN BLOCK_GRUPO -->
+             <option value="{ID_GRUPO}">{LABEL_GRUPO}</option>
+             <!-- END BLOCK_GRUPO -->		 	
+			 </SELECT>
+            </div>
+          </div>	
+		  	
+         <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Entrar em Participantes</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

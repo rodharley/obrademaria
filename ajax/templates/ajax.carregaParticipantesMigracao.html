@@ -1,0 +1,26 @@
+<section class="well">
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th width="50">Sel</th>
+            <th class="yellow">CPF</th>
+			<th class="yellow">Nome</th>
+			<th class="yellow">Opcional</th>
+			<th class="yellow">Pago {CIFRAO}</th>
+            <th class="yellow">Situação</th>            
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+            <td><input type="checkbox" name="participante[]" value="{ID}"></td>
+            <td>{CPF}</td>
+			<td>{NOME}</td>
+			<td>{OPCIONAL}</td>
+            <td title="{RESTA}">{PAGO}</td>
+			<td>{SITUACAO}</td>           	
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+        </tbody>
+      </table>
+      </section>

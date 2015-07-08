@@ -1,0 +1,177 @@
+<!-- BEGIN BLOCK_ENVIO_EMAIL -->
+<script>
+$(document).ready(function(){
+		$('#bt_edit').click(function() {
+		window.location.href = 'participante.editarContrato.php?idGrupo={ID_GRUPO_HASH}&idParticipante={ID_PARTICIPANTE_HASH}'
+	}); 	
+});
+
+</script>
+<form class="well form-search" action="contratodeviagens.php" id="frmEmail" method="post">
+        <input type="hidden" name="idGrupo" value="{ID_GRUPO_HASH}"/>
+		<input type="hidden" name="idParticipante" value="{ID_PARTICIPANTE_HASH}"/>
+		 <input type="text" class="input-medium search-query" name="tupiSendEmail"/>
+        <button class="btn" id="bt_sendEmail" type="submit">Enviar Por Email</button>
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+		<button class="btn btn-warning" id="bt_edit" type="button"><i class="icon-pencil icon-white"></i> Editar</button>
+</form>
+<!-- END BLOCK_ENVIO_EMAIL -->
+<!-- BEGIN BLOCK_PADRAO -->
+<h5><center>CONTRATO PARTICULAR DE PRESTAÇÃO DE SERVIÇOS DE VIAGENS E TURISMO</center></h5><br />
+<p class="paragrafo">Pelo presente instrumento de contrato, as partes  abaixo qualificadas, t&ecirc;m justas e contratadas a Presta&ccedil;&atilde;o de Servi&ccedil;os de Viagem  e Turismo, em conformidade com as seguintes cl&aacute;usulas.</p>
+<h5>1. Cláusula Primeira: AS PARTES</h5>
+<p class="paragrafo">
+<strong>{nomeCompleto}</strong> nacionalidade <strong>{nacionalidade}</strong>,<strong>{estado_civil}</strong>, portador(a) da Cédula de Identidade n°<strong>{rg} - {rgOrgaoExpedidor}</strong>, e do CPF n°<strong>{cpf}</strong>, residente e domiciliado na <strong>{endereco}</strong> Cidade de <strong>{cidade}-{uf}</strong> doravante simplesmente  CONTRATANTE; e RAINHA TOUR E VIAGENS LTDA - COMUNIDADE OBRA DE MARIA, pessoa jurídica de direito privado, regularmente inscrita no CNPJ sob o n° 12.415.719/0001-72, com sede em SRTVS - QUADRA 701 - BL II  -  SALA 208  -
+CENTRO EMPRESARIAL ASSIS CHATEAUBRIAND ASA SUL ,  na cidade de  BRASILIA - DF, doravante simplesmente denominada CONTRATADA.</p>
+<h5>2. Cláusula Segunda: DO OBJETO</h5>
+<p class="paragrafo">
+2.1. A CONTRATADA prestará ao CONTRATANTE os serviços que envolvem a venda de pacote turístico abaixo descrito, cujas características e valores estão explicitados no Roteiro de Viagem, que fará parte integrante deste contrato.
+<br />(  X  ) Pacote Turístico Internacional</p>
+<p class="paragrafo">
+2.2. Para a efetivação da viagem, deverá conter a quantidade mínima de 30 participantes/integrantes, caso contrário será feita uma adequação do valor do pacote correspondente aos participantes inscritos ou o valor pago pelo cliente será integralmente devolvido.</p>
+<p class="paragrafo">
+2.3. O Roteiro de Viagem poderá ser modificado através de comunicado para o Grupo formado para realizar a viagem, e com a devida concordância expressa do CONTRATANTE;</p>
+<p class="paragrafo">
+2.4. Caso o Grupo formado para a realização da viagem opte por alterar o Roteiro de Viagem e o CONTRATANTE não concorde, os valores pagos pelo CONTRATANTE serão integralmente devolvidos.</p>
+<h5>3. Cláusula Terceira: RESPONSABILIDADE DA CONTRATADA</h5>
+<p class="paragrafo">
+3.1 A CONTRATADA atua como intermediária entre o CONTRATANTE e as Operadoras de Turismo responsáveis pela elaboração e organização do roteiro da viagem ajustada, e os prestadores de serviços tais como: empresas de transporte aéreo, marítimo, rodoviário, hospedagem, restaurantes, receptivos, casas de espetáculos, autônomos e outros colaboradores que participem do roteiro.
+</p><p class="paragrafo">
+3.2. A CONTRATADA, como intermediária na venda do aludido pacote turístico, assume a obrigação de prestar ao CONTRATANTE, toda orientação profissional, completa e adequada, não apenas sobre a viagem em geral, mas, principalmente, abordando de forma minuciosa e esclarecedora todos os detalhes sobre os serviços contratados, inclusive os relativos a este contrato.
+</p><p class="paragrafo">
+3.3. Por motivos técnicos – operacionais, surgindo situações decorrentes de força maior ou caso fortuito, que impeçam o cumprimento total ou parcial da viagem contratada, a Operadora de Turismo responsável pela elaboração e organização do roteiro de viagem, poderá promover alterações que se fizerem necessárias, modificando itinerários, datas, serviços, períodos, e outros, não ficando obrigada a restituição dos valores pagos.
+</p><p class="paragrafo">
+3.4. A realização da viagem não estará vinculada a presença do Diretor Espiritual, não gerando assim ao CONTRATANTE que desistir, o direito ao reembolso integral da quantia paga.
+</p><p class="paragrafo">
+3.5. Não havendo a possibilidade de utilização dos serviços e estabelecimentos normalmente contratados, serão substituídos, sem prévio aviso, por outros similares, do mesmo nível ou de categorias superiores, sem a obrigação de restituição de valores totais ou parciais.
+</p><p class="paragrafo">
+3.6. A CONTRATADA é responsável, nos limites de suas obrigações, pelo cumprimento e atendimento aos princípios do Código de Defesa do Consumidor e da deliberação normativa da EMBRATUR n° 161/85.
+</p>
+<h5>4. Cláusula Quarta – DA RESPONSABILIDADE DO CONTRATANTE</h5>
+<p class="paragrafo">
+4.1. Tratando-se de pacotes internacionais, todos os valores serão fixados com base no dólar americano  turismo venda (US$) e convertidos para a moeda brasileira (R$), de acordo com o plano de pagamento vigente no dia da contratação/negociação. 
+</p><p class="paragrafo">
+4.2. O CONTRATANTE pagará, no ato da assinatura do presente contrato, o equivalente a {CIFRAO}   <u><strong>{taxaAdesao}</strong></u> a título de taxa de adesão, garantindo a sua vaga na viagem.
+</p>
+<p class="paragrafo">
+4.3. No caso de desistência, por parte do CONTRATANTE, a taxa de adesão não será reembolsada nem transferida para outra pessoa. Somente, caso seja solicitado transferência para outra peregrinação no período máximo de 06 (seis) meses, mas neste caso só pelo próprio DESISTENTE.
+</p><p class="paragrafo">
+4.4. O valor das passagens aéreas para os locais determinados no roteiro será {CIFRAO} {totalPassagem} acrescido da taxa de embarque. O referido valor está sujeito a alterações por parte das companhias aéreas, sem prévio aviso. 
+</p><p class="paragrafo">
+4.5. O pacote total (aéreo + terrestre) terá o valor de {CIFRAO} <u><strong>{total}</strong></u> e poderá ser parcelado até o prazo máximo de 60 dias antes do início da viagem (FORMAS DE PAGAMENTO SOB CONSULTA À CONTRATADA).
+</p>
+<p class="paragrafo" >
+4.6. Os serviços incluídos na parte terrestre/aérea estão explicitados no Roteiro de Viagem em anexo, citem-se: bilhetes aéreos, hotéis categoria turística , visitas aos lugares mencionados no Roteiro de Viagem, pensão completa com cardápio único, exceto quando estiver  em voos, sejam estes nacionais, internacionais ou intercontinentais, ou nos aeroportos; e ainda, quando em dias livres, mencionados no Roteiro de Viagem. 
+</p>
+<p class="paragrafo quebraLinha">
+4.7 - A CONTRATADA poderá aceitar de forma condicional, reservas de passageiro(s) isolados interessados na ocupação de quartos pelo sistema “à compartir”, sujeito a confirmação até a data da viagem. Entretanto, não sendo possível conseguir a companhia que garanta a ocupação completa do quarto ou uma das partes cancelar a excursão, deverá a outra pagar o suplemento para a utilização de quarto individual, até 15 (quinze) dias antes da saída da peregrinação. O mesmo se aplica em casos de incompatibilidade do(s) passageiro(s), que origine a modificação da acomodação contratada, implicando em pagamento pôr ambas as partes da diferença de valores existentes. No caso de passageiro viajando sozinho e que deseje dividir apartamento, fica entendido que se o(a) acompanhante obtido(a) cancelar a excursão, aquele que continuar deve obrigatoriamente pagar o suplemento para apartamento individual.
+</p>
+<h5 >5. Cláusula Quinta: DO PAGAMENTO</h5>
+<p class="paragrafo">
+5.1. No ato da sua inscrição ao grupo interessado, o CONTRATANTE efetuará o pagamento da taxa de adesão, devendo estar 50% (cinquenta por cento) do valor do pacote pago 90 (noventa) dias antes da viagem, e parte restante ser paga até o prazo máximo de 60 (sessenta) dias antes da data da viagem, a fim de que a CONTRATADA possa fazer junto aos seus fornecedores os devidos contatos, visando a garantia da realização dos serviços adquiridos pela CONTRATANTE. Caso o CONTRATANTE opte pelo financiamento, a venda somente se concretizará após a pré–aprovação do crédito junto à Instituição Financeira. O não pagamento de duas ou mais parcelas a CONTRATADA reserva-se no direito de renegociar toda a dívida, conforme o valor do pacote atual e plano de pagamento vigente.
+</p><p class="paragrafo">
+5.2. As taxas alfandegárias, aeroviárias, portuárias, serviços de lavanderia, bebidas, telefonemas, gorjetas, passeios opcionais, guia fora da programação oficial, refeições, vistos, taxas e ingressos para parques, museus, igrejas, casas de espetáculos e demais despesas não previstas no contrato e no Roteiro de Viagem em anexo, são de inteira responsabilidade do CONTRATANTE.
+</p>
+<h5 >6. Cláusula Sexta: DOS HORÁRIOS E NORMAS</h5>
+<p class="paragrafo" >
+6.1. O CONTRATANTE deverá observar e obedecer aos horários determinados pelas empresas de transporte para os embarques, obrigando-se a respeitar as condições de comportamento e segurança determinados pelas mesmas, bem como as normas de funcionamento interno nos estabelecimentos dos prestadores de serviços contratados, não tendo a CONTRATADA quaisquer responsabilidade pelos danos causados pelos CONTRATANTES.
+</p>
+<h5 >7. Cláusula Sétima: DO SEGURO SAUDE E DE BAGAGEM</h5>
+<p class="paragrafo">
+7.1. O Seguro Saúde e de Bagagem fica a cargo da Seguradora conveniada com a CONTRATADA., mediante o pagamento, por parte do CONTRATANTE, da taxa correspondente aos seguros citados.
+       § 1º) A extensão e limites da cobertura do seguro encontram-se especificados na apólice.
+       § 2º) Ficam sob a inteira responsabilidade do CONTRATANTE seus objetos e documentos pessoais, cartões, cheques, dinheiro e bagagem de mão.
+	   § 3º) Doenças pré-existentes não são cobertas pelo seguro, devendo ser verificada a cobertura securitária conforme apólice.  
+	   § 4º) De acordo com a idade, o Seguro a ser contratado cobrará tarifas e taxas adicionais: De 71 a 80 anos, acréscimo de 50% na tarifa. Acima de 80 anos, acréscimo de 50% na tarifa e redução de 50% das coberturas securitárias.	
+       § 5º) Quanto ao Seguro de bagagem extraviada, o CONTRATANTE deverá verificar a cobertura securitária constante na apólice.  
+</p><p class="paragrafo">
+7.2. O CONTRATANTE fica sujeito ao limite de peso e quantidade de bagagens estabelecidas pelas empresas de transportes. As bagagens deverão estar devidamente identificadas. Tanto a bagagem como os demais artigos pessoais do CONTRATANTE não fazem parte deste contrato de viagem; entendendo-se para todos os efeitos que a bagagem é pessoal, independendo onde esteja alojada, devendo o CONTRATANTE transportá-la por sua conta e risco sem que a CONTRATADA seja obrigada a responder contratualmente por extravio, furto, roubo ou danos que possam ocorrer durante a viagem, independendo da causa, incluída a manipulação em traslados hotel/aeroporto ou vice e versa quando exista.
+</p>
+<h5>8. Cláusula Oitava: CANCELAMENTO, SUBSTITUIÇAO OU ABANDONO DA VIAGEM</h5>
+<p class="paragrafo">
+8.1. O CONTRATANTE poderá solicitar o cancelamento da viagem, devendo fazê-lo por escrito, e terá direito ao reembolso do valor do pacote pago, exceto a taxa de adesão (prazo para devolução: até 30 dias, após o protocolo da carta de solicitação junto à CONTRATADA), conforme o escalonamento abaixo, tendo em vista que a CONTRATADA atua como intermediária na contratação dos serviços e deve efetuar os pagamentos antecipadamente para que haja a efetivação dos serviços a serem executados por terceiros em favor do todo o grupo de pessoas que contratarem o pacote turístico.
+- Comunicação a partir do ato de inscrição e até 90 dias antes da data da viagem: reembolso de 100% do valor do pacote pago;
+- Comunicação a partir do ato de inscrição e após 90 dias antes da data da viagem: reembolso de 90% do valor do pacote pago;
+- Comunicação entre 60 a 30 dias da data da viagem: reembolso de 80% do valor do pacote pago;
+- Comunicação entre  29  a 11 dias da viagem:  reembolso de 70% do valor  do pacote pago; e
+- Comunicação entre 10 dias ou menos da data da viagem: reembolso de 60% do valor do pacote pago.
+Caso não tenha havido nenhum pagamento, considerar para esta cláusula o valor do Pacote, presente neste instrumento e no Anexo I - Roteiro de Peregrinação para efeito de multa contratual, considerando os percentuais, nesta Cláusula previstos.
+</p><p class="paragrafo">
+8.2. Por outro lado, acaso haja desistência da contratação do pacote turístico, o CONTRATANTE terá direito de utilizar todo o valor do crédito, após a aplicação do previsto na Cláusula 8.1 do presente, para realizar a contratação de quaisquer outros pacotes turísticos ofertados pela CONTRATADA, tendo o prazo de 06 (seis) meses para que seja utilizado o crédito do valor pago. O crédito poderá ser utilizado em favor do CONTRATANTE ou de terceiro, acaso haja a solicitação por escrito e na presença do beneficiário de duas testemunhas que deverão assinar o respectivo requerimento.
+</p><p class="paragrafo">
+8.3. O CONTRATANTE poderá também solicitar, por escrito, substituição de passageiro para a viagem, com antecedência mínima de 60 (sessenta) dias da data de embarque, arcando com os custos de taxas, multas e demais despesas operacionais decorrentes da substituição, como também atualização do valor do pacote e dependerá da disponibilidade do aéreo e terrestre para o mesmo. 
+</p><p class="paragrafo">
+8.4. O CONTRATANTE que não aparecer para os embarques, abandonar, não estar documentado ou desistir da viagem depois de iniciada, durante sua execução, ou ainda, modificar unilateralmente as condições contratadas, assumirá todas as despesas ocorridas, ficando a CONTRATADA e as empresas prestadoras de serviços isentas de conceder reembolsos ou compensações pelos serviços não utilizados, implicando também na perda total do valor contratado se for o caso.
+</p>
+<p class="paragrafo">
+8.5. A CONTRATADA não se responsabiliza pela conduta moral do CONTRATANTE, e poderá desligar do grupo de viagem o passageiro que prejudicar ou interferir no desenvolvimento e a realização dos serviços contratados, sem obrigações de devolução ou reembolso de valores pagos.
+</p>
+<p class="paragrafo">
+8.6. Um grupo em formação poderá ser cancelado, caso não atinja o numero mínimo previsto no seu roteiro de divulgação, sendo o CONTRATANTE informado dessa situação até 60 dias antes da data prevista da viagem, podendo nesse caso o mesmo  escolher outro grupo em formação equivalente a dias e valores do pacote adquirido ou optar por receber integralmente o valor pago.
+</p>
+<p class="paragrafo">
+8.7 O CONTRATANTE declara que tem conhecimento que a CONTRATADA não oferece assistência especial (enfermeiras e/ou acompanhantes pessoais, cadeiras de roda e etc.) e, caso necessário, o CONTRATANTE deverá arcar com todos os custos relacionados. A CONTRATADA recomenda que os maiores de 75 (setenta e cinco) anos viagem com uma pessoa de confiança para assistir o (a) idos0 (a) nas necessidades pessoais, acaso necessitem.
+</p>
+<h5 class="quebraLinha">9. Cláusula Nona: CASOS FORTUITOS OU FORÇA MAIOR</h5>
+<p class="paragrafo">
+9.1. Por motivos de força maior e caso fortuito, tais como, atrasos ou cancelamentos de trajetos rodoviários, aéreos e/ou marítimos, problemas técnicos, mecânicos, meteorológicos, fechamento de aeroportos, interrupções de estradas, decisões governamentais, interdições oriundas do poder público, greves, guerras, fenômenos naturais e outros, que possam prolongar, reduzir ou cancelar a viagem, todas as despesas adicionais são de responsabilidade do CONTRATANTE ficando a CONTRATADA isenta e desobrigada de proceder pagamentos, reembolsos ou devoluções de valores totais ou parciais.
+</p>
+<h5>10. Cláusula Décima: DOCUMENTAÇÃO</h5>
+<p class="paragrafo">
+10.1. Os documentos pessoais necessários para as viagens nacionais e internacionais são de responsabilidade do CONTRATANTE, que deverá observar as exigências das autoridades competentes, tais como: carteira de identidade original, passaporte válido, visto consular dos países de destino, ficha de saúde, vacinas e eventualmente, outros, quando exigidos pelo país estrangeiro, além de documentação especial para menores.
+Todos os documentos deverão ser apresentados à CONTRATADA no prazo máximo de 60 (sessenta) dias antes da data de embarque, para serem vistoriados.
+</p>
+<h5 >11. Cláusula Décima Primeira: DA IMIGRAÇÃO DO PAÍS DO DESTINO</h5>
+<p class="paragrafo">
+11.1. Ao adquirir o pacote de viagens, o CONTRATANTE declara estar ciente de que, mesmo em sua condição de turista, a autoridade responsável por imigração do país do destino poderá impedir a entrada do CONTRATANTE no país, por motivos alheios ao conhecimento da CONTRATADA (seja por legislação recente, questões de segurança nacional, prevenção contra atentados terroristas e outros), ocasionando a perda total dos serviços e dos valores contratados.
+</p>
+<h5>12. Cláusula décima Segunda: DESCONTENTAMENTOS E RECLAMAÇÕES</h5>
+<p class="paragrafo">
+12.1. Em caso de qualquer reclamação ou descontentamento, o CONTRATANTE deverá fazê-la à CONTRATADA por escrito, entregando-a mediante protocolo com recibo, no prazo de 30 dias a contar do término da viagem, e após este período, os serviços prestados serão considerados perfeitos e acabados.
+12.2. Não será reconhecida a reclamação que não preencha as prerrogativas relacionadas na Lei 8.078/90 ou faça uso de meios não idôneos, tais como a publicidade negativa, onde então será apurada a responsabilidade civil e penal do CONTRATANTE.
+</p>
+<h5 >13. Cláusula Décima Terceira: CONSIDERAÇÕES FINAIS</h5>
+<p class="paragrafo">
+13.1. Fica eleito o foro da cidade da CONTRATANTE, com renúncia a qualquer outro, por mais privilegiado que seja, para dirimir dúvidas e litígios oriundos do presente contrato.
+</p><p class="paragrafo">
+13.2. Para fins de direito, será de inteira responsabilidade do CONTRATANTE a veracidade de todas as informações cadastrais fornecidas à CONTRATADA, arcando aquele com os prejuízos que possam ocorrer em razão dos dados registrados.
+</p>
+<p class="paragrafo">
+As partes declaram que leram, entenderam, concordam e aceitam todos os itens constantes deste contrato, fazendo parte deste as condições específicas descritas no roteiro utilizado para a compra do pacote turístico. E por estarem justas e contratadas, assinam este Contrato em 2 (duas) vias de igual teor, na presença das testemunhas abaixo.
+</p>
+<p align="center">BRASILIA-DF,_____ de ______________________ de __________<br />
+  <br />
+</p>
+<div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50%" valign="top"><h5>CONTRATANTE:</h5>
+	<br /><br /><br /><br />____________________________________________<br />
+	{nomeCompleto}
+</td>
+    <td valign="top"><h5>CONTRATADA:</h5>
+	<img src="img/assinaturaFranklin.jpg" width="300"  style="margin-top:20px;"/>
+  </tr>
+</table>
+</div>
+<br />
+<div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50%"><h5>TESTEMUNHAS:</h5></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td width="50%"><br/><br/>1.____________________________________________<br/>
+	Nome:________________________________________<br />
+	RG:__________________________________________</td>
+    <td><br/><br/>2.____________________________________________<br/>
+	Nome:________________________________________<br />
+	RG:__________________________________________</td>
+  </tr>
+</table>
+</div>
+<!-- END BLOCK_PADRAO -->
+<!-- BEGIN BLOCK_EDITADO -->
+{CONTRATO_EDITADO}
+<!-- END BLOCK_EDITADO -->

@@ -1,0 +1,67 @@
+<script>
+$(document).ready(function(){
+
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ }); 
+});
+
+</script>
+
+<section>
+<h1>Relatório Por Período de Cheques Pré-datados</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="relatorio.chequesPrePrint.php" target="_blank">
+        <fieldset>
+          <legend>Dados de Pesquisa</legend>
+         <DIV class="row">
+         <div class="span5">
+          <div class="control-group">
+            <label for="dataInicio" class="control-label">Data Início:</label>
+            <div class="controls">
+             <input type="text" name="dataInicio" id="dataInicio" data-datepicker="datepicker" placeholder="Data de Início" class="span2">
+            </div>
+          </div>
+         </div>
+         <div class="span6">
+          <div class="control-group">
+            <label for="dataFim" class="control-label">Data Fim:</label>
+            <div class="controls">
+            <input type="text" name="dataFim" id="dataFim" data-datepicker="datepicker" placeholder="Data de Fim" class="span2">
+            </div>
+          </div>
+          </div>
+          </DIV>	
+          <DIV class="row">
+         <div class="span5">
+          <div class="control-group">
+            <label for="dataInicio" class="control-label">Status:</label>
+            <div class="controls">
+            <select name="status" id="status">
+            <option value="0">Todos</option>
+            <!-- BEGIN BLOCK_STATUS -->
+            <option value="{ID_STATUS}">{LABEL_STATUS}</option>
+            <!-- END BLOCK_STATUS -->
+            </select>
+            </div>
+          </div>
+         </div>
+         <div class="span6">
+          <div class="control-group">
+            <label for="dataFim" class="control-label">Numero:</label>
+            <div class="controls">
+            <input type="text" name="numero" id="numero" placeholder="Número do Cheque" class="span2">
+            </div>
+          </div>
+          </div>
+          </DIV>	
+		  	
+         <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Gerar</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

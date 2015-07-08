@@ -1,0 +1,91 @@
+<script>
+$(document).ready(function(){
+
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+
+$("#tipo").change(function(){
+	$('#dadosPagamento').html('<p align="center"><img src="img/ajax_loading_pequeno.gif" /><br />Processando...</p>');
+	$("#dadosPagamento").load('ajax/ajax.carregaPagamentos.php?ajax=1&idPagamento={ID}&idParticipante={ID_PARTICIPANTE_REP}&idTipo='+$(this).val());
+});
+ 
+<!-- BEGIN BLOCK_CARREGA_PAGAMENTO -->
+$('#dadosPagamento').html('<p align="center"><img src="img/ajax_loading_pequeno.gif" /><br />Processando...</p>');
+$("#dadosPagamento").load('ajax/ajax.carregaPagamentos.php?ajax=1&idTipo={ID_TIPO}&idParticipante={ID_PARTICIPANTE_REP}&idPagamento={ID}'); 
+<!-- END BLOCK_CARREGA_PAGAMENTO --> 
+});
+
+</script>
+
+<section>
+<h2>{NOME_GRUPO}</h2>
+<h1>Edita {DESC_TIPO_TRANSACAO} para <strong>{NOME_PARTICIPANTE}</strong></h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="participante.response.php">
+        <fieldset>
+          <legend>Cadastro de {DESC_TIPO_TRANSACAO}</legend>
+          <div class="control-group" >
+            <label for="finalidade" class="control-label">Finalidade:</label>
+            <div class="controls">
+              <select name="finalidade" id="finalidade" class="required span3">
+			  	<option value="">Selecione</option>
+			  <!-- BEGIN BLOCK_FINALIDADE -->
+			  <option value="{ID_FINALIDADE}" {SELECTED_FINALIDADE} >{LABEL_FINALIDADE}</option>
+			  <!-- END BLOCK_FINALIDADE -->
+			  </select>
+            </div>
+          </div>
+		  
+		   <div class="control-group" >
+            <label for="dataPagamento" class="control-label">Data:</label>
+            <div class="controls">
+               <input type="text" name="dataPagamento" id="dataPagamento" data-datepicker="datepicker" placeholder="Data do Pagamento" class="span2 required" value="{DATA_PAGAMENTO}">
+            </div>
+          </div>
+          	 <div class="control-group">
+            <label for="obs" class="control-label">Obs.:</label>
+            <div class="controls">
+				<input type="text" id="obs" class="input-xlarge span5" name="obs" value="{OBS}" placeholder="observação">
+			</div>
+          </div>		
+		  <div class="control-group">
+            <label class="control-label" for="optionsCheckbox">Abatimento:</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="abatimentoAutomatico" name="abatimentoAutomatico" value="1" {ABAT_AUTO_CHECKED}>
+                Deixe selecionado se deseja abater todo o valor nesse mesmo participante.
+              </label>
+            </div>
+          </div>
+		  </fieldset>
+		   <fieldset>
+          <legend>Dados do {DESC_TIPO_TRANSACAO}</legend>
+		   <div class="control-group">
+             <label for="tipo" class="control-label">Tipo de {DESC_TIPO_TRANSACAO}:</label>
+            <div class="controls">   
+            <select id="tipo" name="tipo" class="span2 required">
+            <option value="">Tipo {DESC_TIPO_TRANSACAO}</option>
+             <!-- BEGIN BLOCK_TIPOPAG -->
+             <option value="{ID_TIPOPAG}" {SELECTED_TIPOPAG}>{LABEL_TIPOPAG}</option>
+             <!-- END BLOCK_TIPOPAG -->
+             </select>
+            </div>
+          </div>
+		  <section class="well" id="dadosPagamento">
+		  
+		  </section>
+         <div class="form-actions">
+          <input type="hidden" value="{DEV}" name="dev" id="dev" />
+		  <input type="hidden" value="{ID}" name="id" id="id" />
+		  <input type="hidden" value="{ID_GRUPO}" name="idGrupo" id="idGrupo" />
+		  <input type="hidden" value="{ID_PARTICIPANTE}" name="idParticipante" id="idParticipante" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary" type="submit">Salvar {DESC_TIPO_TRANSACAO}</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

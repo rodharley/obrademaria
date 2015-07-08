@@ -1,0 +1,255 @@
+<h4>Dados Pessoais</h4>
+<!-- BEGIN BLOCK_ENVIO_EMAIL -->
+<div class="well form-search">
+         <input type="hidden" name="idGrupo" value="{ID_GRUPO_HASH}"/>
+		<input type="hidden" name="idParticipante" value="{ID_PARTICIPANTE_HASH}"/>
+		<button class="btn"   data-toggle="modal" href="#myModalEmail"><i class="icon-envelope"></i> Enviar Por Email</button>
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+</div>
+<!-- END BLOCK_ENVIO_EMAIL -->
+<div id="tabelaRelat">
+<div style="display:inline">	
+<div class="row">
+<p class="ficha span9"><label>Nome Completo:</label>&nbsp;{NOME}</p>
+</div>
+<div class="row">
+<p class="ficha span9"><label>Endereço:</label>&nbsp;{ENDERECO}</p>
+</div>
+<div class="row">
+<p class="ficha span5 "><label>Bairro:</label>&nbsp;{BAIRRO}</p>
+<p class="ficha span3"><label>CEP:</label>&nbsp;{CEP}</p>
+</div>
+<div class="row">
+<p class="ficha span6"><label>Cidade:</label>&nbsp;{CIDADE}</p>
+<p class="ficha span2"><label>UF:</label>&nbsp;{UF}</p>
+</div>
+<div class="row">
+<p class="ficha span9"><label>Data de Nasc:</label>&nbsp;{DATA_NASC}</p>
+</div>
+<div class="row">
+<p class="ficha span2"><label>CPF:</label>&nbsp;{CPF}</p>
+<p class="ficha span2"><label>RG: </label>&nbsp;{IDENTIDADE}</p>
+<p class="ficha span2"><label>&Oacute;rg&atilde;o Emissor: </label>&nbsp;{ORGAO_EMISSOR_RG}</p>
+</div>
+<div class="row">
+<p class="ficha span4"><label>N&ordm; Passaporte: </label>&nbsp;{PASSAPORTE}</p>
+<p class="ficha span4"><label>N&ordm; Passaporte do país de nascimento: </label>&nbsp;</p>
+</div>
+<div class="row">
+<p class="ficha span2"><label>Data Emiss&atilde;o:</label>&nbsp;{DATA_EMISSAO_PS}</p>
+<p class="ficha span2"><label>Validade:</label>&nbsp;{VALIDADE_PS}</p>
+<p class="ficha span2"><label>&Oacute;rg&atilde;o Expedidor:</label>&nbsp;{ORGAO_EMISSOR_PS}</p>
+</div>
+<div class="row">
+<p class="ficha span2"><label>Tel. Res:</label>&nbsp;{TEL_RES}</p>
+<p class="ficha span2"><label>CELULAR:</label>&nbsp;{CELULAR}</p>
+<p class="ficha span2"><label>Fax: </label>&nbsp;{FAX}</p>
+</div>
+<div class="row">
+<p class="ficha span4"><label>Tel. Comercial:</label>&nbsp;{TEL_TRAB}</p>
+<p class="ficha span4"><label>E-mail: </label>&nbsp;{EMAIL}</p>
+</div>
+<div class="row">
+<p class="ficha span9"><font color="red">A validade do passaporte terá que ser superior a 180 dias (06 meses) contados após a data de saída da peregrinação.</font></p>
+</div>
+<h4>OUTRAS INFORMAÇÕES</h4>
+<div class="row">
+<p class="ficha span4"><label>Estado Civil:</label>&nbsp;{ESTADO_CIVIL}</p>
+<p class="ficha span3"><label>Cid. Nasc:</label>&nbsp;{CIDADE_NASC}</p>
+<p class="ficha span1"><label>UF Nasc:</label>&nbsp;{UF_NASC}</p>
+</div>
+<div class="row">
+<p class="ficha span9"><label>Nascionalidade:</label>&nbsp;{PAIS_NASC}</p>
+</div>
+<div class="row">
+<p class="ficha span4"><label>Nome p/ Crach&aacute;:</label>&nbsp;{NOME_CRACHA}</p>
+<p class="ficha span4"><label>Tamanho da Camisa:</label>&nbsp;{TAMANHO_CAMISA}</p>
+</div>
+<div class="row">
+<p class="ficha span4"><font color="red">Conhece alguém inscrito nessa Peregrinação?</font></p>
+<p class="ficha span4">Familiar (    )   Amigo(    )    Esposo(    )    Esposa(    )</p>	
+</div>
+<div class="row">
+<p class="ficha span4"><font color="red">Informe ao lado o nome da pessoa que conhece</font></p>
+<p class="ficha span4"><label>Nome:</label></p>	
+</div>
+<div class="row">
+<p class="ficha span9"><label>Tem algum problema de Sa&uacute;de? Qual?&nbsp;</label>&nbsp;{SAUDE}</p>
+</div>
+<div class="row">
+<p class="ficha span9"><label>Tem algum problema de locomoção?&nbsp;</label>&nbsp;</p>
+</div>
+<div class="row">
+<p class="ficha span9"><label>Observações:&nbsp;</label>&nbsp;</p>
+</div>
+<div class="row">
+<p class="ficha span9">&nbsp;</p>
+</div>	
+<div class="row">
+<p class="ficha span4"><label>Pessoa para Contato:</label>&nbsp;</p>
+<p class="ficha span4"><label>Telefone Contato:</label>&nbsp;</p>
+</div>
+<h4 >Peregrinação</h4>
+<div class="row">
+<p class="ficha span9"><label>Roteiro/Peregrinação:</label>{PACOTE}</p>
+</div>
+<div class="row">
+<p class="ficha span4" ><label>Data de saída:</label>&nbsp;</p>
+<p class="ficha span4" ><label>Aeroporto de saída:</label>&nbsp;</p>
+ </div>
+<!-- BEGIN BLOCK_OPCIONAL -->
+<h4>Opcional:(&nbsp;&nbsp;) Não</h4>
+<div class="row">
+<p class="ficha span9"><label>Deseja fazer algum opcional? Qual?</label>{OPCIONAL}</p>
+</div>
+ <!-- END BLOCK_OPCIONAL -->
+ <h4>Acomodação</h4>
+<div class="row">
+<p class="ficha span9"><label>Quarto Tipo:</label>{QUARTO}</p>
+</div>
+<div class="row">
+<p class="ficha span9"><label>Companheiro( as ):</label>{COMPANHEIROS}</p>
+</div>
+<div class="row">
+<p class="ficha span9">Caso o pax entre sozinho(a) no grupo, e posteriormente não entrando ninguém que possa formar duplo, até 15 dias antes da viagem entraremos em contato informando a necessidade do pagamento do quarto individual.</p>
+</div>
+<div class="row">
+<p class="ficha span9"><font color="red"><strong>Quarto Individual acréscimo de 20% no valor do pacote</strong></font></p>
+</div> 
+<h4>Atendimento Realizado por:</h4>
+<div class="row">
+<p class="ficha span9"><label>Nome do Consultor de Vendas :</label>&nbsp;</p>
+</div>
+<h4>Plano de Pagamento</h4>	
+<div class="row">
+<p class="ficha span9"><label>Nome Completo:</label>&nbsp;{NOME}</p>
+</div>
+<div class="row">
+<p class="ficha span9"><label>Roteiro / Peregrinação:</label>&nbsp;{PACOTE}</p>
+</div>
+<div class="row">
+<p class="ficha span9"><label>Consultor de venda:</label>&nbsp;</p>
+</div>
+<div class="row">
+<p class="ficha span9"><label>Data da Negociação:</label>&nbsp;</p>
+</div>	
+<h4>VALOR DA PEREGRINAÇÃO</h4>
+<div class="row">	
+	<p class="ficha span2"><label>Pacote US$:</label>{VALOR_DOLAR}</p>
+	<p class="ficha span2"><label>Cambio:</label>{CAMBIO}</p>
+	<p class="ficha span2"><label>Pacote R$::</label>{VALOR}</p>
+</div>
+<div class="row">	
+	<p class="ficha span2"><label>Adesão US$:</label>{ADESAO_DOLAR}</p>
+	<p class="ficha span2"><label>Cambio:</label>{CAMBIO}</p>
+	<p class="ficha span2"><label>Adesão R$::</label>{ADESAO}</p>
+</div>
+<h4>VALORES EXTRAS</h4>
+<div class="row">	
+	<p class="ficha span2"><label>Quarto Individual:</label></p>
+	<p class="ficha span2"><font color="red">0% do valor do pacote</font></p>
+	<p class="ficha span2">US$:</p>
+	<p class="ficha span2">R$:</p>
+</div>
+<div class="row">	
+	<p class="ficha span2"><label>Seguro Saúde + 70 Anos:</label></p>
+	<p class="ficha span2">US$ 40,00</p>
+	<p class="ficha span2">US$:</p>
+	<p class="ficha span2">R$:</p>
+</div>
+<h4>FORMAS DE PAGAMENTO</h4>
+<div class="row">
+	<p class="ficha span2"><label>1º Opção</label>À vista ( )</p>
+	<p class="ficha span2"><label>Valor R$:</label></p>
+	<p class="ficha span4"><label>Tipo:</label>( ) Depósito ( )Cheque ( )Espécie</p>	
+</div>
+<div class="row">
+	<p class="ficha span2"><label>2º Opção</label>Boletos ( )</p>
+	<p class="ficha span2"><label>Parcelas:</label></p>
+	<p class="ficha span2"><label>V. Parc. R$:</label></p>
+	<p class="ficha span2"><label>V. TotalR$:</label></p>	
+</div>
+<div class="row">
+	<p class="ficha span9" style="height: 80px;"><label>Datas</label></p>			
+</div>
+<div class="row">
+	<p class="ficha span2"><label>3º Opção</label>Cheques ( )</p>
+	<p class="ficha span2"><label>Parcelas:</label></p>
+	<p class="ficha span2"><label>V. Parc. R$:</label></p>
+	<p class="ficha span2"><label>V. TotalR$:</label></p>	
+</div>
+<div class="row">
+	<p class="ficha span9" style="height: 80px;"><label>Datas</label></p>			
+</div>
+<div class="row">
+	<p class="ficha span2"><label>4º Opção</label>Cartões ( )</p>
+	<p class="ficha span7"><label>Bandeira:</label>( )Visa ( )Master ( )Diners ( )American Express </p>	
+</div>
+<div class="row">
+	<p class="ficha span4"><label>Limite</label></p>
+	<p class="ficha span5"><label>Data da Fatura:</label></p>	
+</div>
+<div class="row">	
+	<p class="ficha span2"><label>Parcelas:</label></p>
+	<p class="ficha span3"><label>V. Parc. R$:</label></p>
+	<p class="ficha span3"><label>V. TotalR$:</label></p>	
+</div>
+<div class="row">	
+	<p class="ficha span4"><label>Nº Cartão:</label></p>
+	<p class="ficha span2"><label>Cód. Ind.:</label></p>
+	<p class="ficha span2"><label>Validade:</label></p>	
+</div>
+<div class="row">
+	<p class="ficha span2"><label>5º Opção</label>Cartões de Terceiro ( )</p>
+	<p class="ficha span7"><label>Bandeira:</label>( )Visa ( )Master ( )Diners ( )American Express </p>	
+</div>
+<div class="row">
+	<p class="ficha span9"><label>Nome Titular</label></p>		
+</div>
+<div class="row">
+	<p class="ficha span3"><label>RG:</label></p>
+	<p class="ficha span2"><label>Orgão:</label></p>
+	<p class="ficha span3"><label>CPF:</label></p>		
+</div>
+<div class="row">
+	<p class="ficha span9"><label>Endereço</label></p>		
+</div>
+<div class="row">	
+	<p class="ficha span2"><label>Bairro:</label></p>
+	<p class="ficha span2"><label>Cidade:</label></p>
+	<p class="ficha span2"><label>UF:</label></p>
+	<p class="ficha span2"><label>CEP:</label></p>	
+</div>
+<div class="row">	
+	<p class="ficha span4"><label>Nº Cartão:</label></p>
+	<p class="ficha span2"><label>Cód. Ind.:</label></p>
+	<p class="ficha span2"><label>Validade:</label></p>	
+</div>
+<div class="row">	
+	<p class="ficha span2"><label>Parcelas:</label></p>
+	<p class="ficha span3"><label>V. Parc. R$:</label></p>
+	<p class="ficha span3"><label>V. TotalR$:</label></p>	
+</div>
+<div class="row">
+	<p class="ficha span3"><label>Limite</label></p>
+	<p class="ficha span3"><label>Data da Fatura:</label></p>	
+	<p class="ficha span2"><label>Fone:</label></p>
+</div>
+<div class="row">
+	<p class="ficha span9"><label>Pagando para:</label></p>		
+</div>
+<div class="row">
+	<p class="ficha span9" style="height: 50px;"><label>Obs:</label></p>			
+</div>
+<div class="row">
+	<p class="ficha span9">
+		Observações:Todas as informações e os documentos mencionados acima na ficha de inscrição (RG, CPF, Comprovante de residência, Passaporte) e no plano de pagamento (frente e verso do cartão, RG, CPF e Comprovante de residência do titular) precisarão estar totalmente preenchidas em letras maiúsculas e minúsculas (digitadas), acompanhadas de cópias legíveis dos mesmos e são de total responsabilidade do cliente.
+O preenchimento incompleto e/ou a falta das cópias solicitadas tornam impossível a continuidade dos procedimentos de inscrição, exceto a cópia do passaporte (caso ainda não o possua). Neste caso, é necessário dar procedimento para agendamento do mesmo.  
+www.dpf.gov.br/servicos/passaporte/
+		
+	</p>			
+</div>
+
+
+ </div>
+ </div>

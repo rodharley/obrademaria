@@ -1,0 +1,410 @@
+<script src="jqueryui/development-bundle/ui/jquery-ui-1.8.20.custom.js"></script>
+<script src="jqueryui/development-bundle/ui/jquery.ui.core.js"></script>
+<script src="jqueryui/development-bundle/ui/jquery.ui.widget.js"></script>
+<script src="jqueryui/development-bundle/ui/jquery.ui.position.js"></script>
+<script src="jqueryui/development-bundle/ui/jquery.ui.autocomplete.js"></script>
+<script src="jqueryui/development-bundle/ui/i18n/jquery.ui.datepicker-pt-BR.js"></script>
+<script>
+$(document).ready(function(){
+ //$('#uf').change(function(){
+//	$('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$(this).attr("value")); 
+ //});
+ //$('#ufEndereco').change(function(){
+//	$('#cidadeEndereco').load('ajax/comboCidadesPorUf.php?idUf='+$(this).attr("value")); 
+ //});
+
+ $("#restricaoAlimentar").change(function(){
+ 	if($(this).val() == 1)
+ 	document.getElementById("itensRA").style.display = '';
+	else
+	document.getElementById("itensRA").style.display = 'none';
+ });
+ 
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+ //$("#cpf").mask("999.999.999-99");
+ //$("#dataEmissaoPassaporte").mask("99/99/9999");
+ //$("#dataValidadePassaporte").mask("99/99/9999");
+ //$("#dataNascimento").mask("99/99/9999");
+ //$("#cep").mask("99.999-999");
+ //$("#celular").mask("(99) 9999-9999");
+ //$("#fax").mask("(99) 9999-9999");
+ //$("#telefoneResidencial").mask("(99) 9999-9999");
+ //$("#telefoneComercial").mask("(99) 9999-9999");
+ 
+ $(function() {
+		var cidades = [{CIDADES}];
+		var estados = [{ESTADOS}];
+		var paises = [{PAISES}];
+		$( "#cidadeEndereco" ).autocomplete({
+			source: cidades			
+		});
+		$( "#cidadeNascimento" ).autocomplete({
+			source: cidades			
+		});
+		$( "#estadoEndereco" ).autocomplete({
+			source: estados			
+		});
+		$( "#estadoNascimento" ).autocomplete({
+			source: estados			
+		});
+		$( "#paisEndereco" ).autocomplete({
+			source: paises			
+		});
+		$( "#paisNascimento" ).autocomplete({
+			source: paises			
+		});
+	});
+});
+</script>
+<section> 
+<h1>Editar Cliente</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="cadastro.clienteResponse.php">
+  <fieldset>
+  <legend>Dados Pessoais</legend>
+ <DIV class="row">
+ <div class="span4">
+ <div class="control-group"> 
+    <label for="cpf" class="control-label">CPF:</label>
+    <div class="controls"> 
+      <input type="text" id="cpf" class="input-xlarge required span2" name="cpf" value="{CPF}" placeholder="CPF">
+    </div>
+  </div>
+  </div>
+  <div class="span6">
+   <div class="control-group"> 
+    <label for="nome" class="control-label">Nome:</label>
+    <div class="controls"> 
+      <input type="text" id="nome" class="input-xlarge required" name="nomeCompleto" value="{NOME}" placeholder="Nome Completo">
+    </div>
+  </div>
+  </div>
+  </DIV>
+  <div class="row">
+  <div class="span4">
+  <div class="control-group"> 
+    <label for="nomeCracha" class="control-label">Nome Crachá:</label>
+    <div class="controls"> 
+      <input type="text" id="nomeCracha" class="input-xlarge span2" name="nomeCracha" value="{NOME_CRACHA}" placeholder="Nome no Crachá">    
+    </div>
+  </div>
+  </div>
+  <div class="span3">
+  <div class="control-group"> 
+    <label for="tamanhoCamisa" class="control-label">Camisa:</label>
+    <div class="controls"> 
+      <input type="text" id="tamanhoCamisa" class="input-xlarge span1" name="tamanhoCamisa" value="{TAMANHO_CAMISA}" placeholder="Tamanho da Camisa">
+    </div>
+  </div>
+  </div>
+  <div class="span3">
+  <div class="control-group"> 
+    <label for="preferencial" class="control-label">Acesso Pref.:</label>
+    <div class="controls"> 
+      <SELECT name="preferencial" id="preferencial" class="span2 required">
+        <option value="0" {CHECKED_PREFN}>Não</option>
+        <option value="1" {CHECKED_PREFS}>Sim</option>
+      </SELECT>
+    </div>
+  </div>
+  </div>
+
+
+  </div>
+  <div class="row">
+  <div class="span4">
+  <div class="control-group"> 
+    <label for="cpf" class="control-label">RG.:</label>
+    <div class="controls"> 
+      <input type="text" id="rg" class="input-xlarge span2" name="rg" value="{RG}" placeholder="RG">      
+    </div>
+  </div>
+  </div>
+    <div class="span4">
+  <div class="control-group"> 
+    <label for="cpf" class="control-label">Orgão Emissor:</label>
+    <div class="controls"> 
+        <input type="text" id="orgaoEmissorRg" class="input-xlarge " name="orgaoEmissorRg" value="{ORGAORG}" placeholder="Orgão Emissor">    
+    </div>
+  </div>
+  </div>
+  </div>
+ <div class="row">
+  <div class="span4">
+  <div class="control-group"> 
+    <label for="passaporte" class="control-label">Passaporte:</label>
+    <div class="controls"> 
+      <input type="text" id="passaporte" class="input-xlarge span2" name="passaporte" value="{PASSAPORTE}" placeholder="Passaporte">  
+    </div>
+  </div>
+  </div>
+  <div class="span5">
+  <div class="control-group"> 
+    <label for="orgaoExpedidorPassaporte" class="control-label">Orgão Emissor:</label>
+    <div class="controls"> 
+      <input type="text" id="orgaoExpedidorPassaporte" class="input-xlarge " name="orgaoExpedidorPassaporte" value="{ORGAO_PASSAPORTE}" placeholder="Orgão Emissor">
+    </div>
+  </div>
+  </div>
+  </div>  
+  <div class="row">
+  <div class="span4">
+  <div class="control-group"> 
+    <label for="dataEmissaoPassaporte" class="control-label">Data Emissão:</label>
+    <div class="controls"> 
+      <input type="text" name="dataEmissaoPassaporte" id="dataEmissaoPassaporte" data-datepicker="datepicker" placeholder="Data de Emissão do Passaporte" class="span2 " value="{DATA_EMISSAO_PASSAPORTE}">     
+    </div>
+  </div>
+  </div>
+  <div class="span5">
+  <div class="control-group"> 
+    <label for="dataValidadePassaporte" class="control-label">Data Validade:</label>
+    <div class="controls"> 
+      <input type="text" name="dataValidadePassaporte" id="dataValidadePassaporte" data-datepicker="datepicker" placeholder="Data de Validade do Passaporte" class="span2 " value="{DATA_VALIDADE_PASSAPORTE}">
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="row">
+  <div class="span4">
+  <div class="control-group"> 
+    <label for="sexo" class="control-label">Sexo:</label>
+    <div class="controls"> 
+      <SELECT name="sexo" id="sexo" class="span2 required">
+        <option value="M" {CHECKED_SEXOM}>Masculino</option>
+        <option value="F" {CHECKED_SEXOF}>Feminino</option>
+      </SELECT>     
+    </div>
+  </div>
+  </div>
+<div class="span5">
+  <div class="control-group"> 
+    <label for="email" class="control-label">E-mail:</label>
+    <div class="controls"> 
+      <input type="text" id="email" class="input-xlarge email" name="email" value="{EMAIL}" placeholder="E-mail">
+    </div>
+  </div>
+  </div>
+  </div>
+ <div class="row">
+ <div class="span4">
+  <div class="control-group"> 
+    <label for="estadoCivil" class="control-label">Estado Civil:</label>
+    <div class="controls"> 
+      <SELECT name="estadoCivil" id="estadoCivil" class="span2 required">
+        <option value="" >Selecione</option>
+        <!-- BEGIN BLOCK_ESTADOCIVIL -->
+        <option value="{ID_ESTCIVIL}" {SELECTED_ESTCIVIL}>{LABEL_ESTCIVIL}</option>
+        <!-- END BLOCK_ESTADOCIVIL -->
+      </SELECT>     
+    </div>
+  </div>
+  </div>
+  <div class="span5">
+  <div class="control-group"> 
+    <label for="dataNascimento" class="control-label">Data de Nascimento:</label>
+    <div class="controls"> 
+      <input type="text" name="dataNascimento" id="dataNascimento" data-datepicker="datepicker" placeholder="Data de Nascimento" class="span2" value="{DATA_NASCIMENTO}">
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="row"> 
+    <div class="span5"> 
+      <div class="control-group"> 
+        <label for="paisNascimento" class="control-label">País de Nasc.:</label>
+        <div class="controls"> 
+          <input type="text" name="paisNascimento" id="paisNascimento" value="{PAIS_NASCIMENTO}" class="span2 required">
+        </div>
+      </div>
+    </div>
+    <div class="span6"> 
+      <div class="control-group"> 
+        <label for="estadoNascimento" class="control-label">UF de Nasc.:</label>
+        <div class="controls"> 
+          <input type="text" name="estadoNascimento" id="estadoNascimento" value="{ESTADO_NASCIMENTO}" class="span1 required">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row"> 
+    <div class="span5"> 
+      <div class="control-group"> 
+        <label for="cidadeNascimento" class="control-label">Cidade de Nasc.:</label>
+        <div class="controls"> 
+          <input type="text" name="cidadeNascimento" id="cidadeNascimento" value="{CIDADE_NASCIMENTO}" class="span3 required">
+        </div>
+      </div>
+    </div>
+    <div class="span6"> 
+      <div class="control-group"> 
+        <label for="uf" class="control-label">Nascionalidade.:</label>
+        <div class="controls"> 
+          <input type="text" id="nacionalidade" class="input-xlarge required" name="nacionalidade" value="{NACIONALIDADE}" placeholder="Nacionalidade">
+        </div>
+      </div>
+    </div>
+  </div>
+  </fieldset>
+  <fieldset>
+  <legend>Endereço de Contato</legend>
+  <div class="control-group"> 
+    <label for="perfil" class="control-label">Enviar Correspondência?</label>
+    <div class="controls"> 
+      <input type="radio" name="enviaCorrespondencia" id="enviaCorrespondencia" value="1" {CHCK_CORRESPONDENCIA_SIM} class="required"/> Sim <input type="radio" name="enviaCorrespondencia" id="enviaCorrespondencia" value="0" {CHCK_CORRESPONDENCIA_NAO}  class="required"/> Não
+    </div>
+  </div>
+  <div class="control-group"> 
+    <label for="perfil" class="control-label">Endereço:</label>
+    <div class="controls"> 
+      <input type="text" id="endereco" class="input-xlarge span5" name="endereco" value="{ENDERECO}" placeholder="Endereco">
+    </div>
+  </div>
+  <div class="row"> 
+    <div class="span4"> 
+      <div class="control-group"> 
+        <label for="paisEndereco" class="control-label">País:</label>
+        <div class="controls"> 
+          <input type="text" name="paisEndereco" id="paisEndereco" value="{PAIS_ENDERECO}" class="span2 required">
+        </div>
+      </div>
+    </div>
+    <div class="span6"> 
+      <div class="control-group"> 
+        <label for="estadoEndereco" class="control-label">UF:</label>
+        <div class="controls"> 
+          <input type="text" name="estadoEndereco" id="estadoEndereco" value="{ESTADO_ENDERECO}" class="span1 required">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="control-group"> 
+    <label for="cidadeEndereco" class="control-label">Cidade:</label>
+    <div class="controls"> 
+      <input type="text" name="cidadeEndereco" id="cidadeEndereco" value="{CIDADE_ENDERECO}" class="span3 required">
+    </div>
+  </div>
+  
+  <div class="row"> 
+    <div class="span4"> 
+      <div class="control-group"> 
+        <label for="cep" class="control-label">CEP:</label>
+        <div class="controls"> 
+          <input type="text" id="cep" class="input-xlarge  span2" name="cep" value="{CEP}" placeholder="CEP">
+        </div>
+      </div>
+    </div>
+    <div class="span5"> 
+      <div class="control-group"> 
+        <label for="bairro" class="control-label">Bairro:</label>
+        <div class="controls"> 
+          <input type="text" id="bairro" class="input-xlarge " name="bairro" value="{BAIRRO}" placeholder="Bairro">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  <div class="span4">
+  <div class="control-group"> 
+    <label for="telefoneResidencial" class="control-label">Tel. Residencial:</label>
+    <div class="controls"> 
+      <input type="text" id="telefoneResidencial" class="input-xlarge  span2" name="telefoneResidencial" value="{TEL_RESIDENCIAL}" placeholder="Telefone Residencial">     
+    </div>
+  </div>
+  </div>
+  <div class="span5">
+  <div class="control-group"> 
+    <label for="telefoneComercial" class="control-label">Tel. Comercial:</label>
+    <div class="controls"> 
+      <input type="text" id="telefoneComercial" class="input-xlarge span2" name="telefoneComercial" value="{TEL_COMERCIAL}" placeholder="Telefone Comercial">
+    </div>
+  </div>
+  </div>
+  </div>
+    <div class="row">
+  <div class="span4">
+  <div class="control-group"> 
+    <label for="celular" class="control-label">Celular:</label>
+    <div class="controls"> 
+      <input type="text" id="celular" class="input-xlarge span2" name="celular" value="{CELULAR}" placeholder="Celular">    
+    </div>
+  </div>
+  </div>
+  <div class="span5">
+  <div class="control-group"> 
+    <label for="fax" class="control-label">Fax:</label>
+    <div class="controls"> 
+      <input type="text" id="fax" class="input-xlarge span2" name="fax" value="{FAX}" placeholder="Fax">
+    </div>
+  </div>
+  </div>
+  </div>
+  </fieldset>
+  <fieldset>
+  <legend>Informações Adicionais</legend>
+  <div class="control-group"> 
+    <label class="control-label" for="problemasSaude">Problemas de saúde:</label>
+    <div class="controls"> 
+      <textarea class="input-xlarge span5" id="problemasSaude" name="problemasSaude" rows="3">{PROBLEMAS_SAUDE}</textarea>
+    </div>   
+  </div>
+  <div class="row">
+  <div class="span3">
+  <div class="control-group"> 
+    <label class="control-label" for="restricaoAlimentar">Restrições Alimentares:</label>
+    <div class="controls"> 
+	<select name="restricaoAlimentar" id="restricaoAlimentar" class="span1">
+	<option value="1" {SELECTED_SIM_RA}>Sim</option>
+	<option value="0" {SELECTED_NAO_RA}>Não</option>
+	</select>    
+    </div>
+  </div>
+  </div>
+  <div class="span9" id="itensRA" style="display:{DISPLAY_RA}">
+  <div class="control-group"> 
+    <label class="control-label" for="raAdd">Escolher:</label>
+    <div class="controls"> 
+ <input type="checkBox" value="1. AVML  -  refeição vegetariana asiática" name="ra1" {CHECKED_RA1}> 1. AVML  -  refeição vegetariana asiática <br /> 
+  <input type="checkBox" value="2. BBML - refeição de bebê" name="ra2" {CHECKED_RA2}> 2. BBML - refeição de bebê	<br />
+  <input type="checkBox" value="3. BLML - refeição suave - baixo teor de gordura e fibras" name="ra3" {CHECKED_RA3}> 3. BLML - refeição suave - baixo teor de gordura e fibras<br />
+<input type="checkBox" value="4. CHML - refeição de criança" name="ra4" {CHECKED_RA4}> 4. CHML - refeição de criança<br /> 
+<input type="checkBox" value="5. DBML - refeição diabética" name="ra5" {CHECKED_RA5}> 5. DBML - refeição diabética<br />
+<input type="checkBox" value="6. FPML - refeição de fruta" name="ra6" {CHECKED_RA6}> 6. FPML - refeição de fruta<br />
+<input type="checkBox" value="7. GFML - refeição sem glúten" name="ra7" {CHECKED_RA7}> 7. GFML - refeição sem glúten<br />
+<input type="checkBox" value="8. HFML - refeição rica em fibras" name="ra8" {CHECKED_RA8}> 8. HFML - refeição rica em fibras<br />
+<input type="checkBox" value="9. HNML - refeição hindu" name="ra9" {CHECKED_RA9}> 9. HNML - refeição hindu<br />
+<input type="checkBox" value="10. KSML - refeição kosher  (preparada de acordo com a dieta judaica)" name="ra10" {CHECKED_RA10}> 10. KSML - refeição kosher  (preparada de acordo com a dieta judaica)<br />
+<input type="checkBox" value="11. LCML - refeição com baixo teor de calorias" name="ra11" {CHECKED_RA11}> 11. LCML - refeição com baixo teor de calorias<br />
+<input type="checkBox" value="12. LFML - refeição com baixo teor de colesterol" name="ra12" {CHECKED_RA12}> 12. LFML - refeição com baixo teor de colesterol<br />
+<input type="checkBox" value="13. LPML - refeição com baixo teor de proteínas" name="ra13" {CHECKED_RA13}> 13. LPML - refeição com baixo teor de proteínas<br />
+<input type="checkBox" value="14. LSML - refeição sem sal" name="ra14" {CHECKED_RA14}> 14. LSML - refeição sem sal<br />
+<input type="checkBox" value="15. MOML - refeição muçulmana" name="ra15" {CHECKED_RA15}> 15. MOML - refeição muçulmana<br />
+<input type="checkBox" value="16. NLML - refeição sem lactose" name="ra16" {CHECKED_RA16}> 16. NLML - refeição sem lactose<br />
+<input type="checkBox" value="17. ORML - refeição oriental  ( confeccionada com padroes orientais)" name="ra17" {CHECKED_RA17}> 17. ORML - refeição oriental  ( confeccionada com padroes orientais)<br />
+<input type="checkBox" value="18. PRML - refeição com baixo teor de componentes que provoquem ácido úrico)" name="ra18" {CHECKED_RA18}> 18. PRML - refeição com baixo teor de componentes que provoquem ácido úrico)<br />
+<input type="checkBox" value="19. SFML - refeição de peixe (trata-se de peixe, não marisco )" name="ra19" {CHECKED_RA19}> 19. SFML - refeição de peixe (trata-se de peixe, não marisco )<br />
+<input type="checkBox" value="20. VLML - refeição vegetariana ocidental ( com produtos lácteos e ovo)" name="ra20" {CHECKED_RA20}> 20. VLML - refeição vegetariana ocidental ( com produtos lácteos e ovo)<br />
+<input type="checkBox" value="21. VGML - refeição vegetariana pura (sem produtos animais , lácteos e ovo)" name="ra21" {CHECKED_RA21}> 21. VGML - refeição vegetariana pura (sem produtos animais , lácteos e ovo)
+</div>
+  </div>
+  
+  </div>
+  </div>
+  <!-- BEGIN BLOCK_GRUPOS -->
+  <div class="well">
+<h5>Particações em Pacotes:{QTD_GRUPO}</h5>
+{GRUPOS}
+</div>
+<!-- END BLOCK_GRUPOS -->
+  <div class="form-actions"> 
+    <input type="hidden" value="{ID}" name="id" id="id" />
+    <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+    <button class="btn btn-primary" type="submit">Salvar</button>
+    <button class="btn" id="bt_voltar" type="button">Voltar</button>
+  </div>
+  </fieldset>
+</form>
+</section> 

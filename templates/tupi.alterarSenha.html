@@ -1,0 +1,29 @@
+<SCRIPT>
+$(document).ready(function(){
+ $("#commentForm").validate();
+ $("#submit").click(function(){
+ 		$("#commentForm").submit();
+ });
+});
+
+</SCRIPT>
+<section>
+<h1>Alteração de Senha</h1>
+<form  action="tupi.alterarSenhaResponse.php" class="well form-horizontal" id="commentForm" method="post">
+        <div class="control-group">
+            <label class="control-label" for="focusedInput">Senha:</label>
+            <div class="controls">
+              <div class="input-prepend">
+              <span class="add-on"><i class="icon-lock"></i></span>
+              <input type="password" class="span3 required" placeholder="Nova Senha" name="senha">
+            </div>
+              <span class="help-inline">Entre com a nova senha aqui</span>
+            </div>
+          </div>
+
+      <div class="form-actions">
+       <input type="hidden" value="AlterarSenha" name="acao" id="acao" />
+          <a class="btn btn-primary" href="#" id="submit">Salvar</a>
+          </div>
+      </form>
+</section>

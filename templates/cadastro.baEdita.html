@@ -1,0 +1,40 @@
+<script>
+$(document).ready(function(){
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+});
+</script>
+
+<section>
+<h1>Bandeiras</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="cadastro.baResponse.php" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Cadastro de Bandeira</legend>
+          <div class="control-group">
+            <label for="descricao" class="control-label">Descrição:</label>
+            <div class="controls">
+              <input type="text" id="descricao" class="input-xlarge required" name="descricao" value="{DESCRICAO}">
+              <p class="help-block">Nome da Bandeira</p>
+            </div>
+          </div>
+		  <div class="control-group">
+            <label for="email" class="control-label">logomarca:</label>
+            <div class="controls">
+              <input type="file" id="logo" class="" name="logo" value="">
+              <p class="help-block">
+              <img src="img/cas/{LOGO}" width="50"/>
+              Logomarca da Bandeira</p>
+            </div>
+          </div>
+		  <div class="form-actions">
+          <input type="hidden" value="{ID}" name="id" id="id" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary" type="submit">Salvar</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

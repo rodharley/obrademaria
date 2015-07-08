@@ -1,0 +1,25 @@
+<section>
+<h3>Relatório Geral Por Período - {DATA_RELATORIO}</h3>
+<h3>DE {DATA_INICIO} À {DATA_FIM}</h3>
+<form class="well form-search" action="relatorio.listaCamisetaPrint.php" id="frmEmail" method="post">      
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+      </form>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+		  	<th >Usuário</th>
+            <th >Data</th>			
+            <th >Movimento</th>			
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+           <th >{USUARIO}</th>
+            <th >{DATA}</th>			
+            <th>{MOVIMENTO}</th>
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+        </tbody>
+      </table>
+</section>

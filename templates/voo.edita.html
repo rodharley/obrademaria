@@ -1,0 +1,75 @@
+<script>
+$(document).ready(function(){
+
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+
+ $("#horaEmbarque").mask("99:99");
+ $("#horaChegada").mask("99:99?+9");
+});
+
+</script>
+
+<section>
+<h2>{NOME_GRUPO}</h2>
+<h1>Edita Vôo</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="voo.response.php">
+        <fieldset>
+          <legend>Cadastro de Vôo</legend>
+           <div class="control-group" >
+            <label for="numeroVoo" class="control-label">Número:</label>
+            <div class="controls">
+               <input type="text" id="numeroVoo" class="input-xlarge required span2" name="numeroVoo" value="{NUMERO}" placeholder="Número do vôo">
+            </div>
+          </div>
+          <div class="control-group" >
+            <label for="numeroVoo" class="control-label">Trecho:</label>
+            <div class="controls">
+               <input type="text" id="trecho" class="required span2" name="trecho" value="{TRECHO}" placeholder="Trecho">
+            </div>
+          </div>
+           <div class="control-group">
+            <label for="dataEmbarque" class="control-label">Data de Embarque:</label>
+            <div class="controls">
+            <input type="text" name="dataEmbarque" id="dataEmbarque" data-datepicker="datepicker" placeholder="Data de Embarque" class="span2 required" value="{DATA}">
+			</div>
+          </div>
+		   <div class="control-group">
+            <label for="horaEmbarque" class="control-label">Hora de Embarque:</label>
+            <div class="controls">
+            <input type="text" name="horaEmbarque" id="horaEmbarque" placeholder="Hora de Embarque" class="span1 required " value="{HORA}">
+			</div>
+          </div>
+           <div class="control-group">
+            <label for="horaEmbarque" class="control-label">Hora de Chegada:</label>
+            <div class="controls">
+            <input type="text" name="horaChegada" id="horaChegada" placeholder="Hora de Chegada ao destino" class="span1 required " value="{HORA_CHEGADA}">
+			</div>
+          </div>
+		 
+		  <div class="control-group">
+            <label for="companhiaAerea" class="control-label">Companhia Aérea:</label>
+            <div class="controls">
+             <SELECT name="companhiaAerea" id="companhiaAerea" class="span2 required">	
+             <option value="" selected="selected">Selecione</option>
+             <!-- BEGIN BLOCK_CA -->
+             <option value="{ID_CA}" {SELECTED_CA}>{LABEL_CA}</option>
+             <!-- END BLOCK_CA -->		 	
+			 </SELECT>
+            </div>
+          </div>	
+		  	
+         <div class="form-actions">
+          <input type="hidden" value="{ID}" name="id" id="id" />
+		  <input type="hidden" value="{ID_GRUPO}" name="idGrupo" id="idGrupo" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary" type="submit">Salvar Vôo</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

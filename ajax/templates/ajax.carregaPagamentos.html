@@ -1,0 +1,282 @@
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.maskedinput-1.3.min.js"></script>
+<script src="jqueryui/development-bundle/ui/jquery.ui.core.js"></script>
+<script src="jqueryui/development-bundle/ui/jquery.ui.widget.js"></script>
+<script src="jqueryui/development-bundle/ui/jquery.ui.position.js"></script>
+<script src="jqueryui/development-bundle/ui/jquery.ui.autocomplete.js"></script>
+<script>
+$(document).ready(function(){
+	var nomes = [{NOMES}];
+		$( "#nomeEmissor" ).autocomplete({
+			source: nomes		
+		});
+		
+		$("#parcelaCarne").change(function(){
+			$('#dadosPagamento').html('<p align="center"><img src="img/ajax_loading_pequeno.gif" /><br />Processando...</p>');
+			$("#dadosPagamento").load('ajax/ajax.carregaPagamentos.php?ajax=1&idPagamento={ID}&idParticipante={ID_PARTICIPANTE_REP}&idTipo={ID_TIPO}&nparcela='+$(this).val());
+			
+		});
+		
+		$("#parcelaCartao").mask("9?99");
+		$("#parcelaCarne").mask("9?99");
+	});
+	</script>
+	 <!-- BEGIN BLOCK_PG_DINHEIRO -->
+		  <div class="control-group">
+            <label for="moeda" class="control-label">Moeda:</label>
+            <div class="controls">
+             <SELECT name="moeda" id="moeda" class="required span3">
+			 <option value="">Selecione</option>
+			 <!-- BEGIN BLOCK_MOEDA -->
+			 	<option value="{ID_MOEDA}" {SELECTED_MOEDA}>{LABEL_MOEDA}</option>
+			 <!-- END BLOCK_MOEDA -->
+			 </SELECT>              
+            </div>
+          </div>	
+		   <div class="control-group">
+            <label for="valorPagamento" class="control-label">Valor:</label>
+            <div class="controls">
+				<input type="text" id="valorPagamento" class="input-xlarge span2 required" name="valorPagamento" value="{VALOR_PAGAMENTO}" placeholder="Valor do Pagamento" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			</div>
+          </div>	
+		  <div class="control-group">
+            <label for="cotacaoMoedaReal" class="control-label">Cambio da moeda para Real:</label>
+            <div class="controls">
+			<input type="text" id="cotacaoMoedaReal" class="input-xlarge span1" name="cotacaoMoedaReal" value="{CAMBIO_MOEDA_REAL}" placeholder="Cambio da moeda/Dollar">
+			 <p> Somente para moedas diferentes de dollar ou real</p>
+            </div>
+          </div>		  
+		  <div class="control-group">
+            <label for="cotacaoReal" class="control-label">Cambio do Dollar para Real:</label>
+            <div class="controls">
+			<input type="text" id="cotacaoReal" class="input-xlarge required span1" name="cotacaoReal" value="{CAMBIO_DOLLAR_REAL}" placeholder="Cambio do Real/Dollar">
+			 </div>
+          </div>		  
+		 <!-- END BLOCK_PG_DINHEIRO -->
+		 <!-- BEGIN BLOCK_PG_CHEQUE -->
+         <div class="control-group">
+            <label for="nomeEmissor" class="control-label">Emissor:</label>
+            <div class="controls">
+            <input type="text" name="nomeEmissor" id="nomeEmissor" value="{NOME_EMISSOR}" class="required span5" />
+            </div>
+          </div>	
+		  <div class="control-group">
+            <label for="moeda" class="control-label">Moeda:</label>
+            <div class="controls">
+            <SELECT name="moeda" id="moeda" class="required span3">
+			 <option value="2">Real</option>			
+			 </SELECT>             
+            </div>
+          </div>	
+		   <div class="control-group">
+            <label for="banco" class="control-label">Banco:</label>
+            <div class="controls">
+             <SELECT name="banco" id="banco" class="required span3">
+			 <option value="">Selecione</option>
+			 <!-- BEGIN BLOCK_BANCO -->
+			 	<option value="{ID_BANCO}" {SELECTED_BANCO}>{LABEL_BANCO}</option>
+			 <!-- END BLOCK_BANCO -->
+			 </SELECT>              
+            </div>
+          </div>			  
+		 <div class="control-group">
+            <label for="numeroCheque" class="control-label">Ns. Cheque:</label>
+            <div class="controls">
+			 <!-- BEGIN BLOCK_N_CHEQUE -->
+			Cheque {LOOP}: <input type="text" name="numeroCheque{LOOP}" id="numeroCheque{LOOP}" placeholder="Número do cheque" class="span2 {REQUIRED}" value="{NUMERO_CHEQUE}"><br />
+			<!-- END BLOCK_N_CHEQUE -->			
+          </div>
+          </div>		 
+		  <div class="control-group">
+            <label for="dataCompensacao" class="control-label">Datas da Compensação:</label>
+            <div class="controls">
+			<!-- BEGIN BLOCK_DATA_CHEQUE -->
+			 Data {LOOP}: <input type="text" name="dataCompensacao{LOOP}" id="dataCompensacao{LOOP}" data-datepicker="datepicker" placeholder="Data da Compensação" class="span2 {REQUIRED}" value="{DATA_COMPENSACAO}"><br/>	 
+			 <!-- END BLOCK_DATA_CHEQUE -->
+            </div>
+          </div>		 
+		  <div class="control-group">
+            <label for="dataCompensacao" class="control-label">Valores:</label>
+            <div class="controls">
+			<!-- BEGIN BLOCK_VALOR_CHEQUE -->
+			 Valor {LOOP}: <input type="text" name="valorCheque{LOOP}" id="valorCheque{LOOP}" placeholder="Valor do Cheque" class="span2 {REQUIRED}" value="{VALOR_CHEQUE}" onKeyPress="return(MascaraMoeda(this,'.',',',event))"><br/>	 
+			 <!-- END BLOCK_VALOR_CHEQUE -->
+            </div>
+          </div>		   
+		  <div class="control-group">
+            <label for="cotacaoReal" class="control-label">Cambio do Dollar/Real:</label>
+            <div class="controls">
+			<input type="text" id="cotacaoReal" class="input-xlarge required span1" name="cotacaoReal" value="{CAMBIO_DOLLAR_REAL}" placeholder="Cambio do Real/Dollar" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			 </div>
+          </div>		  
+		 <!-- END BLOCK_PG_CHEQUE -->
+		 <!-- BEGIN BLOCK_PG_CARTAO -->
+		<div class="control-group">
+            <label for="moeda" class="control-label">Moeda:</label>
+            <div class="controls">
+            <SELECT name="moeda" id="moeda" class="required span3">
+			 <option value="2">Real</option>			
+			 </SELECT>             
+            </div>
+          </div>	
+          <div class="control-group">
+            <label for="bandeira" class="control-label">Bandeira:</label>
+            <div class="controls">
+             <!-- BEGIN BLOCK_BANDEIRA -->
+			 	<input type="radio" name="bandeira" id="bandeira" value="{ID_BANDEIRA}" {SELECTED_BANDEIRA} class="required"/><img src="img/bandeiras/{IMG_BANDEIRA}" align="absmiddle" width="50"/> &nbsp;
+			 <!-- END BLOCK_BANDEIRA -->	
+                         
+            </div>
+          </div>
+		   <div class="control-group">
+            <label for="valorPagamento" class="control-label">Valor:</label>
+            <div class="controls">
+				<input type="text" id="valorPagamento" class="input-xlarge span2 required" name="valorPagamento" value="{VALOR_PAGAMENTO}" placeholder="Valor do Pagamento" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			</div>
+          </div>
+          <div class="control-group">
+            <label for="parcela" class="control-label">Parcela:</label>
+            <div class="controls">
+            <input type="text" id="parcelaCartao" class="input-xlarge required span1" name="parcelaCartao" value="{PARCELA_CARTAO}" placeholder="Parcelas">          
+            </div>
+          </div>	
+		 <div class="control-group">
+            <label for="codAutorizacao" class="control-label">Código Autorização:</label>
+            <div class="controls">
+			 <input type="text" name="codAutorizacao" id="codAutorizacao" placeholder="Código de Autorização" class="span4" value="{COD_AUTORIZACAO}">			
+          </div>
+          </div>	
+		  <div class="control-group">
+            <label for="cotacaoReal" class="control-label">Cambio do Dollar/Real:</label>
+            <div class="controls">
+			<input type="text" id="cotacaoReal" class="input-xlarge required span1" name="cotacaoReal" value="{CAMBIO_DOLLAR_REAL}" placeholder="Cambio do Real/Dollar" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			 </div>
+          </div>		  
+		 <!-- END BLOCK_PG_CARTAO -->
+		 
+		 <!-- BEGIN BLOCK_PG_DEBITO -->
+		<div class="control-group">
+            <label for="moeda" class="control-label">Moeda:</label>
+            <div class="controls">
+            <SELECT name="moeda" id="moeda" class="required span3">
+			 <option value="2">Real</option>			
+			 </SELECT>             
+            </div>
+          </div>	
+          <div class="control-group">
+            <label for="bandeira" class="control-label">Bandeira:</label>
+            <div class="controls">
+             <!-- BEGIN BLOCK_BANDEIRA_DEB -->
+			 	<input type="radio" name="bandeira" id="bandeira" value="{ID_BANDEIRA}" {SELECTED_BANDEIRA} class="required"/><img src="img/bandeiras/{IMG_BANDEIRA}" align="absmiddle" width="50"/> &nbsp;
+			 <!-- END BLOCK_BANDEIRA_DEB -->	
+                         
+            </div>
+          </div>
+		   <div class="control-group">
+            <label for="valorPagamento" class="control-label">Valor:</label>
+            <div class="controls">
+				<input type="text" id="valorPagamento" class="input-xlarge span2 required" name="valorPagamento" value="{VALOR_PAGAMENTO}" placeholder="Valor do Pagamento" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			</div>
+          </div>
+		  <div class="control-group">
+            <label for="cotacaoReal" class="control-label">Cambio do Dollar/Real:</label>
+            <div class="controls">
+			<input type="text" id="cotacaoReal" class="input-xlarge required span1" name="cotacaoReal" value="{CAMBIO_DOLLAR_REAL}" placeholder="Cambio do Real/Dollar" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			 </div>
+          </div>		  
+		 <!-- END BLOCK_PG_DEBITO -->
+		 
+		 <!-- BEGIN BLOCK_PG_BANCO -->
+		<div class="control-group">
+            <label for="moeda" class="control-label">Moeda:</label>
+            <div class="controls">
+            <SELECT name="moeda" id="moeda" class="required span3">
+			 <option value="2">Real</option>			
+			 </SELECT>             
+            </div>
+          </div>	
+		   <div class="control-group">
+            <label for="valorPagamento" class="control-label">Valor:</label>
+            <div class="controls">
+				<input type="text" id="valorPagamento" class="input-xlarge span2 required" name="valorPagamento" value="{VALOR_PAGAMENTO}" placeholder="Valor do Pagamento" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			</div>
+          </div>	
+		  <div class="control-group">
+            <label for="tipoTranferencia" class="control-label">Tipo:</label>
+            <div class="controls">
+             <SELECT name="tipoTranferencia" id="tipoTranferencia" class="required span3">
+			 <option value="">Selecione</option>
+			 <!-- BEGIN BLOCK_TIPO_TRANSF -->
+			 	<option value="{ID_TIPO_TRANSF}" {SELECTED_TIPO_TRANSF}>{LABEL_TIPO_TRANSF}</option>
+			 <!-- END BLOCK_TIPO_TRANSF -->
+			 </SELECT>              
+            </div>
+          </div>	
+		  <div class="control-group">
+            <label for="cotacaoReal" class="control-label">Cambio do Dollar/Real:</label>
+            <div class="controls">
+			<input type="text" id="cotacaoReal" class="input-xlarge required span1" name="cotacaoReal" value="{CAMBIO_DOLLAR_REAL}" placeholder="Cambio do Real/Dollar" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			 </div>
+          </div>		  
+		 <!-- END BLOCK_PG_BANCO -->
+		  <!-- BEGIN BLOCK_PG_CREDITO -->		
+		  <div class="control-group">
+            <label for="tipoTranferencia" class="control-label">Créditos:</label>
+            <div class="controls">
+             <SELECT name="credito" id="credito" class="required span4">
+			 <option value="">Selecione</option>
+			 <!-- BEGIN BLOCK_CREDITO -->
+			 	<option value="{ID_CREDITO}" {SELECTED_CREDITO}>{LABEL_CREDITO}</option>
+			 <!-- END BLOCK_CREDITO -->
+			 </SELECT>  
+			 <input type="hidden" name="moeda" id="moeda" value="1" />            
+            </div>
+          </div>	
+		  <div class="control-group">
+            <label for="cotacaoReal" class="control-label">Cambio do Dollar/Real:</label>
+            <div class="controls">
+			<input type="text" id="cotacaoReal" class="input-xlarge required span1" name="cotacaoReal" value="{CAMBIO_DOLLAR_REAL}" placeholder="Cambio do Real/Dollar" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			 </div>
+          </div>		  
+		 <!-- END BLOCK_PG_CREDITO -->
+		 <!-- BEGIN BLOCK_PG_CARNE -->
+         <div class="control-group">
+            <label for="moeda" class="control-label">Moeda:</label>
+            <div class="controls">
+            <SELECT name="moeda" id="moeda" class="required span3">
+			 <option value="2">Real</option>			
+			 </SELECT>             
+            </div>
+          </div>	
+          <div class="control-group">
+            <label for="parcelaCarne" class="control-label">Parcela:</label>
+            <div class="controls">
+            <input type="text" id="parcelaCarne" class="input-xlarge required span1" name="parcelaCarne" value="{PARCELA_CARNE}" placeholder="Parcelas">          
+            </div>
+          </div>
+          <!-- BEGIN BLOCK_DATA_CARNE -->	   	  
+		 <div class="control-group">
+            <label for="dataCompensacao" class="control-label">Data de Vencimento {LOOP}:</label>
+            <div class="controls">
+        <input type="text" name="dataVencimento{LOOP}" id="dataVencimento{LOOP}" data-datepicker="datepicker" placeholder="Data do Vencimento" class="span2 required" value="{DATA_CARNE}"><br/>
+		</div>
+          </div>
+          <!-- END BLOCK_DATA_CARNE -->		 
+		  <!-- BEGIN BLOCK_VALOR_CARNE -->
+		  <div class="control-group">
+            <label for="dataCompensacao" class="control-label">Valor {LOOP}:</label>
+            <div class="controls">            
+			<input type="text" name="valorCarne{LOOP}" id="valorCarne{LOOP}" placeholder="Valor da Parcela" class="span2 required" value="{VALOR_CARNE}" onKeyPress="return(MascaraMoeda(this,'.',',',event))"><br/>			
+            </div>
+          </div>
+          <!-- END BLOCK_VALOR_CARNE -->		   
+		  <div class="control-group">
+            <label for="cotacaoReal" class="control-label">Cambio do Dollar/Real:</label>
+            <div class="controls">
+			<input type="text" id="cotacaoReal" class="input-xlarge required span1" name="cotacaoReal" value="{CAMBIO_DOLLAR_REAL}" placeholder="Cambio do Real/Dollar" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			 </div>
+          </div>         
+
+		 <!-- END BLOCK_PG_CARNE -->

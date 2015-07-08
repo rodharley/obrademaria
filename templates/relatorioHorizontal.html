@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{TITULO}</title>
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+<style type="text/css">
+.rodape {
+ padding: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #000000;
+  text-align:center;
+  width:280mm;
+}
+.cabecalho {
+ padding: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #000000;
+  text-align:left;
+  width:280mm;
+}
+.cabecalho .textoCabecalho{
+text-align:right;
+padding-top:5px;
+padding-right:5px;
+text-align:right;
+font-size:10px;
+  line-height:140%;
+}
+</style>
+<style media="print">
+.form-search{
+display:none;
+}
+.well{
+background-color:#FFFFFF;
+.rodape {
+ padding: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #000000;
+  text-align:center;
+  width:280mm;
+}
+.cabecalho {
+ padding: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #000000;
+  text-align:left;
+  width:280mm;
+}
+.cabecalho .textoCabecalho{
+text-align:right;
+padding-top:5px;
+padding-right:5px;
+text-align:right;
+font-size:10px;
+  line-height:140%;
+}
+
+</style>
+</head>
+<body>
+<div class="container" style="width:280mm;">
+<div class="cabecalho">
+<div class="row"><div class="span4"><img src="img/logoEmpresa.png" width="280" height="115" /></div><div class="textoCabecalho">RAINHA TOUR E VIAGENS LTDA<br/>
+COMUNIDADE OBRA DE MARIA<br/>
+CNPJ.: 12.415.719/0001-72<br/>
+EMBRATUR.: 07.046409.10.0001-8<br/>
+SRTVS - QUADRA 701 - BL II  -  SALA 208<br/>
+CENTRO EMPRESARIAL ASSIS CHATEAUBRIAND<br/>
+ASA SUL - BRASILIA - DF <br/>
+CEP 70340.906<br/>
+www.obrademariadf.com.br<br/>
+brasilia@obrademaria.com.br<br/>
+fone.fax.: 55 61 32015116
+</div>
+</div>
+  </div>
+  {ALERT}
+	<div id="content" style="width:280mm;">{CONTEUDO}</div>
+	<div class="rodape">
+	Comunidade Obra de Maria - Rainha Tour e Viagens Ltda-ME - Tel.: (61) 3201-5116 - Site: www.obrademariadf.com.br - Email: brasilia@obrademaria.com.br
+    </div>
+</div>
+<div class="modal hide fade" id="myModalEmail" >
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Enviar para E-mail</h3>
+  </div>
+  <div class="modal-body">
+    <p id="boxRelatEmail">
+ <div class="control-group"> 
+    <label for="destinatario" class="control-label">Destinatário:</label>
+    <div class="controls"> 
+      <input type="text" id="destinatario" class="input-xlarge span3" name="destinatario" value="" placeholder="E-mail destinatário">    
+    </div>
+  </div>
+  <div class="control-group"> 
+    <label for="destinatario" class="control-label">Informações:</label>
+    <div class="controls"> 
+      <input type="text" id="infoEmailRelat" class="input-xlarge span6" name="infoEmailRelat" value="" placeholder="Informações">    
+    </div>
+  </div>
+  <input type="hidden" id="textoEmailRelat" class="input-xlarge span2" name="textoEmailRelat" value="">
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a data-toggle="modal" href="#myModalEmail" class="btn">Cancelar</a>
+    <a href="#" class="btn btn-primary" id="bt_enviaRelat">Confirmar</a>
+  </div>
+</div>
+</body>
+</html>

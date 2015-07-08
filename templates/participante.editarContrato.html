@@ -1,0 +1,18 @@
+
+<section>
+<h2>{NOME_GRUPO}</h2>
+<h1>Edita Contrato</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="participante.response.php">
+        <fieldset>
+          <legend></legend>
+               <textarea class="ckeditor" name="contrato" id="contrato" rows="30" style="width:100%;">{CONTRATO}</textarea>
+         <div class="form-actions">
+          <input type="hidden" value="{ID_PARTICIPANTE}" name="idParticipante" id="idParticipante" />
+		  <input type="hidden" value="{ID_GRUPO}" name="idGrupo" id="idGrupo" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary" type="submit">Salvar Contrato</button>			
+			<button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

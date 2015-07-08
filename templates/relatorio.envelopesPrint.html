@@ -1,0 +1,102 @@
+<form class="well form-search" action="relatorio.listaCamisetaPrint.php" id="frmEmail" method="post">      
+<input type="button" value="Imprimir" onclick="window.print();" />
+      </form>
+<!-- BEGIN BLOCK_FOLHA -->
+<div class="folha clearfix quebra">
+	<div class="envelope">
+	<div class="cabecalho">
+<div class="row"><div class="span4"><img src="img/logoEmpresa.png" width="280" height="115" /></div><div class="textoCabecalho">ROSA MISTICA TURISMO LTDA<br/>
+CNPJ: 12.415.719-0001-72<br/>
+Centro Empresarial Assis Chateaubriand<br />
+SRTVS Qd. 701 Conj. L Bloco II Sala 208<br />
+Asa Sul – Brasília - DF <br />
+brasilia@obrademaria.com.br
+</div>
+</div>
+  </div>
+	<div class="row">
+		<div class="span2 labelEnvelope">Grupo:</div>
+		<div class="span4 textoEnvelope">{NOME_GRUPO}</div>
+		<div class="span1 labelEnvelope">Saída:</div>
+		<div class="span1 textoEnvelope">{DATA_SAIDA}</div>
+		<div class="span1 labelEnvelope">Chegada:</div>
+		<div class="spaN2 textoEnvelope">&nbsp;&nbsp;{DATA_CHEGADA}</div>
+	</div>   
+	<div class="row">
+		<div class="span2 labelEnvelope">Sobrenome:</div>
+		<div class="span2 textoEnvelope">{SOBRENOME}</div>
+		<div class="span2 labelEnvelope">Nome:</div>
+		<div class="span4 textoEnvelope">{NOME}</div>
+	</div>   
+	<div class="row">
+		<div class="span2 labelEnvelope">Data Nasc.:</div>
+		<div class="span2 textoEnvelope">{DATA_NASC}</div>
+		<div class="span2 labelEnvelope">Cidade Nasc.:</div>
+		<div class="span4 textoEnvelope">{CIDADE_NASC}</div>
+	</div>  
+	<div class="row">
+		<div class="span2 labelEnvelope">Fone1:</div>
+		<div class="span2 textoEnvelope">{FONE1}</div>
+		<div class="span1 labelEnvelope">Fone2:</div>
+		<div class="span2 textoEnvelope">{FONE2}</div>
+		<div class="span1 labelEnvelope">Fone3:</div>
+		<div class="spaN2 textoEnvelope">{FONE3}</div>
+	</div> 
+	<div class="row">
+		<div class="span2 labelEnvelope">Passaporte:</div>
+		<div class="span2 textoEnvelope">{PASSAPORTE}</div>
+		<div class="span1 labelEnvelope">Exp:</div>
+		<div class="span2 textoEnvelope">{EXPEDICAO}</div>
+		<div class="span1 labelEnvelope">Val:</div>
+		<div class="spaN2 textoEnvelope">{VALIDADE}</div>
+	</div> 
+	<div class="row">
+		<div class="span2 labelEnvelope">Valor Negociado:</div>
+		<div class="span2 textoEnvelope">{VALOR_TOTAL}</div>		
+	</div> 
+	Pagamentos:
+	<table class="table table-striped table-bordered">
+	<thead>
+          <tr>
+		  	<th>Data</th>
+            <th>Tipo</th>
+		    <th>Valor Pago – US$</th>
+			<th>Valor Pago R$</th>            
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+            <td>{DATA_PAG}</td>
+            <td>{TIPO_PAG}</td>
+			<td style="text-align:right;" width="160">{VALOR_PAGO_DOLLAR}</td>
+			<td style="text-align:right;" width="160">{VALOR_PAGO_REAL}</td>
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+        </tbody>
+      </table>
+	  Check List:
+	  <div class="row">
+		<div class="span2 textoEnvelope">
+		[]Reunião I<br />
+		[]Reunião II<br />
+		[]Reunião III<br />
+		[]Quitação<br />
+		[]Pgt. Dinheiro<br />
+		[]Cheque
+		</div>
+		<div class="span2 textoEnvelope">
+		[]Passagem<br />
+		[]Seguro<br />
+		[]Kit<br />
+		[]Cartão aut.<br />
+		[]Cartão		
+		</div>
+		<div class="span6 textoEnvelope">
+		OBS 01 ______________________________________<br /><br />
+		OBS 02 ______________________________________<br /><br />
+		OBS 03 ______________________________________
+		</div>
+	</div> 
+</div>
+<!-- END BLOCK_FOLHA -->

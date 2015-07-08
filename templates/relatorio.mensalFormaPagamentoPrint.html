@@ -1,0 +1,63 @@
+<section>
+<h3>RELATÓRIO MENSAL DE FORMA DE PAGAMENTO - {DATA_RELATORIO}</h3>
+<h3>DE {DATA_INICIO} À {DATA_FIM}</h3>
+<form class="well form-search" action="relatorio.listaCamisetaPrint.php" id="frmEmail" method="post">      
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+      </form>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+		  	<th >Forma de Pagamento</th>
+		   	<th >Valor Recebido – US$</th>
+			<th >Valor Recebido R$</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Espécie</td>
+			<td style="text-align:right;">{VALOR_ESPECIE_DOLLAR}</td>
+			<td style="text-align:right;">{VALOR_ESPECIE_REAL}</td>
+          </tr>
+           <tr>
+            <td>Cheque</td>
+			<td style="text-align:right;">{VALOR_CHEQUE_DOLLAR}</td>
+			<td style="text-align:right;">{VALOR_CHEQUE_REAL}</td>
+          </tr>
+          <tr>
+            <td>Cartão de Crédito</td>
+			<td style="text-align:right;">{VALOR_CARTAO_DOLLAR}</td>
+			<td style="text-align:right;">{VALOR_CARTAO_REAL}</td>
+          </tr>
+          <tr>
+            <td>Cartão de Débito</td>
+			<td style="text-align:right;">{VALOR_DEBITO_DOLLAR}</td>
+			<td style="text-align:right;">{VALOR_DEBITO_REAL}</td>
+          </tr>
+          <tr>
+            <td>TED</td>
+			<td style="text-align:right;">{VALOR_TED_DOLLAR}</td>
+			<td style="text-align:right;">{VALOR_TED_REAL}</td>
+          </tr>
+          <tr>
+            <td>DOC</td>
+			<td style="text-align:right;">{VALOR_DOC_DOLLAR}</td>
+			<td style="text-align:right;">{VALOR_DOC_REAL}</td>
+          </tr>
+          <tr>
+            <td>Depósito</td>
+			<td style="text-align:right;">{VALOR_DEPOSITO_DOLLAR}</td>
+			<td style="text-align:right;">{VALOR_DEPOSITO_REAL}</td>
+          </tr>
+           <tr>
+            <td>Transferência</td>
+			<td style="text-align:right;">{VALOR_TRANSFERENCIA_DOLLAR}</td>
+			<td style="text-align:right;">{VALOR_TRANSFERENCIA_REAL}</td>
+          </tr>
+           <tr>
+            <td style="text-align:right;">Total dos Recebimentos:</td>
+			<td style="text-align:right;">{TOTAL_TOTAL_DOLLAR}</td>
+			<td style="text-align:right;">{TOTAL_TOTAL_REAL}</td>
+          </tr>
+        </tbody>
+      </table>
+</section>

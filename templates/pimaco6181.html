@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{TITULO}</title>
+<style type="text/css">
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+body{
+margin:0px;
+padding:0px;
+font-size:10px;
+}
+p{
+padding:0px;
+margin:0px;
+}
+.folha{
+padding-top:10mm;
+padding-left:0mm;
+width:216mm;
+height:258mm;	
+clear:both;
+}
+.etiqueta{
+margin-left:0mm;
+margin-right:5mm;
+width:101.6mm;
+height:25.3mm;
+float:left;
+border-radius: 5px;
+}
+.texto {
+padding:3mm;
+font-size:12px;	
+}
+.quebra { page-break-after:always; }
+</style>
+<style media="print">
+.form-search{
+display:none;
+}
+</style>
+</head>
+
+<body>
+{CONTEUDO}
+</body>
+</html>

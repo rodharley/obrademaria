@@ -1,0 +1,261 @@
+<script>
+$(document).ready(function(){
+ $("#frmEdit").validate();
+ 
+
+$("#ano").mask("9999");
+});
+ 
+</script>
+
+<section>
+  <h1>Edita Grupo</h1>
+  <form class="form-horizontal" id="frmEdit" method="post" action="cadastro.grupoResponse.php" enctype="multipart/form-data">
+    <fieldset>
+    <legend>Pacote Principal</legend>
+    <div class="control-group">
+      <label for="cpf" class="control-label">Nome:</label>
+      <div class="controls">
+        <input type="text" id="nomePacote" class="input-xlarge required span6" name="nomePacote" value="{nomePacote}" placeholder="Nome do Pacote">
+      </div>
+    </div>
+    <div class="row">
+    <div class="span4">
+    <div class="control-group">
+      <label for="cpf" class="control-label">Ano:</label>
+      <div class="controls">
+        <input type="text" id="ano" class="input-xlarge required span2" name="ano" value="{ano}" placeholder="Ano">
+      </div>
+    </div>
+    </div>
+    <div class="span4">
+    <div class="control-group">
+      <label for="dataEmbarque" class="control-label">Data do Embarque:</label>
+      <div class="controls">
+        <input type="text" name="dataEmbarque" id="dataEmbarque" data-datepicker="datepicker" placeholder="Data de Embarque" class="span2 required" value="{dataEmbarque}">
+      </div>
+    </div>
+    </div>
+    <div class="span3">
+    <div class="control-group">
+      <label for="cotacaoCusto" class="control-label">Data de Chegada:</label>  
+	  <div class="controls">
+         <input type="text" name="dataChegada" id="dataChegada" data-datepicker="datepicker" placeholder="Data de Chegada" class="span2 required" value="{dataChegada}">
+		</div>
+      </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="span4">
+    <div class="control-group">
+      <label for="moeda" class="control-label">Moeda:</label>
+      <div class="controls">
+        <select id="moeda" name="moeda" class="span2 required">
+          <option value="">Moeda</option>
+          <!-- BEGIN BLOCK_MOEDA -->
+          <option value="{ID_MOEDA}" {SELECTED_MOEDA}>{LABEL_MOEDA}</option>
+          <!-- END BLOCK_MOEDA -->
+        </select>
+      </div>
+    </div>
+    </div>
+    <div class="span4">
+    <div class="control-group">
+      <label for="status" class="control-label">Status:</label>
+      <div class="controls">
+        <select id="status" name="status" class="span2 required">
+          <option value="">Status</option>
+          <!-- BEGIN BLOCK_STATUS -->
+          <option value="{ID_STATUS}" {SELECTED_STATUS}>{LABEL_STATUS}</option>
+          <!-- END BLOCK_STATUS -->
+        </select>
+      </div>
+    </div>
+    </div>
+	<div class="span3">
+    <div class="control-group">
+      <label for="status" class="control-label">Modelo de Contrato:</label>
+      <div class="controls">
+        <select id="modeloContrato" name="modeloContrato" class="span2 required">
+          <option value="">Modelo</option>         
+          <option value="contrato1.php" {SELECTED_MODELO1}>Contrato Internacional</option>
+          <option value="contrato2.php" {SELECTED_MODELO2}>Contrato Nacional</option>
+          <option value="contrato3.php" {SELECTED_MODELO3}>GRUPO JMJ 16</option>
+        </select>
+      </div>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+      <div class="span4">
+        <div class="control-group">
+          <label for="valorPacote" class="control-label">Valor do Pacote:</label>
+          <div class="controls">
+            <input type="text" id="valorPacote" class="input-xlarge span2 required" name="valorPacote" value="{valorPacote}" placeholder="Valor do Pacote" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+            &nbsp; </div>
+        </div>
+      </div>
+      <div class="span4">
+        <div class="control-group">
+          <label for="valorTaxaEmbarque" class="control-label">Taxa de Embarque:</label>
+          <div class="controls">
+            <input type="text" id="valorTaxaEmbarque" class="input-xlarge span2 required" name="valorTaxaEmbarque" value="{valorTaxaEmbarque}" placeholder="Taxa de Embarque" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+          </div>
+        </div>
+      </div>
+      <div class="span3">
+    <div class="control-group">
+      <label for="status" class="control-label">Modelo de Ficha:</label>
+      <div class="controls">
+        <select id="modeloFicha" name="modeloFicha" class="span2 required">
+          <option value="">Modelo de Ficha</option>         
+          <option value="fichaInscricao.php" {SELECTED_MODELO_FICHA1}>Normal</option>
+          <option value="fichaInscricaoJMJ16.php" {SELECTED_MODELO_FICHA2}>Grupo JMJ16</option>
+          
+        </select>
+      </div>
+    </div>
+    </div>
+    </div>
+	  <div class="row">
+      <div class="span4">
+    <div class="control-group">
+      <label for="valorAdesao" class="control-label">Valor da Adesão:</label>
+      <div class="controls">
+        <input type="text" id="valorAdesao" class="input-xlarge span2 required" name="valorAdesao" value="{valorAdesao}" placeholder="Valor da Adesão" onKeyPress="return(MascaraMoeda(this,'.',',',event))">       
+      </div>
+    </div>
+	</div>
+	 <div class="span4">
+	  <div class="control-group">
+      <label for="valorCusto" class="control-label">Custo por Cliente:</label>  
+	  <div class="controls">
+        <input type="text" id="valorCusto" class="input-xlarge span2 required" name="valorCusto" value="{valorCusto}" placeholder="Custo" onKeyPress="return(MascaraMoeda(this,'.',',',event))">       
+		</div>
+      </div>
+    </div>
+    <div class="span3">
+    <div class="control-group">
+      <label for="cotacaoCusto" class="control-label">Cambio:</label>  
+	  <div class="controls">
+        <input type="text" id="cotacaoCusto" class="input-xlarge required span1" name="cotacaoCusto" value="{cotacaoCusto}" placeholder="Custo" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+		</div>
+      </div>
+    </div>
+	 </div>
+
+    <div class="control-group">
+      <label for="plano" class="control-label">Plano do Seguro:</label>
+      <div class="controls">
+        <input type="text" name="plano" id="plano" class="input-xlarge span6" value="{plano}" />
+      </div>
+    </div>
+     <div class="control-group">
+      <label for="destino" class="control-label">Destino do Seguro:</label>
+      <div class="controls">
+        <input type="text" name="destino" id="destino" class="input-xlarge span6" value="{destino}"/>
+        <br />
+        <a href="docs/{pautaAnexo}" target="_blank">{pautaAnexo}</a> </div>
+    </div>
+
+    <div class="control-group">
+      <label for="roteiro" class="control-label">Roteiro:</label>
+      <div class="controls">
+        <input type="file" name="roteiro" id="roteiro" />
+        <br />
+         <a href="docs/{roteiroAnexo}" target="_blank">{roteiroAnexo}</a> </div>
+    </div>
+     <div class="control-group">
+      <label for="pauta" class="control-label">Pauta de Reunião:</label>
+      <div class="controls">
+        <input type="file" name="pauta" id="pauta" />
+        <br />
+        <a href="docs/{pautaAnexo}" target="_blank">{pautaAnexo}</a> </div>
+    </div>
+    <div class="accordion" id="accordion">
+      <div class="accordion-group">
+        <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Pacote Opcional </a> </div>
+        <div id="collapseOne" class="accordion collapse" style="height: 0; ">
+          <div class="accordion-inner">
+            <div class="control-group">
+              <label for="cpf" class="control-label">Nome:</label>
+              <div class="controls">
+                <input type="text" id="nomePacoteOpcional" class="input-xlarge span6" name="nomePacoteOpcional" value="{nomePacoteOpcional}" placeholder="Nome do Pacote">
+              </div>
+            </div>
+			 <div class="row">
+      <div class="span4">
+            <div class="control-group">
+              <label for="valorPacoteOpcional" class="control-label">Valor do Pacote:</label>
+              <div class="controls">
+                <input type="text" id="valorPacoteOpcional" class="input-xlarge span2" name="valorPacoteOpcional" value="{valorPacoteOpcional}" placeholder="Valor do Pacote" onKeyPress="return(MascaraMoeda(this,'.',',',event))">               
+              </div>
+            </div>
+			</div>
+			<div class="span7">
+			<div class="control-group">
+              <label for="valorTaxaEmbarqueOpcional" class="control-label">Taxa de Embarque:</label>
+              <div class="controls">
+                <input type="text" id="valorTaxaEmbarqueOpcional" class="input-xlarge span2 " name="valorTaxaEmbarqueOpcional" value="{valorTaxaEmbarqueOpcional}" placeholder="Taxa de Embarque" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+              </div>
+            </div>
+			
+			</div>
+			</div>
+			
+			<div class="row">
+		      <div class="span4">
+			  <div class="control-group">
+              <label for="valorAdesaoOpcional" class="control-label">Valor da Adesão:</label>
+              <div class="controls">
+                <input type="text" id="valorAdesaoOpcional" class="input-xlarge span2" name="valorAdesaoOpcional" value="{valorAdesaoOpcional}" placeholder="Valor da Adesão" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+                   </div>
+            </div>
+			  </div>
+			<div class="span7">			
+            <div class="control-group">
+              <label for="valorCustoOpcional" class="control-label">Custo:</label>
+              <div class="controls">                
+                <input type="text" id="valorCustoOpcional" class="input-xlarge span2" name="valorCustoOpcional" value="{valorCustoOpcional}" placeholder="Custo" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+              </div>
+            </div>
+			</div>
+			</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </fieldset>
+	<div class="well">
+	<fieldset>
+	 <legend>Histórico de Alterações</legend>
+	 <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th width="150">Data</th>
+            <th width="100">Usuário</th>
+            <th >Alterações</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LOG -->
+          <tr>
+            <td>{DATA}</td>
+            <td>{USUARIO}</td>
+            <td>{LOG}</td>
+          </tr>
+         <!-- END BLOCK_ITEM_LOG -->
+        </tbody>
+      </table>
+	</fieldset>
+	</div>
+	
+    <div class="form-actions">
+      <input type="hidden" value="{ID}" name="id" id="id" />
+      <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+      <button class="btn btn-primary" type="submit">Salvar</button>
+      <button class="btn" id="bt_voltar" type="button">Voltar</button>
+    </div>
+
+  </form>
+</section>

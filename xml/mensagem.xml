@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+Exemplos de mensagens:
+
+<mensagem id="1" type="suscess">Mensagem de teste</mensagem>>
+
+-->
+
+<mensagens>
+
+<mensagem id="1" type="error">Campo não pode ser nulo</mensagem>
+
+<mensagem id="2" type="error">Código inválido.</mensagem>
+
+<mensagem id="3" type="error">Usuário não encontrado.</mensagem>
+
+<mensagem id="4" type="error">Senha inválida.</mensagem>
+
+<mensagem id="5" type="error">Acesso não autorizado ou ação não identificada!</mensagem>
+
+<mensagem id="6" type="success">Perfil incluído com sucesso.</mensagem>
+
+<mensagem id="7" type="success">Perfil alterado com sucesso.</mensagem>
+
+<mensagem id="8" type="success">Perfil excluído com sucesso.</mensagem>
+
+<mensagem id="9" type="error">Não foi possível excluir o perfil, pois existem usuários associados ao perfil.</mensagem>
+
+<mensagem id="10" type="success">Sua senha foi redefinida com sucesso! Uma nova senha foi enviada para o seu email.</mensagem>
+
+<mensagem id="11" type="success">Senha alterada com sucesso!</mensagem>
+
+<mensagem id="12" type="success">Usuário incluído com sucesso.</mensagem>
+
+<mensagem id="13" type="success">Usuário alterado com sucesso.</mensagem>
+
+<mensagem id="14" type="success">Usuário excluído com sucesso.</mensagem>
+
+<mensagem id="15" type="error">E-mail já cadastrado no sistema!</mensagem>
+
+<mensagem id="16" type="error">CPF já cadastrado no sistema!</mensagem>
+
+<mensagem id="17" type="success">Cliente incluído com sucesso.</mensagem>
+
+<mensagem id="18" type="success">Cliente alterado com sucesso.</mensagem>
+
+<mensagem id="19" type="success">Cliente excluído com sucesso.</mensagem>
+
+<mensagem id="20" type="success">Grupo incluído com sucesso.</mensagem>
+
+<mensagem id="21" type="success">Grupo alterado com sucesso.</mensagem>
+
+<mensagem id="22" type="success">Grupo excluído com sucesso.</mensagem>
+
+<mensagem id="23" type="error">Grupo não pode ser excluído porque possui participantes.</mensagem>
+
+<mensagem id="24" type="success">Participante Cadastrado com sucesso.</mensagem>
+
+<mensagem id="25" type="success">Participação cancelada com sucesso.</mensagem>
+
+<mensagem id="26" type="success">Vôo incluído com sucesso.</mensagem>
+
+<mensagem id="27" type="success">Vôo alterado com sucesso.</mensagem>
+
+<mensagem id="28" type="success">Vôo excluído com sucesso.</mensagem>
+
+<mensagem id="29" type="success">Quarto incluído com sucesso.</mensagem>
+
+<mensagem id="30" type="success">Quarto alterado com sucesso.</mensagem>
+
+<mensagem id="31" type="success">Quarto excluído com sucesso.</mensagem>
+
+<mensagem id="32" type="error">Quarto não pode ser excluído porque possui um participante associado.</mensagem>
+
+<mensagem id="33" type="success">Pauta Salva com sucesso.</mensagem>
+
+<mensagem id="34" type="success">Participante adicionado com sucesso.</mensagem>
+
+<mensagem id="35" type="success">Participante removido com sucesso.</mensagem>
+
+<mensagem id="36" type="success">Pagamento registrado com sucesso.</mensagem>
+
+<mensagem id="37" type="success">Pagamento cancelado com sucesso, todos os abatimentos foram cancelados, verifique os status dos participantes envolvidos.</mensagem>
+
+<mensagem id="38" type="success">Pagamento alterado com sucesso, todos os abatimentos foram cancelados, verifique os status dos participantes envolvidos.</mensagem>
+
+<mensagem id="39" type="success">Abatimento incluído com sucesso.</mensagem>
+
+<mensagem id="40" type="error">Valor máximo para esse pagamento excedido.</mensagem>
+
+<mensagem id="41" type="success">Abatimento excluído com sucesso.</mensagem>
+
+<mensagem id="42" type="success">Abatimento alterado com sucesso.</mensagem>
+
+<mensagem id="43" type="success">conta a pagar incluída com sucesso.</mensagem>
+
+<mensagem id="44" type="success">conta a pagar alterada com sucesso.</mensagem>
+
+<mensagem id="45" type="success">conta a pagar excluída com sucesso.</mensagem>
+
+<mensagem id="46" type="error">Grupo não pode ser excluído porque possui quartos.</mensagem>
+
+<mensagem id="47" type="error">Grupo não pode ser excluído porque possui vôos.</mensagem>
+
+<mensagem id="48" type="success">Participante Alterado com sucesso.</mensagem>
+
+<mensagem id="49" type="error">Erro, contate o Administrador do sistema.</mensagem>
+
+<mensagem id="50" type="error">Cliente não pode ser excluído porque possui participações em grupo.</mensagem>
+
+<mensagem id="51" type="error">Cliente não pode ser excluído porque é Emissor de cheque em pagamento.</mensagem>
+
+<mensagem id="52" type="error">Cliente já está cadastrado como participante nesse grupo!</mensagem>
+
+<mensagem id="53" type="success">Email enviado com sucesso!</mensagem>
+
+<mensagem id="54" type="error">Problemas no envio do email, tente novamente mais tarde</mensagem>
+
+<mensagem id="55" type="success">Participante excluído com sucesso!</mensagem>
+
+<mensagem id="56" type="success">Contrato salvo com sucesso!</mensagem>
+<mensagem id="57" type="success">Migração realizada com sucesso!</mensagem>
+<mensagem id="58" type="success">Companhia aérea incluída com sucesso.</mensagem>
+<mensagem id="59" type="success">Companhia aérea alterada com sucesso.</mensagem>
+<mensagem id="60" type="success">Companhia aérea excluída com sucesso.</mensagem>
+<mensagem id="61" type="error">Pagamento em cartão deve possuir código de autorização para realizar abatimento!</mensagem>
+<mensagem id="62" type="success">Bandeira incluída com sucesso.</mensagem>
+<mensagem id="63" type="success">Bandeira alterada com sucesso.</mensagem>
+<mensagem id="64" type="success">Bandeira excluída com sucesso.</mensagem>
+</mensagens>
+
+
+

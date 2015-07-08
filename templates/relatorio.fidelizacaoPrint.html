@@ -1,0 +1,28 @@
+<section>
+<h3>Lista de Participantes Fidelizados - {DATA_RELATORIO}</h3>
+<form class="well form-search" action="relatorio.listaCamisetaPrint.php" id="frmEmail" method="post">      
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+      </form>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th width="50">Nº</th>
+            <th >Participante</th>
+			<th >Telefone</th>
+			<th >E-mail</th>
+			<th >Grupos</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+            <td>{NUMERO}</td>
+            <td>{PARTICIPANTE}</td>
+			<td>{TELEFONE}</td>
+			<td>{EMAIL}</td>
+			<td>{GRUPOS}</td>
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+        </tbody>
+      </table>
+</section>

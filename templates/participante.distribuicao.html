@@ -1,0 +1,56 @@
+<script>
+$(document).ready(function(){
+	
+	$('#excluirparticipante').click(function(){
+		document.location.href= 'participante.response.php?acao=Cancelar&idGrupo={ID_GRUPO_HASH}&idParticipante='+$('#manipulacao').val();
+	});
+	
+		
+	$('.paginar').click(function(){
+		jQuery.ajax({
+		type: "GET",
+		url: "participante.lista.php?ajax=1&idGrupo={ID_GRUPO_HASH}&pagina="+$('#manipulacao').val(),
+		beforeSend: function( ) {
+		jQuery('#content').html('<p align="center">Processando...<br /><img src="img/ajax_loading_pequeno.gif" /></p>');
+		  },
+		success: function(msg){
+		jQuery("#content").html(msg);
+		}
+		});
+	});
+});
+
+</script>
+<section>
+<h2>{NOME_GRUPO}</h2>
+<h1>Distribuição<br/><small>Distribuição nos quartos cadastrados:</small></h1>
+<div class="accordion" id="accQuartos">
+            <!-- BEGIN BLOCK_QUARTO -->
+			<div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accQuartos" href="#coll{ID_QUARTO}">
+                  Quarto: {NUMERO_QUARTO} - Capacidade: {CAPACIDADE}
+                </a>
+              </div>
+              <div id="coll{ID_QUARTO}" class="accordion-body {CLASS_COLLAPSE}" style="{STYLE_COLLAPSE}">
+                <div class="accordion-inner">                 
+				 <!-- BEGIN BLOCK_PARTICIPANTE -->
+				 <a class="btn">{NOME_PART_QUARTO}</a><br /><br />
+				 <!-- END BLOCK_PARTICIPANTE -->
+				 <!-- BEGIN BLOCK_PARTICIPANTE_EXC -->
+				 <a href="participante.response.php?acao=Remover&idGrupo={ID_GRUPO_HASH}&idParticipante={ID_PARTICIPANTE_HASH}&idQuarto={ID_QUARTO_HASH}" class="btn btn-danger" title="Remover do quarto">
+				 <li class="icon-remove icon-white"></li>
+{NOME_PART_QUARTO}</a><br /><br />
+				 <!-- END BLOCK_PARTICIPANTE_EXC -->
+				 
+				 <!-- BEGIN BLOCK_ADD -->
+				<br /><br /> <a href="participante.response.php?acao=Distribuir&idGrupo={ID_GRUPO_HASH}&idParticipante={ID_PARTICIPANTE_HASH}&idQuarto={ID_QUARTO_HASH}" class="btn btn-success" title="Adicionar ao quarto">
+				 <li class="icon-plus icon-white"></li>
+				 {NOME_PARTICIPANTE}</a>
+				 <!-- END BLOCK_ADD -->
+                </div>
+              </div>
+            </div>
+			<!-- END BLOCK_QUARTO -->
+          </div>
+</section>

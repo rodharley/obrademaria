@@ -1,0 +1,79 @@
+<script>
+$(function(){
+	// Accordion
+	$(".collapse").collapse()
+});
+$(document).ready(function(){
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+});
+</script>
+
+<section>
+<h1>Novo Perfil</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="cadastro.perfilResponse.php">
+        <fieldset>
+          <legend>Cadastro de perfil</legend>
+          <div class="control-group">
+            <label for="input01" class="control-label">Nome:</label>
+            <div class="controls">
+              <input type="text" id="input01" class="input-xlarge required" name="descricao" value="{DESCRICAO}">
+              <p class="help-block">Nome do perfil</p>
+            </div>
+          </div>
+			<div class="control-group">
+            <label for="input01" class="control-label">Menus:</label>
+            	<div class="controls">
+        <div id="accordion_perfil" class="accordion">
+            
+            <!-- BEGIN BLOCK_MENU_PERFIL --> 
+            <script type="text/javascript">
+			$(function(){
+			$(".submenu{ID_MENU}").click(function () {
+				var ok = false;
+				$('.submenu{ID_MENU}').each(function() {
+    				if(this.checked)
+						ok = true;
+  				});
+				
+			if(ok)
+				$('#menu{ID_MENU}').attr('checked',true); 			
+			else
+				$('#menu{ID_MENU}').attr('checked',false); 				
+				});
+			});
+			</script>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a href="#collapseOne" data-parent="#accordion_perfil" data-toggle="collapse" class="accordion-toggle">
+                  <input type="checkbox" name="menus[]" id="menu{ID_MENU}" value="{ID_MENU}" {CHECKED_MENU} />&nbsp;<strong>{DESC_MENU}</strong>
+                </a>
+              </div>
+              <div class="accordion-body collapse" id="collapseOne" style="height: 0px;">
+                <div class="accordion-inner">
+                <!-- BEGIN BLOCK_SUBMENU_PERFIL -->
+                <input type="checkbox" name="menus[]" value="{ID_SUBMENU}" id="menu{ID_SUBMENU}" class="submenu{ID_MENU}" {CHECKED_SUBMENU} />&nbsp;{DESC_SUBMENU}<BR />
+                <!-- END BLOCK_SUBMENU_PERFIL -->  
+                </div>
+              </div>
+            </div>
+          <!-- END BLOCK_MENU_PERFIL -->			
+            
+          </div>
+        
+        
+        
+               </div>
+            </div>
+          <div class="form-actions">
+          <input type="hidden" value="{ID}" name="id" id="id" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary" type="submit">Salvar</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

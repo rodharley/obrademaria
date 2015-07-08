@@ -1,0 +1,39 @@
+<section>
+<h3>Relatório Geral Por Período - {DATA_RELATORIO}</h3>
+<h3>DE {DATA_INICIO} À {DATA_FIM}</h3>
+<form class="well form-search" action="relatorio.listaCamisetaPrint.php" id="frmEmail" method="post">      
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+      </form>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+		  	<th >Grupo</th>
+            <th >Participantes</th>			
+            <th >Recebimentos US$</th>
+            <th >Recebimentos R$</th>
+            <th >Devolução US$</th>
+            <th >Devolução R$</th>	
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+           <th >{GRUPO}</th>
+            <th >{PARTICIPANTE}</th>			
+            <th style="text-align:right;">{RECEBIMENTO_DOLLAR}</th>
+            <th style="text-align:right;">{RECEBIMENTO_REAL}</th>
+            <th style="text-align:right;">{DEVOLUCAO_DOLLAR}</th>
+            <th style="text-align:right;">{DEVOLUCAO_REAL}</th>	
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+		  <tr>
+            <td style="text-align:right;">Totais:</td>
+			<td style="text-align:right;">{TOTAL_PARTICIPANTE}</td>
+			<td style="text-align:right;">{TOTAL_R_DOLLAR}</td>
+			<td style="text-align:right;">{TOTAL_R_REAL}</td>
+			<td style="text-align:right;">{TOTAL_DEVOLUCAO_DOLLAR}</td>
+			<td style="text-align:right;">{TOTAL_DEVOLUCAO_REAL}</td>	
+          </tr>
+        </tbody>
+      </table>
+</section>

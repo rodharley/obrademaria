@@ -1,0 +1,58 @@
+<section>
+<h3>Relatório Por Período de Cheques Pré-datados - {DATA_RELATORIO}</h3>
+<h3>DE {DATA_INICIO} À {DATA_FIM}</h3>
+<form class="well form-search" action="relatorio.listaCamisetaPrint.php" id="frmEmail" method="post">      
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+      </form>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+		  	<th width="50">#</th>
+            <th >Participante</th>
+            <th >Emissor</th>			
+            <th >Grupo</th>
+			<th >Banco</th>
+            <th >Nº</th>
+            <th width="120" >Status</th>
+            <th >Data</th>
+            <th>Valor</th>	
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+        <script>
+$(document).ready(function(){
+ $('.mudar{IDCHEQUE}').click(function(){
+	$('#status{IDCHEQUE}').load('ajax/ajax.alteraStatusCheque.php?ajax=1&status='+$(this).attr("value")); 
+ });
+
+});
+</script>
+          <tr>
+            <td>{ID_PARTICIPANTE}</td>
+            <td>{NOME_PARTICIPANTE}</td>
+            <td><a href="cadastro.clienteEdita.php?idCliente={ID_CLIENTE_HASH}">{EMISSOR}</a></td>
+			<th >{GRUPO}</th>
+			<th >{BANCO}</th>
+            <th >{NUMERO}</th>
+            <th id="status{IDCHEQUE}" >
+            <div class="btn-group">
+            <a class="btn" href="#" id="submit">{STATUS}</a>
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;</a>
+          <ul class="dropdown-menu">
+            <!-- BEGIN BLOCK_STATUS -->
+            <li><a href="#" value="{ID_STATUS}&idCheque={IDCHEQUE}" class="mudar{IDCHEQUE}">{LABEL_STATUS}</a></li>
+            <!-- END BLOCK_STATUS -->
+          </ul>          
+        </div></th>
+            <th width="120">{DATA}</th>	
+            <th width="120" style="text-align:right;">{VALOR}</th>
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+		  <tr>
+            <td colspan="8" style="text-align:right;">Totais:</td>
+			<td style="text-align:right;">{TOTAL}</td>
+          </tr>
+        </tbody>
+      </table>
+</section>

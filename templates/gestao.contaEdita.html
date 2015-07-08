@@ -1,0 +1,72 @@
+<script>
+$(document).ready(function(){
+
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+
+$("#tipo").change(function(){
+	$('#dadosPagamento').html('<p align="center"><img src="img/ajax_loading_pequeno.gif" /><br />Processando...</p>');
+	$("#dadosPagamento").load('ajax/ajax.carregaTipoContas.php?ajax=1&idConta={ID}&idTipo='+$(this).val());
+});
+ 
+<!-- BEGIN BLOCK_CARREGA_TIPO_CONTA -->
+$("#dadosPagamento").load('ajax/ajax.carregaTipoContas.php?ajax=1&idTipo={ID_TIPO}&idConta={ID}'); 
+<!-- END BLOCK_CARREGA_TIPO_CONTA --> 
+});
+
+</script>
+
+<section>
+<h1>Edita Conta a Pagar</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="gestao.contaResponse.php">
+        <fieldset>
+          <legend>Cadastro de Conta a Pagar</legend>
+          <div class="control-group" >
+            <label for="finalidade" class="control-label">Descrição:</label>
+            <div class="controls">
+             <input type="text" id="descricao" class="input-xlarge span5 required" name="descricao" value="{DESCRICAO}" placeholder="Descrição">
+            </div>
+          </div>
+		  
+		   <div class="control-group" >
+            <label for="dataPagamento" class="control-label">Data do Pagamento:</label>
+            <div class="controls">
+               <input type="text" name="dataPagamento" id="dataPagamento" data-datepicker="datepicker" placeholder="Data do Pagamento" class="span2 required" value="{DATA_PAGAMENTO}">
+            </div>
+          </div>
+           <div class="control-group">
+            <label for="valorPagamento" class="control-label">Valor do Pagamento:</label>
+            <div class="controls">
+				<input type="text" id="valorPagamento" class="input-xlarge span2 required" name="valorPagamento" value="{VALOR_PAGAMENTO}" placeholder="Valor do Pagamento" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			</div>
+          </div>	  		
+		  </fieldset>
+		   <fieldset>
+          <legend>Tipo de Conta</legend>
+		   <div class="control-group">
+             <label for="tipo" class="control-label">Tipo:</label>
+            <div class="controls">   
+            <select id="tipo" name="tipo" class="span2 required">
+            <option value="">Tipo Pagamento</option>
+             <!-- BEGIN BLOCK_TIPOCONTA -->
+             <option value="{ID_TIPOCONTA}" {SELECTED_TIPOCONTA}>{LABEL_TIPOCONTA}</option>
+             <!-- END BLOCK_TIPOCONTA -->
+             </select>
+            </div>
+          </div>
+		  <section class="well" id="dadosPagamento">
+		  
+		  </section>
+         <div class="form-actions">
+          <input type="hidden" value="{ID}" name="id" id="id" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary" type="submit">Salvar Conta a Pagar</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

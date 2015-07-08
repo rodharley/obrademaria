@@ -1,0 +1,37 @@
+<section>
+<h3>>>&nbsp;&nbsp;&nbsp;&nbsp;DISTRIBUIÇÃO EM QUARTOS - {DATA_RELATORIO}</h3>
+<h3>>>&nbsp;&nbsp;&nbsp;&nbsp;{COD_GRUPO}&nbsp;&nbsp;&nbsp;{NOME_GRUPO}</h3>
+<!-- BEGIN BLOCK_ENVIO_EMAIL -->
+<div class="well form-search">
+        <input type="hidden" name="idGrupo" value="{ID_GRUPO_HASH}"/>
+		<button class="btn"   data-toggle="modal" href="#myModalEmail"><i class="icon-envelope"></i> Enviar Por Email</button>
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+</div>
+<!-- END BLOCK_ENVIO_EMAIL -->
+<div id="tabelaRelat">
+<table class="table table-striped table-bordered">
+       <!-- BEGIN BLOCK_ITEM_LISTA -->
+ 		<thead>
+          <tr>
+            <th width="50">{N_QUARTO}</th>
+            <th >Sobrenome/Nome</th>
+            <th>Acesso Pref.</th>
+			<th>Idade</th>
+			<th>obs.</th>
+          </tr>
+        </thead>        
+		<tbody>
+		<!-- BEGIN BLOCK_SUBITEM_LISTA -->
+          <tr>
+            <td>&nbsp;</td>
+            <td>{LASTNAME}</td>			
+			<td>{ACESSO}</td>
+			<td>{IDADE}</td>
+			<td>{OBS}</td>
+          </tr>
+		  <!-- END BLOCK_SUBITEM_LISTA -->
+         </tbody>
+		 <!-- END BLOCK_ITEM_LISTA -->        
+      </table>
+	  </div>
+</section>

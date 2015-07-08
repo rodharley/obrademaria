@@ -1,0 +1,209 @@
+<style type="text/css">
+.tableMin {
+clear:both;
+padding:1px;
+}
+.tableMin tr td {
+font-size:8px;
+}
+.tableMin tr th {
+font-size:8px;
+}
+
+</style>
+<section>
+<h3>Relatório Geral Por Grupo - {DATA_RELATORIO} </h3>
+<h3>{COD_GRUPO}-{NOME_GRUPO}</h3>
+<br />
+<div class="well">
+<h4>Participantes</h4>
+<form class="well form-search" action="relatorio.listaCamisetaPrint.php" id="frmEmail" method="post">      
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+      </form>
+<table class="table table-striped table-bordered table-condensed">
+        <thead>         
+		  <tr>
+		  	<th >#</th>
+            <th >Participante</th>
+			<th >Status</th>			
+            <th >Custo R$</th>
+			<th >Custo US$</th>
+			<th >Cotação</th>
+			<th >Recebimentos R$</th>
+			<th >Recebimentos US$</th>
+            </tr>
+        </thead>		
+		<tbody>
+			<!-- BEGIN BLOCK_PARTICIPANTE -->
+          <tr>
+           <td >{ID}</td>
+           <td >{PARTICIPANTE}</td>
+		   <td >{STATUS}</td>			
+           <td style="text-align:right;">{CUSTO_REAL}</td>
+		   <td style="text-align:right;">{CUSTO_DOLLAR}</td>
+		   <td style="text-align:right;">{CAMBIO_CUSTO}</td>
+		   <td style="text-align:right;">{RECEBIMENTOS_REAL}</td>
+		   <td style="text-align:right;">{RECEBIMENTOS_DOLLAR}</td>                       
+          </tr>		  
+		 <!-- END BLOCK_PARTICIPANTE-->
+         <tr>
+		   <td colspan="3" style="text-align:right;">Totais:</td>			
+           <td style="text-align:right;">{CUSTO_TOTAL}</td>
+		   <td style="text-align:right;">{CUSTO_TOTAL_DOLLAR}</td>
+		   <td style="text-align:center;">-</td>
+		   <td style="text-align:right;">{RECEITA_TOTAL}</td>
+		   <td style="text-align:right;">{RECEITA_TOTAL_DOLAR}</td>                       
+          </tr>		  
+         </tbody></table>
+ </div>  
+
+<h4>Detalhes de Pagamentos</h4>    
+<!-- BEGIN BLOCK_BLOCO_P_CLIENTE -->  
+ <div class="well">
+        <table width="100%" class="table table-striped table-bordered table-condensed">			
+			<thead>         
+				<tr>
+                <th colspan="12">{ID} - {PARTICIPANTE}</th>				
+          		</tr>
+        	</thead>
+			<thead>         
+				<tr>
+                <th colspan="12">Transações/Abatimentos</th>				
+          		</tr>
+        	</thead>
+			<thead>         
+				<tr>
+				<th >Nº</th>
+				<th >Transação</th>
+				<th >Cliente Pagador</th>
+                <th >Grupo Origem</th>
+            	<th >Tipo</th>
+				<th >Moeda</th>	
+				<th> Data</th>		
+            	<th >Valor Pag R$</th>
+				<th >Valor Pag. US$</th>
+            	<th >Cotação</th>
+				<th >Valor Abat R$</th>
+				<th >Valor Abat. US$</th>            	           
+          		</tr>
+        	</thead>
+	        <tbody>
+  	     <!-- BEGIN BLOCK_ITEM_PAGAMENTOS -->
+		 <tr>
+           <td >{N_PAG}</td>
+		   <td >{PAG_TRANSACAO}</td>
+		   <td >{PAG_PARTICIPANTE}</td>
+		   <td >{GRUPO}</td>
+           <td >{TIPO}</td>			
+           <td >{MODEA}</td>
+		   <td>{DATA_PAG}</td>
+		   <td style="text-align:right;">{VALOR_REAL}</td>
+		   <td style="text-align:right;">{VALOR_DOLLAR}</td>
+		   <td style="text-align:right;">{COTACAO}</td>
+		   <td style="text-align:right;">{VALOR_ABAT_REAL}</td>
+		   <td style="text-align:right;">{VALOR_ABAT_DOLLAR}</td>
+          </tr>
+		   <!-- END BLOCK_ITEM_PAGAMENTOS --> 
+		    <tr>
+           <td colspan="10" style="text-align:right;">Total:</td>
+		   <td style="text-align:right;">{TOTAL_ABAT_PARTIC_REAL}</td>
+		   <td style="text-align:right;">{TOTAL_ABAT_PARTIC_DOLLAR}</td>
+          </tr>
+		  <!-- BEGIN BLOCK_CHEQUES -->
+		  <tr>              
+			   <th colspan="12">Cheques</th>				
+          </tr>
+		  <tr>
+		  <td>&nbsp;</td>
+		  <td colspan="12">
+		  <table align="right" cellspacing="1" cellpadding="1" border="0" class="table table-striped table-bordered table-condensed">
+		  <tr>
+				<th>Nº Pag</th>
+				<th>Banco</th>
+				<th >Emissor</th>
+				<th >Data de Compensação</th>
+				<th >Número</th>
+            	<th >Valor R$</th>								
+          </tr>
+		   <!-- BEGIN BLOCK_ITEM_CHEQUE -->
+		   <tr>
+		   <td>{N_PAG}</td>
+		   <td>{BANCO}</td>
+  			<td >{EMISSOR}</td>
+		   <td >{CHEQUE_DATA}</td>
+           <td >{CHEQUE_NUMERO}</td>
+           <td style="text-align:right;">{CHEQUE_VALOR}</td>			
+		  </tr>
+		  <!-- END BLOCK_ITEM_CHEQUE -->  
+		  </table>
+		  </td>
+		  </tr>
+		  
+		  <!-- END BLOCK_CHEQUES -->               
+		 </tbody>
+    </table>
+  </div> 
+<!-- END BLOCK_BLOCO_P_CLIENTE -->    
+   <div class="well">
+<h4>Totais Por Tipo de Pagamento R$</h4>  
+  <table class="table table-bordered table-condensed">  
+		<thead>         
+				<tr>
+				<th >Cheque</th>
+            	<th >Espécie</th>
+				<th >Cartão</th>
+				<th >Débito</th>
+				<th >Depósito</th>			
+            	<th >Transferência</th>
+				<th >TED</th>
+            	<th >DOC</th>
+				<th >Crédito Cliente</th>           
+          		</tr>
+        	</thead>
+	        <tbody>
+		 	<tr>
+			   <td style="text-align:right;">R$ {TOTAL_CHEQUE}</td>
+			   <td style="text-align:right;">R$ {TOTAL_ESPECIE}</td>
+			   <td style="text-align:right;">R$ {TOTAL_CARTAO}</td>	
+			   <td style="text-align:right;">R$ {TOTAL_DEBITO}</td>			
+			   <td style="text-align:right;">R$ {TOTAL_DEPOSITO}</td>
+			   <td style="text-align:right;">R$ {TOTAL_TRANSF}</td>
+			   <td style="text-align:right;">R$ {TOTAL_TED}</td>
+			   <td style="text-align:right;">R$ {TOTAL_DOC}</td>
+			   <td style="text-align:right;">R$ {TOTAL_CREDITO}</td>
+          </tr>
+		 </tbody>
+		 </table></div>
+        <div class="well">
+<h4>Resultado R$</h4>       
+			<table class="table table-striped table-bordered">
+			<thead>
+			<tr>
+			<th>Descrição</th>
+			<th>Real</th>
+			<th>Dollar</th>
+			<th>Câmbio</th>
+			</thead>
+	        <tbody>
+			<tr>
+				<th>Receita Bruta</th>
+				 <td style="text-align:right;">R$ {RECEITA_TOTAL}</td>
+				 <td style="text-align:right;">U$ {RECEITA_TOTAL_DOLAR}</td>
+				 <td style="text-align:right;"></td>
+          		</tr>
+				<tr>
+				<th>Custo</th>
+				 <td style="text-align:right;">R$ {CUSTO_TOTAL}</td>
+				 <td style="text-align:right;">U$ {CUSTO_TOTAL_DOLLAR}</td>
+				 <td style="text-align:right;">R$ {CAMBIO_CUSTO}</td>
+          		</tr>
+				<tr>
+				<th>Receita Liquida:</th>
+				 <td style="text-align:right;">R$ {LUCRO_TOTAL}</td>
+				 <td style="text-align:right;">U$ {LUCRO_TOTAL_DOLLAR}</td>
+				 <td style="text-align:right;"></td>
+          		</tr>		 	
+		 </tbody>
+		 </table>
+		</div>
+</section>

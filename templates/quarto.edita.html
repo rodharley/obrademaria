@@ -1,0 +1,44 @@
+<script>
+$(document).ready(function(){
+
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+
+ $("#capacidade").mask("9");
+});
+
+</script>
+
+<section>
+<h2>{NOME_GRUPO}</h2>
+<h1>Edita Quarto</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="quarto.response.php">
+        <fieldset>
+          <legend>Cadastro de quarto</legend>
+           <div class="control-group" >
+            <label for="numeroQuarto" class="control-label">Número:</label>
+            <div class="controls">
+               <input type="text" id="numero" class="input-xlarge required span2" name="numero" value="{NUMERO}" placeholder="Número do quarto">
+            </div>
+          </div>
+           <div class="control-group">
+            <label for="capacidade" class="control-label">Capacidade:</label>
+            <div class="controls">
+            <input type="text" name="capacidade" id="capacidade" placeholder="Capacidade" class="span1 required" value="{CAPACIDADE}">
+			</div>
+          </div>		  
+		  	
+         <div class="form-actions">
+          <input type="hidden" value="{ID}" name="id" id="id" />
+		  <input type="hidden" value="{ID_GRUPO}" name="idGrupo" id="idGrupo" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary" type="submit">Salvar quarto</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

@@ -1,0 +1,107 @@
+<script>
+$(document).ready(function(){
+	
+	$('#excluirpagamento').click(function(){
+		document.location.href= 'participante.response.php?acao=ExcluirPagamento&idGrupo={ID_GRUPO_HASH}&idParticipante={ID_HASH}&idPagamento='+$('#manipulacao').val();
+	});
+	
+		
+	$('.paginar').click(function(){
+		jQuery.ajax({
+		type: "GET",
+		url: "participante.pagamentos.php?ajax=1&idGrupo={ID_GRUPO_HASH}&pagina="+$('#manipulacao').val(),
+		beforeSend: function( ) {
+		jQuery('#content').html('<p align="center">Processando...<br /><img src="img/ajax_loading_pequeno.gif" /></p>');
+		  },
+		success: function(msg){
+		jQuery("#content").html(msg);
+		}
+		});
+	});
+});
+
+</script>
+<section>
+<h2>{NOME_GRUPO}</h2>
+<h1>Pagamentos<br/><small>Lista dos pagamentos do {NOME_PARTICIPANTE}:</small></h1>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th width="50">Status</th>
+            <th >Transação</th>
+			<th >Tipo</th>
+			<th >Moeda</th>
+			<th >Valor </th>
+			<th >Valor U$</th>
+			<th >Cambio</th>
+			<th >Data</th>
+            <th width="150">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+            <td><i class="{STATUS_ABAT}" title="Status do Abatimento"></i></td>
+            <td>{TRANZACAO}</td>
+			<td>{TIPO}</td>
+			<td>{MOEDA}</td>
+			<td>{MOEDA_CIFRAO} {VALOR}</td>
+			<td>{VALOR_DOLLAR}</td>
+			<td>{CAMBIO}</td>
+			<td>{DATA}</td>
+           	<td align="center" >
+			
+            <div class="btn-group">
+			<!-- BEGIN BLOCK_ACTIONS -->
+          <a href="participante.pagamentoEdita.php?idPagamento={ID_PAGAMENTO_HASH}&idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}&dev={DEV_PAG}" class="btn" title="Editar"><i class="icon-pencil"></i></a>
+          <a href="participante.abatimentos.php?idPagamento={ID_PAGAMENTO_HASH}" class="btn" title="Abatimentos"><i class="icon-random"></i></a>  
+		  <a href="participante.recibo.php?idPagamento={ID_PAGAMENTO_HASH}" class="btn" title="Recibo de Pagamento" target="_blank"><i class="icon-list-alt"></i></a> 
+ <a class="btn btn-danger" title="Cancelar"  data-toggle="modal" href="#myModal" onclick="document.getElementById('manipulacao').value = '{ID_PAGAMENTO_HASH}';"><i class="icon-trash icon-white"></i></a>
+ <!-- END BLOCK_ACTIONS -->
+ <!-- BEGIN BLOCK_MULTA -->
+Multa/Desistência
+ <!-- END BLOCK_MULTA -->
+        </div>
+
+			</td>
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->		  
+        </tbody>
+      </table>
+</section>
+<section>
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+            <th style="text-align:right;">Total Real R$:</th>
+            <td style="text-align:right;">{TOTAL_REAL}</td>
+			<th style="text-align:right;">Total Dollar U$:</th>
+			<td style="text-align:right;">{TOTAL_DOLLAR}</td>
+			<th style="text-align:right;">Conferência {CIFRAO_GRUPO}:</td>
+			<td style="text-align:right;">{DIFERENCA}</td>
+        </tr>
+	</thead>
+</table>
+</section>
+<section>
+<a class="btn btn-small btn-primary" href="participante.pagamentoEdita.php?idGrupo={ID_GRUPO_HASH}&idParticipante={ID_HASH}&dev=0">
+<i class="icon-currency icon-white"></i>
+Novo Pagamento</a>
+<a class="btn btn-small btn-primary" href="participante.pagamentoEdita.php?idGrupo={ID_GRUPO_HASH}&idParticipante={ID_HASH}&dev=1">
+<i class="icon-currency icon-white"></i>
+Nova Devolução</a>
+<button class="btn btn-small" id="bt_voltar">Voltar</button>
+</section>
+<div class="modal hide fade" id="myModal" >
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Aviso de Exclusão</h3>
+  </div>
+  <div class="modal-body">
+    <p>Cancelar esse pagamento removerá todos os abatimentos realizados por ele nos participantes.<br/>Tem certeza que deseja cancelar esse pagamento?</p>
+  </div>
+  <div class="modal-footer">
+    <a data-toggle="modal" href="#myModal" class="btn">Cancelar</a>
+    <a href="#" class="btn btn-primary" id="excluirpagamento">Confirmar</a>
+  </div>
+</div>

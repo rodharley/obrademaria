@@ -1,0 +1,47 @@
+<section>
+<h3>RELATÓRIO DE PAGAMENTOS DE PARTICIPANTES POR GRUPO - {DATA_RELATORIO}</h3>
+<h4>{COD_GRUPO}&nbsp;&nbsp;&nbsp;{NOME_GRUPO} - {CIFRAO_GRUPO} {VALOR_GRUPO} {MOEDA_GRUPO_PLURAL}</h4>
+<!-- BEGIN BLOCK_OPCIONAL -->
+<h4>{NOME_GRUPO_OPCIONAL} - {CIFRAO_GRUPO} {VALOR_GRUPO_OPCIONAL} {MOEDA_GRUPO_PLURAL}</h4>
+<!-- END BLOCK_OPCIONAL -->
+<form class="well form-search" action="relatorio.listaCamisetaPrint.php" id="frmEmail" method="post">      
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+      </form>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+		  	<th width="50">#</th>
+            <th >Participante</th>
+			<!-- BEGIN BLOCK_GRUPO_DOLLAR_HEAD -->
+            <th >Valor Pago – US$</th>
+			<!-- END BLOCK_GRUPO_DOLLAR_HEAD -->
+			<th >Valor Pago R$</th>
+            <th width="120">Valor Pendente {CIFRAO_GRUPO}</th>		
+  		 	<th width="120">Status</th>		
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+            <td>{ID}</td>
+            <td>{NOME_PARTICIPANTE}</td>
+			<!-- BEGIN BLOCK_GRUPO_DOLLAR -->
+			<td style="text-align:right;">{VALOR_PAGO_DOLLAR}</td>
+			<!-- END BLOCK_GRUPO_DOLLAR -->
+			<td style="text-align:right;">{VALOR_PAGO_REAL}</td>
+			<td style="text-align:right;">{VALOR_PENDENTE}</td>
+			<td style="text-align:CENTER;">{STATUS}</td>
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+		  <tr>
+            <td colspan="2" style="text-align:right;">Totais:</td>
+			<!-- BEGIN BLOCK_TOTAL_GRUPO_DOLLAR -->
+			<td style="text-align:right;">{TOTAL_VALOR_PAGO_DOLLAR}</td>
+			<!-- END BLOCK_TOTAL_GRUPO_DOLLAR -->
+			<td style="text-align:right;">{TOTAL_VALOR_PAGO_REAL}</td>
+			<td style="text-align:right;">{TOTAL_VALOR_PENDENTE}</td>
+			<td style="text-align:CENTER;">-</td>
+          </tr>
+        </tbody>
+      </table>
+</section>

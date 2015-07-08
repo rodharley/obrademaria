@@ -1,0 +1,17 @@
+<script>
+$(document).ready(function(){
+$('.mudar{IDCHEQUE}').click(function(){
+$('#status{IDCHEQUE}').load('ajax/ajax.alteraStatusCheque.php?ajax=1&status='+$(this).attr("value"));
+});
+});
+</script>
+
+<div class="btn-group">
+            <a class="btn" href="#" id="submit">{STATUS}</a>
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;</a>
+          <ul class="dropdown-menu">
+            <!-- BEGIN BLOCK_STATUS -->
+            <li><a href="#" value="{ID_STATUS}&idCheque={IDCHEQUE}" class="mudar{IDCHEQUE}">{LABEL_STATUS}</a></li>
+            <!-- END BLOCK_STATUS -->
+          </ul>          
+        </div>

@@ -1,0 +1,76 @@
+<script>
+$(document).ready(function(){
+	
+	$('#excluirabatimento').click(function(){
+		document.location.href= 'participante.response.php?acao=CancelarAbatimento&idPagamento={ID_PAGAMENTO_HASH}&idAbatimento='+$('#manipulacao').val();
+	});	
+	
+});
+
+</script>
+<section>
+<h2>{NOME_GRUPO}- Moeda: {MOEDA_GRUPO}</h2>
+<h2>{NOME_PARTICIPANTE}</h2>
+<h1>Abatimentos<br/><small>Lista dos abatimentos para o pagamentos selecionado:<br />
+Moeda do Pagamento: {MOEDA_PAG}, Valor Total do Pagamento: {VALOR_TOTAL_PAG}</small></h1>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th width="50">#</th>
+            <th >Valor {CIFRAO_PAGAMENTO}</th>
+			<th >Valor {CIFRAO_GRUPO}</th>
+			<th >Participante</th>
+            <th width="150">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+            <td>{ID}</td>
+            <td>{VALOR_MOEDA}</td>
+			<td>{VALOR}</td>			
+			<td>{PARTICIPANTE}</td>
+           	<td align="center" >			
+            <div class="btn-group">
+          <a href="participante.abatimentoEdita.php?idPagamento={ID_PAGAMENTO_HASH}&idAbatimento={ID_HASH}" class="btn" title="Editar"><i class="icon-pencil"></i></a>          
+ <a class="btn btn-danger" title="Cancelar"  data-toggle="modal" href="#myModal" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-trash icon-white"></i></a>
+        </div>
+
+			</td>
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+        </tbody>
+      </table>
+</section>
+<section>
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+            <th style="text-align:right;">Total Abatido {MOEDA_PAG} {CIFRAO_PAGAMENTO}:</th>
+            <td style="text-align:right;">{TOTAL_MOEDA_PAG}</td>
+			<th style="text-align:right;">Total Abatido {MOEDA_GRUPO} U$:</th>
+			<td style="text-align:right;">{TOTAL_MOEDA_GRUPO}</td>
+			<th style="text-align:right;">Restante para Abater: {MOEDA_PAG}:</td>
+			<td style="text-align:right;">{DIFERENCA}</td>
+        </tr>
+	</thead>
+</table>
+</section>
+<section>
+<a class="btn btn-small btn-primary" href="participante.abatimentoEdita.php?idPagamento={ID_PAGAMENTO_HASH}">
+<i class="icon-random icon-white"></i>
+Novo Abatimento</a> <button class="btn btn-small" id="bt_voltar">Voltar</button>
+</section>
+<div class="modal hide fade" id="myModal" >
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Aviso de Exclusão</h3>
+  </div>
+  <div class="modal-body">
+    <p>Tem certeza que deseja cancelar esse abatimento?</p>
+  </div>
+  <div class="modal-footer">
+    <a data-toggle="modal" href="#myModal" class="btn">Cancelar</a>
+    <a href="#" class="btn btn-primary" id="excluirabatimento">Confirmar</a>
+  </div>
+</div>

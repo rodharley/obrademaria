@@ -1,0 +1,44 @@
+<script>
+$(document).ready(function(){
+
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ }); 
+});
+
+</script>
+
+<section>
+<h1>Relatório de desistentes por período</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="relatorio.desistentesPeriodoPrint.php" target="_blank">
+        <fieldset>
+          <legend>Dados de Pesquisa</legend>
+         <DIV class="row">
+         <div class="span5">
+          <div class="control-group">
+            <label for="dataInicio" class="control-label">Data Início:</label>
+            <div class="controls">
+             <input type="text" name="dataInicio" id="dataInicio" data-datepicker="datepicker" placeholder="Data de Início" class="span2 required">
+            </div>
+          </div>
+         </div>
+         <div class="span6">
+          <div class="control-group">
+            <label for="dataFim" class="control-label">Data Fim:</label>
+            <div class="controls">
+            <input type="text" name="dataFim" id="dataFim" data-datepicker="datepicker" placeholder="Data de Fim" class="span2 required">
+            </div>
+          </div>
+          </div>
+          </DIV>	
+		  	
+         <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Gerar</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

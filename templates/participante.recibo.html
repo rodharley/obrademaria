@@ -1,0 +1,46 @@
+<section>
+<CENTER><h2>RECIBO Nº: {NUMERO}</h2></CENTER>
+<p>Recebi d{ARTIGO} {SENHOR}: <b>{NOME_COMPLETO}</b> o valor de <b>R$ {VALOR}{VALOR_EXTENSO}</b> referente a: <b>{FINALIDADE}-{REFERENTE}</b>, grupo: <b>{NOME_GRUPO}</b>.</p>
+<p> Valor do Câmbio dollar Turismo de Venda : <b> R${VALOR_CAMBIO}</b>.</p>
+<p> Forma de Pagamento:<br />
+<b> {FORMA_PAGAMENTO}</b></p>
+<BR /><BR />
+<!-- BEGIN BLOCK_CARTAO -->
+<h3> DETALHES DO PAGAMENTO </h3>
+Quantidade de parcelas:<br/>
+<h4>{parcela}</h4><br/>
+Bandeira:<br/>
+<h4><img src="img/bandeiras/{img_bandeira}" width="50" align="absmiddle"/>&nbsp;{bandeira}</h4>
+<!-- END BLOCK_CARTAO -->
+<!-- BEGIN BLOCK_CHEQUES -->
+<h3> DISCRIMINAÇÃO DOS CHEQUES </h3>
+<table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>EMISSOR</th>
+            <th >BANCO</th>
+			<th >NR CHEQUE</th>
+            <th>VALOR</th>
+			<th>DATA</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- BEGIN BLOCK_ITEM_LISTA -->
+          <tr>
+            <td>{EMISSOR}</td>
+            <td>{BANCO}</td>
+			<td>{NR_CHEQUE}</td>
+			<td>{VALOR_CHEQUE}</td>
+			<td>{DATA}</td>
+          </tr>
+         <!-- END BLOCK_ITEM_LISTA -->
+        </tbody>
+      </table>
+	  <!-- END BLOCK_CHEQUES -->
+      <br />
+      <br />
+      <CENTER> Brasília {DATA_RECIBO}
+     <BR /><BR /><BR />
+     _______________________________________________________ 
+     </CENTER>
+</section>

@@ -1,0 +1,78 @@
+<script>
+$(document).ready(function(){
+
+$("#cpf").change(
+function(){
+window.location.href= 'participante.novo.php?idGrupo={ID_GRUPO_HASH}&cpf='+$(this).val();
+}
+);
+
+ $('#uf').change(function(){
+	$('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$(this).attr("value")); 
+ });
+ $('#ufEndereco').change(function(){
+	$('#cidadeEndereco').load('ajax/comboCidadesPorUf.php?idUf='+$(this).attr("value")); 
+ });
+ 
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ });
+ $("#cpf").mask("999.999.999-99");
+ $("#dataEmissaoPassaporte").mask("99/99/9999");
+ $("#dataValidadePassaporte").mask("99/99/9999");
+ $("#dataNascimento").mask("99/99/9999");
+ $("#cep").mask("99.999-999");
+ //$("#celular").mask("(99) 9999-9999");
+ //$("#fax").mask("(99) 9999-9999");
+ //$("#telefoneResidencial").mask("(99) 9999-9999");
+ //$("#telefoneComercial").mask("(99) 9999-9999");
+});
+</script>
+
+<section>
+<h2>{NOME_GRUPO}</h2>
+<h1>Cancelar Participante</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="participante.response.php">
+         <fieldset class="well">
+          <legend>Dados do Grupo</legend>
+		  <h3>Nome do Pacote:</h3>
+          <h4>{NOME_GRUPO}</h4>
+          <h3>Moeda do Grupo:</h3>
+          <h4>{MOEDA_GRUPO}</h4>
+		  <h3>Participante:</h3>
+          <h4>{NOME_PARTICIPANTE}</h4>
+	  </fieldset>
+		<fieldset class="well">
+          <legend>Dados para Cancelamento</legend>
+           <h3>Valor Total Pago:</h3>
+           <h2 class="success">{VALOR_PAGO}</h2>
+          <div class="control-group">
+            <label for="valorMulta" class="control-label">Multa {CIFRAO_GRUPO}:</label>
+            <div class="controls">
+              <input type="text" id="valorMulta" class="input-xlarge span2" name="valorMulta" value="" placeholder="Valor da Multa" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+            </div>
+          </div>
+           <div class="control-group">
+            <label for="valorCredito" class="control-label">Crédito {CIFRAO_GRUPO}:</label>
+            <div class="controls">
+            	<input type="text" id="valorCredito" class="input-xlarge span2" name="valorCredito" value="" placeholder="Valor de Crédito" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+            </div>
+          </div>
+		  <div class="control-group">
+            <label for="cotacaoReal" class="control-label">Cambio do Dollar/Real:</label>
+            <div class="controls">
+			<input type="text" id="cotacaoReal" class="input-xlarge span1" name="cotacaoReal" value="" placeholder="Cambio do Real/Dollar" >
+			 </div>
+          </div>	
+         <div class="form-actions">
+          <input type="hidden" value="{ID_PARTICIPANTE}" name="idParticipante" id="idParticipante" />
+		  <input type="hidden" value="{ID_GRUPO}" name="idGrupo" id="idGrupo" />
+            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+            <button class="btn btn-primary btn-danger" type="submit">Cancelar Participante</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

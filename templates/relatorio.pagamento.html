@@ -1,0 +1,48 @@
+<script>
+$(document).ready(function(){
+	$("#ano").change(function(){
+   		$("#idGrupo").load('ajax/comboGruposPorAno.php?Ano='+$(this).val());
+   });
+
+ $("#frmEdit").validate();
+ 
+ $("#submit").click(function(){
+ 		$("#frmEdit").submit();
+ }); 
+});
+
+</script>
+
+<section>
+<h1>Seleciona Grupo</h1>
+<form class="form-horizontal" id="frmEdit" method="post" action="relatorio.pagamentoPrint.php" target="_blank">
+        <fieldset>
+          <legend>Relatório de Pagamento de Participantes</legend>
+          <div class="control-group">
+            <label for="ano" class="control-label">Ano:</label>
+            <div class="controls">
+             <SELECT name="ano" id="ano" class="span2 required">	
+             <option value="" selected="selected">Selecione</option>
+             <!-- BEGIN BLOCK_ANO -->
+             <option value="{ID_ANO}">{LABEL_ANO}</option>
+             <!-- END BLOCK_ANO -->		 	
+			 </SELECT>
+            </div>
+          </div>	
+		  
+		  <div class="control-group">
+            <label for="idGrupo" class="control-label">Grupo:</label>
+            <div class="controls">
+             <SELECT name="idGrupo" id="idGrupo" class="span5 required">	
+             <option value="" selected="selected">Selecione</option>            
+			 </SELECT>
+            </div>
+          </div>	
+		  	
+         <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Gerar</button>
+            <button class="btn" id="bt_voltar" type="button">Voltar</button>
+          </div>
+        </fieldset>
+      </form>
+</section>

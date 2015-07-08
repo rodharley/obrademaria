@@ -1,0 +1,93 @@
+<h4>Dados Pessoais</h4>
+<!-- BEGIN BLOCK_ENVIO_EMAIL -->
+<div class="well form-search">
+         <input type="hidden" name="idGrupo" value="{ID_GRUPO_HASH}"/>
+		<input type="hidden" name="idParticipante" value="{ID_PARTICIPANTE_HASH}"/>
+		<button class="btn"   data-toggle="modal" href="#myModalEmail"><i class="icon-envelope"></i> Enviar Por Email</button>
+		<button class="btn btn-success" id="bt_print" type="button"><i class="icon-print icon-white"></i> Imprimir</button>
+</div>
+<!-- END BLOCK_ENVIO_EMAIL -->
+<div id="tabelaRelat">
+<div style="display:inline">	
+<div class="row">
+<p class="ficha span4"><label>Nome Completo:</label>&nbsp;{NOME}</p>
+<p class="ficha span2" style="margin-left:28px;"><label>Data    de Nasc:</label>&nbsp;{DATA_NASC}</p>
+<p class="ficha span2" style="width:205px;"><label>Estado Civil ou Religioso:</label>&nbsp;{ESTADO_CIVIL}</p>
+</div>
+<div class="row">
+<p class="ficha span3"><label>Cid. Nasc:</label>&nbsp;{CIDADE_NASC}</p>
+<p class="ficha span1"><label>UF Nasc:</label>&nbsp;{UF_NASC}</p>
+<p class="ficha span4" style="width:372px;"><label>País Nasc:</label>&nbsp;{PAIS_NASC}</p>
+</div>
+<h4>Endereço e Contatos</h4>
+<div class="row">
+<p class="ficha span4"><label>Endere&ccedil;o:</label>&nbsp;{ENDERECO}</p>
+<p class="ficha span3 " style="width:290px;"><label>Bairro:</label>&nbsp;{BAIRRO}</p>
+<p class="ficha span1"><label>UF:</label>&nbsp;{UF}</p>
+</div>
+<div class="row">
+<p class="ficha span3"><label>País:</label>&nbsp;{PAIS}</p>
+<p class="ficha span3" style="width:290px;"><label>Cidade:</label>&nbsp;{CIDADE}</p>
+<p class="ficha span2"><label>CEP:</label>&nbsp;{CEP}</p>
+</div>
+<div class="row">
+<p class="ficha span2"><label>Tel. Res:</label>&nbsp;{TEL_RES}</p>
+<p class="ficha span2"><label>Tel. Trab:</label>&nbsp;{TEL_TRAB}</p>
+<p class="ficha span2"><label>CELULAR:</label>&nbsp;{CELULAR}</p>
+<p class="ficha span2" style="width:206px;"><label>Fax: </label>&nbsp;{FAX}</p>
+</div>
+<div class="row">
+<p class="ficha span5"><label>E-mail: </label>&nbsp;{EMAIL}</p>
+</div>
+<h4>Documentos</h4>
+<div class="row">
+<p class="ficha span2"><label>IDENT: </label>&nbsp;{IDENTIDADE}</p>
+<p class="ficha span2"><label>&Oacute;rg&atilde;o Emissor: </label>&nbsp;{ORGAO_EMISSOR_RG}</p>
+<p class="ficha span4" style="width:374px;"><label>CPF:</label>&nbsp;{CPF}</p>
+</div>
+<div class="row">
+<p class="ficha span2"><label>N&ordm; Passaporte: </label>&nbsp;{PASSAPORTE}</p>
+<p class="ficha span2"><label>Data Emiss&atilde;o:</label>&nbsp;{DATA_EMISSAO_PS}</p>
+<p class="ficha span2"><label>Validade:</label>&nbsp;{VALIDADE_PS}</p>
+<p class="ficha span2" style="width:206px;"><label>&Oacute;rg&atilde;o Expedidor:</label>&nbsp;{ORGAO_EMISSOR_PS}</p>
+</div>
+<h4>Outras Informações</h4>
+<div class="row">
+<p class="ficha span2"><label>Nome p/ Crach&aacute;:</label>&nbsp;{NOME_CRACHA}</p>
+<p class="ficha span2"><label>Tamanho da Camisa:</label>&nbsp;{TAMANHO_CAMISA}</p>
+<p class="ficha span4" style="width:374px;"><label>Problemas de Sa&uacute;de:&nbsp;</label>&nbsp;{SAUDE}<label>Restrição Alimentar:</label>&nbsp;{ALIMENTOS}</p>
+</div>
+<h4 >Peregrinação</h4>
+<div class="row">
+<p class="ficha span6" style="width:542px;"><label>Pacote:</label>{PACOTE}</p>
+<p class="ficha span2"><label>Valor+taxa:</label>{VALOR}</p>
+</div>
+<!-- BEGIN BLOCK_OPCIONAL -->
+<h4>Opcional:(&nbsp;&nbsp;) Não</h4>
+<div class="row">
+<p class="ficha span6" style="width:542px;"><label>Pacote Opcional:</label>{OPCIONAL}</p>
+<p class="ficha span2"><label>Valor+taxa:</label>{VALOR_OPCIONAL}</p>
+</div>
+ <!-- END BLOCK_OPCIONAL -->
+ <h4>Acomodação, Aeroportos e Vôos</h4>
+<div class="row">
+<p class="ficha span1"><label>Quarto Tipo:</label>{QUARTO}</p>
+<p class="ficha span4"><label>Companheiro( as ):</label>{COMPANHEIROS}</p>
+<p class="ficha span3"  style="width:294px;"><label>V&ocirc;os Extras:</label>&nbsp;</p>
+</div>
+<div class="row">
+<p class="ficha span2"><label>Aerop. Intern:</label>&nbsp; </p>
+<p class="ficha span2"><label>Aerop. Domes:</label>&nbsp;</p>
+<p class="ficha span2"><label>Ida Diferente:</label>&nbsp;</p>
+<p class="ficha span2"  style="width:206px;"><label>Volta Diferente:</label>&nbsp;</p>
+</div>
+<div class="row">
+<p class="ficha span4" ><label>Data da Ida:</label>&nbsp;</p>
+<p class="ficha span4" style="width:382px;"><label>Data da Volta:</label>&nbsp;</p>
+ </div>
+ <div class="row">
+<p class="ficha span4"><label>Sub-Grupo:</label>&nbsp;</p>
+<p class="ficha span4" style="width:382px;"><label>Vendedor/Representante: Brasília</label>&nbsp;</p>
+ </div>
+ </div>
+ </div>

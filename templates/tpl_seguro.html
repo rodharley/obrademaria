@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{TITULO}</title>
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+<style type="text/css">
+.rodape {
+ padding: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #000000;
+  text-align:center;
+  width:190mm;
+}
+.bordas {
+  padding: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #000000;
+  text-align:left;
+  width:150mm;
+}
+.cabecalho {
+ padding: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #000000;
+  text-align:center;
+  width:190mm;
+  
+}
+.cabecalho .textoCabecalho{
+padding-top:5px;
+padding-right:5px;
+text-align:right;
+font-size:9px;
+  line-height:130%;
+}
+.paragrafo {
+text-align:justify;
+font-size:10.5px;
+line-height:normal;
+}
+.quebraLinha {
+page-break-before:always; 
+padding-top:10mm;
+}
+</style>
+<style media="print">
+.form-search{
+display:none;
+}
+</style>
+</head>
+<body>
+<div class="container" style="width:190mm;">
+<div class="cabecalho">
+<div class="row">
+<div class="span2"><img src="img/logoEmpresa.png" width="120" /></div>
+<div class="textoCabecalho">RAINHA TOUR E VIAGENS LTDA<br/>
+CNPJ.: 12.415.719/0001-72,Centro Empresarial Assis Chateaubriand, SRTVS Qd. 701 Conj. L Bloco II Sala 208,Asa Sul – Brasília - DF <br />
+brasilia@obrademaria.com.br
+</div>
+</div>	
+</div>
+<br />
+<div class="span9" align="center">
+	<!-- BEGIN BLOCK_LOGO_OP -->
+	<img src="img/cas/{LOGOMARCA}" width="150"/>&nbsp;
+	<!-- END BLOCK_LOGO_OP -->
+  </div>
+	<div id="content" style="width:190mm;">
+{CONTEUDO}
+    </div>
+	
+	<div class="rodape">
+	Comunidade Obra de Maria - Rainha Tour e Viagens Ltda-ME - Tel.: (61) 3201-5116 <br/> Site: www.obrademariadf.com.br - Email: brasilia@obrademariadf.com.br</div>
+</div>
+</body>
+</html>

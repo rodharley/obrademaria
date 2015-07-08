@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+Exemplos de mapeamentos:
+
+classe
+
+<class name="contrato" tbname="tbContrato" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="numero" type="int">numero</atrib>
+
+		<atrib tbname="endereco" type="txt">endereco</atrib>
+
+		<atrib tbname="codEstacao" type="txt">codEstacao</atrib>
+
+		<atrib tbname="dataAssinatura" type="txt">dataAssinatura</atrib>
+
+		<atrib tbname="idCidade" type="fk" clrelation="cidade">cidade</atrib>
+
+		<atrib tbname="idLocador" type="fk" clrelation="locador">locador</atrib>
+
+		<atrib tbname="dataAssinaturaTermo" type="txt">dataAssinaturaTermo</atrib>
+
+	</class>
+
+1:n
+
+<atrib tbname="idCidade" type="fk" clrelation="cidade">cidade</atrib>
+
+set
+
+<atrib tbname="" type="set" clrelation="vigencia" clorder="dataInicio" clfk="contrato">vigencias</atrib>
+
+-->
+
+<bd name="obrademariadf1">
+
+	<class name="Abatimento" tbname="ag_abatimento" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="idPagamento" type="fk" clrelation="Pagamento">pagamento</atrib>
+
+		<atrib tbname="idParticipante" type="fk" clrelation="Participante">participante</atrib>		
+
+		<atrib tbname="valor" type="int">valor</atrib>		
+
+	</class>
+
+	<class name="Acesso" tbname="ag_menuperfil" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="idMenu" type="fk" clrelation="Menu">menu</atrib>
+
+		<atrib tbname="idPerfil" type="fk" clrelation="Perfil">perfil</atrib>		
+
+	</class>
+
+	<class name="Agendamento" tbname="ag_agendamento" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="data" type="txt">data</atrib>
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+		<atrib tbname="destinatarios" type="txt">destinatarios</atrib>		
+
+	</class>
+
+	<class name="Banco" tbname="ag_banco" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="codigo" type="txt">codigo</atrib>
+
+		<atrib tbname="sigla" type="txt">sigla</atrib>		
+
+		<atrib tbname="nome" type="txt">nome</atrib>		
+
+	</class>
+	<class name="BandeiraCartao" tbname="ag_bandeira" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>
+		<atrib tbname="descricao" type="txt">descricao</atrib>
+		<atrib tbname="imagem" type="txt">imagem</atrib>
+	</class>
+	<class name="Carne" tbname="ag_carne" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>
+		<atrib tbname="idPagamento" type="fk" clrelation="Pagamento">pagamento</atrib>
+		<atrib tbname="data" type="txt">dataVencimento</atrib>				
+		<atrib tbname="valor" type="int">valor</atrib>		
+		<atrib tbname="parcela" type="int">parcela</atrib>		
+	</class>
+	<class name="Cheque" tbname="ag_cheque" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="idPagamento" type="fk" clrelation="Pagamento">pagamento</atrib>
+
+		<atrib tbname="numero" type="txt">numeroCheque</atrib>
+
+		<atrib tbname="data" type="txt">dataCompensacao</atrib>				
+
+		<atrib tbname="valor" type="int">valor</atrib>		
+
+		<atrib tbname="status" type="fk" clrelation="StatusCheque">status</atrib>
+
+		<atrib tbname="emissor" type="fk" clrelation="Cliente">emissor</atrib>
+
+		<atrib tbname="parcela" type="int">parcela</atrib>		
+
+	</class>
+
+	<class name="Cidade" tbname="ag_cidades" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="idUf" type="fk" clrelation="Uf">uf</atrib>
+
+		<atrib tbname="uf" type="txt">siglaUf</atrib>		
+
+		<atrib tbname="nome" type="txt">nome</atrib>		
+
+	</class>
+
+	
+
+	<class name="Cliente" tbname="ag_cliente" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="nomeCompleto" type="txt">nomeCompleto</atrib>
+
+		<atrib tbname="cpf" type="txt">cpf</atrib>
+
+		<atrib tbname="estadoCivil" type="fk" clrelation="EstadoCivil">estadoCivil</atrib>
+
+		<atrib tbname="dataNascimento" type="txt">dataNascimento</atrib>
+
+		<atrib tbname="sexo" type="txt">sexo</atrib>
+
+		<atrib tbname="endereco" type="txt">endereco</atrib>
+
+		<atrib tbname="bairro" type="txt">bairro</atrib>
+
+		<atrib tbname="cep" type="txt">cep</atrib>
+
+		<atrib tbname="telefoneResidencial" type="txt">telefoneResidencial</atrib>
+
+		<atrib tbname="telefoneComercial" type="txt">telefoneComercial</atrib>
+
+		<atrib tbname="celular" type="txt">celular</atrib>
+
+		<atrib tbname="fax" type="txt">fax</atrib>
+
+		<atrib tbname="rg" type="txt">rg</atrib>
+
+		<atrib tbname="orgaoEmissorRg" type="txt">orgaoEmissorRg</atrib>
+
+		<atrib tbname="passaporte" type="txt">passaporte</atrib>
+
+		<atrib tbname="dataEmissaoPassaporte" type="txt">dataEmissaoPassaporte</atrib>
+
+		<atrib tbname="dataValidadePassaporte" type="txt">dataValidadePassaporte</atrib>
+
+		<atrib tbname="orgaoExpedidorPassaporte" type="txt">orgaoExpedidorPassaporte</atrib>
+
+		<atrib tbname="nomeCracha" type="txt">nomeCracha</atrib>
+
+		<atrib tbname="tamanhoCamisa" type="txt">tamanhoCamisa</atrib>
+
+		<atrib tbname="problemasSaude" type="txt">problemasSaude</atrib>
+
+		<atrib tbname="restricaoAlimentar" type="txt">restricaoAlimentar</atrib>
+
+		<atrib tbname="email" type="txt">email</atrib>
+
+		<atrib tbname="nacionalidade" type="txt">nacionalidade</atrib>
+
+		<atrib tbname="txtpaisNascimento" type="txt">paisNascimento</atrib>
+
+		<atrib tbname="txtcidadeNascimento" type="txt">cidadeNascimento</atrib>
+
+		<atrib tbname="txtestadoNascimento" type="txt">estadoNascimento</atrib>
+
+		<atrib tbname="txtpaisEndereco" type="txt">paisEndereco</atrib>
+
+		<atrib tbname="txtcidadeEndereco" type="txt">cidadeEndereco</atrib>
+
+		<atrib tbname="txtestadoEndereco" type="txt">estadoEndereco</atrib>
+
+		<atrib tbname="preferencial" type="int">preferencial</atrib>
+		<atrib tbname="bitEnviaCorrespondencia" type="int">enviaCorrespondencia</atrib>
+	</class>
+
+	<class name="CompanhiaAerea" tbname="ag_companhiaaerea" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>
+		<atrib tbname="logomarca" type="txt">logomarca</atrib>		
+
+	</class>
+
+	<class name="Conta" tbname="ag_conta" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>	
+
+		<atrib tbname="dataPagamento" type="txt">dataPagamento</atrib>
+
+		<atrib tbname="valorPagamento" type="int">valorPagamento</atrib>
+
+		<atrib tbname="idTipoConta" type="fk" clrelation="TipoConta">tipo</atrib>
+
+		<atrib tbname="parcelas" type="int">parcelas</atrib>
+
+		<atrib tbname="ativo" type="int">ativo</atrib>
+
+	</class>
+
+	<class name="ContaRealizado" tbname="ag_contarealizado" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="dataPagamento" type="txt">dataPagamento</atrib>
+
+		<atrib tbname="valorPagamento" type="int">valorPagamento</atrib>
+
+		<atrib tbname="parcela" type="int">parcela</atrib>
+
+		<atrib tbname="idConta" type="fk" clrelation="Conta">conta</atrib>
+
+	</class>
+
+	<class name="Credito" tbname="ag_credito" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="idCliente" type="fk" clrelation="Cliente">cliente</atrib>
+
+		<atrib tbname="participante" type="fk" clrelation="Participante">participante</atrib>
+
+		<atrib tbname="idMoeda" type="fk" clrelation="Moeda">moeda</atrib>
+
+		<atrib tbname="obs" type="txt">obs</atrib>		
+
+		<atrib tbname="valor" type="int">valor</atrib>
+
+		<atrib tbname="cotacaoReal" type="int">cotacaoReal</atrib>		
+
+		<atrib tbname="data" type="txt">data</atrib>		
+
+		<atrib tbname="bitUtilizado" type="int">bitUtilizado</atrib>		
+
+		
+
+	</class>
+
+	<class name="Distribuicao" tbname="ag_distribuicao" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="idQuarto" type="fk" clrelation="Quarto">quarto</atrib>
+
+		<atrib tbname="idParticipante" type="fk" clrelation="Participante">participante</atrib>
+
+	</class>
+
+	<class name="EstadoCivil" tbname="ag_estadocivil" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+	</class>
+
+	<class name="FinalidadePagamento" tbname="ag_finalidadepagamento" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+	</class>
+
+	<class name="Grupo" tbname="ag_grupo" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="nomePacote" type="txt">nomePacote</atrib>	
+
+		<atrib tbname="dataEmbarque" type="txt">dataEmbarque</atrib>
+
+		<atrib tbname="dataChegada" type="txt">dataChegada</atrib>
+
+		<atrib tbname="dataModificacao" type="txt">dataModificacao</atrib>		
+
+		<atrib tbname="valorPacote" type="int">valorPacote</atrib>	
+
+		<atrib tbname="valorTaxaEmbarque" type="int">valorTaxaEmbarque</atrib>	
+
+		<atrib tbname="valorAdesao" type="int">valorAdesao</atrib>	
+
+		<atrib tbname="valorCusto" type="int">valorCusto</atrib>	
+
+		<atrib tbname="idMoeda" type="fk" clrelation="Moeda">moeda</atrib>	
+
+		<atrib tbname="idStatus" type="fk" clrelation="StatusGrupo">status</atrib>	
+
+		<atrib tbname="possuiPacoteOpcional" type="int">possuiPacoteOpcional</atrib>	
+
+		<atrib tbname="nomePacoteOpcional" type="txt">nomePacoteOpcional</atrib>	
+
+		<atrib tbname="valorPacoteOpcional" type="int">valorPacoteOpcional</atrib>	
+
+		<atrib tbname="valorTaxaEmbarqueOpcional" type="int">valorTaxaEmbarqueOpcional</atrib>	
+
+		<atrib tbname="valorAdesaoOpcional" type="int">valorAdesaoOpcional</atrib>	
+
+		<atrib tbname="valorCustoOpcional" type="int">valorCustoOpcional</atrib>	
+
+		<atrib tbname="roteiroAnexo" type="txt">roteiroAnexo</atrib>
+
+		<atrib tbname="pautaAnexo" type="txt">pautaAnexo</atrib>	
+
+		<atrib tbname="cotacaoCusto" type="int">cotacaoCusto</atrib>	
+
+		<atrib tbname="ano" type="int">ano</atrib>
+		<atrib tbname="modeloFicha" type="txt">modeloFicha</atrib>
+		<atrib tbname="modeloContrato" type="txt">modeloContrato</atrib>	
+		<atrib tbname="plano" type="txt">plano</atrib>	
+		<atrib tbname="destino" type="txt">destino</atrib>	
+		</class>
+
+	<class name="LogAcesso" tbname="ag_logacesso" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="dataAcesso" type="txt">dataHora</atrib>
+
+		<atrib tbname="idMenu" type="fk" clrelation="Menu">menu</atrib>
+
+		<atrib tbname="idUsuario" type="fk" clrelation="Usuario">usuario</atrib>		
+
+	</class>
+
+	<class name="LogGrupo" tbname="ag_loggrupo" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="data" type="txt">dataHora</atrib>
+
+		<atrib tbname="idGrupo" type="fk" clrelation="Grupo">grupo</atrib>
+
+		<atrib tbname="idUsuario" type="fk" clrelation="Usuario">usuario</atrib>		
+
+		<atrib tbname="txtLog" type="txt">txtLog</atrib>
+
+	</class>
+
+	<class name="LogParticipante" tbname="ag_logparticipante" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="data" type="txt">dataHora</atrib>
+
+		<atrib tbname="idParticipante" type="fk" clrelation="Participante">participante</atrib>
+
+		<atrib tbname="idUsuario" type="fk" clrelation="Usuario">usuario</atrib>		
+
+		<atrib tbname="valor" type="int">valor</atrib>
+
+		<atrib tbname="custo" type="int">custo</atrib>
+
+	</class>
+
+	<class name="LogUsuario" tbname="ag_logusuario" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="data" type="txt">data</atrib>
+
+		<atrib tbname="movimento" type="txt">movimento</atrib>
+
+		<atrib tbname="idUsuario" type="fk" clrelation="Usuario">usuario</atrib>		
+
+	</class>
+
+	<class name="Menu" tbname="ag_menu" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>
+
+		<atrib tbname="url" type="txt">url</atrib>
+
+		<atrib tbname="idMenuPai" type="fk" clrelation="Menu">menuPai</atrib>
+
+		<atrib tbname="" type="set" clrelation="Menu" clorder="id" clfk="menuPai">subMenus</atrib>
+
+	</class>
+
+	<class name="Moeda" tbname="ag_moeda" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>	
+
+		<atrib tbname="padrao" type="txt">padrao</atrib>
+
+		<atrib tbname="cifrao" type="txt">cifrao</atrib>		
+
+		<atrib tbname="plural" type="txt">plural</atrib>		
+
+	</class>
+
+	<class name="Participante" tbname="ag_participante" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="dataInscricao" type="txt">dataInscricao</atrib>	
+
+		<atrib tbname="valorTotal" type="int">valorTotal</atrib>	
+
+		<atrib tbname="custoTotal" type="int">custoTotal</atrib>
+
+		<atrib tbname="grupo" type="fk" clrelation="Grupo">grupo</atrib>	
+
+		<atrib tbname="cliente" type="fk" clrelation="Cliente">cliente</atrib>	
+
+		<atrib tbname="contrato" type="txt">contrato</atrib>
+
+		<atrib tbname="pacoteOpcional" type="int">pacoteOpcional</atrib>
+
+		<atrib tbname="status" type="fk" clrelation="StatusParticipante">status</atrib>	
+		<atrib tbname="voucher" type="txt">voucher</atrib>	
+
+	</class>
+
+	<class name="Pagamento" tbname="ag_pagamento" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="dataPagamento" type="txt">dataPagamento</atrib>
+
+		<atrib tbname="valorPagamento" type="int">valorPagamento</atrib>
+
+		<atrib tbname="obs" type="txt">obs</atrib>
+
+		<atrib tbname="abatimentoAutomatico" type="int">abatimentoAutomatico</atrib>
+
+		<atrib tbname="cotacaoParaDollar" type="int">cotacaoMoedaReal</atrib>
+
+		<atrib tbname="cotacaoReal" type="int" >cotacaoReal</atrib>
+
+		<atrib tbname="codAutorizacao" type="txt">codAutorizacao</atrib>
+
+		<atrib tbname="numeroCheque" type="txt" >numeroCheque</atrib>
+
+		<atrib tbname="dataCompensacao" type="txt">dataCompensacao</atrib>
+
+		<atrib tbname="participante" type="fk" clrelation="Participante">participante</atrib>
+
+		<atrib tbname="moeda" type="fk" clrelation="Moeda">moeda</atrib>
+
+		<atrib tbname="tipo" type="fk" clrelation="TipoPagamento">tipo</atrib>
+
+		<atrib tbname="banco" type="fk" clrelation="Banco">banco</atrib>
+		<atrib tbname="bandeira" type="fk" clrelation="BandeiraCartao">bandeira</atrib>
+		<atrib tbname="tipoTransferencia" type="fk" clrelation="TipoTransferencia">tipoTransferencia</atrib>
+
+		<atrib tbname="idCredito" type="fk" clrelation="Credito">creditoCliente</atrib>
+
+		<atrib tbname="idFinalidade" type="fk" clrelation="FinalidadePagamento">finalidade</atrib>
+
+		<atrib tbname="emissorCheque" type="fk" clrelation="Cliente">emissorCheque</atrib>
+
+		<atrib tbname="bitCancelado" type="int" >cancelado</atrib>
+
+		<atrib tbname="bitDevolucao" type="int" >devolucao</atrib>
+
+		
+
+		<atrib tbname="parcela" type="int" >parcela</atrib>
+
+	</class>
+
+	<class name="PautaReuniao" tbname="ag_pautareuniao" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="pauta" type="txt">pauta</atrib>	
+
+		<atrib tbname="idGrupo" type="fk" clrelation="Grupo">grupo</atrib>	
+
+	</class>
+
+	<class name="Perfil" tbname="ag_perfil" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+	</class>
+
+	<class name="Quarto" tbname="ag_quarto" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="numero" type="txt">numero</atrib>
+
+		<atrib tbname="capacidade" type="txt">capacidade</atrib>	
+
+		<atrib tbname="idGrupo" type="fk" clrelation="Grupo">grupo</atrib>	
+
+	</class>
+
+	<class name="StatusCheque" tbname="ag_statuscheque" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+	</class>
+
+	<class name="StatusGrupo" tbname="ag_statusgrupo" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+	</class>
+
+	<class name="StatusParticipante" tbname="ag_statusparticipante" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+	</class>
+
+	<class name="TipoConta" tbname="ag_tipoconta" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+	</class>
+
+	<class name="TipoPagamento" tbname="ag_tipopagamento" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+	</class>
+
+	<class name="Ticket" tbname="ag_tickets" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>	 	 	 	
+		<atrib tbname="ticket" type="txt">ticket</atrib>		
+		<atrib tbname="reserva" type="txt">reserva</atrib>	
+		<atrib tbname="id_participante" type="fk" clrelation="Participante">participante</atrib>	
+		<atrib tbname="id_voo" type="fk" clrelation="Voo">voo</atrib>	
+	</class>
+	<class name="TipoTransferencia" tbname="ag_tipotransferencia" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="descricao" type="txt">descricao</atrib>		
+
+	</class>
+
+	<class name="Uf" tbname="ag_uf" tbid="id" lazy="false">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="uf" type="txt">uf</atrib>		
+
+		<atrib tbname="nome" type="txt">nome</atrib>		
+
+	</class>	
+
+	<class name="Usuario" tbname="ag_usuario" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="nome" type="txt">nome</atrib>
+
+		<atrib tbname="email" type="txt">email</atrib>
+
+		<atrib tbname="senha" type="txt">senha</atrib>
+
+		<atrib tbname="idPerfil" type="fk" clrelation="Perfil">perfil</atrib>	
+
+	</class>
+
+	<class name="Voo" tbname="ag_voo" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>	
+
+		<atrib tbname="numeroVoo" type="txt">numeroVoo</atrib>
+
+		<atrib tbname="dataEmbarque" type="txt">dataEmbarque</atrib>
+
+		<atrib tbname="horaEmbarque" type="txt">horaEmbarque</atrib>	
+
+		<atrib tbname="idGrupo" type="fk" clrelation="Grupo">grupo</atrib>
+
+		<atrib tbname="idCompaniaAerea" type="fk" clrelation="CompanhiaAerea">companhiaAerea</atrib>			
+		<atrib tbname="trecho" type="txt">trecho</atrib>	
+		<atrib tbname="horaChegada" type="txt">horaChegada</atrib>	
+
+	</class>
+
+
+
+</bd>
+
+
+
+
+
