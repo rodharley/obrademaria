@@ -21,6 +21,7 @@ $(document).ready(function(){
 		
 		$("#parcelaCartao").mask("9?99");
 		$("#parcelaCarne").mask("9?99");
+		$("#numeroCartao").mask("9999");
 	});
 	</script>
 	 <!-- BEGIN BLOCK_PG_DINHEIRO -->
@@ -137,11 +138,23 @@ $(document).ready(function(){
 			</div>
           </div>
           <div class="control-group">
+            <label for="valorPagamento" class="control-label">Valor Parcela:</label>
+            <div class="controls">
+				<input type="text" id="valorParcela" class="input-xlarge span2 required" name="valorParcela" value="{VALOR_PARCELA}" placeholder="Valor da Parcela" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+			</div>
+          </div>
+          <div class="control-group">
             <label for="parcela" class="control-label">Parcela:</label>
             <div class="controls">
             <input type="text" id="parcelaCartao" class="input-xlarge required span1" name="parcelaCartao" value="{PARCELA_CARTAO}" placeholder="Parcelas">          
             </div>
           </div>	
+		 <div class="control-group">
+            <label for="codAutorizacao" class="control-label">Últimos 4 números do Cartão:</label>
+            <div class="controls">
+			 <input type="text" name="numeroCartao" id="numeroCartao" placeholder="Últimos 4 números do Cartão" class="span4 required" value="{NUMERO_CARTAO}" maxlength="4">			
+          </div>
+          </div>
 		 <div class="control-group">
             <label for="codAutorizacao" class="control-label">Código Autorização:</label>
             <div class="controls">
@@ -179,6 +192,12 @@ $(document).ready(function(){
             <div class="controls">
 				<input type="text" id="valorPagamento" class="input-xlarge span2 required" name="valorPagamento" value="{VALOR_PAGAMENTO}" placeholder="Valor do Pagamento" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
 			</div>
+          </div>
+          <div class="control-group">
+            <label for="codAutorizacao" class="control-label">Últimos 4 números do Cartão:</label>
+            <div class="controls">
+			 <input type="text" name="numeroCartao" id="numeroCartao" placeholder="Últimos 4 números do Cartão" class="span4 required" value="{NUMERO_CARTAO}" maxlength="4">			
+          </div>
           </div>
 		  <div class="control-group">
             <label for="cotacaoReal" class="control-label">Cambio do Dollar/Real:</label>

@@ -22,6 +22,8 @@ class Pagamento extends Persistencia{
 	var $cancelado;
 	var $devolucao;
 	var $bandeira = NULL;
+	var $valorParcela;
+	var $numeroCartao;
 	
 	public function getPagamentos($grupo,$tipo){
 	$sql = "select p.* from ag_pagamento p inner join ag_participante c on c.id = p.participante where c.grupo = $grupo and p.tipo = $tipo and p.bitcancelado = 0 order by dataPagamento desc";	
@@ -193,6 +195,8 @@ class Pagamento extends Persistencia{
 	case $oTipoP->CARTAO() :
 		$this->cotacaoMoedaReal  = 0;
 		$this->valorPagamento = $this->money($_REQUEST['valorPagamento'],"bta");
+		$this->valorParcela = $this->money($_REQUEST['valorParcela'],"bta");
+		$this->numeroCartao = $_REQUEST['numeroCartao'];
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
 		$this->codAutorizacao = isset($_REQUEST['codAutorizacao']) ? $_REQUEST['codAutorizacao'] : "";
 		$this->parcela = $_REQUEST['parcelaCartao'];
@@ -202,8 +206,10 @@ class Pagamento extends Persistencia{
 	break;
 	case $oTipoP->DEBITO() :
 		$this->cotacaoMoedaReal  = 0;
+		$this->valorParcela = 0;
 		$this->valorPagamento = $this->money($_REQUEST['valorPagamento'],"bta");
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
+		$this->numeroCartao = $_REQUEST['numeroCartao'];
 		$oband = new BandeiraCartao();
 		$oband->id = $_REQUEST['bandeira'];
 		$this->bandeira = $oband;

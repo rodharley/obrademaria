@@ -447,9 +447,10 @@ set
 		<atrib tbname="id" type="id">id</atrib>
 
 		<atrib tbname="dataPagamento" type="txt">dataPagamento</atrib>
+		<atrib tbname="numeroCartao" type="txt">numeroCartao</atrib>
 
 		<atrib tbname="valorPagamento" type="int">valorPagamento</atrib>
-
+		<atrib tbname="valorParcela" type="int">valorParcela</atrib>
 		<atrib tbname="obs" type="txt">obs</atrib>
 
 		<atrib tbname="abatimentoAutomatico" type="int">abatimentoAutomatico</atrib>
