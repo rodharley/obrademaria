@@ -1,0 +1,1 @@
+ALTER TABLE `ag_pagamento` ADD `numeroCartao` VARCHAR(4) NULL , ADD `valorParcela` DECIMAL(10,2) NULL ;

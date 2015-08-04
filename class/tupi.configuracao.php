@@ -1,10 +1,10 @@
 <?php
 class Configuracao
 {
-	var $URI =  "/home/obrademariadf/public_html/admin/";
-	var $mysql_host   = "mysql02.obrademariadf.hospedagemdesites.ws";
-	var $mysql_usuario = "obrademariadf1";
-	var $mysql_password  = "SantaT3r3za";
+	var $URI =  "C:/wamp/www/obrademaria/";
+	var $mysql_host   = "localhost";
+	var $mysql_usuario = "root";
+	var $mysql_password  = "";
 	var $mysql_database  = "obrademariadf1";
 	var $HASH_URL = 'obrademariadf*12';
 	var $PASSWORDTXT = 'obrademariadf*12';
