@@ -369,7 +369,7 @@ class Pagamento extends Persistencia{
 			$oAbat->valor = $this->devolucao == 0 ? $this->CALCULA_REAL() : -$this->CALCULA_REAL();
 		}	
 		$oAbat->participante = $oPartic;
-		$oAbat->pagamento = $this;
+		$oAbat->pagamento = $this;        
 		$oAbat->save();
 		}
 	}
@@ -651,7 +651,7 @@ function CALCULA_DOLLAR($valor = 0){
  	if($this->moeda->id == $moeda->DOLLAR())
 		return $valorCalculo;
 		else if ($this->moeda->id == $moeda->REAL())
-			return @$valorCalculo / $cotReal;
+			return @($valorCalculo/$cotReal);
 			else	
 				return ($valorCalculo * $this->cotacaoMoedaReal) / $cotReal;
 }

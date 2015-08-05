@@ -11,8 +11,10 @@
         <thead>
           <tr>
 		    <th >Código Autorização</th>
+		    <th >Número Cartão</th>		    
 			<th >Participante</th>
 			<th >Valor Pago R$</th>
+			<th >Valor Parcela</th>
             <th width="120">Data</th>		
           </tr>
         </thead>
@@ -20,8 +22,10 @@
         <!-- BEGIN BLOCK_ITEM_LISTA -->
           <tr>
             <td>{CODIGO}</td>
+            <td>{NUMERO_CARTAO}</td>            
             <td>{NOME_PARTICIPANTE}</td>
 			<td style="text-align:right;">{VALOR_PAGO_REAL}</td>
+			<td style="text-align:right;">{VALOR_PARCELA}</td>
 			<td style="text-align:right;">{DATA}</td>
           </tr>
          <!-- END BLOCK_ITEM_LISTA -->
