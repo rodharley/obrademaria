@@ -54,7 +54,8 @@ if(isset($_REQUEST['idGrupo'])){
 		$tpl->SELECTED_MODELO2 = 'selected';
 	if($oGrupo->modeloContrato == 'contrato3.php')
 		$tpl->SELECTED_MODELO3 = 'selected';
-	
+	if($oGrupo->modeloContrato == 'contrato4.php')
+        $tpl->SELECTED_MODELO4 = 'selected';
 	
 	//ficha modelo
 	if($oGrupo->modeloFicha == 'fichaInscricao.php')
