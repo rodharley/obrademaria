@@ -15,10 +15,10 @@ $tpl->BREADCRUMB = '<ul class="breadcrumb">
     </ul>';
 }
 $oGrupo = new Grupo();
-$totalGrupos = $oGrupo->recuperaTotal($_REQUEST['ano'] != "" ? $_REQUEST['ano'] : "");
+$totalGrupos = $oGrupo->recuperaTotal(isset($_REQUEST['ano']) ? $_REQUEST['ano'] : "");
 $pagina = isset($_REQUEST['pagina']) ? $_REQUEST['pagina'] : 1;
 $configPaginacao = $oGrupo->paginar($totalGrupos,$pagina );
-$rsGrupos = $oGrupo->pesquisa($configPaginacao['primeiroRegistro'],$configPaginacao['quantidadePorPagina'],$_REQUEST['ano'] != "" ? $_REQUEST['ano'] : "" );	
+$rsGrupos = $oGrupo->pesquisa($configPaginacao['primeiroRegistro'],$configPaginacao['quantidadePorPagina'],isset($_REQUEST['ano']) ? $_REQUEST['ano'] : "" );	
 
 if($configPaginacao['totalPaginas'] > 1)
 $tpl->block("BLOCK_PAGINACAO");
