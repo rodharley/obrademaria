@@ -5,7 +5,7 @@ include("tupi.template.inicializar.php");
 $codAcesso = 21;
 include("tupi.seguranca.php");
 //titulo do relatorio
-$tpl->TITULO = "Relatório de Cartões de Crédito";
+$tpl->TITULO = "Relatório de Cartões de Crédito e Débito";
 $tpl->DATA_RELATORIO = "Data/Hora:" .date("d/m/Y h:i:s");
 $ogrupo = new Grupo();
 $om = new Moeda();
