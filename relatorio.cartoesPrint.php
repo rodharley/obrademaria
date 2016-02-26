@@ -40,6 +40,20 @@ $totalGeralPagoReal += $p->valorPagamento;
 $tpl->block("BLOCK_ITEM_LISTA");
 
 }
+
+$rs = $oPag->getPagamentos($ogrupo->id,$oTipoPag->DEBITO());
+foreach($rs as $key => $p){
+$totalReal = 0;
+$tpl->CODIGO = $p->codAutorizacao;
+$tpl->NUMERO_CARTAO = $p->numeroCartao;
+$tpl->VALOR_PARCELA = $oPag->money($p->valorParcela,"atb");
+$tpl->NOME_PARTICIPANTE = $p->participante->cliente->nomeCompleto;
+$tpl->VALOR_PAGO_REAL = $oPag->money($p->valorPagamento,"atb");
+$tpl->DATA = $oPag->convdata($p->dataPagamento,"mtn");
+$totalGeralPagoReal += $p->valorPagamento;
+$tpl->block("BLOCK_ITEM_LISTA");
+
+}
 $tpl->TOTAL_VALOR_PAGO_REAL = $om->money($totalGeralPagoReal,"atb");
 include("tupi.template.finalizar.php"); 
 ?>
