@@ -186,6 +186,7 @@ class Pagamento extends Persistencia{
 	$this->participante = $oPartic;
 	$this->tipo = $oTipoP;
 	$this->devolucao = $_REQUEST['dev'];
+    $this->valorParcela = 0;
 	switch ($_REQUEST['tipo']){
 	case $oTipoP->DINHEIRO() :
 		$this->valorPagamento = $this->money($_REQUEST['valorPagamento'],"bta");
@@ -413,7 +414,7 @@ function incluirPagamento(){
 	$this->finalidade = $oFin;
 	$this->cancelado = 0;
 	$this->devolucao = $_REQUEST['dev'];
-	
+	$this->valorParcela = 0;
 	switch ($_REQUEST['tipo']){
 	case $oTipoP->DINHEIRO() :
 		$this->valorPagamento = $this->money($_REQUEST['valorPagamento'],"bta");
@@ -423,6 +424,7 @@ function incluirPagamento(){
 	break;
 	case $oTipoP->CARTAO() :
 		$this->valorPagamento = $this->money($_REQUEST['valorPagamento'],"bta");
+        $this->valorParcela = $this->money($_REQUEST['valorParcela'],"bta");
 		$this->cotacaoMoedaReal  = 0;
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
 		$this->codAutorizacao = isset($_REQUEST['codAutorizacao']) ? $_REQUEST['codAutorizacao'] : "";
