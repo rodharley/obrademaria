@@ -1,6 +1,13 @@
 <script>
 $(document).ready(function(){
 
+$("#ano").change(function(){
+        $("#idGrupoDe").load('ajax/comboGruposPorAno.php?Ano='+$(this).val());
+   });
+   
+$("#anoPara").change(function(){
+        $("#idGrupoPara").load('ajax/comboGruposPorAno.php?Ano='+$(this).val());
+   });
 
  $("#frmEdit").validate();
 
@@ -24,6 +31,17 @@ $(document).ready(function(){
         <fieldset>
           <legend>Migração de Participantes</legend>
           <div class="control-group">
+            <label for="ano" class="control-label">Ano:</label>
+            <div class="controls">
+             <SELECT name="ano" id="ano" class="span2 required">    
+             <option value="" selected="selected">Selecione</option>
+             <!-- BEGIN BLOCK_ANO -->
+             <option value="{ID_ANO}">{LABEL_ANO}</option>
+             <!-- END BLOCK_ANO -->         
+             </SELECT>
+            </div>
+          </div>    
+          <div class="control-group">
             <label for="idGrupoDe" class="control-label">De:</label>
             <div class="controls">
              <SELECT name="idGrupoDe" id="idGrupoDe" class="span5 required">
@@ -35,6 +53,17 @@ $(document).ready(function(){
             </div>
           </div>
           <div id="boxParticipantes"></div>
+          <div class="control-group">
+            <label for="anoPara" class="control-label">Ano:</label>
+            <div class="controls">
+             <SELECT name="anoPara" id="anoPara" class="span2 required">    
+             <option value="" selected="selected">Selecione</option>
+             <!-- BEGIN BLOCK_ANOP -->
+             <option value="{ID_ANO}">{LABEL_ANO}</option>
+             <!-- END BLOCK_ANOP -->         
+             </SELECT>
+            </div>
+          </div>   
  <div class="control-group">
             <label for="idGrupoPara" class="control-label">Para:</label>
             <div class="controls">

@@ -74,6 +74,7 @@ case $oTipoP->DEBITO() :
 	$tpl->CAMBIO_DOLLAR_REAL = $oPag->money($oPag->cotacaoReal,"atb");
 	$tpl->VALOR_PAGAMENTO =	$oPag->money($oPag->valorPagamento,"atb");
 	$tpl->NUMERO_CARTAO = $oPag->numeroCartao;
+    $tpl->COD_AUTORIZACAO = $oPag->codAutorizacao;
 	if($oPag->bandeira != null)
 		$idBandeiraEdita = $oPag->bandeira->id;
 	$oband = new BandeiraCartao();

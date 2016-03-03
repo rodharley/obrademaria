@@ -210,6 +210,7 @@ class Pagamento extends Persistencia{
 		$this->valorParcela = 0;
 		$this->valorPagamento = $this->money($_REQUEST['valorPagamento'],"bta");
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
+        $this->codAutorizacao = isset($_REQUEST['codAutorizacao']) ? $_REQUEST['codAutorizacao'] : "";
 		$this->numeroCartao = $_REQUEST['numeroCartao'];
 		$oband = new BandeiraCartao();
 		$oband->id = $_REQUEST['bandeira'];
@@ -435,6 +436,7 @@ function incluirPagamento(){
 	break;
 	case $oTipoP->DEBITO() :
 		$this->cotacaoMoedaReal  = 0;
+        $this->codAutorizacao = isset($_REQUEST['codAutorizacao']) ? $_REQUEST['codAutorizacao'] : "";
 		$this->valorPagamento = $this->money($_REQUEST['valorPagamento'],"bta");
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
 		$this->parcela = 1;

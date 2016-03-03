@@ -15,13 +15,22 @@ $tpl->BREADCRUMB = '<ul class="breadcrumb">
     </ul>';
 }
 $oGrupo = new Grupo();
-$rsGrupos = $oGrupo->getRows(0,999,array(),array("status"=>"=".$oGrupo->STATUS_ANDAMENTO()));
+$rsAnos = $oGrupo->recuperaAnos();
+while($row = mysql_fetch_array($rsAnos)){
+    $tpl->ID_ANO = $row['ano'];
+    $tpl->LABEL_ANO = $row['ano'];  
+    $tpl->block("BLOCK_ANO");   
+    $tpl->block("BLOCK_ANOP");
+}
+
+
+/*$rsGrupos = $oGrupo->getRows(0,999,array(),array("status"=>"=".$oGrupo->STATUS_ANDAMENTO()));
 
 foreach($rsGrupos as $key => $Grupo){
 	$tpl->ID_GRUPO = $oGrupo->md5_encrypt($Grupo->id);
 	$tpl->LABEL_GRUPO = $Grupo->nomePacote;
 $tpl->block("BLOCK_GRUPO");
 $tpl->block("BLOCK_GRUPO_PARA");
-}
+}*/
 include("tupi.template.finalizar.php");
 ?>
