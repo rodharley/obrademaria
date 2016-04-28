@@ -571,8 +571,20 @@ function mail_html($destinatario,$origem, $titulo, $mensagem)
 
 { 
 
-
-
+    
+    try{
+    $headers = "MIME-Version: 1.1\n";
+$headers .= "Content-type: text/html; charset=iso-8859-1\n";
+$headers .= "From: Femeju <$origem>"."\n"; // remetente
+$headers .= "Return-Path: Femeju <$origem>"."\n"; // return-path
+$email = @mail("$destinatario", "$titulo", "$mensagem", $headers, "-r".$origem);    
+            
+    return $email;
+    }catch(exception $e){
+        return false;
+    }
+    
+    /*
     $headers ="Content-Type: text/html; charset=iso-8859-1\n"; 
 
     $headers.="From: $origem\n"; 
@@ -580,7 +592,7 @@ function mail_html($destinatario,$origem, $titulo, $mensagem)
     $email = mail("$destinatario", "$titulo", "$mensagem", "$headers"); 
 
 	return $email;
-
+*/
 } 
 
 function makePassword($digitos){
