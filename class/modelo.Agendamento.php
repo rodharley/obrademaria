@@ -185,7 +185,7 @@ fones.: 5555-5555
 			while($linha = $this->DAO_GerarArray($rs)){
 			$email = '<table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
 			  <tr>
-				<td background="http://www.obrademariadf.com.br/admin/docs/cartao2.jpg" height="400" align="center"><font color="#FFFFFF" size="+2" face="Palatino Linotype, Book Antiqua, Palatino, serif">'.$linha['nomeCompleto'].'</font>
+				<td background="http://www.obrademariadf.com.br/admin/docs/cartao2.jpg" height="800" align="center"><font color="#FFFFFF" size="+2" face="Palatino Linotype, Book Antiqua, Palatino, serif">'.$linha['nomeCompleto'].'</font>
 				<br/><font color="#FFFFFF" size="2" face="Palatino Linotype, Book Antiqua, Palatino, serif">
 				Como foi Maravilhoso ter contado com sua Presença nesta Peregrinação Inesquecível !!</font>
 				</td>
