@@ -81,10 +81,14 @@ class Cliente extends Persistencia{
 	$sql .= ($where ? " and " : " where " ). "c.txtcidadeEndereco = '".$_REQUEST['cidade']."' ";
 	$where = true;
 	}
-	if($_REQUEST['cidade'] != ""){
-	$sql .= ($where ? " and " : " where " ). "c.txtcidadeEndereco = '".$_REQUEST['cidade']."' ";
+	if($_REQUEST['nome'] != ""){
+	$sql .= ($where ? " and " : " where " ). "c.nomeCompleto like '%".$_REQUEST['nome']."%' ";
 	$where = true;
 	}
+    if($_REQUEST['cpf'] != ""){
+    $sql .= ($where ? " and " : " where " ). "c.cpf like '".$_REQUEST['cpf']."%' ";
+    $where = true;
+    }
 	
 	if($_REQUEST['mesAniversario'] != ""){
 	$sql .= ($where ? " and " : " where " ). "MONTH(c.dataNascimento) = '".$_REQUEST['mesAniversario']."' ";
