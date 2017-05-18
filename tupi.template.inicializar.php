@@ -35,7 +35,7 @@ if(isset($_REQUEST['ajax'])){
 			if(count($menu->subMenus) > 0 ){
 				foreach($menu->subMenus as $key2 => $submenu){
 					//imprime a label dos relatorios do grupo
-					if(!$relatGrupo && $submenu->id == 14){
+					if(!$relatGrupo && $submenu->id == 13){
 					$tpl->block("BLOCK_SUBMENU_GRUPO");
 					$relatGrupo = true;
 					}
