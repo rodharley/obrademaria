@@ -27,11 +27,11 @@ $msg = new Mensagem();
 			
 			//executa agendamentos
 			$ag = new Agendamento();
-			$ag->enviarEmailsAniversariantes();
-			$ag->enviarEmailsCartoesPrePagos();
-			$ag->enviarEmailsContasAPagar();
-			$ag->enviarEmailsPassaportes();
-			$ag->enviarEmailsChegadaGrupo();
+			//$ag->enviarEmailsAniversariantes();
+			//$ag->enviarEmailsCartoesPrePagos();
+			//$ag->enviarEmailsContasAPagar();
+			//$ag->enviarEmailsPassaportes();
+			//$ag->enviarEmailsChegadaGrupo();
 			//gera menu de acesso
 			$oAcesso = new acesso();
 			$acessos = $oAcesso->getRows(0,999,array(),array("perfil" => " = ".$user->perfil->id));

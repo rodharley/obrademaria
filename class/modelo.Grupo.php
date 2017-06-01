@@ -113,8 +113,12 @@ class Grupo extends Persistencia{
 	return $this->getSQL($sql);
 	}
 	
-	public function recuperaTotalAndamento(){
-		$rs = $this->DAO_ExecutarQuery("select count(id) as total from ag_grupo where idStatus = ".$this->STATUS_ANDAMENTO());	
+	public function recuperaTotalAndamento($pesquisa = ""){
+		$sql = "select count(id) as total from ag_grupo where idStatus = ".$this->STATUS_ANDAMENTO();
+		if($pesquisa != ''){
+			$sql .= " and nomePacote Like '%".$pesquisa."%'";
+		}
+		$rs = $this->DAO_ExecutarQuery($sql);	
 		return $this->DAO_Result($rs,"total",0);
 	}	
 	

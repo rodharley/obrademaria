@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$('.paginar').click(function(){
 		jQuery.ajax({
 		type: "GET",
-		url: "grupos.andamento.php?ajax=1&pagina="+$('#manipulacao').val(),
+		url: "grupos.andamento.php?pesquisa="+$("#pesquisa").val()+"&ajax=1&pagina="+$('#manipulacao').val(),
 		beforeSend: function( ) {
 		jQuery('#content').html('<p align="center">Processando...<br /><img src="img/ajax_loading_pequeno.gif" /></p>');
 		  },
@@ -60,6 +60,11 @@ $(document).ready(function(){
     <li class="previous">
     <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PAGINA_ANTERIOR}';">&larr; Anterior</a>
     </li>
+    <li class="form-search">
+        <input type="text" class="input-medium search-query" id="pesquisa" name="pesquisa" value="{PESQUISA}"/>
+        <button class="btn-default paginar" type="button" ><i class="icon-search"></i>Procurar</button>
+        	
+    	</li>
     <li>Total de Páginas: {PAGINA} / {TOTAL_PAGINAS}</li>
     <li class="next">
     <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PROXIMA_PAGINA}';">Próxima &rarr;</a>
@@ -67,6 +72,3 @@ $(document).ready(function(){
     </ul>
 	</section>
 <!-- END BLOCK_PAGINACAO -->    
-<section>
- <button class="btn btn-small" id="bt_voltar">Voltar</button>
-</section>

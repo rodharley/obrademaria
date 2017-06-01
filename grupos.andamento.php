@@ -15,10 +15,16 @@ $tpl->BREADCRUMB = '<ul class="breadcrumb">
     </ul>';
 }
 $oGrupo = new Grupo();
-$totalGrupos = $oGrupo->recuperaTotalAndamento();
+$totalGrupos = $oGrupo->recuperaTotalAndamento(isset($_REQUEST['pesquisa']) ? $_REQUEST['pesquisa'] : "");
 $oParticipante = new Participante();
 $configPaginacao = $oGrupo->paginar($totalGrupos,isset($_REQUEST['pagina']) ? $_REQUEST['pagina'] : 1);
-$rsGrupos = $oGrupo->getRows($configPaginacao['primeiroRegistro'],$configPaginacao['quantidadePorPagina'],array("dataEmbarque"=>"ASC"),array("status"=>"=".$oGrupo->STATUS_ANDAMENTO()));	
+$arrayFiltro = array("status"=>"=".$oGrupo->STATUS_ANDAMENTO());
+if(isset($_REQUEST['pesquisa']) && $_REQUEST['pesquisa'] != ''){
+	$arrayFiltro['nomePacote'] = "Like '%".$_REQUEST['pesquisa']."%'";
+	$tpl->PESQUISA = $_REQUEST['pesquisa'];
+}
+
+$rsGrupos = $oGrupo->getRows($configPaginacao['primeiroRegistro'],$configPaginacao['quantidadePorPagina'],array("dataEmbarque"=>"ASC"),$arrayFiltro);	
 
 if($configPaginacao['totalPaginas'] > 1)
 $tpl->block("BLOCK_PAGINACAO");
