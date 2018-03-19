@@ -653,11 +653,11 @@ function CALCULA_DOLLAR($valor = 0){
 	else
 		$valorCalculo = $valor;
  	if($this->moeda->id == $moeda->DOLLAR())
-		return $valorCalculo;
+		return $this->money($valorCalculo,"bta");
 		else if ($this->moeda->id == $moeda->REAL())
-			return @($valorCalculo/$cotReal);
+			return @$this->money(($valorCalculo/$cotReal),"bta");
 			else	
-				return ($valorCalculo * $this->cotacaoMoedaReal) / $cotReal;
+				return $this->money(($valorCalculo * $this->cotacaoMoedaReal) / $cotReal,"bta");
 }
 
 function CALCULA_MOEDA($valor,$idMoeda){
@@ -665,19 +665,19 @@ function CALCULA_MOEDA($valor,$idMoeda){
  	if($idMoeda == $moeda->DOLLAR()){
 	// do dollar para moeda do pagamento	
 		if ($this->moeda->id == $moeda->DOLLAR())
-			return $this->arredondar_dois_decimal($valor);
+			return $this->money($this->arredondar_dois_decimal($valor),"bta");
 		else if ($this->moeda->id == $moeda->REAL())
-			return $this->arredondar_dois_decimal($valor * $this->cotacaoReal);
+			return $this->money($this->arredondar_dois_decimal($valor * $this->cotacaoReal),"bta");
 		else
-			return $this->arredondar_dois_decimal(($valor * $this->cotacaoReal) / $this->cotacaoMoedaReal) ;
+			return $this->money($this->arredondar_dois_decimal(($valor * $this->cotacaoReal) / $this->cotacaoMoedaReal),"bta");
 	}else{
 	//do real para moeda do pagamento
 		if ($this->moeda->id == $moeda->REAL())
-			return $this->arredondar_dois_decimal($valor);
+			return $this->money($this->arredondar_dois_decimal($valor),"bta");
 		else if ($this->moeda->id == $moeda->DOLLAR())
-			return $this->arredondar_dois_decimal($valor / $this->cotacaoReal);
+			return $this->money($this->arredondar_dois_decimal($valor / $this->cotacaoReal),"bta");
 		else
-			return $this->arredondar_dois_decimal(($valor / $this->cotacaoMoedaReal));
+			return $this->money($this->arredondar_dois_decimal(($valor / $this->cotacaoMoedaReal)),"bta");
 	
 	}		
 }
