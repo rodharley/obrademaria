@@ -328,7 +328,7 @@ class Pagamento extends Persistencia{
 		$this->dataCompensacao  = isset($_REQUEST['dataCompensacao1']) ? $this->convdata($_REQUEST['dataCompensacao1'],"ntm") : '';	
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
 		$this->cotacaoMoedaReal  = 0;	
-		$this->valorPagamento = $valorTotal;
+		$this->valorPagamento = $this->money($valorTotal,"bta");
 		$this->save();
 	}
 	
@@ -354,7 +354,7 @@ class Pagamento extends Persistencia{
 		$this->dataCompensacao  = isset($_REQUEST['dataVencimento1']) ? $this->convdata($_REQUEST['dataVencimento1'],"ntm") : '';	
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
 		$this->cotacaoMoedaReal  = 0;	
-		$this->valorPagamento = $valorTotal;
+		$this->valorPagamento = $this->money($valorTotal,"bta");
 		$this->save();
 	}
 	
@@ -563,7 +563,7 @@ function incluirPagamento(){
 		$this->dataCompensacao  = isset($_REQUEST['dataCompensacao1']) ? $this->convdata($_REQUEST['dataCompensacao1'],"ntm") : '';	
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
 		$this->cotacaoMoedaReal  = 0;	
-		$this->valorPagamento = $valorTotal;
+		$this->valorPagamento = $this->mone($valorTotal,"bta");
 		$this->save();
 	}
 
@@ -589,7 +589,7 @@ function incluirPagamento(){
 		$this->dataCompensacao  = isset($_REQUEST['dataVencimento1']) ? $this->convdata($_REQUEST['dataVencimento1'],"ntm") : '';	
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
 		$this->cotacaoMoedaReal  = 0;	
-		$this->valorPagamento = $valorTotal;
+		$this->valorPagamento = $this->money($valorTotal,"bta");
 		$this->save();
 	}
 	
@@ -638,11 +638,11 @@ function CALCULA_REAL($valor = 0){
 	else
 		$valorCalculo = $valor;
  	if($this->moeda->id == $moeda->REAL())
-		return $valorCalculo;
+		return $this->money($valorCalculo,"bta");
 		else if ($this->moeda->id == $moeda->DOLLAR())
-			return $valorCalculo * $this->cotacaoReal;
+			return $this->money($valorCalculo * $this->cotacaoReal,"bta");
 			else	
-				return $valorCalculo * $this->cotacaoMoedaReal;
+				return $this->money($valorCalculo * $this->cotacaoMoedaReal,"bta");
 }
 
 function CALCULA_DOLLAR($valor = 0){
