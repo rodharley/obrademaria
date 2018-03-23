@@ -563,7 +563,7 @@ function incluirPagamento(){
 		$this->dataCompensacao  = isset($_REQUEST['dataCompensacao1']) ? $this->convdata($_REQUEST['dataCompensacao1'],"ntm") : '';	
 		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
 		$this->cotacaoMoedaReal  = 0;	
-		$this->valorPagamento = $this->mone($valorTotal,"bta");
+		$this->valorPagamento = $this->money($valorTotal,"bta");
 		$this->save();
 	}
 
