@@ -131,6 +131,12 @@ class Abatimento extends Persistencia{
 		$totalAbatimento = $this->DAO_Result($rs,"total",0);
 		return $totalAbatimento;	
 	}
+
+function abatimentosParticipantes($idParticipante){
+	$sql = "select * from ag_abatimento where idParticipante = ".$idParticipante;
+	$rs = $this->getSQL($sql);
+	return $rs;	
+	}
 	
 	function getValorDollar(){
 		$moeda = new Moeda();

@@ -21,7 +21,19 @@ $tpl->DATA_RELATORIO = "Data/Hora:" .date("d/m/Y h:i:s");
 $opartic = new Participante();
 $rs = $opartic->participantesGrupo($oGrupo->id);
 $cont = 1;
-
+$TOTAL_CUSTO_DOLLAR = 0;
+$TOTAL_CUSTO_REAL =0;
+$TOTAL_CARTAO = 0;
+$TOTAL_ESPECIE =0;
+$TOTAL_TRANSF =0;
+$TOTAL_DEPOSITO =0;
+$TOTAL_DEBITO =0;
+$TOTAL_TED =0;
+$TOTAL_DOC =0;
+$TOTAL_CREDITO =0; 
+$TOTAL_CHEQUE =0;
+$TOTAL_RECEBIMENTO_DOLLAR =0;
+$TOTAL_RECEBIMENTO_REAL =0;
 foreach($rs as $key => $p){
 $possuiCheques = 0;
 	$tpl->ID = $cont;
@@ -41,7 +53,7 @@ $possuiCheques = 0;
 	
 
 	//busca os abatimentos do participante
-		$rsAbat = $oAbatimento->getRows(0,9999,array(),array("participante" => "=".$p->id));
+		$rsAbat = $oAbatimento->abatimentosParticipantes($p->id);
 		$contPag = 0;
 		$totalAbatParticipanteReal = 0;
 		$totalAbatParticipanteDollar = 0;
