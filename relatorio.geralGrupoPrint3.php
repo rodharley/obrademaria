@@ -162,6 +162,7 @@ font-size:8px;
 <?
 $linhaParticipantes = "";
 foreach($rs as $key => $p){
+				$listaCheques = "";
 				$possuiCheques = 0;
 				//calcula custo:
 				$custo = $p->custoTotal;
@@ -212,6 +213,7 @@ foreach($rs as $key => $p){
 	        <tbody>
 <?
 foreach($rsAbat as $keyAbat => $abat){
+		
 		$contPag++;
 		//busca o pagamento ativo do participante
 		$oPagamento->getById($abat->pagamento->id);
@@ -228,6 +230,7 @@ foreach($rsAbat as $keyAbat => $abat){
 					break;
 					case $oTP->CHEQUE():
 					$TOTAL_CHEQUE +=  $abat->getValorReal();
+					$possuiCheques = 1;	
 					break;
 					case $oTP->CREDITO():
 					$TOTAL_CREDITO +=  $abat->getValorReal();
@@ -270,7 +273,17 @@ foreach($rsAbat as $keyAbat => $abat){
 		   <td style="text-align:right;"><?=$oMoeda->money($abat->getValorReal(),"atb");?></td>
 		   <td style="text-align:right;"><?=$oMoeda->money($abat->getValorDollar(),"atb");?></td>
           </tr>
-		   <? }
+		   <? 
+		   $rsCheques = $oCheque->getRows(0,999,array(),array("pagamento" => "=".$oPagamento->id));	
+		   foreach($rsCheques as $keyCh => $cheque){ 
+		   $listaCheques .= '<tr><td>'.$contPag.'</td><td>'.$oPagamento->banco->sigla.'</td>
+  			<td >'.$cheque->emissor->nomeCompleto.'</td>
+		   <td >'.$oMoeda->convdata($cheque->dataCompensacao,"mtn").'</td>
+           <td >'.$cheque->numeroCheque.'</td>
+           <td style="text-align:right;">'.$oMoeda->money($cheque->valor,"atb").'</td></tr>';
+		   }
+		   
+		}//looop dos abatimentos
 		   
 		   $recebimentosDollar = $totalAbatParticipanteDollar;//$p->recuperaValorTodosAbatimentos($oMoeda->DOLLAR());
     	$recebimentosReal = $totalAbatParticipanteReal;//$p->recuperaValorTodosAbatimentos($oMoeda->REAL());
@@ -290,9 +303,7 @@ $cont++;
 		   <td style="text-align:right;"><?=$oMoeda->money($totalAbatParticipanteDollar,"atb");?></td>
           </tr>
           <?
-		  if($oPagamento->tipo->id == $oTP->CHEQUE()){
-			$possuiCheques = 1;
-			$rsCheques = $oCheque->getRows(0,999,array(),array("pagamento" => "=".$oPagamento->id));			
+		  if($possuiCheques == 1){
 			?>
 		  <tr>              
 			   <th colspan="12">Cheques</th>				
@@ -309,16 +320,7 @@ $cont++;
 				<th >Número</th>
             	<th >Valor R$</th>								
           </tr>
-		   <? foreach($rsCheques as $keyCh => $cheque){ ?>
-		   <tr>
-		   <td>{N_PAG}</td>
-		   <td><?=$oPagamento->banco->sigla?></td>
-  			<td ><?=$cheque->emissor->nomeCompleto?></td>
-		   <td ><?=$oMoeda->convdata($cheque->dataCompensacao,"mtn");?></td>
-           <td ><?=$cheque->numeroCheque;?></td>
-           <td style="text-align:right;"><?=$oMoeda->money($cheque->valor,"atb");?></td>			
-		  </tr>
-		  <? }?>
+		   <?=$listaCheques?>
 		  </table>
 		  </td>
 		  </tr>
