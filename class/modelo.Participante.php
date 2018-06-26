@@ -46,8 +46,8 @@ class Participante extends Persistencia{
 	return $this->getSQL($sql);
 	}
 
-	public function participantesGrupo($grupo){
-	$sql = "select p.* from ag_participante p inner join ag_cliente c on c.id = p.cliente where p.grupo = $grupo ORDER BY c.nomeCompleto";
+	public function participantesGrupo($grupo,$de=0,$ate=999){
+	$sql = "select p.* from ag_participante p inner join ag_cliente c on c.id = p.cliente where p.grupo = $grupo ORDER BY c.nomeCompleto limit $de, $ate";
 	return $this->getSQL($sql);
 	}
 

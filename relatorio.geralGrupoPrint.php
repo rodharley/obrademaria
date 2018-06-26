@@ -19,8 +19,8 @@ $tpl->NOME_GRUPO = $oGrupo->nomePacote;
 $tpl->DATA_RELATORIO = "Data/Hora:" .date("d/m/Y h:i:s");
 //recupera participantes aprovados
 $opartic = new Participante();
-$rs = $opartic->participantesGrupo($oGrupo->id);
-$cont = 1;
+$rs = $opartic->participantesGrupo($oGrupo->id,($_REQUEST['de']-1),($_REQUEST['ate']));
+$cont = $_REQUEST['de'];
 $TOTAL_CUSTO_DOLLAR = 0;
 $TOTAL_CUSTO_REAL =0;
 $TOTAL_CARTAO = 0;
