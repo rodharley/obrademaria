@@ -13,8 +13,10 @@ $oCheque = new Cheque();
 $oGrupo->getById($oGrupo->md5_decrypt($_REQUEST['idGrupo']));
 //recupera participantes aprovados
 $opartic = new Participante();
-$rs = $opartic->participantesGrupo($oGrupo->id);
-$cont = 1;
+$de = $_REQUEST['de']-1;
+$qtdate = $_REQUEST['ate']-$de;
+$rs = $opartic->participantesGrupo($oGrupo->id,$de,$qtdate);
+$cont = $_REQUEST['de'];
 $TOTAL_CUSTO_DOLLAR = 0;
 $TOTAL_CUSTO_REAL =0;
 $TOTAL_CARTAO = 0;
@@ -294,7 +296,7 @@ foreach($rsAbat as $keyAbat => $abat){
     $TOTAL_CUSTO_DOLLAR +=  $custoDollar;
     $TOTAL_CUSTO_REAL +=  $custoReal;
  
-$cont++;
+
 		   
 		   ?>
 		    <tr>
@@ -340,7 +342,9 @@ $cont++;
 		   <td style='text-align:right;'>".$oMoeda->money($recebimentosReal,"atb")."</td>
 		   <td style='text-align:right;'>".$oMoeda->money($recebimentosDollar,"atb")."</td></tr>";		  
   ?>
-<?}?>   
+<?
+$cont++;
+}?>   
 
 
 
