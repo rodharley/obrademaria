@@ -119,7 +119,7 @@ class Persistencia extends Biblioteca{
 
 
 
-		if($atributo["type"] == "set" && $class['lazy'] == "true"){
+		if($atributo["type"] == "set" && $atributo['lazy'] == "true"){
 			$clfk = substr($atributo['clfk'],0,strlen($atributo['clfk']));
 			$strClass = substr($atributo['clrelation'],0,strlen($atributo['clrelation']));
 			$clorder = substr($atributo['clorder'],0,strlen($atributo['clorder']));
@@ -138,7 +138,7 @@ class Persistencia extends Biblioteca{
 			}
 
 		}else{
-			if($atributo["type"] == "fk" && $class['lazy'] == "true" && strlen($arrayValues["$field"]) > 0 ){
+			if($atributo["type"] == "fk" && $atributo['lazy'] == "true" && strlen($arrayValues["$field"]) > 0 ){
 				$strClass = substr($atributo['clrelation'],0,strlen($atributo['clrelation']));
 				$obj = new $strClass;
 				$obj->getById($arrayValues["$field"]);
@@ -401,7 +401,7 @@ function xmlObject($elemento,$i,$objeto){
 					foreach($elemento->children() as $atributo){
 						if($atributo['type'] != "id" && $atributo['type'] != "set"){
 							$sql .= $atributo['tbname']." = ";							
-							if($atributo['type'] == "fk" && $elemento['lazy'] == "true"){
+							if($atributo['type'] == "fk" && $atributo['lazy'] == "true"){
 								$elementFk = $this->getClassElementXML($atributo['clrelation']);
 								$idfk = $this->getIdElementXML($elementFk);
 								if($this->$atributo[0] != NULL)
@@ -430,7 +430,7 @@ function xmlObject($elemento,$i,$objeto){
 					foreach($elemento->children() as $atributo){
 						if($atributo['type'] != "id" && $atributo['type'] != "set"){
 							$sql .= $atributo['tbname'].", ";
-							if($atributo['type'] == "fk" && $elemento['lazy'] == "true"){
+							if($atributo['type'] == "fk" && $atributo['lazy'] == "true"){
 								$elementFk = $this->getClassElementXML($atributo['clrelation']);
 								$idfk = $this->getIdElementXML($elementFk);
 								if($this->$atributo[0] != NULL)

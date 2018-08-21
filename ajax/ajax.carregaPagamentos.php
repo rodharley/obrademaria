@@ -28,6 +28,7 @@ $tpl->CAMBIO_MOEDA_REAL = 0;
 $tpl->NOME_EMISSOR = $oParticipante->cliente->nomeCompleto."-".$oParticipante->cliente->id;
 if(isset($_REQUEST['idPagamento']) && strlen($_REQUEST['idPagamento']) > 0){
 $oPag->getById($_REQUEST['idPagamento']);
+
 $idMoedaEdita = $oPag->moeda->id;	
 $tpl->ID = $_REQUEST['idPagamento'];
 }
@@ -91,6 +92,7 @@ case $oTipoP->DEBITO() :
 break;
 case $oTipoP->CHEQUE() :
 	$rsm = $oBanco->getRows(0,999,array("codigo"=>"asc"));
+	if($oPag->banco != null)
 	$idBancoEdita = $oPag->banco->id;
 	$tpl->NOMES = $oCliente->listaNomesIds();
 	if($oPag->id != NULL)
@@ -133,6 +135,7 @@ case $oTipoP->CHEQUE() :
 break;
 case $oTipoP->BANCO() :
 	$rsm = $oTipot->getRows();
+	if($oPag->tipoTransferencia != null)
 	$idTipoTransf = $oPag->tipoTransferencia->id;
 	foreach($rsm as $key => $row){
 		$tpl->ID_TIPO_TRANSF = $row->id;
@@ -147,7 +150,7 @@ case $oTipoP->BANCO() :
 	$tpl->block('BLOCK_PG_BANCO');
 break;
 case $oTipoP->CREDITO() :
-	if($oPag->creditoCliente != null)
+	if($oPag->creditoCliente != null)	
 	$idCredito = $oPag->creditoCliente->id;
 	$rsm = $oCred->getRows(0,999,array(),array("cliente"=>"=".$oParticipante->cliente->id , "bitUtilizado"=>"=0"));
 	if($idCredito != 0 && strlen($idCredito) > 0){

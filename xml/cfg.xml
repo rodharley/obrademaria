@@ -18,9 +18,9 @@ classe
 
 		<atrib tbname="dataAssinatura" type="txt">dataAssinatura</atrib>
 
-		<atrib tbname="idCidade" type="fk" clrelation="cidade">cidade</atrib>
+		<atrib tbname="idCidade" type="fk" lazy="true" clrelation="cidade">cidade</atrib>
 
-		<atrib tbname="idLocador" type="fk" clrelation="locador">locador</atrib>
+		<atrib tbname="idLocador" type="fk" lazy="true" clrelation="locador">locador</atrib>
 
 		<atrib tbname="dataAssinaturaTermo" type="txt">dataAssinaturaTermo</atrib>
 
@@ -28,11 +28,11 @@ classe
 
 1:n
 
-<atrib tbname="idCidade" type="fk" clrelation="cidade">cidade</atrib>
+<atrib tbname="idCidade" type="fk" lazy="true" clrelation="cidade">cidade</atrib>
 
 set
 
-<atrib tbname="" type="set" clrelation="vigencia" clorder="dataInicio" clfk="contrato">vigencias</atrib>
+<atrib tbname="" type="set" lazy="true" clrelation="vigencia" clorder="dataInicio" clfk="contrato">vigencias</atrib>
 
 -->
 
@@ -42,9 +42,9 @@ set
 
 		<atrib tbname="id" type="id">id</atrib>
 
-		<atrib tbname="idPagamento" type="fk" clrelation="Pagamento">pagamento</atrib>
+		<atrib tbname="idPagamento" type="fk" lazy="true" clrelation="Pagamento">pagamento</atrib>
 
-		<atrib tbname="idParticipante" type="fk" clrelation="Participante">participante</atrib>		
+		<atrib tbname="idParticipante" type="fk" lazy="true" clrelation="Participante">participante</atrib>		
 
 		<atrib tbname="valor" type="int">valor</atrib>		
 
@@ -54,9 +54,9 @@ set
 
 		<atrib tbname="id" type="id">id</atrib>
 
-		<atrib tbname="idMenu" type="fk" clrelation="Menu">menu</atrib>
+		<atrib tbname="idMenu" type="fk" lazy="true" clrelation="Menu">menu</atrib>
 
-		<atrib tbname="idPerfil" type="fk" clrelation="Perfil">perfil</atrib>		
+		<atrib tbname="idPerfil" type="fk" lazy="true" clrelation="Perfil">perfil</atrib>		
 
 	</class>
 
@@ -90,7 +90,7 @@ set
 	</class>
 	<class name="Carne" tbname="ag_carne" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>
-		<atrib tbname="idPagamento" type="fk" clrelation="Pagamento">pagamento</atrib>
+		<atrib tbname="idPagamento" type="fk" lazy="true" clrelation="Pagamento">pagamento</atrib>
 		<atrib tbname="data" type="txt">dataVencimento</atrib>				
 		<atrib tbname="valor" type="int">valor</atrib>		
 		<atrib tbname="parcela" type="int">parcela</atrib>		
@@ -99,7 +99,7 @@ set
 
 		<atrib tbname="id" type="id">id</atrib>
 
-		<atrib tbname="idPagamento" type="fk" clrelation="Pagamento">pagamento</atrib>
+		<atrib tbname="idPagamento" type="fk" lazy="false" clrelation="Pagamento">pagamento</atrib>
 
 		<atrib tbname="numero" type="txt">numeroCheque</atrib>
 
@@ -107,9 +107,9 @@ set
 
 		<atrib tbname="valor" type="int">valor</atrib>		
 
-		<atrib tbname="status" type="fk" clrelation="StatusCheque">status</atrib>
+		<atrib tbname="status" type="fk" lazy="true" clrelation="StatusCheque">status</atrib>
 
-		<atrib tbname="emissor" type="fk" clrelation="Cliente">emissor</atrib>
+		<atrib tbname="emissor" type="fk" lazy="true" clrelation="Cliente">emissor</atrib>
 
 		<atrib tbname="parcela" type="int">parcela</atrib>		
 
@@ -119,7 +119,7 @@ set
 
 		<atrib tbname="id" type="id">id</atrib>
 
-		<atrib tbname="idUf" type="fk" clrelation="Uf">uf</atrib>
+		<atrib tbname="idUf" type="fk" lazy="true" clrelation="Uf">uf</atrib>
 
 		<atrib tbname="uf" type="txt">siglaUf</atrib>		
 
@@ -137,7 +137,7 @@ set
 
 		<atrib tbname="cpf" type="txt">cpf</atrib>
 
-		<atrib tbname="estadoCivil" type="fk" clrelation="EstadoCivil">estadoCivil</atrib>
+		<atrib tbname="estadoCivil" type="fk" lazy="true" clrelation="EstadoCivil">estadoCivil</atrib>
 
 		<atrib tbname="dataNascimento" type="txt">dataNascimento</atrib>
 
@@ -216,7 +216,7 @@ set
 
 		<atrib tbname="valorPagamento" type="int">valorPagamento</atrib>
 
-		<atrib tbname="idTipoConta" type="fk" clrelation="TipoConta">tipo</atrib>
+		<atrib tbname="idTipoConta" type="fk" lazy="true" clrelation="TipoConta">tipo</atrib>
 
 		<atrib tbname="parcelas" type="int">parcelas</atrib>
 
@@ -234,7 +234,7 @@ set
 
 		<atrib tbname="parcela" type="int">parcela</atrib>
 
-		<atrib tbname="idConta" type="fk" clrelation="Conta">conta</atrib>
+		<atrib tbname="idConta" type="fk" lazy="true" clrelation="Conta">conta</atrib>
 
 	</class>
 
@@ -242,11 +242,11 @@ set
 
 		<atrib tbname="id" type="id">id</atrib>
 
-		<atrib tbname="idCliente" type="fk" clrelation="Cliente">cliente</atrib>
+		<atrib tbname="idCliente" type="fk" lazy="true" clrelation="Cliente">cliente</atrib>
 
-		<atrib tbname="participante" type="fk" clrelation="Participante">participante</atrib>
+		<atrib tbname="participante" type="fk" lazy="true" clrelation="Participante">participante</atrib>
 
-		<atrib tbname="idMoeda" type="fk" clrelation="Moeda">moeda</atrib>
+		<atrib tbname="idMoeda" type="fk" lazy="true" clrelation="Moeda">moeda</atrib>
 
 		<atrib tbname="obs" type="txt">obs</atrib>		
 
@@ -266,9 +266,9 @@ set
 
 		<atrib tbname="id" type="id">id</atrib>
 
-		<atrib tbname="idQuarto" type="fk" clrelation="Quarto">quarto</atrib>
+		<atrib tbname="idQuarto" type="fk" lazy="true" clrelation="Quarto">quarto</atrib>
 
-		<atrib tbname="idParticipante" type="fk" clrelation="Participante">participante</atrib>
+		<atrib tbname="idParticipante" type="fk" lazy="true" clrelation="Participante">participante</atrib>
 
 	</class>
 
@@ -308,9 +308,9 @@ set
 
 		<atrib tbname="valorCusto" type="int">valorCusto</atrib>	
 
-		<atrib tbname="idMoeda" type="fk" clrelation="Moeda">moeda</atrib>	
+		<atrib tbname="idMoeda" type="fk" lazy="true" clrelation="Moeda">moeda</atrib>	
 
-		<atrib tbname="idStatus" type="fk" clrelation="StatusGrupo">status</atrib>	
+		<atrib tbname="idStatus" type="fk" lazy="true" clrelation="StatusGrupo">status</atrib>	
 
 		<atrib tbname="possuiPacoteOpcional" type="int">possuiPacoteOpcional</atrib>	
 
@@ -343,9 +343,9 @@ set
 
 		<atrib tbname="dataAcesso" type="txt">dataHora</atrib>
 
-		<atrib tbname="idMenu" type="fk" clrelation="Menu">menu</atrib>
+		<atrib tbname="idMenu" type="fk" lazy="false" clrelation="Menu">menu</atrib>
 
-		<atrib tbname="idUsuario" type="fk" clrelation="Usuario">usuario</atrib>		
+		<atrib tbname="idUsuario" type="fk" lazy="false" clrelation="Usuario">usuario</atrib>		
 
 	</class>
 
@@ -355,9 +355,9 @@ set
 
 		<atrib tbname="data" type="txt">dataHora</atrib>
 
-		<atrib tbname="idGrupo" type="fk" clrelation="Grupo">grupo</atrib>
+		<atrib tbname="idGrupo" type="fk" lazy="true" clrelation="Grupo">grupo</atrib>
 
-		<atrib tbname="idUsuario" type="fk" clrelation="Usuario">usuario</atrib>		
+		<atrib tbname="idUsuario" type="fk" lazy="true" clrelation="Usuario">usuario</atrib>		
 
 		<atrib tbname="txtLog" type="txt">txtLog</atrib>
 
@@ -369,9 +369,9 @@ set
 
 		<atrib tbname="data" type="txt">dataHora</atrib>
 
-		<atrib tbname="idParticipante" type="fk" clrelation="Participante">participante</atrib>
+		<atrib tbname="idParticipante" type="fk" lazy="true" clrelation="Participante">participante</atrib>
 
-		<atrib tbname="idUsuario" type="fk" clrelation="Usuario">usuario</atrib>		
+		<atrib tbname="idUsuario" type="fk" lazy="true" clrelation="Usuario">usuario</atrib>		
 
 		<atrib tbname="valor" type="int">valor</atrib>
 
@@ -387,7 +387,7 @@ set
 
 		<atrib tbname="movimento" type="txt">movimento</atrib>
 
-		<atrib tbname="idUsuario" type="fk" clrelation="Usuario">usuario</atrib>		
+		<atrib tbname="idUsuario" type="fk" lazy="true" clrelation="Usuario">usuario</atrib>		
 
 	</class>
 
@@ -399,9 +399,9 @@ set
 
 		<atrib tbname="url" type="txt">url</atrib>
 
-		<atrib tbname="idMenuPai" type="fk" clrelation="Menu">menuPai</atrib>
+		<atrib tbname="idMenuPai" type="fk" lazy="true" clrelation="Menu">menuPai</atrib>
 
-		<atrib tbname="" type="set" clrelation="Menu" clorder="id" clfk="menuPai">subMenus</atrib>
+		<atrib tbname="" type="set" lazy="true" clrelation="Menu" clorder="id" clfk="menuPai">subMenus</atrib>
 
 	</class>
 
@@ -429,15 +429,15 @@ set
 
 		<atrib tbname="custoTotal" type="int">custoTotal</atrib>
 
-		<atrib tbname="grupo" type="fk" clrelation="Grupo">grupo</atrib>	
+		<atrib tbname="grupo" type="fk" lazy="true" clrelation="Grupo">grupo</atrib>	
 
-		<atrib tbname="cliente" type="fk" clrelation="Cliente">cliente</atrib>	
+		<atrib tbname="cliente" type="fk" lazy="true" clrelation="Cliente">cliente</atrib>	
 
 		<atrib tbname="contrato" type="txt">contrato</atrib>
 
 		<atrib tbname="pacoteOpcional" type="int">pacoteOpcional</atrib>
 
-		<atrib tbname="status" type="fk" clrelation="StatusParticipante">status</atrib>	
+		<atrib tbname="status" type="fk" lazy="true" clrelation="StatusParticipante">status</atrib>	
 		<atrib tbname="voucher" type="txt">voucher</atrib>	
 
 	</class>
@@ -465,21 +465,21 @@ set
 
 		<atrib tbname="dataCompensacao" type="txt">dataCompensacao</atrib>
 
-		<atrib tbname="participante" type="fk" clrelation="Participante">participante</atrib>
+		<atrib tbname="participante" type="fk" lazy="true" clrelation="Participante">participante</atrib>
 
-		<atrib tbname="moeda" type="fk" clrelation="Moeda">moeda</atrib>
+		<atrib tbname="moeda" type="fk" lazy="true" clrelation="Moeda">moeda</atrib>
 
-		<atrib tbname="tipo" type="fk" clrelation="TipoPagamento">tipo</atrib>
+		<atrib tbname="tipo" type="fk" lazy="true" clrelation="TipoPagamento">tipo</atrib>
 
-		<atrib tbname="banco" type="fk" clrelation="Banco">banco</atrib>
-		<atrib tbname="bandeira" type="fk" clrelation="BandeiraCartao">bandeira</atrib>
-		<atrib tbname="tipoTransferencia" type="fk" clrelation="TipoTransferencia">tipoTransferencia</atrib>
+		<atrib tbname="banco" type="fk" lazy="true" clrelation="Banco">banco</atrib>
+		<atrib tbname="bandeira" type="fk" lazy="true" clrelation="BandeiraCartao">bandeira</atrib>
+		<atrib tbname="tipoTransferencia" type="fk" lazy="true" clrelation="TipoTransferencia">tipoTransferencia</atrib>
 
-		<atrib tbname="idCredito" type="fk" clrelation="Credito">creditoCliente</atrib>
+		<atrib tbname="idCredito" type="fk" lazy="true" clrelation="Credito">creditoCliente</atrib>
 
-		<atrib tbname="idFinalidade" type="fk" clrelation="FinalidadePagamento">finalidade</atrib>
+		<atrib tbname="idFinalidade" type="fk" lazy="true" clrelation="FinalidadePagamento">finalidade</atrib>
 
-		<atrib tbname="emissorCheque" type="fk" clrelation="Cliente">emissorCheque</atrib>
+		<atrib tbname="emissorCheque" type="fk" lazy="true" clrelation="Cliente">emissorCheque</atrib>
 
 		<atrib tbname="bitCancelado" type="int" >cancelado</atrib>
 
@@ -497,7 +497,7 @@ set
 
 		<atrib tbname="pauta" type="txt">pauta</atrib>	
 
-		<atrib tbname="idGrupo" type="fk" clrelation="Grupo">grupo</atrib>	
+		<atrib tbname="idGrupo" type="fk" lazy="true" clrelation="Grupo">grupo</atrib>	
 
 	</class>
 
@@ -517,7 +517,7 @@ set
 
 		<atrib tbname="capacidade" type="txt">capacidade</atrib>	
 
-		<atrib tbname="idGrupo" type="fk" clrelation="Grupo">grupo</atrib>	
+		<atrib tbname="idGrupo" type="fk" lazy="true" clrelation="Grupo">grupo</atrib>	
 
 	</class>
 
@@ -565,8 +565,8 @@ set
 		<atrib tbname="id" type="id">id</atrib>	 	 	 	
 		<atrib tbname="ticket" type="txt">ticket</atrib>		
 		<atrib tbname="reserva" type="txt">reserva</atrib>	
-		<atrib tbname="id_participante" type="fk" clrelation="Participante">participante</atrib>	
-		<atrib tbname="id_voo" type="fk" clrelation="Voo">voo</atrib>	
+		<atrib tbname="id_participante" type="fk" lazy="true" clrelation="Participante">participante</atrib>	
+		<atrib tbname="id_voo" type="fk" lazy="true" clrelation="Voo">voo</atrib>	
 	</class>
 	<class name="TipoTransferencia" tbname="ag_tipotransferencia" tbid="id" lazy="false">
 
@@ -596,7 +596,7 @@ set
 
 		<atrib tbname="senha" type="txt">senha</atrib>
 
-		<atrib tbname="idPerfil" type="fk" clrelation="Perfil">perfil</atrib>	
+		<atrib tbname="idPerfil" type="fk" lazy="true" clrelation="Perfil">perfil</atrib>	
 
 	</class>
 
@@ -610,9 +610,9 @@ set
 
 		<atrib tbname="horaEmbarque" type="txt">horaEmbarque</atrib>	
 
-		<atrib tbname="idGrupo" type="fk" clrelation="Grupo">grupo</atrib>
+		<atrib tbname="idGrupo" type="fk" lazy="true" clrelation="Grupo">grupo</atrib>
 
-		<atrib tbname="idCompaniaAerea" type="fk" clrelation="CompanhiaAerea">companhiaAerea</atrib>			
+		<atrib tbname="idCompaniaAerea" type="fk" lazy="true" clrelation="CompanhiaAerea">companhiaAerea</atrib>			
 		<atrib tbname="trecho" type="txt">trecho</atrib>	
 		<atrib tbname="horaChegada" type="txt">horaChegada</atrib>	
 
