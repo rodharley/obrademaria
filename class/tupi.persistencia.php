@@ -412,7 +412,7 @@ function xmlObject($elemento,$i,$objeto){
 							}else{
 								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
 									$sql .= "'";
-								$sql .= $this->$atributo[0];
+								$sql .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
 								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
 									$sql .= "'";
 								$sql .= ", ";
@@ -441,7 +441,7 @@ function xmlObject($elemento,$i,$objeto){
 							}else{
 								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
 									$campos .= "'";
-								$campos .= $this->$atributo[0];
+								$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
 								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
 									$campos .= "'";
 								$campos .= ", ";
