@@ -3,28 +3,6 @@ include("tupi.inicializar.php");
 $codAcesso = 38;
 include("tupi.seguranca.php");
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-use Monolog\Formatter\LineFormatter;
-// create a log channel
-
-
-$log = new Logger('name');
-$log->pushHandler(new StreamHandler('log.log', Logger::DEBUG));
-
-// the default date format is "Y-m-d H:i:s"
-$passou = microtime(true);
-$totaltempo = 0;
-// the default output format is "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n"
-
-function registraLog($mensagem){
-	global $log, $passou,$totaltempo;	
-	$atual = microtime(true);	 
-	$registro = $atual - $passou;	
-	$passou = $atual;
-	$totaltempo += $registro;
-	$log->debug($mensagem." Tempo:".microtime(true)." diferença: $registro");
-}
 
 // add records to the log
 //$log->warning('Foo');
@@ -38,16 +16,16 @@ $oAbatimento = new Abatimento();
 $oTP = new TipoPagamento();
 $oTT = new TipoTransferencia();
 $oCheque = new Cheque();
-registraLog('Começo');
+
 $oGrupo->getById($oGrupo->md5_decrypt($_REQUEST['idGrupo']));
-registraLog('Recuperou Grupo');
+
 //recupera participantes aprovados
 $opartic = new Participante();
 $de = $_REQUEST['de']-1;
 $qtdate = $_REQUEST['ate']-$de;
-registraLog('Inicio Recuperou Participantes');
+
 $rs = $opartic->participantesGrupo($oGrupo->id,$de,$qtdate);
-registraLog('Recuperou Participantes');
+
 $cont = $_REQUEST['de'];
 $TOTAL_CUSTO_DOLLAR = 0;
 $TOTAL_CUSTO_REAL =0;
@@ -196,7 +174,7 @@ font-size:8px;
 <?
 $linhaParticipantes = "";
 foreach($rs as $key => $p){
-				registraLog('Participante'.$p->cliente->nomeCompleto);
+				
 				$listaCheques = "";
 				$possuiCheques = 0;
 				//calcula custo:
@@ -209,12 +187,12 @@ foreach($rs as $key => $p){
 				$custoDollar = $custo / $cotCustpo;
 				$custoReal = $custo;
 				}
-				registraLog('Calculou custos');
+				
 				
 					//busca os abatimentos do participante
-		registraLog('inicio Recuperou abatimentos do participante');
+		
 		$rsAbat = $oAbatimento->abatimentosParticipantes($p->id);
-		registraLog('Recuperou abatimentos do participante');
+		
 		$contPag = 0;
 		$totalAbatParticipanteReal = 0;
 		$totalAbatParticipanteDollar = 0;
@@ -251,7 +229,7 @@ foreach($rs as $key => $p){
 	        <tbody>
 <?
 foreach($rsAbat as $keyAbat => $abat){
-		registraLog('Abatimento'.$abat->id);
+		
 		$contPag++;
 		//busca o pagamento ativo do participante
 		$oPagamento->getById($abat->pagamento->id);
@@ -296,7 +274,7 @@ foreach($rsAbat as $keyAbat => $abat){
 
 		$totalAbatParticipanteReal += $abat->getValorReal();
 		$totalAbatParticipanteDollar += $abat->getValorDollar();
-		registraLog('Calculou os valores');
+		
 ?>
 		 <tr>
            <td ><?=$contPag?></td>
@@ -313,10 +291,10 @@ foreach($rsAbat as $keyAbat => $abat){
 		   <td style="text-align:right;"><?=$oMoeda->money($abat->getValorDollar(),"atb");?></td>
           </tr>
 		   <? 
-		   registraLog('inicio Pegou os cheques do abatimento');
+		   
 		   
 		   $rsCheques = $oCheque->getSQL("Select * from ag_cheque where idPagamento = ".$oPagamento->id);//$oCheque->getRows(0,999,array(),array("pagamento" => "=".$oPagamento->id));
-		   registraLog('Pegou os cheques do abatimento');	
+		   
 		   foreach($rsCheques as $keyCh => $cheque){ 
 		   $listaCheques .= '<tr><td>'.$contPag.'</td><td>'.$oPagamento->banco->sigla.'</td>
   			<td >'.$cheque->emissor->nomeCompleto.'</td>
@@ -324,7 +302,7 @@ foreach($rsAbat as $keyAbat => $abat){
            <td >'.$cheque->numeroCheque.'</td>
            <td style="text-align:right;">'.$oMoeda->money($cheque->valor,"atb").'</td></tr>';
 		   }
-		   registraLog('montou a lista de cheques');	
+		   
 		}//looop dos abatimentos
 		   
 		   $recebimentosDollar = $totalAbatParticipanteDollar;//$p->recuperaValorTodosAbatimentos($oMoeda->DOLLAR());
@@ -384,13 +362,13 @@ foreach($rsAbat as $keyAbat => $abat){
 		   <td style='text-align:right;'>".$oMoeda->money($recebimentosReal,"atb")."</td>
 		   <td style='text-align:right;'>".$oMoeda->money($recebimentosDollar,"atb")."</td></tr>";
 		   
-		   registraLog('Montou a lista geral de participantes');			  
+		   		  
   ?>
 <?
 $cont++;
-registraLog('Tempo do Participante: '.$totaltempo);
+
 }
-registraLog('Tempo Total: '.$totaltempo);
+
 ?>   
 
 
