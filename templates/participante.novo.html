@@ -318,7 +318,14 @@ window.location.href= 'participante.novo.php?idGrupo={ID_GRUPO_HASH}&cpf='+$('#c
           </div>	  
           </fieldset>
           <fieldset>
-          <legend>Informações Adicionais</legend>	
+          <legend>Informações Adicionais</legend>
+<div class="control-group">
+                <label class="control-label" for="problemasSaude">Valor da passagem (Contrato):</label>
+                <div class="controls">
+                    <input type="text" id="valorPassagem" class="input-xlarge span5 required" name="valorPassagem" value="" placeholder="Valor da passagem" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+                </div>
+                <label class="control-label" for="textarea">Valor da passagem (Contrato):</label>
+            </div>	
           <div class="control-group">
             <label class="control-label" for="problemasSaude">Problemas de saúde:</label>
             <div class="controls">

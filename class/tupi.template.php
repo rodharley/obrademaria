@@ -2,14 +2,14 @@
 /**
  * Mecanismo de Template para PHP5
  * 
- * Mecanismos de Template permitem manter o código HTML em arquivos externos
- * que ficam completamente livres de código PHP. Dessa forma, consegue-se manter 
- * a lógica de programação (PHP) separada da estrutura visual (HTML ou XML, CSS, etc).
+ * Mecanismos de Template permitem manter o cï¿½digo HTML em arquivos externos
+ * que ficam completamente livres de cï¿½digo PHP. Dessa forma, consegue-se manter 
+ * a lï¿½gica de programaï¿½ï¿½o (PHP) separada da estrutura visual (HTML ou XML, CSS, etc).
  *
- * Se você já é familiar ao uso de mecanismos de template PHP, esta classe inclui 
- * algumas melhorias: suporte à objetos, automaticamente detecta blocos, mantém uma 
- * lista interna das variáveis que existem, limpa automaticamente blocos "filhos", 
- * avisando quando tentamos chamar blocos ou variáveis que são existem, avisando quando 
+ * Se vocï¿½ jï¿½ ï¿½ familiar ao uso de mecanismos de template PHP, esta classe inclui 
+ * algumas melhorias: suporte ï¿½ objetos, automaticamente detecta blocos, mantï¿½m uma 
+ * lista interna das variï¿½veis que existem, limpa automaticamente blocos "filhos", 
+ * avisando quando tentamos chamar blocos ou variï¿½veis que sï¿½o existem, avisando quando 
  * criamos blocos "mal formados", e outras pequenas ajudas.
  * 
  * @author Rael G.C. (rael.gc@gmail.com)
@@ -78,15 +78,15 @@ class Template {
 	/**
 	 * Cria um novo template, usando $filename como arquivo principal
 	 * 
-	 * Quando o parâmetro $accurate é true, a substituição dos blocos no arquivo   
-	 * final será perfeitamente fiel ao arquivo original, isto é, todas as tabulações 
-	 * serão removidas. Isso vai ter um pequeno prejuízo na performance, que pode variar 
-	 * de acordo com a versão do PHP em uso. Mas é útil quando estamos usando tags HTML 
+	 * Quando o parï¿½metro $accurate ï¿½ true, a substituiï¿½ï¿½o dos blocos no arquivo   
+	 * final serï¿½ perfeitamente fiel ao arquivo original, isto ï¿½, todas as tabulaï¿½ï¿½es 
+	 * serï¿½o removidas. Isso vai ter um pequeno prejuï¿½zo na performance, que pode variar 
+	 * de acordo com a versï¿½o do PHP em uso. Mas ï¿½ ï¿½til quando estamos usando tags HTML 
 	 * como &lt;pre&gt; ou &lt;code&gt;. Em outros casos, ou melhor, quase sempre, 
 	 * nunca se mexe no valor de $accurate.
 	 *
-	 * @param     string $filename		caminho do arquivo que será lido
-	 * @param     booelan $accurate		true para fazer substituição fiel das tabulações
+	 * @param     string $filename		caminho do arquivo que serï¿½ lido
+	 * @param     booelan $accurate		true para fazer substituiï¿½ï¿½o fiel das tabulaï¿½ï¿½es
 	 */
 	public function __construct($filename, $accurate = false){
 		$this->accurate = $accurate;
@@ -94,26 +94,26 @@ class Template {
 	}
 	
 	/**
-	 * Adiciona o conteúdo do arquivo identificado por $filename na variável de template 
+	 * Adiciona o conteï¿½do do arquivo identificado por $filename na variï¿½vel de template 
 	 * identificada por $varname
 	 *
-	 * @param     string $varname		uma variável de template existente
+	 * @param     string $varname		uma variï¿½vel de template existente
 	 * @param     string $filename		arquivo a ser carregado
 	 */
 	public function addFile($varname, $filename){
-		if(!$this->exists($varname)) throw new InvalidArgumentException("addFile: var $varname não existe");
+		if(!$this->exists($varname)) throw new InvalidArgumentException("addFile: var $varname nï¿½o existe");
 		$this->loadfile($varname, $filename);
 	}
 	
 	/**
-	 * Não use este método, ele serve apenas para podemos acessar as variáveis 
+	 * Nï¿½o use este mï¿½todo, ele serve apenas para podemos acessar as variï¿½veis 
 	 * de template diretamente.
 	 *
 	 * @param	string	$varname	template var name
 	 * @param	mixed	$value		template var value
 	 */
 	public function __set($varname, $value){
-		if(!$this->exists($varname)) throw new RuntimeException("var $varname não existe");
+		if(!$this->exists($varname)) throw new RuntimeException("var $varname nï¿½o existe");
 		$stringValue = $value;
 		if(is_object($value)){
 			$this->instances[$varname] = $value;
@@ -126,20 +126,20 @@ class Template {
 	}
 	
 	/**
-	 * Não use este método, ele serve apenas para podemos acessar as variáveis 
+	 * Nï¿½o use este mï¿½todo, ele serve apenas para podemos acessar as variï¿½veis 
 	 * de template diretamente.
 	 *
 	 * @param	string	$varname	template var name
 	 */
 	public function __get($varname){
 		if (isset($this->values["{".$varname."}"])) return $this->values["{".$varname."}"];
-		throw new RuntimeException("var $varname não existe");
+		throw new RuntimeException("var $varname nï¿½o existe");
 	}
 
 	/**
-	 * Verifica se uma variável de template existe.
+	 * Verifica se uma variï¿½vel de template existe.
 	 *
-	 * Retorna true se a variável existe. Caso contrário, retorna false.
+	 * Retorna true se a variï¿½vel existe. Caso contrï¿½rio, retorna false.
 	 *
 	 * @param	string	$varname	template var name
 	 */
@@ -161,11 +161,11 @@ class Template {
 	 * @return    void
 	 */
 	private function loadfile($varname, $filename) {
-		if (!file_exists($filename)) throw new InvalidArgumentException("arquivo $filename não existe");
+		if (!file_exists($filename)) throw new InvalidArgumentException("arquivo $filename nï¿½o existe");
 		// Reading file and hiding comments
 		$str = preg_replace("/<!---.*?--->/smi", "", file_get_contents($filename));
 		$blocks = $this->recognize($str, $varname);
-		if (empty($str)) throw new InvalidArgumentException("arquivo $filename está vazio");
+		if (empty($str)) throw new InvalidArgumentException("arquivo $filename estï¿½ vazio");
 		$this->setValue($varname, $str);
 		$this->createBlocks($blocks);
 	}
@@ -275,7 +275,7 @@ class Template {
 			$reg = "/\t*<!--\s*BEGIN\s+$block\s+-->\n*(\s*.*?\n?)\t*<!--\s+END\s+$block\s*-->\n?/sm";
 		} 
 		else $reg = "/<!--\s*BEGIN\s+$block\s+-->\s*(\s*.*?\s*)<!--\s+END\s+$block\s*-->\s*/sm";
-		if(1!==preg_match($reg, $str, $m)) throw new UnexpectedValueException("bloco $block está mal formado");
+		if(1!==preg_match($reg, $str, $m)) throw new UnexpectedValueException("bloco $block estï¿½ mal formado");
 		$this->setValue($name, '');
 		$this->setValue($block, $m[1]);
 		$this->setValue($parent, preg_replace($reg, "{".$name."}", $str));
@@ -307,11 +307,11 @@ class Template {
 	}
 	
 	/**
-	 * Limpa o valor de uma variável
+	 * Limpa o valor de uma variï¿½vel
 	 * 
  	 * O mesmo que $this->setValue($varname, "");
 	 *
-	 * @param     string $varname	nome da variável
+	 * @param     string $varname	nome da variï¿½vel
 	 */
 	public function clear($varname) {
 		$this->setValue($varname, "");
@@ -355,7 +355,7 @@ class Template {
 						else {
 							$className = $property[$i-1] ? $property[$i-1] : get_class($instance);
 							$class = is_null($pointer) ? "NULL" : get_class($pointer);
-							throw new BadMethodCallException("não existe método na classe ".$class." para acessar ".$className."->".$property[$i]);
+							throw new BadMethodCallException("nï¿½o existe mï¿½todo na classe ".$class." para acessar ".$className."->".$property[$i]);
 						}
 					}
 					// Checking if final value is an object
@@ -391,26 +391,26 @@ class Template {
 	/**
 	 * Mostra um bloco.
 	 * 
-	 * Esse método deve ser chamado quando um bloco deve ser mostrado.
-	 * Sem isso, o bloco não irá aparecer no conteúdo final.
+	 * Esse mï¿½todo deve ser chamado quando um bloco deve ser mostrado.
+	 * Sem isso, o bloco nï¿½o irï¿½ aparecer no conteï¿½do final.
 	 *
-	 * Se o parâmetro $append for true, o conteúdo do bloco será 
-	 * adicionado ao conteúdo que já existia antes. Ou seja, use true 
+	 * Se o parï¿½metro $append for true, o conteï¿½do do bloco serï¿½ 
+	 * adicionado ao conteï¿½do que jï¿½ existia antes. Ou seja, use true 
 	 * quando quiser que o bloco seja duplicado.
 	 *
 	 * @param     string $block		nome do bloco que deve ser mostrado
-	 * @param     boolean $append		true se o conteúdo anterior deve ser mantido (ou seja, para duplicar o bloco)
+	 * @param     boolean $append		true se o conteï¿½do anterior deve ser mantido (ou seja, para duplicar o bloco)
 	 */
 	public function block($block, $append = true) {
-		if(!in_array($block, $this->blocks)) throw new InvalidArgumentException("bloco $block não existe");
+		if(!in_array($block, $this->blocks)) throw new InvalidArgumentException("bloco $block nï¿½o existe");
 		if ($append) $this->setValue("B_".$block, $this->getVar("B_".$block) . $this->subst($block));
 		else $this->setValue("B_".$block, $this->subst($block));
 		$this->clearBlocks($block);
 	}
 	
 	/**
-	* Retorna o conteúdo final, sem mostrá-lo na tela. 
-	* Se você quer mostrá-lo na tela, use o método Template::show().
+	* Retorna o conteï¿½do final, sem mostrï¿½-lo na tela. 
+	* Se vocï¿½ quer mostrï¿½-lo na tela, use o mï¿½todo Template::show().
 	* 
 	* @return    string	
 	*/
@@ -420,13 +420,13 @@ class Template {
 	}
 
 	/**
-	 * Mostra na tela o conteúdo final.
+	 * Mostra na tela o conteï¿½do final.
 	 */
 	public function show() {
 		echo $this->parse();
 	}
 	/**
-	 * retorna o  conteúdo final.
+	 * retorna o  conteï¿½do final.
 	 */	
 	public function showString() {
 		return $this->parse();

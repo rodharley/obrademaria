@@ -162,6 +162,39 @@ class Participante extends Persistencia{
 			$oD->save();
 			}
 		}
+		//contratos em nuvem
+		if($this->pacoteOpcional == 1){
+			$taxaAdesao = $this->money($oGrupo->valorAdesao + $oGrupo->valorAdesaoOpcional,"atb");
+		}else{
+			$taxaAdesao = $this->money($oGrupo->valorAdesao,"atb");
+		}
+
+		$data = array("identidicadorLayout"=>"1",
+			"numeroControleEmpresa"=>$this->id,
+			"documentoCliente"=>$oCliente->cpf,
+			"nomeCliente"=>$oCliente->nomeCompleto,
+			"variaveis"=> array(
+				array("nome"=>"nomeCompleto","valor"=>$oCliente->nomeCompleto),
+				array("nome"=>"estado_civil","valor"=>$oCliente->estadoCivil->descricao),
+				array("nome"=>"rg","valor"=>$oCliente->rg),
+				array("nome"=>"rgOrgaoExpedidor","valor"=>$oCliente->orgaoEmissorRg),
+				array("nome"=>"cpf","valor"=>$oCliente->cpf),
+				array("nome"=>"endereco","valor"=>$oCliente->endereco),
+				array("nome"=>"cidade","valor"=>$oCliente->cidadeEndereco),
+				array("nome"=>"uf","valor"=>$oCliente->estadoNascimento),
+				array("nome"=>"nacionalidade","valor"=>$oCliente->nacionalidade),				
+				array("nome"=>"taxaAdesao","valor"=>$taxaAdesao),
+				array("nome"=>"CIFRAO","valor"=>$oGrupo->moeda->cifrao),
+				array("nome"=>"total","valor"=>$this->money($this->valorTotal,"atb")),
+				array("nome"=>"totalPassagem","valor"=>$_REQUEST['valorPassagem']),
+				array("nome"=>"dia","valor"=>date("d")),
+				array("nome"=>"mes","valor"=>$this->mesExtenso(date("m"))),
+				array("nome"=>"ano","valor"=>date("Y"))));				
+			
+
+			$this->salvaContratoEmNuvem($data);
+
+		
 		return $newid;
 	}
 
@@ -209,8 +242,58 @@ class Participante extends Persistencia{
 		$oLog->save();
 		//fim da log
 
+		//contratos em nuvem
+		if($this->pacoteOpcional == 1){
+			$taxaAdesao = $this->money($oGrupo->valorAdesao + $oGrupo->valorAdesaoOpcional,"atb");
+		}else{
+			$taxaAdesao = $this->money($oGrupo->valorAdesao,"atb");
+		}
+		
+//$tpl->mes = $oParticipante->mesExtenso(date("m",$tsinscricao));
+//$tpl->ano = date("Y",$tsinscricao);
+		
+		$data = array("identidicadorLayout"=>"1",
+			"numeroControleEmpresa"=>$this->id,
+			"documentoCliente"=>$oCliente->cpf,
+			"nomeCliente"=>$oCliente->nomeCompleto,
+			"variaveis"=> array(
+				array("nome"=>"nomeCompleto","valor"=>$oCliente->nomeCompleto),
+				array("nome"=>"estado_civil","valor"=>$oCliente->estadoCivil->descricao),
+				array("nome"=>"rg","valor"=>$oCliente->rg),
+				array("nome"=>"rgOrgaoExpedidor","valor"=>$oCliente->orgaoEmissorRg),
+				array("nome"=>"cpf","valor"=>$oCliente->cpf),
+				array("nome"=>"endereco","valor"=>$oCliente->endereco),
+				array("nome"=>"cidade","valor"=>$oCliente->cidadeEndereco),
+				array("nome"=>"uf","valor"=>$oCliente->estadoNascimento),
+				array("nome"=>"nacionalidade","valor"=>$oCliente->nacionalidade),				
+				array("nome"=>"taxaAdesao","valor"=>$taxaAdesao),
+				array("nome"=>"CIFRAO","valor"=>$oGrupo->moeda->cifrao),
+				array("nome"=>"total","valor"=>$this->money($this->valorTotal,"atb")),
+				array("nome"=>"totalPassagem","valor"=>$_REQUEST['valorPassagem']),
+				array("nome"=>"dia","valor"=>date("d")),
+				array("nome"=>"mes","valor"=>$this->mesExtenso(date("m"))),
+				array("nome"=>"ano","valor"=>date("Y"))));				
+			
+
+			$this->salvaContratoEmNuvem($data);
 		return $newid;
 		}
+	}
+
+	function salvaContratoEmNuvem($data){
+		$ret = $this->loginContratosEmnuvem();
+		$headers = array('Accept' => 'application/json','X-Token'=>$ret->jwt,'Content-Type'=>'application/json; charset=utf-8');
+		$query = Unirest\Request\Body::json($data);
+		 $response = Unirest\Request::post($this->endpointcn.'documentos/criar-documento', $headers, $query);
+		 $oLog = new LogUsuario();
+		 $user = new Usuario();
+		$user->id = $_SESSION['ag_idUsuario'];
+		$data = date("Y-m-d H:i:s");
+		$movimento = "LOG CONTRATO EM nuvem: ".$response->raw_body;
+		$oLog->usuario = $user;
+		$oLog->data = $data;
+		$oLog->movimento = $movimento;
+		$oLog->save();
 	}
 
 	function reativar(){

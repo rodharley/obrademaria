@@ -1,149 +1,147 @@
 <script>
-$(document).ready(function(){
+    $(document).ready(function() {
 
-	$('#cancelarparticipante').click(function(){
-		document.location.href= 'participante.desistencia.php?idGrupo={ID_GRUPO_HASH}&idParticipante='+$('#manipulacao').val();
-	});
+        $('#cancelarparticipante').click(function() {
+            document.location.href = 'participante.desistencia.php?idGrupo={ID_GRUPO_HASH}&idParticipante=' + $('#manipulacao').val();
+        });
 
-	$('#excluirparticipante').click(function(){
-		document.location.href= 'participante.response.php?idGrupo={ID_GRUPO_HASH}&acao=Excluir&idParticipante='+$('#manipulacao').val();
-	});
+        $('#excluirparticipante').click(function() {
+            document.location.href = 'participante.response.php?idGrupo={ID_GRUPO_HASH}&acao=Excluir&idParticipante=' + $('#manipulacao').val();
+        });
 
-	$('#abrirContrato').click(function(){
-		window.open('{MODELO_CONTRATO}?idGrupo={ID_GRUPO_HASH}&idParticipante='+$('#manipulacao').val()+'&valorPassagem='+$('#valorPassagem').val());
-	});
+        $('#abrirContrato').click(function() {
+            window.open('{MODELO_CONTRATO}?idGrupo={ID_GRUPO_HASH}&idParticipante=' + $('#manipulacao').val() + '&valorPassagem=' + $('#valorPassagem').val());
+        });
 
-	$('.paginar').click(function(){
-		jQuery.ajax({
-		type: "GET",
-		url: "participante.lista.php?ajax=1&idGrupo={ID_GRUPO_HASH}&pagina="+$('#manipulacao').val(),
-		beforeSend: function( ) {
-		jQuery('#content').html('<p align="center">Processando...<br /><img src="img/ajax_loading_pequeno.gif" /></p>');
-		  },
-		success: function(msg){
-		jQuery("#content").html(msg);
-		}
-		});
-	});
-});
-
+        $('.paginar').click(function() {
+            jQuery.ajax({
+                type: "GET",
+                url: "participante.lista.php?ajax=1&idGrupo={ID_GRUPO_HASH}&pagina=" + $('#manipulacao').val(),
+                beforeSend: function() {
+                    jQuery('#content').html('<p align="center">Processando...<br /><img src="img/ajax_loading_pequeno.gif" /></p>');
+                },
+                success: function(msg) {
+                    jQuery("#content").html(msg);
+                }
+            });
+        });
+    });
 </script>
 <section>
-<h2>{NOME_GRUPO}</h2>
-<h1>Participantes<br/><small>Lista dos participantes do Grupo:</small></h1>
-<form class="well form-search" action="participante.lista.php">
-        <input type="text" class="input-medium search-query" name="busca"/>
-        <input type="hidden" name="idGrupo" id="idGrupo" value="{ID_GRUPO_HASH}"/>
+    <h2>{NOME_GRUPO}</h2>
+    <h1>Participantes<br/><small>Lista dos participantes do Grupo:</small></h1>
+    <form class="well form-search" action="participante.lista.php">
+        <input type="text" class="input-medium search-query" name="busca" />
+        <input type="hidden" name="idGrupo" id="idGrupo" value="{ID_GRUPO_HASH}" />
         <button class="btn" type="submit">Procurar</button>
-      </form>
-<table class="table table-striped table-bordered">
+    </form>
+    <table class="table table-striped table-bordered">
         <thead>
-          <tr>
-            <th width="50">Status</th>
-            <th class="yellow">CPF</th>
-			<th class="yellow">Data Inscr.</th>
-            <th class="yellow">Nome</th>
-			<th class="yellow">Opcional</th>
-			<th class="yellow">Pago {CIFRAO}</th>
-            <th class="yellow">Situação</th>
-            <th class="yellow"  width="285">Opções</th>
-          </tr>
+            <tr>
+                <th width="50">Status</th>
+                <th class="yellow">CPF</th>
+                <th class="yellow">Data Inscr.</th>
+                <th class="yellow">Nome</th>
+                <th class="yellow">Opcional</th>
+                <th class="yellow">Pago {CIFRAO}</th>
+                <th class="yellow">Situação</th>
+                <th class="yellow" width="140">Opções</th>
+            </tr>
         </thead>
         <tbody>
-        <!-- BEGIN BLOCK_ITEM_LISTA -->
-          <tr>
-            <td><i class="{STATUS_ABAT}" title="Status do Abatimento"></i></td>
-            <td>{CPF}</td>
-            <td>{DT_INSCR}</td>
-			<td><a href="cadastro.clienteEdita.php?idCliente={ID_CLIENTE_HASH}">{NOME}</a></td>
-			<td>{OPCIONAL}</td>
-            <td title="{RESTA}">{PAGO}</td>
-			<td>{SITUACAO}</td>
-           	<td align="center" >
+            <!-- BEGIN BLOCK_ITEM_LISTA -->
+            <tr>
+                <td><i class="{STATUS_ABAT}" title="Status do Abatimento"></i></td>
+                <td>{CPF}</td>
+                <td>{DT_INSCR}</td>
+                <td><a href="cadastro.clienteEdita.php?idCliente={ID_CLIENTE_HASH}">{NOME}</a></td>
+                <td>{OPCIONAL}</td>
+                <td title="{RESTA}">{PAGO}</td>
+                <td>{SITUACAO}</td>
+                <td align="center">
 
-            <div class="btn-group">
-		<!-- BEGIN BLOCK_ACTIONS -->
-		  <a href="participante.edita.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Editar Valores do Participante"><i class="icon-pencil"></i></a>
-		  <a href="participante.pagamentos.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Pagamentos"><i class="icon-currency"></i></a>
-<a href="participante.distribuicao.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Distribuir em Quartos"><i class="icon-tags"></i></a>
-<a class="btn" title="Imprimir Contrato"  data-toggle="modal" href="#myModalContrato" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-file"></i></a>
-<a href="participante.editaSeguro.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Seguro e Tickets"><i class="icon-lock"></i></a>
-<a href="{MODELO_FICHA}?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Ficha de Inscrição" target="_blank"><i class="icon-book"></i></a>
-		  <a class="btn btn-warning" title="Cancelar Participação"  data-toggle="modal" href="#myModal" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-remove-sign icon-white"></i></a>
-          <a class="btn btn-danger" title="Excluir Definitivamente"  data-toggle="modal" href="#myModalExcluir" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-trash icon-white"></i></a>
-        <!-- END BLOCK_ACTIONS -->
-		<!-- BEGIN BLOCK_REATIVAR -->
-		<a class="btn btn-success" title="Reativar" href="participante.response.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}&acao=Reativar"><i class="icon-upload icon-white"></i></a>
-		<a class="btn btn-danger" title="Excluir Definitivamente" href="participante.response.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}&acao=Excluir"><i class="icon-trash icon-white"></i></a>
-		<!-- END BLOCK_REATIVAR -->
-        </div>
+                    <div class="btn-group">
+                        <!-- BEGIN BLOCK_ACTIONS -->
+                        <a href="participante.edita.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Editar Valores do Participante"><i class="icon-pencil"></i></a>
+                        <a href="participante.pagamentos.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Pagamentos"><i class="icon-currency"></i></a>
+                        <a href="participante.distribuicao.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Distribuir em Quartos"><i class="icon-tags"></i></a>
+                        <a class="btn" title="Imprimir Contrato" data-toggle="modal" href="#myModalContrato" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-file"></i></a>
+                        <a class="btn" title="Contrato na nuvem" href="{URL_CONTRATO}" target="_blank"><i class="icon-info-sign"></i></a>
+                        <a href="participante.editaSeguro.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Seguro e Tickets"><i class="icon-lock"></i></a>
+                        <a href="{MODELO_FICHA}?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Ficha de Inscrição" target="_blank"><i class="icon-book"></i></a>
+                        <a class="btn btn-warning" title="Cancelar Participação" data-toggle="modal" href="#myModal" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-remove-sign icon-white"></i></a>
+                        <a class="btn btn-danger" title="Excluir Definitivamente" data-toggle="modal" href="#myModalExcluir" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-trash icon-white"></i></a>
+                        <!-- END BLOCK_ACTIONS -->
+                        <!-- BEGIN BLOCK_REATIVAR -->
+                        <a class="btn btn-success" title="Reativar" href="participante.response.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}&acao=Reativar"><i class="icon-upload icon-white"></i></a>
+                        <a class="btn btn-danger" title="Excluir Definitivamente" href="participante.response.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}&acao=Excluir"><i class="icon-trash icon-white"></i></a>
+                        <!-- END BLOCK_REATIVAR -->
+                    </div>
 
-			</td>
-          </tr>
-         <!-- END BLOCK_ITEM_LISTA -->
+                </td>
+            </tr>
+            <!-- END BLOCK_ITEM_LISTA -->
         </tbody>
-      </table>
+    </table>
 </section>
 <!-- BEGIN BLOCK_PAGINACAO -->
 <section>
     <ul class="pager">
-    <li class="previous">
-    <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PAGINA_ANTERIOR}';">&larr; Anterior</a>
-    </li>
-    <li>Página <input type="text" class="span1" name="pagina" id="pagina" value="{PAGINA}" onchange="document.getElementById('manipulacao').value = this.value"/>
-	 <a href="#" class="paginar">Ir</a>
-	 Total de Páginas: {TOTAL_PAGINAS}</li>
-    <li class="next">
-    <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PROXIMA_PAGINA}';">Próxima &rarr;</a>
-    </li>
+        <li class="previous">
+            <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PAGINA_ANTERIOR}';">&larr; Anterior</a>
+        </li>
+        <li>Página <input type="text" class="span1" name="pagina" id="pagina" value="{PAGINA}" onchange="document.getElementById('manipulacao').value = this.value" />
+            <a href="#" class="paginar">Ir</a> Total de Páginas: {TOTAL_PAGINAS}</li>
+        <li class="next">
+            <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PROXIMA_PAGINA}';">Próxima &rarr;</a>
+        </li>
     </ul>
-	</section>
+</section>
 <!-- END BLOCK_PAGINACAO -->
 <section>
-<a class="btn btn-small btn-primary" href="participante.novo.php?idGrupo={ID_GRUPO_HASH}">
-<i class="icon-user icon-white"></i>
-Novo participante</a> <button class="btn btn-small" id="bt_voltar">Voltar</button>
+    <a class="btn btn-small btn-primary" href="participante.novo.php?idGrupo={ID_GRUPO_HASH}">
+        <i class="icon-user icon-white"></i> Novo participante</a> <button class="btn btn-small" id="bt_voltar">Voltar</button>
 </section>
-<div class="modal hide fade" id="myModal" >
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">x</a>
-    <h3>Aviso de Cancelamento</h3>
-  </div>
-  <div class="modal-body">
-    <p>Tem certeza que deseja cancelar esse participante?</p>
-  </div>
-  <div class="modal-footer">
-    <a data-toggle="modal" href="#myModal" class="btn">Cancelar</a>
-    <a href="#" class="btn btn-primary" id="cancelarparticipante">Confirmar</a>
-  </div>
+<div class="modal hide fade" id="myModal">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">x</a>
+        <h3>Aviso de Cancelamento</h3>
+    </div>
+    <div class="modal-body">
+        <p>Tem certeza que deseja cancelar esse participante?</p>
+    </div>
+    <div class="modal-footer">
+        <a data-toggle="modal" href="#myModal" class="btn">Cancelar</a>
+        <a href="#" class="btn btn-primary" id="cancelarparticipante">Confirmar</a>
+    </div>
 </div>
 
-<div class="modal hide fade" id="myModalExcluir" >
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">x</a>
-    <h3>Aviso de Exclusão</h3>
-  </div>
-  <div class="modal-body">
-    <p>Tem certeza que deseja excluir definitivamente esse participante?</p>
-  </div>
-  <div class="modal-footer">
-    <a data-toggle="modal" href="#myModalExcluir" class="btn">Cancelar</a>
-    <a href="#" class="btn btn-primary" id="excluirparticipante">Confirmar</a>
-  </div>
+<div class="modal hide fade" id="myModalExcluir">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">x</a>
+        <h3>Aviso de Exclusão</h3>
+    </div>
+    <div class="modal-body">
+        <p>Tem certeza que deseja excluir definitivamente esse participante?</p>
+    </div>
+    <div class="modal-footer">
+        <a data-toggle="modal" href="#myModalExcluir" class="btn">Cancelar</a>
+        <a href="#" class="btn btn-primary" id="excluirparticipante">Confirmar</a>
+    </div>
 </div>
 
-<div class="modal hide fade" id="myModalContrato" >
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">x</a>
-    <h3>Abrir Contrato</h3>
-  </div>
-  <div class="modal-body">
-    <p>Valor das Passagens:<br />
-    <input type="text" id="valorPassagem" class="input-xlarge span2" name="valorPassagem" value="" placeholder="Valor das Passagens" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
-    </p>
-  </div>
-  <div class="modal-footer">
-    <a data-toggle="modal" href="#myModalContrato" class="btn">Cancelar</a>
-    <a data-toggle="modal" href="#myModalContrato" class="btn btn-primary" id="abrirContrato">Confirmar</a>
-  </div>
+<div class="modal hide fade" id="myModalContrato">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">x</a>
+        <h3>Abrir Contrato</h3>
+    </div>
+    <div class="modal-body">
+        <p>Valor das Passagens:<br />
+            <input type="text" id="valorPassagem" class="input-xlarge span2" name="valorPassagem" value="" placeholder="Valor das Passagens" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a data-toggle="modal" href="#myModalContrato" class="btn">Cancelar</a>
+        <a data-toggle="modal" href="#myModalContrato" class="btn btn-primary" id="abrirContrato">Confirmar</a>
+    </div>
 </div>

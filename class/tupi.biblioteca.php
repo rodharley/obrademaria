@@ -9,6 +9,12 @@ function arredondar_dois_decimal($valor) {
 } 
 
 
+function loginContratosEmnuvem (){
+	    $headers = array('Accept' => 'application/json','Token' => 'cm9kcmlnby5jcnV6NzZAZ21haWwuY29tOjEyMzQ1Ng==');
+        Unirest\Request::verifyPeer(false); 
+        $response = Unirest\Request::get($this->endpointcn.'free/auth', $headers, null);
+		return $response->body;
+}
 
 function getEnvs( $s_var ){
 		$rs = false;
@@ -38,7 +44,7 @@ case 2:
 $str = "Fevereiro";
 break;
 case 3:
-$str = "Março";
+$str = "Marï¿½o";
 break;
 case 4:
 $str = "Abril";
@@ -78,14 +84,14 @@ return str_replace(".","",str_replace("-","",str_replace("/","",str_replace("_",
 
 
 function ValidaData($dat){
-	$data = explode("/","$dat"); // fatia a string $dat em pedados, usando / como referência
+	$data = explode("/","$dat"); // fatia a string $dat em pedados, usando / como referï¿½ncia
 	$d = $data[0];
 	$m = $data[1];
 	$y = $data[2];
 
-	// verifica se a data é válida!
-	// 1 = true (válida)
-	// 0 = false (inválida)
+	// verifica se a data ï¿½ vï¿½lida!
+	// 1 = true (vï¿½lida)
+	// 0 = false (invï¿½lida)
 	return checkdate($m,$d,$y);
 }
 
@@ -901,36 +907,36 @@ function setAllFieldsTheClass($Array){
 function removerAcento($palavra){
 
 		$ret = array(
-	'/[´`^~#$%¨&* ]/'=>'_',
-	'/[-+§ºÿ¦¦¦¦]/'=>'_',
+	'/[ï¿½`^~#$%ï¿½&* ]/'=>'_',
+	'/[-+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]/'=>'_',
 		"/[']/"=>'_',
-		'/[´`^~#$%¨&*@]+-*]/'=>'_',
+		'/[ï¿½`^~#$%ï¿½&*@]+-*]/'=>'_',
 	    
 		'/[ ]/'=>'_',
 		
-		'/[ÂÀÁÄÃ]/'=>'A',
+		'/[ï¿½ï¿½ï¿½ï¿½ï¿½]/'=>'A',
 		
-		'/[âãàáä]/'=>'a',
+		'/[ï¿½ï¿½ï¿½ï¿½ï¿½]/'=>'a',
 		
-		'/[ÊÈÉË]/'=>'E',
+		'/[ï¿½ï¿½ï¿½ï¿½]/'=>'E',
 		
-		'/[êèéë]/'=>'e',
+		'/[ï¿½ï¿½ï¿½ï¿½]/'=>'e',
 		
-		'/[ÎÍÌÏ]/'=>'I',
+		'/[ï¿½ï¿½ï¿½ï¿½]/'=>'I',
 		
-		'/[îíìï]/'=>'i',
+		'/[ï¿½ï¿½ï¿½ï¿½]/'=>'i',
 		
-		'/[ÔÕÒÓÖ]/'=>'O',
+		'/[ï¿½ï¿½ï¿½ï¿½ï¿½]/'=>'O',
 		
-		'/[ôõòóö]/'=>'o',
+		'/[ï¿½ï¿½ï¿½ï¿½ï¿½]/'=>'o',
 		
-		'/[ÛÙÚÜ]/'=>'U',
+		'/[ï¿½ï¿½ï¿½ï¿½]/'=>'U',
 		
-		'/[ûúùü]/'=>'u',
+		'/[ï¿½ï¿½ï¿½ï¿½]/'=>'u',
 		
-		'/ç/'=>'c',
+		'/ï¿½/'=>'c',
 		
-		'/Ç/'=> 'C'
+		'/ï¿½/'=> 'C'
 		
 		);
 	
@@ -992,7 +998,7 @@ if($file['name'] != ""){
 	
 	    }// fim if 2 type file
 		else {
-			$this->alert("Tipo de arquivo inválido.");
+			$this->alert("Tipo de arquivo invï¿½lido.");
 			exit();
 		 }
 	
@@ -1256,7 +1262,7 @@ $ru) ? " e " : "").$ru;
 
 
 function removeCaracteres($str){
-return strtr($str,"ãáâäàêéèëíìïîõôòóöûüúù ÃÁÂÄÀÊÉÈËÍÌÏÎÕÔÓÒÖÜÚÙÛçÇ,;:?.","aaaaaeeeeiiiiooooouuuu_AAAAAEEEEIIIIOOOOOUUUUcC_____");
+return strtr($str,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,;:?.","aaaaaeeeeiiiiooooouuuu_AAAAAEEEEIIIIOOOOOUUUUcC_____");
 }
 
 
@@ -1327,9 +1333,9 @@ $str = preg_replace(sql_regcase("/(\n|\r|%0a|%0d|Content-Type:|bcc:|to:|cc:|Auto
 //$str = str_replace('/&#117;s&#101;rf&#105;&#108;&#101;s/','http://img.msisites.com.br/',$str);
 
 //$str = str_replace('/&#117;s&#101;rf&#105;&#108;&#101;s/','http://img.msisites.com.br/',$str);
-//$str = trim($str); # Remove espaços vazios.
+//$str = trim($str); # Remove espaï¿½os vazios.
 //$str = strip_tags($str); # Remove tags HTML e PHP.
-//$str = addslashes($str); # Adiciona barras invertidas à uma string.
+//$str = addslashes($str); # Adiciona barras invertidas ï¿½ uma string.
 return $str;
 }
 

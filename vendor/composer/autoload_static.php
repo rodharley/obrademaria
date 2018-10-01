@@ -28,11 +28,22 @@ class ComposerStaticInit7f482d1083d80d7495040995ed6a1be2
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'U' => 
+        array (
+            'Unirest\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/mashape/unirest-php/src',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit7f482d1083d80d7495040995ed6a1be2::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit7f482d1083d80d7495040995ed6a1be2::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit7f482d1083d80d7495040995ed6a1be2::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

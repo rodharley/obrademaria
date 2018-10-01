@@ -4,7 +4,7 @@ class Persistencia extends Biblioteca{
 	function abrirConexao()
 	{
 
-		$varcon = @mysql_connect($this->mysql_host, $this->mysql_usuario, $this->mysql_password) or die("Erro de <b>Conexo</b><br><font color='red'>".mysql_error()."</font>");
+		$varcon = mysql_connect($this->mysql_host, $this->mysql_usuario, $this->mysql_password) or die("Erro de <b>Conexo</b><br><font color='red'>".mysql_error()."</font>");
 
 		if (mysql_select_db($this->mysql_database,$varcon) or die("Erro de conexo <b>Database</b><br><font color='red'>".mysql_error()."</font>"))
 
@@ -201,7 +201,7 @@ function xmlObject($elemento,$i,$objeto){
 	return $str;
 }
 
-	/*recupera um objeto da classe pelo id com lazy até segundo nivel*/
+	/*recupera um objeto da classe pelo id com lazy atï¿½ segundo nivel*/
 	function getById($id){
 		$xml = simplexml_load_file($this->URI."xml/cfg.xml");
 		foreach ($xml->children() as $elemento){
@@ -219,7 +219,7 @@ function xmlObject($elemento,$i,$objeto){
 	}
 
 
-	/*método que recupera a lista de obejtos da classe */
+	/*mï¿½todo que recupera a lista de obejtos da classe */
 	function getRows($init=0,$limit=999, $order = array(), $filtro = array()){
 		$xml = simplexml_load_file($this->URI."xml/cfg.xml");
 		foreach ($xml->children() as $elemento){
@@ -299,7 +299,7 @@ function xmlObject($elemento,$i,$objeto){
 
 
 
-/*método que recupera a quantidade de objetos obejtos da classe */
+/*mï¿½todo que recupera a quantidade de objetos obejtos da classe */
 	function getNumRows($filtro = array()){
 		$xml = simplexml_load_file($this->URI."xml/cfg.xml");
 		foreach ($xml->children() as $elemento){
@@ -328,7 +328,7 @@ function xmlObject($elemento,$i,$objeto){
 
 
 
-	/* método que recupera uma array(lista) de objetos atraves de uma consulta sql*/
+	/* mï¿½todo que recupera uma array(lista) de objetos atraves de uma consulta sql*/
 	function getSQL($sql){
 		$xml = simplexml_load_file($this->URI."xml/cfg.xml");
 		foreach ($xml->children() as $elemento){
@@ -349,7 +349,7 @@ function xmlObject($elemento,$i,$objeto){
 
 
 
-	/*método que recupera os elementos do banco sem pesquisar por filhos */
+	/*mï¿½todo que recupera os elementos do banco sem pesquisar por filhos */
 
 	function getClassRows($elemento, $order = array(), $filtro = array()){
 				//configura a ordenacao
@@ -463,7 +463,7 @@ function xmlObject($elemento,$i,$objeto){
 	}
 
 
-/*recupera um objeto da classe pelo id com lazy até segundo nivel*/
+/*recupera um objeto da classe pelo id com lazy atï¿½ segundo nivel*/
 	function delete($id){
 		$xml = simplexml_load_file($this->URI."xml/cfg.xml");
 		foreach ($xml->children() as $elemento){

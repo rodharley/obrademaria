@@ -57,12 +57,16 @@ foreach($rsPartic as $key => $participante){
 	$tpl->PAGO = $oParticipante->money($participante->recuperaValorPago(),"atb")."/".$oParticipante->money($participante->valorTotal,"atb");
 	$tpl->RESTA = "Pendêndia: ".$oGrupo->moeda->cifrao." ".$oParticipante->money(($participante->valorTotal-$participante->recuperaValorPago()),"atb");
 	$tpl->DT_INSCR = $participante->convdata($participante->dataInscricao,"mtn");
-	$tpl->NOME = $participante->cliente->nomeCompleto;
+	$tpl->NOME = $participante->id."-".$participante->cliente->nomeCompleto;
 	$tpl->OPCIONAL = $participante->pacoteOpcional ? "Sim" : "Não";
 	$tpl->ID_CLIENTE_HASH = $oParticipante->md5_encrypt($participante->cliente->id);
 	$tpl->CPF = $oParticipante->formataCPFCNPJ($participante->cliente->cpf);
 	$tpl->SITUACAO = $participante->status->descricao;
 	$tpl->ID_HASH = $oParticipante->md5_encrypt($participante->id);
+
+	$tpl->URL_CONTRATO = $oParticipante->endpointcn.'free/pdf/assinado/1/'.$participante->id.'.pdf';
+
+
 	if($participante->status->id != $oParticipante->STATUS_DESISTENTE())
 		$tpl->block("BLOCK_ACTIONS");
 	else
