@@ -40,8 +40,6 @@ $tpl->TOTAL_PAGINAS = $configPaginacao['totalPaginas'];
 $tpl->PAGINA_ANTERIOR = $configPaginacao['paginaAnterior'];
 $tpl->PROXIMA_PAGINA = $configPaginacao['proximaPagina'];
 $tpl->PAGINA = $pagina;
-
-
 foreach($rsPartic as $key => $participante){
 	//$tpl->ID = $participante->id;
 	//calcula o status dos pagamentos;
@@ -63,8 +61,14 @@ foreach($rsPartic as $key => $participante){
 	$tpl->CPF = $oParticipante->formataCPFCNPJ($participante->cliente->cpf);
 	$tpl->SITUACAO = $participante->status->descricao;
 	$tpl->ID_HASH = $oParticipante->md5_encrypt($participante->id);
-
-	$tpl->URL_CONTRATO = $oParticipante->endpointcn.'free/pdf/assinado/1/'.$participante->id.'.pdf';
+	
+	if($participante->idcn == null){
+		$tpl->block("BLOCK_GERAR_CONTRATO_NUVEM");
+	}else{
+		$tpl->URL_CONTRATO = $oParticipante->endpointcn.'free/pdf/assinado/1/'.$participante->id.'.pdf';
+		$tpl->block("BLOCK_CONTRATO_NUVEM");
+	}
+	
 
 
 	if($participante->status->id != $oParticipante->STATUS_DESISTENTE())

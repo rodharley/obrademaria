@@ -436,7 +436,7 @@ set
 		<atrib tbname="contrato" type="txt">contrato</atrib>
 
 		<atrib tbname="pacoteOpcional" type="int">pacoteOpcional</atrib>
-
+		<atrib tbname="idcn" type="int">idcn</atrib>	
 		<atrib tbname="status" type="fk" lazy="true" clrelation="StatusParticipante">status</atrib>	
 		<atrib tbname="voucher" type="txt">voucher</atrib>	
 

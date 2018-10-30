@@ -10,7 +10,8 @@ function arredondar_dois_decimal($valor) {
 
 
 function loginContratosEmnuvem (){
-	    $headers = array('Accept' => 'application/json','Token' => 'cm9kcmlnby5jcnV6NzZAZ21haWwuY29tOjEyMzQ1Ng==');
+	
+	    $headers = array('Accept' => 'application/json','Token' => base64_encode($this->usercn.":".$this->senhacn));
         Unirest\Request::verifyPeer(false); 
         $response = Unirest\Request::get($this->endpointcn.'free/auth', $headers, null);
 		return $response->body;

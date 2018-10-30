@@ -56,6 +56,11 @@ if(isset($_REQUEST['acao'])){
 		$oParticipante->salvaContrato();
 		header("Location:participante.lista.php?idGrupo=".$_REQUEST['idGrupo']);
 	}
+
+	if($_REQUEST['acao'] == "criarContratoNuvem"){
+		$oParticipante->salvaContratoEmNuvem();
+		header("Location:participante.lista.php?idGrupo=".$_REQUEST['idGrupo']);
+	}
 	
 	
 	

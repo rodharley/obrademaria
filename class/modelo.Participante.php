@@ -10,6 +10,7 @@ class Participante extends Persistencia{
 	var $pacoteOpcional;
 	var $status;
 	var $voucher;
+	var $idcn;
 
 	public function STATUS_PENDENTE(){
 		return 1;
@@ -162,39 +163,6 @@ class Participante extends Persistencia{
 			$oD->save();
 			}
 		}
-		//contratos em nuvem
-		if($this->pacoteOpcional == 1){
-			$taxaAdesao = $this->money($oGrupo->valorAdesao + $oGrupo->valorAdesaoOpcional,"atb");
-		}else{
-			$taxaAdesao = $this->money($oGrupo->valorAdesao,"atb");
-		}
-
-		$data = array("identidicadorLayout"=>"1",
-			"numeroControleEmpresa"=>$this->id,
-			"documentoCliente"=>$oCliente->cpf,
-			"nomeCliente"=>$oCliente->nomeCompleto,
-			"variaveis"=> array(
-				array("nome"=>"nomeCompleto","valor"=>$oCliente->nomeCompleto),
-				array("nome"=>"estado_civil","valor"=>$oCliente->estadoCivil->descricao),
-				array("nome"=>"rg","valor"=>$oCliente->rg),
-				array("nome"=>"rgOrgaoExpedidor","valor"=>$oCliente->orgaoEmissorRg),
-				array("nome"=>"cpf","valor"=>$oCliente->cpf),
-				array("nome"=>"endereco","valor"=>$oCliente->endereco),
-				array("nome"=>"cidade","valor"=>$oCliente->cidadeEndereco),
-				array("nome"=>"uf","valor"=>$oCliente->estadoNascimento),
-				array("nome"=>"nacionalidade","valor"=>$oCliente->nacionalidade),				
-				array("nome"=>"taxaAdesao","valor"=>$taxaAdesao),
-				array("nome"=>"CIFRAO","valor"=>$oGrupo->moeda->cifrao),
-				array("nome"=>"total","valor"=>$this->money($this->valorTotal,"atb")),
-				array("nome"=>"totalPassagem","valor"=>$_REQUEST['valorPassagem']),
-				array("nome"=>"dia","valor"=>date("d")),
-				array("nome"=>"mes","valor"=>$this->mesExtenso(date("m"))),
-				array("nome"=>"ano","valor"=>date("Y"))));				
-			
-
-			$this->salvaContratoEmNuvem($data);
-
-		
 		return $newid;
 	}
 
@@ -241,18 +209,44 @@ class Participante extends Persistencia{
 		$oLog->movimento = $movimento;
 		$oLog->save();
 		//fim da log
+		return $newid;
+		}
+	}
 
+	function salvaContratoEmNuvem(){
+		$this->getById($this->md5_decrypt($_REQUEST['idParticipante']));
+		$oGrupo = $this->grupo;
+		$oCliente = $this->cliente;
 		//contratos em nuvem
 		if($this->pacoteOpcional == 1){
 			$taxaAdesao = $this->money($oGrupo->valorAdesao + $oGrupo->valorAdesaoOpcional,"atb");
 		}else{
 			$taxaAdesao = $this->money($oGrupo->valorAdesao,"atb");
 		}
-		
-//$tpl->mes = $oParticipante->mesExtenso(date("m",$tsinscricao));
-//$tpl->ano = date("Y",$tsinscricao);
-		
-		$data = array("identidicadorLayout"=>"1",
+		switch ($oGrupo->modeloContrato) {
+			case 'contrato1.php':
+				# code...
+				$layout = "1";
+				break;
+				case 'contrato2.php':
+				# code...
+				$layout = "6";
+				break;
+				case 'contrato3.php':
+				# code...
+				$layout = "7";
+				break;
+				case 'contrato4.php':
+				# code...
+				$layout = "8";
+				break;
+			default:
+				# code...
+				$layout = "1";
+				break;
+		}
+
+		$data = array("identidicadorLayout"=>$layout,
 			"numeroControleEmpresa"=>$this->id,
 			"documentoCliente"=>$oCliente->cpf,
 			"nomeCliente"=>$oCliente->nomeCompleto,
@@ -270,17 +264,18 @@ class Participante extends Persistencia{
 				array("nome"=>"CIFRAO","valor"=>$oGrupo->moeda->cifrao),
 				array("nome"=>"total","valor"=>$this->money($this->valorTotal,"atb")),
 				array("nome"=>"totalPassagem","valor"=>$_REQUEST['valorPassagem']),
+				array("nome"=>"nometestemunha1","valor"=>$_REQUEST['nometestemunha1']),
+				array("nome"=>"nometestemunha2","valor"=>$_REQUEST['nometestemunha2']),
+				array("nome"=>"rgtestemunha1","valor"=>$_REQUEST['rgtestemunha1']),
+				array("nome"=>"rgtestemunha2","valor"=>$_REQUEST['rgtestemunha2']),
 				array("nome"=>"dia","valor"=>date("d")),
 				array("nome"=>"mes","valor"=>$this->mesExtenso(date("m"))),
 				array("nome"=>"ano","valor"=>date("Y"))));				
 			
+				
+			
 
-			$this->salvaContratoEmNuvem($data);
-		return $newid;
-		}
-	}
 
-	function salvaContratoEmNuvem($data){
 		$ret = $this->loginContratosEmnuvem();
 		$headers = array('Accept' => 'application/json','X-Token'=>$ret->jwt,'Content-Type'=>'application/json; charset=utf-8');
 		$query = Unirest\Request\Body::json($data);
@@ -289,11 +284,19 @@ class Participante extends Persistencia{
 		 $user = new Usuario();
 		$user->id = $_SESSION['ag_idUsuario'];
 		$data = date("Y-m-d H:i:s");
-		$movimento = "LOG CONTRATO EM nuvem: ".$response->raw_body;
+		$movimento = "LOG CONTRATO EM nuvem: ".$response->code."-".$response->raw_body;
 		$oLog->usuario = $user;
 		$oLog->data = $data;
 		$oLog->movimento = $movimento;
 		$oLog->save();
+		 
+		 if($response->code == 200){		
+			$this->idcn =$response->body->identificadorDocumento;
+			$this->save();
+			
+		 }
+		 return $response->body->message;
+		 
 	}
 
 	function reativar(){

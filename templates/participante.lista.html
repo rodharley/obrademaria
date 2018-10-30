@@ -12,6 +12,10 @@
         $('#abrirContrato').click(function() {
             window.open('{MODELO_CONTRATO}?idGrupo={ID_GRUPO_HASH}&idParticipante=' + $('#manipulacao').val() + '&valorPassagem=' + $('#valorPassagem').val());
         });
+        $('#GerarContratoNuvem').click(function() {
+            document.location.href = 'participante.response.php?acao=criarContratoNuvem&idGrupo={ID_GRUPO_HASH}&idParticipante=' + $('#manipulacao').val() + '&valorPassagem=' + $('#valorPassagem').val() + '&nometestemunha1=' + $('#nometestemunha1').val() + '&rgtestemunha1=' + $('#rgtestemunha1').val() + '&nometestemunha2=' + $('#nometestemunha2').val() + '&rgtestemunha2=' + $('#rgtestemunha2').val();
+        });
+
 
         $('.paginar').click(function() {
             jQuery.ajax({
@@ -66,7 +70,12 @@
                         <a href="participante.pagamentos.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Pagamentos"><i class="icon-currency"></i></a>
                         <a href="participante.distribuicao.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Distribuir em Quartos"><i class="icon-tags"></i></a>
                         <a class="btn" title="Imprimir Contrato" data-toggle="modal" href="#myModalContrato" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-file"></i></a>
+                        <!-- BEGIN BLOCK_CONTRATO_NUVEM -->
                         <a class="btn" title="Contrato na nuvem" href="{URL_CONTRATO}" target="_blank"><i class="icon-info-sign"></i></a>
+                        <!-- END BLOCK_CONTRATO_NUVEM -->
+                        <!-- BEGIN BLOCK_GERAR_CONTRATO_NUVEM -->
+                        <a class="btn" title="Gerar contrato na nuvem" data-toggle="modal" href="#myModalContratoNuvem" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-info-sign"></i></a>
+                        <!-- END BLOCK_GERAR_CONTRATO_NUVEM -->
                         <a href="participante.editaSeguro.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Seguro e Tickets"><i class="icon-lock"></i></a>
                         <a href="{MODELO_FICHA}?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Ficha de Inscrição" target="_blank"><i class="icon-book"></i></a>
                         <a class="btn btn-warning" title="Cancelar Participação" data-toggle="modal" href="#myModal" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-remove-sign icon-white"></i></a>
@@ -143,5 +152,32 @@
     <div class="modal-footer">
         <a data-toggle="modal" href="#myModalContrato" class="btn">Cancelar</a>
         <a data-toggle="modal" href="#myModalContrato" class="btn btn-primary" id="abrirContrato">Confirmar</a>
+    </div>
+</div>
+<div class="modal hide fade" id="myModalContratoNuvem">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">x</a>
+        <h3>Gerar Contrato em nuvem</h3>
+    </div>
+    <div class="modal-body">
+        <p>Valor das Passagens:<br />
+            <input type="text" id="valorPassagem" class="input-xlarge span2" name="valorPassagem" value="" placeholder="Valor das Passagens" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+        </p>
+        <p>Nome Primeira Testemunha:<br />
+            <input type="text" id="nometestemunha1" class="input-xlarge span6" name="nometestemunha1" value="" placeholder="Nome da primeira testemunha">
+        </p>
+        <p>RG Primeira Testemunha:<br />
+            <input type="text" id="rgtestemunha1" class="input-xlarge span6" name="rgtestemunha1" value="" placeholder="RG da primeira testemunha">
+        </p>
+        <p>Nome Segunda Testemunha:<br />
+            <input type="text" id="nometestemunha2" class="input-xlarge span6" name="nometestemunha2" value="" placeholder="Nome da segunda testemunha">
+        </p>
+        <p>RG Segunda Testemunha:<br />
+            <input type="text" id="rgtestemunha2" class="input-xlarge span6" name="rgtestemunha2" value="" placeholder="RG da segunda testemunha">
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a data-toggle="modal" href="#myModalContratoNuvem" class="btn">Cancelar</a>
+        <a data-toggle="modal" href="#myModalContratoNuvem" class="btn btn-primary" id="GerarContratoNuvem">Confirmar</a>
     </div>
 </div>
