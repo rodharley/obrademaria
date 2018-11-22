@@ -4,7 +4,7 @@ class Persistencia extends Biblioteca{
 	function abrirConexao()
 	{
 
-		$varcon = mysql_connect($this->mysql_host, $this->mysql_usuario, $this->mysql_password) or die("Erro de <b>Conexo</b><br><font color='red'>".mysql_error()."</font>");
+		$varcon = @mysql_connect($this->mysql_host, $this->mysql_usuario, $this->mysql_password) or die("Erro de <b>Conexo</b><br><font color='red'>".mysql_error()."</font>");
 
 		if (mysql_select_db($this->mysql_database,$varcon) or die("Erro de conexo <b>Database</b><br><font color='red'>".mysql_error()."</font>"))
 
