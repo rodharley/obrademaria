@@ -61,7 +61,7 @@ if(isset($_REQUEST['idGrupo'])){
 	if($oGrupo->modeloFicha == 'fichaInscricao.php')
 		$tpl->SELECTED_MODELO_FICHA1 = 'selected';
 	if($oGrupo->modeloFicha == 'fichaInscricaoJMJ16.php')
-		$tpl->SSELECTED_MODELO_FICHA2 = 'selected';	
+		$tpl->SELECTED_MODELO_FICHA2 = 'selected';	
 	
 	//RECUPERA AS LOGS
 	$oLog = new LogGrupo();
