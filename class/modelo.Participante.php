@@ -251,6 +251,7 @@ class Participante extends Persistencia{
 			"numeroControleEmpresa"=>$this->id,
 			"documentoCliente"=>$oCliente->cpf,
 			"nomeCliente"=>$oCliente->nomeCompleto,
+			"emailCliente"=>$oCliente->email,
 			"variaveis"=> array(
 				array("nome"=>"nomeCompleto","valor"=>$oCliente->nomeCompleto),
 				array("nome"=>"estado_civil","valor"=>$oCliente->estadoCivil->descricao),
