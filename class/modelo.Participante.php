@@ -10,7 +10,7 @@ class Participante extends Persistencia{
 	var $pacoteOpcional;
 	var $status;
 	var $voucher;
-	var $idcn;
+	var $idcn = null;
 
 	public function STATUS_PENDENTE(){
 		return 1;
@@ -181,6 +181,7 @@ class Participante extends Persistencia{
 		$this->custoTotal = $oGrupo->getCustoTotal($pacoteOpcional);
 		$this->grupo = $oGrupo;
 		$this->cliente = $oCliente;
+		$this->idcn = null;
 		$this->contrato = "";//$this->geraContrato();
 		$this->pacoteOpcional = $pacoteOpcional;
 		$oSP = new StatusParticipante();
