@@ -415,10 +415,11 @@ function xmlObject($elemento,$i,$objeto){
 								$sql .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
 								$sql .= "'";
 								}else{
-									if($this->$atributo[0] != NULL){
+									
+									if(strlen($this->$atributo[0])>0){
 										$sql .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
 										}else{
-											$campos .= 'NULL';
+											$sql .= 'NULL';
 										}
 									
 								}
@@ -430,6 +431,7 @@ function xmlObject($elemento,$i,$objeto){
 					}
 					$sql = substr($sql,0,strlen($sql)-2);
 					$sql .=  " where ".$elemento['tbid']." = ".$this->$id;
+					
 					$this->DAO_ExecutarQuery($sql);
 				return $this->id;
 				}else{
@@ -453,7 +455,7 @@ function xmlObject($elemento,$i,$objeto){
 									$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
 									$campos .= "'";
 								}else{
-									if($this->$atributo[0] != NULL){
+									if(strlen($this->$atributo[0])>0){
 										$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
 										}else{
 											$campos .= 'NULL';
