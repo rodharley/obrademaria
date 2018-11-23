@@ -439,11 +439,17 @@ function xmlObject($elemento,$i,$objeto){
 								$campos .= 'NULL';
 								$campos .= ", ";
 							}else{
-								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
+								if($atributo['type'] == "txt" || $atributo['type'] == "dat"){
 									$campos .= "'";
-								$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
-								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
+								}
+									if($this->$atributo[0] != NULL){
+									$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
+									}else{
+										$campos .= 'NULL';
+									}
+								if($atributo['type'] == "txt" || $atributo['type'] == "dat"){
 									$campos .= "'";
+								}
 								$campos .= ", ";
 							}
 						}
