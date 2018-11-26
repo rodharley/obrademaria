@@ -415,12 +415,8 @@ function xmlObject($elemento,$i,$objeto){
 								$sql .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
 								$sql .= "'";
 								}else{
-									
-									if(strlen($this->$atributo[0])>0){
-										$sql .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
-										}else{
-											$sql .= 'NULL';
-										}
+										$sql .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : strlen($this->$atribut[0])>0 ? $this->$atributo[0]:'NULL';
+										
 									
 								}
 								
@@ -455,11 +451,9 @@ function xmlObject($elemento,$i,$objeto){
 									$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
 									$campos .= "'";
 								}else{
-									if(strlen($this->$atributo[0])>0){
-										$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
-										}else{
-											$campos .= 'NULL';
-										}
+									
+								$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : strlen($this->$atribut[0])>0 ? $this->$atributo[0]:'NULL';
+										
 								}								
 								$campos .= ", ";
 							}
