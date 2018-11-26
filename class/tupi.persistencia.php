@@ -410,17 +410,11 @@ function xmlObject($elemento,$i,$objeto){
 								$sql .= 'NULL';
 								$sql .= ", ";
 							}else{
-								if($atributo['type'] == "txt" || $atributo['type'] == "dat"){
+								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
 									$sql .= "'";
 								$sql .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
-								$sql .= "'";
-								}else{
-										$sql .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : strlen($this->$atributo[0])>0 ? $this->$atributo[0]:'NULL';
-										
-									
-								}
-								
-								
+								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
+									$sql .= "'";
 								$sql .= ", ";
 							}
 						}
@@ -446,15 +440,11 @@ function xmlObject($elemento,$i,$objeto){
 								$campos .= 'NULL';
 								$campos .= ", ";
 							}else{
-								if($atributo['type'] == "txt" || $atributo['type'] == "dat"){
+								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
 									$campos .= "'";
-									$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
+								$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : $this->$atributo[0];
+								if($atributo['type'] == "txt" || $atributo['type'] == "dat")
 									$campos .= "'";
-								}else{
-									
-								$campos .= is_object($this->$atributo[0]) ? $this->$atributo[0]->id : strlen($this->$atributo[0])>0 ? $this->$atributo[0]:'NULL';
-										
-								}								
 								$campos .= ", ";
 							}
 						}

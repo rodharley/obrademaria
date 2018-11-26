@@ -62,7 +62,7 @@ foreach($rsPartic as $key => $participante){
 	$tpl->SITUACAO = $participante->status->descricao;
 	$tpl->ID_HASH = $oParticipante->md5_encrypt($participante->id);
 	
-	if($participante->idcn == null){
+	if($participante->idcn == 0){
 		$tpl->block("BLOCK_GERAR_CONTRATO_NUVEM");
 	}else{
 		$tpl->URL_CONTRATO = $oParticipante->endpointcn.'free/pdf/assinado/1/'.$participante->id.'.pdf';

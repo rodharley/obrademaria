@@ -63,28 +63,35 @@
                 <td title="{RESTA}">{PAGO}</td>
                 <td>{SITUACAO}</td>
                 <td align="center">
-
                     <div class="btn-group">
-                        <!-- BEGIN BLOCK_ACTIONS -->
-                        <a href="participante.edita.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Editar Valores do Participante"><i class="icon-pencil"></i></a>
-                        <a href="participante.pagamentos.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Pagamentos"><i class="icon-currency"></i></a>
-                        <a href="participante.distribuicao.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Distribuir em Quartos"><i class="icon-tags"></i></a>
-                        <a class="btn" title="Imprimir Contrato" data-toggle="modal" href="#myModalContrato" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-file"></i></a>
-                        <!-- BEGIN BLOCK_CONTRATO_NUVEM -->
-                        <a class="btn" title="Contrato na nuvem" href="{URL_CONTRATO}" target="_blank"><i class="icon-info-sign"></i></a>
-                        <!-- END BLOCK_CONTRATO_NUVEM -->
-                        <!-- BEGIN BLOCK_GERAR_CONTRATO_NUVEM -->
-                        <a class="btn" title="Gerar contrato na nuvem" data-toggle="modal" href="#myModalContratoNuvem" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-info-sign"></i></a>
-                        <!-- END BLOCK_GERAR_CONTRATO_NUVEM -->
-                        <a href="participante.editaSeguro.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Seguro e Tickets"><i class="icon-lock"></i></a>
-                        <a href="{MODELO_FICHA}?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" class="btn" title="Ficha de Inscrição" target="_blank"><i class="icon-book"></i></a>
-                        <a class="btn btn-warning" title="Cancelar Participação" data-toggle="modal" href="#myModal" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-remove-sign icon-white"></i></a>
-                        <a class="btn btn-danger" title="Excluir Definitivamente" data-toggle="modal" href="#myModalExcluir" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';"><i class="icon-trash icon-white"></i></a>
-                        <!-- END BLOCK_ACTIONS -->
-                        <!-- BEGIN BLOCK_REATIVAR -->
-                        <a class="btn btn-success" title="Reativar" href="participante.response.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}&acao=Reativar"><i class="icon-upload icon-white"></i></a>
-                        <a class="btn btn-danger" title="Excluir Definitivamente" href="participante.response.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}&acao=Excluir"><i class="icon-trash icon-white"></i></a>
-                        <!-- END BLOCK_REATIVAR -->
+                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Ações <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- BEGIN BLOCK_ACTIONS -->
+                            <li><a href="participante.edita.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" title="Editar Valores do Participante">Editar</a></li>
+                            <li><a href="participante.pagamentos.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" title="Pagamentos">Pagamentos</a></li>
+                            <li><a href="participante.distribuicao.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" title="Distribuir em Quartos">Distribuir</a></li>
+                            <li><a title="Imprimir Contrato" data-toggle="modal" href="#myModalContrato" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';">Imprimir Contrato</a></li>
+                            <!-- BEGIN BLOCK_CONTRATO_NUVEM -->
+                            <li><a title="Contrato na nuvem" href="{URL_CONTRATO}" target="_blank">Baixar Contrato da Nuvem</a></li>
+                            <!-- END BLOCK_CONTRATO_NUVEM -->
+                            <!-- BEGIN BLOCK_GERAR_CONTRATO_NUVEM -->
+                            <li><a title="Gerar contrato na nuvem" data-toggle="modal" href="#myModalContratoNuvem" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';">Gerar Contrato na Nuvem</a></li>
+                            <!-- END BLOCK_GERAR_CONTRATO_NUVEM -->
+                            <li><a href="participante.editaSeguro.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" title="Seguro e Tickets">Seguro e Tickets</a></li>
+                            <li><a href="{MODELO_FICHA}?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}" title="Ficha de Inscrição" target="_blank">Ficha de Inscrição</a></li>
+                            <li><a title="Cancelar Participação" data-toggle="modal" href="#myModal" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';">Cancelar Participação</a></li>
+                            <li><a title="Excluir Definitivamente" data-toggle="modal" href="#myModalExcluir" onclick="document.getElementById('manipulacao').value = '{ID_HASH}';">Excluir Definitivamente</a></li>
+                            <!-- END BLOCK_ACTIONS -->
+                            <!-- BEGIN BLOCK_REATIVAR -->
+                            <li><a title="Reativar" href="participante.response.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}&acao=Reativar">Reativar</a></li>
+                            <li><a title="Excluir Definitivamente" href="participante.response.php?idParticipante={ID_HASH}&idGrupo={ID_GRUPO_HASH}&acao=Excluir">Excluir</a></li>
+                            <!-- END BLOCK_REATIVAR -->
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+
                     </div>
 
                 </td>

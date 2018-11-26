@@ -109,6 +109,7 @@ class Participante extends Persistencia{
 		$this->custoTotal = $oGrupo->getCustoTotal($pacoteOpcional);
 		$this->grupo = $oGrupo;
 		$this->cliente = $oCliente;
+		$this->idcn = 0;
 		$this->contrato = "";//$this->geraContrato();
 		$this->pacoteOpcional = $pacoteOpcional;
 		$oSP = new StatusParticipante();
@@ -181,7 +182,7 @@ class Participante extends Persistencia{
 		$this->custoTotal = $oGrupo->getCustoTotal($pacoteOpcional);
 		$this->grupo = $oGrupo;
 		$this->cliente = $oCliente;
-		$this->idcn = null;
+		$this->idcn = 0;
 		$this->contrato = "";//$this->geraContrato();
 		$this->pacoteOpcional = $pacoteOpcional;
 		$oSP = new StatusParticipante();
