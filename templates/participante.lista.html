@@ -13,7 +13,7 @@
             window.open('{MODELO_CONTRATO}?idGrupo={ID_GRUPO_HASH}&idParticipante=' + $('#manipulacao').val() + '&valorPassagem=' + $('#valorPassagem').val());
         });
         $('#GerarContratoNuvem').click(function() {
-            document.location.href = 'participante.response.php?acao=criarContratoNuvem&idGrupo={ID_GRUPO_HASH}&idParticipante=' + $('#manipulacao').val() + '&valorPassagem=' + $('#valorPassagem').val() + '&nometestemunha1=' + $('#nometestemunha1').val() + '&rgtestemunha1=' + $('#rgtestemunha1').val() + '&nometestemunha2=' + $('#nometestemunha2').val() + '&rgtestemunha2=' + $('#rgtestemunha2').val();
+            document.location.href = 'participante.response.php?acao=criarContratoNuvem&idGrupo={ID_GRUPO_HASH}&idParticipante=' + $('#manipulacao').val() + '&valorPassagem=' + $('#valorPassagemNuvem').val() + '&nometestemunha1=' + $('#nometestemunha1').val() + '&rgtestemunha1=' + $('#rgtestemunha1').val() + '&nometestemunha2=' + $('#nometestemunha2').val() + '&rgtestemunha2=' + $('#rgtestemunha2').val();
         });
 
 
@@ -168,7 +168,7 @@
     </div>
     <div class="modal-body">
         <p>Valor das Passagens:<br />
-            <input type="text" id="valorPassagem" class="input-xlarge span2" name="valorPassagem" value="" placeholder="Valor das Passagens" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+            <input type="text" id="valorPassagemNuvem" class="input-xlarge span2" name="valorPassagemNuvem" value="" placeholder="Valor das Passagens" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
         </p>
         <p>Nome Primeira Testemunha:<br />
             <input type="text" id="nometestemunha1" class="input-xlarge span6" name="nometestemunha1" value="" placeholder="Nome da primeira testemunha">

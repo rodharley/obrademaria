@@ -4,383 +4,387 @@
 <script src="jqueryui/development-bundle/ui/jquery.ui.position.js"></script>
 <script src="jqueryui/development-bundle/ui/jquery.ui.autocomplete.js"></script>
 <script>
-$(document).ready(function(){
-<!-- BEGIN BLOCK_CONSULTA -->
-$("#pesquisar").click(
-function(){
-window.location.href= 'participante.novo.php?idGrupo={ID_GRUPO_HASH}&cpf='+$('#cpf').val()+'&nome='+$('#nome').val();
-}
-);
+    $(document).ready(function() {
+        <!-- BEGIN BLOCK_CONSULTA -->
+        $("#pesquisar").click(
+            function() {
+                window.location.href = 'participante.novo.php?idGrupo={ID_GRUPO_HASH}&cpf=' + $('#cpf').val() + '&nome=' + $('#nome').val();
+            }
+        );
 
-<!-- END BLOCK_CONSULTA -->
-/*
- $('#uf').change(function(){
-	$('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$(this).attr("value")); 
- });
- $('#ufEndereco').change(function(){
-	$('#cidadeEndereco').load('ajax/comboCidadesPorUf.php?idUf='+$(this).attr("value")); 
- });
- */
- $("#frmEdit").validate();
- 
- $("#submit").click(function(){
- 		$("#frmEdit").submit();
- });
- //$("#cpf").mask("999.999.999-99");
- $("#dataEmissaoPassaporte").mask("99/99/9999");
- $("#dataValidadePassaporte").mask("99/99/9999");
- $("#dataNascimento").mask("99/99/9999");
-  $("#pessoasQuarto").mask("9?9");
- //$("#cep").mask("99.999-999");
- //$("#celular").mask("(99) 9999-9999");
- //$("#fax").mask("(99) 9999-9999");
- //$("#telefoneResidencial").mask("(99) 9999-9999");
- //$("#telefoneComercial").mask("(99) 9999-9999");
- 
- $(function() {
-		var cidades = [{CIDADES}];
-		var estados = [{ESTADOS}];
-		var paises = [{PAISES}];
-		var nomes = [{NOMES}];
-		var cpfs = [{CPFS}];
-		$( "#nome" ).autocomplete({
-			source: nomes			
-		});
-		$( "#cpf" ).autocomplete({
-			source: cpfs			
-		});
-		$( "#cidadeEndereco" ).autocomplete({
-			source: cidades			
-		});
-		$( "#cidadeNascimento" ).autocomplete({
-			source: cidades			
-		});
-		$( "#estadoEndereco" ).autocomplete({
-			source: estados			
-		});
-		$( "#estadoNascimento" ).autocomplete({
-			source: estados			
-		});
-		$( "#paisEndereco" ).autocomplete({
-			source: paises			
-		});
-		$( "#paisNascimento" ).autocomplete({
-			source: paises			
-		});
-	})
-});
+        <!-- END BLOCK_CONSULTA -->
+        /*
+         $('#uf').change(function(){
+        	$('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$(this).attr("value")); 
+         });
+         $('#ufEndereco').change(function(){
+        	$('#cidadeEndereco').load('ajax/comboCidadesPorUf.php?idUf='+$(this).attr("value")); 
+         });
+         */
+        $("#frmEdit").validate();
+
+        $("#submit").click(function() {
+            $("#frmEdit").submit();
+        });
+        //$("#cpf").mask("999.999.999-99");
+        $("#dataEmissaoPassaporte").mask("99/99/9999");
+        $("#dataValidadePassaporte").mask("99/99/9999");
+        $("#dataNascimento").mask("99/99/9999");
+        $("#pessoasQuarto").mask("9?9");
+        //$("#cep").mask("99.999-999");
+        //$("#celular").mask("(99) 9999-9999");
+        //$("#fax").mask("(99) 9999-9999");
+        //$("#telefoneResidencial").mask("(99) 9999-9999");
+        //$("#telefoneComercial").mask("(99) 9999-9999");
+
+        $(function() {
+            var cidades = [{
+                CIDADES
+            }];
+            var estados = [{
+                ESTADOS
+            }];
+            var paises = [{
+                PAISES
+            }];
+            var nomes = [{
+                NOMES
+            }];
+            var cpfs = [{
+                CPFS
+            }];
+            $("#nome").autocomplete({
+                source: nomes
+            });
+            $("#cpf").autocomplete({
+                source: cpfs
+            });
+            $("#cidadeEndereco").autocomplete({
+                source: cidades
+            });
+            $("#cidadeNascimento").autocomplete({
+                source: cidades
+            });
+            $("#estadoEndereco").autocomplete({
+                source: estados
+            });
+            $("#estadoNascimento").autocomplete({
+                source: estados
+            });
+            $("#paisEndereco").autocomplete({
+                source: paises
+            });
+            $("#paisNascimento").autocomplete({
+                source: paises
+            });
+        })
+    });
 </script>
 
 <section>
-<h2>{NOME_GRUPO}</h2>
-<h1>Novo Participante</h1>
-<form class="form-horizontal" id="frmEdit" method="post" action="participante.response.php">
-         <fieldset>
-          <legend>Dados do Grupo</legend>
-		  <div class="control-group">
-            <label for="cpf" class="control-label">Nome do Pacote:</label>
-            <div class="controls">
-			 <input type="text" id="nomePacote" class="input-xlarge disabled span6" name="nomePacote" value="{NOME_PACOTE}" placeholder="Nome do Pacote" disabled="disabled">
+    <h2>{NOME_GRUPO}</h2>
+    <h1>Novo Participante</h1>
+    <form class="form-horizontal" id="frmEdit" method="post" action="participante.response.php">
+        <fieldset>
+            <legend>Dados do Grupo</legend>
+            <div class="control-group">
+                <label for="cpf" class="control-label">Nome do Pacote:</label>
+                <div class="controls">
+                    <input type="text" id="nomePacote" class="input-xlarge disabled span6" name="nomePacote" value="{NOME_PACOTE}" placeholder="Nome do Pacote" disabled="disabled">
+                </div>
             </div>
-          </div>
-		  <!-- BEGIN BLOCK_PACOTE_OPCIONAL -->
-		   <div class="control-group">
-            <label for="cpf" class="control-label">Pacote Opcional:</label>
-            <div class="controls">
-		   <input type="checkbox" value="1" name="pacoteOpcional" id="pacoteOpcional" />
-		   <input type="text" id="nomePacote" class="input-xlarge disabled span5" name="nomePacoteOpcional" value="{NOME_PACOTE_OPCIONAL}" placeholder="Nome do Pacote" disabled="disabled"> 
+            <!-- BEGIN BLOCK_PACOTE_OPCIONAL -->
+            <div class="control-group">
+                <label for="cpf" class="control-label">Pacote Opcional:</label>
+                <div class="controls">
+                    <input type="checkbox" value="1" name="pacoteOpcional" id="pacoteOpcional" />
+                    <input type="text" id="nomePacote" class="input-xlarge disabled span5" name="nomePacoteOpcional" value="{NOME_PACOTE_OPCIONAL}" placeholder="Nome do Pacote" disabled="disabled">
+                </div>
             </div>
-          </div>
-		  <!-- END BLOCK_PACOTE_OPCIONAL -->
-          <div class="control-group">
-            <label for="cpf" class="control-label">Data da Inscrição:</label>
-            <div class="controls">
-			 <input type="text" id="dataInscricao" class="input-xlarge span2 required" name="dataInscricao" value="{dt_inscr}"  data-datepicker="datepicker" placeholder="Data da Inscrição">
+            <!-- END BLOCK_PACOTE_OPCIONAL -->
+            <div class="control-group">
+                <label for="cpf" class="control-label">Data da Inscrição:</label>
+                <div class="controls">
+                    <input type="text" id="dataInscricao" class="input-xlarge span2 required" name="dataInscricao" value="{dt_inscr}" data-datepicker="datepicker" placeholder="Data da Inscrição">
+                </div>
             </div>
-          </div>
-		  </fieldset>
-		  
-		<fieldset>
-          <legend>Dados Pessoais</legend>
-           <div class="row">
-		   <div class="span3">
-		   <div class="control-group {TIPO_COMENTARIO}" >
-            <label for="cpf" class="control-label">CPF:</label>
-            <div class="controls">
-               <input type="text" id="cpf" class="input-xlarge required span2" name="cpf" value="{CPF}" placeholder="CPF">			    
+        </fieldset>
+
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            <div class="row">
+                <div class="span3">
+                    <div class="control-group {TIPO_COMENTARIO}">
+                        <label for="cpf" class="control-label">CPF:</label>
+                        <div class="controls">
+                            <input type="text" id="cpf" class="input-xlarge required span2" name="cpf" value="{CPF}" placeholder="CPF">
+                        </div>
+                    </div>
+                </div>
+                <div class="span5">
+                    <div class="control-group {TIPO_COMENTARIO}">
+                        <label for="cpf" class="control-label">Nome:</label>
+                        <div class="controls">
+                            <input type="text" id="nome" class="input-xlarge required" name="nomeCompleto" value="{NOME}" placeholder="Nome Completo">
+                            <span class="help-inline">{COMENTARIO}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="span2">
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn" id="pesquisar" type="button">Pesquisar</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
-		  </div>
-		  <div class="span5">
-		  <div class="control-group {TIPO_COMENTARIO}" >
-            <label for="cpf" class="control-label">Nome:</label>
-            <div class="controls">
-              <input type="text" id="nome" class="input-xlarge required" name="nomeCompleto" value="{NOME}" placeholder="Nome Completo">
-			    <span class="help-inline">{COMENTARIO}</span>
-            </div>
-          </div>
-		  </div>
-		   <div class="span2">
-		   <div class="control-group" >
-            <div class="controls">
-                <button class="btn" id="pesquisar" type="button">Pesquisar</button>
-            </div>
-          </div>
-		  </div>
-		  
-		  </div>
- 
-  <div class="row">
-  <div class="span4">
-  <div class="control-group"> 
-    <label for="nomeCracha" class="control-label">Nome Crachá:</label>
-    <div class="controls"> 
-      <input type="text" id="nomeCracha" class="input-xlarge span2" name="nomeCracha" value="{NOME_CRACHA}" placeholder="Nome no Crachá">    
-    </div>
-  </div>
-  </div>
-  <div class="span3">
-  <div class="control-group"> 
-    <label for="tamanhoCamisa" class="control-label">Camisa:</label>
-    <div class="controls"> 
-      <input type="text" id="tamanhoCamisa" class="input-xlarge span1" name="tamanhoCamisa" value="{TAMANHO_CAMISA}" placeholder="Tamanho da Camisa">
-    </div>
-  </div>
-  </div>
-  <div class="span3">
-  <div class="control-group"> 
-    <label for="preferencial" class="control-label">Acesso Pref.:</label>
-    <div class="controls"> 
-      <SELECT name="preferencial" id="preferencial" class="span2 required">
+
+            <div class="row">
+                <div class="span4">
+                    <div class="control-group">
+                        <label for="nomeCracha" class="control-label">Nome Crachá:</label>
+                        <div class="controls">
+                            <input type="text" id="nomeCracha" class="input-xlarge span2" name="nomeCracha" value="{NOME_CRACHA}" placeholder="Nome no Crachá">
+                        </div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="control-group">
+                        <label for="tamanhoCamisa" class="control-label">Camisa:</label>
+                        <div class="controls">
+                            <input type="text" id="tamanhoCamisa" class="input-xlarge span1" name="tamanhoCamisa" value="{TAMANHO_CAMISA}" placeholder="Tamanho da Camisa">
+                        </div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="control-group">
+                        <label for="preferencial" class="control-label">Acesso Pref.:</label>
+                        <div class="controls">
+                            <SELECT name="preferencial" id="preferencial" class="span2 required">
         <option value="0" {CHECKED_PREFN}>Não</option>
         <option value="1" {CHECKED_PREFS}>Sim</option>
       </SELECT>
-    </div>
-  </div>
-  </div>
-  </div>
-           <div class="control-group">
-            <label for="cpf" class="control-label">RG. / Orgão Emissor:</label>
-            <div class="controls">
-               <input type="text" id="rg" class="input-xlarge span2" name="rg" value="{RG}" placeholder="RG"> &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="cpf" class="control-label">RG. / Orgão Emissor:</label>
+                <div class="controls">
+                    <input type="text" id="rg" class="input-xlarge span2" name="rg" value="{RG}" placeholder="RG"> &nbsp;
 
-			   <input type="text" id="orgaoEmissorRg" class="input-xlarge " name="orgaoEmissorRg" value="{ORGAORG}" placeholder="Orgão Emissor">
+                    <input type="text" id="orgaoEmissorRg" class="input-xlarge " name="orgaoEmissorRg" value="{ORGAORG}" placeholder="Orgão Emissor">
+                </div>
             </div>
-          </div>
-           <div class="control-group">
-            <label for="cpf" class="control-label">Passaporte. / Orgão Emissor:</label>
-            <div class="controls">
-               <input type="text" id="passaporte" class="input-xlarge span2" name="passaporte" value="{PASSAPORTE}" placeholder="Passaporte"> &nbsp;
+            <div class="control-group">
+                <label for="cpf" class="control-label">Passaporte. / Orgão Emissor:</label>
+                <div class="controls">
+                    <input type="text" id="passaporte" class="input-xlarge span2" name="passaporte" value="{PASSAPORTE}" placeholder="Passaporte"> &nbsp;
 
-			   <input type="text" id="orgaoExpedidorPassaporte" class="input-xlarge " name="orgaoExpedidorPassaporte" value="{ORGAO_PASSAPORTE}" placeholder="Orgão Emissor">
+                    <input type="text" id="orgaoExpedidorPassaporte" class="input-xlarge " name="orgaoExpedidorPassaporte" value="{ORGAO_PASSAPORTE}" placeholder="Orgão Emissor">
+                </div>
             </div>
-          </div>
-           <div class="control-group">
-            <label for="estadoCivil" class="control-label">Data Emissão / Data Validade:</label>
-            <div class="controls">
-            <input type="text" name="dataEmissaoPassaporte" id="dataEmissaoPassaporte" data-datepicker="datepicker" placeholder="Data de Emissão do Passaporte" class="span2 " value="{DATA_EMISSAO_PASSAPORTE}">
-			&nbsp;
-              <input type="text" name="dataValidadePassaporte" id="dataValidadePassaporte" data-datepicker="datepicker" placeholder="Data de Validade do Passaporte" class="span2 " value="{DATA_VALIDADE_PASSAPORTE}">	  
+            <div class="control-group">
+                <label for="estadoCivil" class="control-label">Data Emissão / Data Validade:</label>
+                <div class="controls">
+                    <input type="text" name="dataEmissaoPassaporte" id="dataEmissaoPassaporte" data-datepicker="datepicker" placeholder="Data de Emissão do Passaporte" class="span2 " value="{DATA_EMISSAO_PASSAPORTE}"> &nbsp;
+                    <input type="text" name="dataValidadePassaporte" id="dataValidadePassaporte" data-datepicker="datepicker" placeholder="Data de Validade do Passaporte" class="span2 " value="{DATA_VALIDADE_PASSAPORTE}">
+                </div>
             </div>
-          </div>
-		  <div class="control-group">
-            <label for="nome" class="control-label">Sexo / E-mail:</label>
-            <div class="controls">
-			  <SELECT name="sexo" id="sexo" class="span2 required">
+            <div class="control-group">
+                <label for="nome" class="control-label">Sexo / E-mail:</label>
+                <div class="controls">
+                    <SELECT name="sexo" id="sexo" class="span2 required">
 			 	<option value="M" {CHECKED_SEXOM}>Masculino</option>
 				<option value="F" {CHECKED_SEXOF}>Feminino</option>
-			 </SELECT>	&nbsp;
-              <input type="text" id="email" class="input-xlarge email" name="email" value="{EMAIL}" placeholder="E-mail">
+			 </SELECT> &nbsp;
+                    <input type="text" id="email" class="input-xlarge email" name="email" value="{EMAIL}" placeholder="E-mail">
+                </div>
             </div>
-          </div>
-		  <div class="control-group">
-            <label for="estadoCivil" class="control-label">Estado Civil / Data:</label>
-            <div class="controls">
-			<SELECT name="estadoCivil" id="estadoCivil" class="span2 required">	
+            <div class="control-group">
+                <label for="estadoCivil" class="control-label">Estado Civil / Data:</label>
+                <div class="controls">
+                    <SELECT name="estadoCivil" id="estadoCivil" class="span2 required">	
 			<option value="" >Selecione</option>
              <!-- BEGIN BLOCK_ESTADOCIVIL -->
              <option value="{ID_ESTCIVIL}" {SELECTED_ESTCIVIL}>{LABEL_ESTCIVIL}</option>
              <!-- END BLOCK_ESTADOCIVIL -->			 	
 			 </SELECT>&nbsp;
-              <input type="text" name="dataNascimento" id="dataNascimento" data-datepicker="datepicker" placeholder="Data de Nascimento" class="span2 required" value="{DATA_NASCIMENTO}">	  
-            </div>
-          </div>
-		  <div class="row"> 
-    <div class="span5"> 
-      <div class="control-group"> 
-        <label for="paisNascimento" class="control-label">País de Nasc.:</label>
-        <div class="controls"> 
-          <input type="text" name="paisNascimento" id="paisNascimento" value="{PAIS_NASCIMENTO}" class="span2 required">
-        </div>
-      </div>
-    </div>
-    <div class="span6"> 
-      <div class="control-group"> 
-        <label for="estadoNascimento" class="control-label">UF de Nasc.:</label>
-        <div class="controls"> 
-          <input type="text" name="estadoNascimento" id="estadoNascimento" value="{ESTADO_NASCIMENTO}" class="span1 required">
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row"> 
-    <div class="span5"> 
-      <div class="control-group"> 
-        <label for="cidadeNascimento" class="control-label">Cidade de Nasc.:</label>
-        <div class="controls"> 
-          <input type="text" name="cidadeNascimento" id="cidadeNascimento" value="{CIDADE_NASCIMENTO}" class="span3 required">
-        </div>
-      </div>
-    </div>
-    <div class="span6"> 
-      <div class="control-group"> 
-        <label for="uf" class="control-label">Nascionalidade.:</label>
-        <div class="controls"> 
-          <input type="text" id="nacionalidade" class="input-xlarge required" name="nacionalidade" value="{NACIONALIDADE}" placeholder="Nacionalidade">
-        </div>
-      </div>
-    </div>
-  </div>
-		  </fieldset>
-		  <fieldset>
-          <legend>Endereço de Contato</legend>	  
-          <div class="control-group"> 
-    <label for="perfil" class="control-label">Enviar Correspondência?</label>
-    <div class="controls"> 
-      <input type="radio" name="enviaCorrespondencia" id="enviaCorrespondencia" value="1" {CHCK_CORRESPONDENCIA_SIM} class="required"/> Sim <input type="radio" name="enviaCorrespondencia" id="enviaCorrespondencia" value="0" {CHCK_CORRESPONDENCIA_NAO}  class="required"/> Não
-    </div>
-  </div>
-		  <div class="control-group"> 
-    <label for="perfil" class="control-label">Endereço:</label>
-    <div class="controls"> 
-      <input type="text" id="endereco" class="input-xlarge span5" name="endereco" value="{ENDERECO}" placeholder="Endereco">
-    </div>
-  </div>
-  <div class="row"> 
-    <div class="span5"> 
-      <div class="control-group"> 
-        <label for="paisEndereco" class="control-label">País:</label>
-        <div class="controls"> 
-          <input type="text" name="paisEndereco" id="paisEndereco" value="{PAIS_ENDERECO}" class="span2 required">
-        </div>
-      </div>
-    </div>
-    <div class="span6"> 
-      <div class="control-group"> 
-        <label for="estadoEndereco" class="control-label">UF:</label>
-        <div class="controls"> 
-          <input type="text" name="estadoEndereco" id="estadoEndereco" value="{ESTADO_ENDERECO}" class="span1 required">
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="control-group"> 
-    <label for="cidadeEndereco" class="control-label">Cidade:</label>
-    <div class="controls"> 
-      <input type="text" name="cidadeEndereco" id="cidadeEndereco" value="{CIDADE_ENDERECO}" class="span3 required">
-    </div>
-  </div>
-  
-  <div class="row"> 
-    <div class="span5"> 
-      <div class="control-group"> 
-        <label for="cep" class="control-label">CEP:</label>
-        <div class="controls"> 
-          <input type="text" id="cep" class="input-xlarge  span2" name="cep" value="{CEP}" placeholder="CEP">
-        </div>
-      </div>
-    </div>
-    <div class="span6"> 
-      <div class="control-group"> 
-        <label for="bairro" class="control-label">Bairro:</label>
-        <div class="controls"> 
-          <input type="text" id="bairro" class="input-xlarge " name="bairro" value="{BAIRRO}" placeholder="Bairro">
-        </div>
-      </div>
-    </div>
-  </div>	
-          <div class="control-group">
-            <label for="cpf" class="control-label">Tel. Residencia / Comercial:</label>
-            <div class="controls">
-               <input type="text" id="telefoneResidencial" class="input-xlarge  span2" name="telefoneResidencial" value="{TEL_RESIDENCIAL}" placeholder="Telefone Residencial"> &nbsp;
-
-			   <input type="text" id="telefoneComercial" class="input-xlarge " name="telefoneComercial" value="{TEL_COMERCIAL}" placeholder="Telefone Comercial">
-            </div>
-          </div>	  
-           <div class="control-group">
-            <label for="celular" class="control-label">Celular / Fax:</label>
-          
-            <div class="controls">
-               <input type="text" id="celular" class="input-xlarge span2" name="celular" value="{CELULAR}" placeholder="Celular"> &nbsp;
-
-			   <input type="text" id="fax" class="input-xlarge " name="fax" value="{FAX}" placeholder="Fax">
-            </div>
-          </div>	  
-          </fieldset>
-          <fieldset>
-          <legend>Informações Adicionais</legend>
-<div class="control-group">
-                <label class="control-label" for="problemasSaude">Valor da passagem (Contrato):</label>
-                <div class="controls">
-                    <input type="text" id="valorPassagem" class="input-xlarge span5 required" name="valorPassagem" value="" placeholder="Valor da passagem" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+                    <input type="text" name="dataNascimento" id="dataNascimento" data-datepicker="datepicker" placeholder="Data de Nascimento" class="span2 required" value="{DATA_NASCIMENTO}">
                 </div>
-                <label class="control-label" for="textarea">Valor da passagem (Contrato):</label>
-            </div>	
-          <div class="control-group">
-            <label class="control-label" for="problemasSaude">Problemas de saúde:</label>
-            <div class="controls">
-              <textarea class="input-xlarge span5" id="problemasSaude" name="problemasSaude" rows="3">{PROBLEMAS_SAUDE}</textarea>
             </div>
-            <label class="control-label" for="textarea">Problemas de saúde:</label>
-             </div> 	 
-          <div class="control-group">
-            <label class="control-label" for="restricaoAlimentar">Restrições Alimentares:</label>
-            <div class="controls">
-              <textarea class="input-xlarge span5" id="restricaoAlimentar" name="restricaoAlimentar" rows="3">{RESTRICAO_ALIMENTAR}</textarea>
+            <div class="row">
+                <div class="span5">
+                    <div class="control-group">
+                        <label for="paisNascimento" class="control-label">País de Nasc.:</label>
+                        <div class="controls">
+                            <input type="text" name="paisNascimento" id="paisNascimento" value="{PAIS_NASCIMENTO}" class="span2 required">
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+                        <label for="estadoNascimento" class="control-label">UF de Nasc.:</label>
+                        <div class="controls">
+                            <input type="text" name="estadoNascimento" id="estadoNascimento" value="{ESTADO_NASCIMENTO}" class="span1 required">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div> 	
-		  <fieldset>
-          <legend>Informações sobre quarto</legend>
-		  <div class="row">
-		   <div class="span5">
-		   <div class="control-group" >
-            <label for="quarto" class="control-label">Quarto:</label>
-            <div class="controls">
-               <select name="quarto" id="quarto" class="span3">
+            <div class="row">
+                <div class="span5">
+                    <div class="control-group">
+                        <label for="cidadeNascimento" class="control-label">Cidade de Nasc.:</label>
+                        <div class="controls">
+                            <input type="text" name="cidadeNascimento" id="cidadeNascimento" value="{CIDADE_NASCIMENTO}" class="span3 required">
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+                        <label for="uf" class="control-label">Nascionalidade.:</label>
+                        <div class="controls">
+                            <input type="text" id="nacionalidade" class="input-xlarge required" name="nacionalidade" value="{NACIONALIDADE}" placeholder="Nacionalidade">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Endereço de Contato</legend>
+            <div class="control-group">
+                <label for="perfil" class="control-label">Enviar Correspondência?</label>
+                <div class="controls">
+                    <input type="radio" name="enviaCorrespondencia" id="enviaCorrespondencia" value="1" {CHCK_CORRESPONDENCIA_SIM} class="required" /> Sim <input type="radio" name="enviaCorrespondencia" id="enviaCorrespondencia" value="0" {CHCK_CORRESPONDENCIA_NAO}
+                        class="required" /> Não
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="perfil" class="control-label">Endereço:</label>
+                <div class="controls">
+                    <input type="text" id="endereco" class="input-xlarge span5" name="endereco" value="{ENDERECO}" placeholder="Endereco">
+                </div>
+            </div>
+            <div class="row">
+                <div class="span5">
+                    <div class="control-group">
+                        <label for="paisEndereco" class="control-label">País:</label>
+                        <div class="controls">
+                            <input type="text" name="paisEndereco" id="paisEndereco" value="{PAIS_ENDERECO}" class="span2 required">
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+                        <label for="estadoEndereco" class="control-label">UF:</label>
+                        <div class="controls">
+                            <input type="text" name="estadoEndereco" id="estadoEndereco" value="{ESTADO_ENDERECO}" class="span1 required">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="cidadeEndereco" class="control-label">Cidade:</label>
+                <div class="controls">
+                    <input type="text" name="cidadeEndereco" id="cidadeEndereco" value="{CIDADE_ENDERECO}" class="span3 required">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span5">
+                    <div class="control-group">
+                        <label for="cep" class="control-label">CEP:</label>
+                        <div class="controls">
+                            <input type="text" id="cep" class="input-xlarge  span2" name="cep" value="{CEP}" placeholder="CEP">
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+                        <label for="bairro" class="control-label">Bairro:</label>
+                        <div class="controls">
+                            <input type="text" id="bairro" class="input-xlarge " name="bairro" value="{BAIRRO}" placeholder="Bairro">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="cpf" class="control-label">Tel. Residencia / Comercial:</label>
+                <div class="controls">
+                    <input type="text" id="telefoneResidencial" class="input-xlarge  span2" name="telefoneResidencial" value="{TEL_RESIDENCIAL}" placeholder="Telefone Residencial"> &nbsp;
+
+                    <input type="text" id="telefoneComercial" class="input-xlarge " name="telefoneComercial" value="{TEL_COMERCIAL}" placeholder="Telefone Comercial">
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="celular" class="control-label">Celular / Fax:</label>
+
+                <div class="controls">
+                    <input type="text" id="celular" class="input-xlarge span2" name="celular" value="{CELULAR}" placeholder="Celular"> &nbsp;
+
+                    <input type="text" id="fax" class="input-xlarge " name="fax" value="{FAX}" placeholder="Fax">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Informações Adicionais</legend>
+
+            <div class="control-group">
+                <label class="control-label" for="problemasSaude">Problemas de saúde:</label>
+                <div class="controls">
+                    <textarea class="input-xlarge span5" id="problemasSaude" name="problemasSaude" rows="3">{PROBLEMAS_SAUDE}</textarea>
+                </div>
+                <label class="control-label" for="textarea">Problemas de saúde:</label>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="restricaoAlimentar">Restrições Alimentares:</label>
+                <div class="controls">
+                    <textarea class="input-xlarge span5" id="restricaoAlimentar" name="restricaoAlimentar" rows="3">{RESTRICAO_ALIMENTAR}</textarea>
+                </div>
+            </div>
+            <fieldset>
+                <legend>Informações sobre quarto</legend>
+                <div class="row">
+                    <div class="span5">
+                        <div class="control-group">
+                            <label for="quarto" class="control-label">Quarto:</label>
+                            <div class="controls">
+                                <select name="quarto" id="quarto" class="span3">
 			    <option value="0">Indefinido</option>
 			   <!-- BEGIN BLOCK_QUARTO -->
 			   <option value="{QUARTO_ID}">{QUARTO_LABEL}</option>
 			   <!-- END BLOCK_QUARTO -->
 			   </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="control-group">
+                            <label for="nomeQuarto" class="control-label">Novo Quarto:</label>
+                            <div class="controls">
+                                <input type="text" id="nomeQuarto" class="input-xlarge span2" name="nomeQuarto" placeholder="Quarto">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span2">
+                        <div class="control-group">
+                            <label for="pessoasQuarto" class="control-label">Qtd. Pessoas:</label>
+                            <div class="controls">
+                                <input type="text" id="pessoasQuarto" class="input-xlarge span1" name="pessoasQuarto" placeholder="Qtd. Pessoas">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </fieldset>
+            <div class="form-actions">
+                <input type="hidden" value="{ID_CLIENTE}" name="idCliente" id="idCliente" />
+                <input type="hidden" value="{ID_GRUPO}" name="idGrupo" id="idGrupo" />
+                <input type="hidden" value="{ACAO}" name="acao" id="acao" />
+                <button class="btn btn-primary" type="submit">Adicionar Participante</button>
+                <button class="btn" id="bt_voltar" type="button">Voltar</button>
             </div>
-          </div>
-		  </div>
-		  <div class="span4">
-		  <div class="control-group" >
-            <label for="nomeQuarto" class="control-label">Novo Quarto:</label>
-            <div class="controls">
-              <input type="text" id="nomeQuarto" class="input-xlarge span2" name="nomeQuarto" placeholder="Quarto">
-            </div>
-          </div>
-		  </div>
-		   <div class="span2">
-		   <div class="control-group" >
-		   <label for="pessoasQuarto" class="control-label">Qtd. Pessoas:</label>
-            <div class="controls">
-                <input type="text" id="pessoasQuarto" class="input-xlarge span1" name="pessoasQuarto" placeholder="Qtd. Pessoas">
-            </div>
-          </div>
-		  </div>
-		  
-		  </div>
-		  </fieldset> 	
-         <div class="form-actions">
-          <input type="hidden" value="{ID_CLIENTE}" name="idCliente" id="idCliente" />
-		  <input type="hidden" value="{ID_GRUPO}" name="idGrupo" id="idGrupo" />
-            <input type="hidden" value="{ACAO}" name="acao" id="acao" />
-            <button class="btn btn-primary" type="submit">Adicionar Participante</button>
-            <button class="btn" id="bt_voltar" type="button">Voltar</button>
-          </div>
         </fieldset>
-      </form>
+    </form>
 </section>
