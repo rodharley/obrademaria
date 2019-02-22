@@ -296,6 +296,7 @@ class Participante extends Persistencia{
 			$this->save();
 			
 		 }
+		 $_SESSION['tupi.mensagem'] = 65;
 		 return $response->body->message;
 		 
 	}
