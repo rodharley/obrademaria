@@ -277,9 +277,7 @@ class Participante extends Persistencia{
 			
 				
 		$ret = $this->loginContratosEmnuvem();
-		echo $ret->jwt;
-		var_dump($data);
-		exit();		
+
 		$headers = array('Accept' => 'application/json','X-Token'=>$ret->jwt,'Content-Type'=>'application/json; charset=utf-8');
 		$query = Unirest\Request\Body::json($data);
 	
