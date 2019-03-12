@@ -130,6 +130,7 @@ Exemplos de mensagens:
 <mensagem id="63" type="success">Bandeira alterada com sucesso.</mensagem>
 <mensagem id="64" type="success">Bandeira excluída com sucesso.</mensagem>
 <mensagem id="65" type="success">Contrato em Nuvem Gerado com sucesso!</mensagem>
+<mensagem id="66" type="error">Problemas ao gerar Contrato em Nuvem</mensagem>
 </mensagens>
 
 

@@ -255,14 +255,14 @@ class Participante extends Persistencia{
 			"emailCliente"=>$oCliente->email,
 			"variaveis"=> array(
 				array("nome"=>"nomeCompleto","valor"=>utf8_encode($oCliente->nomeCompleto)),
-				array("nome"=>"estado_civil","valor"=>$oCliente->estadoCivil->descricao),
+				array("nome"=>"estado_civil","valor"=>utf8_encode($oCliente->estadoCivil->descricao)),
 				array("nome"=>"rg","valor"=>$oCliente->rg),
 				array("nome"=>"rgOrgaoExpedidor","valor"=>$oCliente->orgaoEmissorRg),
 				array("nome"=>"cpf","valor"=>$oCliente->cpf),
 				array("nome"=>"endereco","valor"=>utf8_encode($oCliente->endereco)),
 				array("nome"=>"cidade","valor"=>utf8_encode($oCliente->cidadeEndereco)),
 				array("nome"=>"uf","valor"=>$oCliente->estadoNascimento),
-				array("nome"=>"nacionalidade","valor"=>$oCliente->nacionalidade),				
+				array("nome"=>"nacionalidade","valor"=>utf8_encode($oCliente->nacionalidade)),				
 				array("nome"=>"taxaAdesao","valor"=>$taxaAdesao),
 				array("nome"=>"CIFRAO","valor"=>$oGrupo->moeda->cifrao),
 				array("nome"=>"total","valor"=>$this->money($this->valorTotal,"atb")),
@@ -275,8 +275,11 @@ class Participante extends Persistencia{
 				array("nome"=>"mes","valor"=>utf8_encode($this->mesExtenso(date("m")))),
 				array("nome"=>"ano","valor"=>date("Y"))));				
 			
-	
+				
 		$ret = $this->loginContratosEmnuvem();
+		echo $ret->jwt;
+		var_dump($data);
+		exit();		
 		$headers = array('Accept' => 'application/json','X-Token'=>$ret->jwt,'Content-Type'=>'application/json; charset=utf-8');
 		$query = Unirest\Request\Body::json($data);
 	
@@ -285,7 +288,7 @@ class Participante extends Persistencia{
 		 $user = new Usuario();
 		$user->id = $_SESSION['ag_idUsuario'];
 		$data = date("Y-m-d H:i:s");
-		$movimento = "LOG CONTRATO EM nuvem: ".$response->code."-".$response->raw_body;
+		$movimento = "LOG NUMERO ".$this->id." CONTRATO EM NUVEM: ".$response->code."-".$response->raw_body;
 		$oLog->usuario = $user;
 		$oLog->data = $data;
 		$oLog->movimento = $movimento;
@@ -294,9 +297,11 @@ class Participante extends Persistencia{
 		 if($response->code == 200){		
 			$this->idcn =$response->body->identificadorDocumento;
 			$this->save();
-			
+			$_SESSION['tupi.mensagem'] = 65;
+		 }else{
+			$_SESSION['tupi.mensagem'] = 66;
 		 }
-		 $_SESSION['tupi.mensagem'] = 65;
+		 
 		 return $response->body->message;
 		 
 	}
