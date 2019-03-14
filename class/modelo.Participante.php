@@ -248,7 +248,7 @@ class Participante extends Persistencia{
 				break;
 		}
 
-		$data = array("identidicadorLayout"=>$layout,
+		$data = array("identificadorLayout"=>$layout,
 			"numeroControleEmpresa"=>$this->id,
 			"documentoCliente"=>$oCliente->cpf,
 			"nomeCliente"=>utf8_encode($oCliente->nomeCompleto),
