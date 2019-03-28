@@ -45,7 +45,7 @@ case 2:
 $str = "Fevereiro";
 break;
 case 3:
-$str = "Marï¿½o";
+$str = "Março";
 break;
 case 4:
 $str = "Abril";
