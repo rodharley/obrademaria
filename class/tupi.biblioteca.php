@@ -374,7 +374,7 @@ else
 
 
 		function convdata($dataentra,$tipo){ 
-
+		if($dataentra != "" && $dataentra != "00/00/0000"){
 		  if ($tipo == "mtn") { 
 
 			$datasentra = explode("-",$dataentra); 
@@ -428,9 +428,12 @@ else
 
 			$datasaida = "erro"; 
 
-		  } 
+		  } 		
 
 		  return $datasaida; 
+		}else{
+			return "0000-00-00";	
+		}
 
 		}
 

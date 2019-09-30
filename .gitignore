@@ -1,1 +1,3 @@
 class/tupi.configuracao.php
+img/passaportes/*
+!img/passaportes/default.png

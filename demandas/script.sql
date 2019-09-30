@@ -1,0 +1,1 @@
+ALTER TABLE `ag_cliente` ADD `image_passaporte` VARCHAR(255) NULL AFTER `bitEnviaCorrespondencia`;

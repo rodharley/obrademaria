@@ -192,9 +192,10 @@ set
 		<atrib tbname="txtcidadeEndereco" type="txt">cidadeEndereco</atrib>
 
 		<atrib tbname="txtestadoEndereco" type="txt">estadoEndereco</atrib>
-
+		<atrib tbname="image_passaporte" type="txt">imagePassaporte</atrib>
 		<atrib tbname="preferencial" type="int">preferencial</atrib>
 		<atrib tbname="bitEnviaCorrespondencia" type="int">enviaCorrespondencia</atrib>
+		
 	</class>
 
 	<class name="CompanhiaAerea" tbname="ag_companhiaaerea" tbid="id" lazy="false">

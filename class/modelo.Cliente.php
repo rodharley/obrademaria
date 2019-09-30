@@ -33,6 +33,7 @@ class Cliente extends Persistencia{
 	var $estadoNascimento;
 	var $preferencial;
 	var $enviaCorrespondencia;
+	var $imagePassaporte;
 	
 	public function recuperaTotal($busca){
 		$rs = $this->DAO_ExecutarQuery("select count(id) as total from ag_cliente where cpf like '%$busca%' or nomeCompleto like '%$busca%'");	
@@ -169,6 +170,18 @@ class Cliente extends Persistencia{
 			$oEstadoCivil->id = $_REQUEST['estadoCivil'];
 			$this->estadoCivil = $oEstadoCivil;
 			
+			//upload do a passaporte
+			if($_FILES['imagePassaporte']['name'] != ""){
+				if($this->imagePassaporte != ""){
+					@unlink($this->URI."img/passaportes/".$this->imagePassaporte);
+				}
+				
+			$nome = $this->retornaNomeUnico($_FILES['imagePassaporte']['name'],$this->URI."img/passaportes/");			
+			$this->uploadArquivo($_FILES['imagePassaporte'],$nome,$this->URI."img/passaportes/");
+			$this->imagePassaporte = $nome;
+			}
+
+
 			$_SESSION['tupi.mensagem'] = 18;
 			
 			
@@ -311,7 +324,19 @@ class Cliente extends Persistencia{
 	$oEstadoCivil = new EstadoCivil();
 	$oEstadoCivil->id = $_REQUEST['estadoCivil'];
 	$this->estadoCivil = $oEstadoCivil;
+
+
+	//upload do a passaporte
+	if($_FILES['imagePassaporte']['name'] != ""){
+		$nome = $this->retornaNomeUnico($_FILES['imagePassaporte']['name'],$this->URI."img/passaportes/");			
+		$this->uploadArquivo($_FILES['imagePassaporte'],$nome,$this->URI."img/passaportes/");
+		$this->imagePassaporte = $nome;
+	}
+
+
 	$_SESSION['tupi.mensagem'] = 17;
+
+	
 	
 	//grava log de pagamento
 		$oLog = new LogUsuario();

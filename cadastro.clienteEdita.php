@@ -46,6 +46,7 @@ $tpl->TAMANHO_CAMISA = $oCliente->tamanhoCamisa;
 $tpl->RG = $oCliente->rg;
 $tpl->ORGAORG = $oCliente->orgaoEmissorRg;
 $tpl->PASSAPORTE = $oCliente->passaporte;
+$tpl->IMAGEM_PASSAPORTE = $oCliente->imagePassaporte;
 $tpl->ORGAO_PASSAPORTE = $oCliente->orgaoExpedidorPassaporte;
 $tpl->DATA_EMISSAO_PASSAPORTE = $oCliente->convdata($oCliente->dataEmissaoPassaporte,"mtn");
 $tpl->DATA_VALIDADE_PASSAPORTE = $oCliente->convdata($oCliente->dataValidadePassaporte,"mtn");
