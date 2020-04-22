@@ -26,7 +26,7 @@ if(isset($_REQUEST['idConta'])){
 $tpl->ACAO = 'AlterarConta';
 $oC->getById($oC->md5_decrypt($_REQUEST['idConta']));
 $idTipo = $oC->tipo->id;
-$tpl->ID = $Conta->id;
+$tpl->ID = $oC->id;
 	$tpl->DESCRICAO = $oC->descricao;
 	$tpl->VALOR_PAGAMENTO = $oC->money($oC->valorPagamento,"atb");
 	$tpl->DATA_PAGAMENTO = $oC->convdata($oC->dataPagamento,"mtn");

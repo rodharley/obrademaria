@@ -173,7 +173,7 @@ function RequisicaoConsulta($tid,$idFatura)
 
 
 
-			$gu = mysql_fetch_array($test);
+			$gu = $this->DAO_GerarArray($test);
 
 			$msg = $this->XMLHeader() . "\n" .
 				   '<requisicao-consulta id="' . md5(date("YmdHisu")) . '" versao="' . VERSAO . '">' . "\n   "

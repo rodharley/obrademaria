@@ -1,6 +1,5 @@
 <?php
 class Usuario extends Persistencia{
-	var $id = NULL;
 	var $nome;
 	var $senha;
 	var $email;
@@ -72,6 +71,7 @@ class Usuario extends Persistencia{
 	
 	function getByEmail($email){
 	$sql = "select * from ag_usuario where email = '".$email."'";
+
 	$rs = $this->getSQL($sql);
 	if (count($rs) > 0)
 	$this->getById($rs[0]->id);

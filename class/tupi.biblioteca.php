@@ -1,6 +1,24 @@
 <?
 
-class Biblioteca extends Configuracao {
+class Biblioteca {
+	var $URI =  "C:/wamp64/www/obrademaria/";
+	var $HASH_URL = 'obrademariadf*12';
+	var $PASSWORDTXT = 'obrademariadf*12';
+	var $REMETENTE = "contato@obrademariadf.com.br";
+	var $TITULO = 'COMUNIDADE OBRA DE MARIA';
+	var $PAGINACAO = 10;
+	var $endpointcn = 'http://localhost/mydocs/api/index.php/';
+	var $usercn = "sistema@obrademaria.com.br";
+	var $senhacn = "$%VSDGS#g%hrdvB";
+	var $debug = true;
+	
+	
+
+	
+
+
+
+
 
 function arredondar_dois_decimal($valor) {
    $float_arredondar=round($valor * 100) / 100;
@@ -491,85 +509,6 @@ else
 
 
 
-/*
-
-================================================================
-
-	CONEXAO
-
-================================================================
-
-*/
-
-		function makeSQL($sql){
-
-		$result = mysql_query($sql)or die('
-
-		<table width="300" height="200" border="0" align="center" cellpadding="0" cellspacing="0">
-
-          <thead>
-
-		  <tr>
-
-            <td width="9" height="37"><img src="img/pc5.gif" width="9" height="37" /></td>
-
-            <td background="img/pc11.gif">Erro</td>
-
-            <td width="9"><img src="img/pc6.gif" width="9" height="37" /></td>
-
-          </tr>
-
-		  </thead>
-
-		  <tbody>
-
-          <tr>
-
-            <td background="img/pc9.gif">&nbsp;</td>
-
-            <td><table width="100%" border="0" cellspacing="0" cellpadding="8" class="tbForm">
-
-              <tr>
-
-                <td>'.mysql_error().'</td>
-
-              </tr>
-
-			  <tr>
-
-                <td>'.$sql.'</td>
-
-              </tr>
-
-            </table>
-
-              </td>
-
-            <td background="img/pc10.gif">&nbsp;</td>
-
-          </tr>
-
-		  </tbody>
-
-		  <tfoot>
-
-          <tr>
-
-            <td height="9"><img src="img/pc7.gif" width="9" height="9" /></td>
-
-            <td background="img/pc12.gif"></td>
-
-            <td><img src="img/pc8.gif" width="9" height="9" /></td>
-
-          </tr>
-
-		  </tfoot>
-
-        </table>');
-
-		return $result;
-
-		}
 
 		
 
@@ -641,17 +580,7 @@ return true;
 
 }
 
-function alertMensagens($codigo){
 
-$query = "select * from et_mensagens where idMensagem = ".$codigo;
-
-$rs = $this->makeSQL($query);
-
-echo '<script>window.alert("'.mysql_result($rs,0,'mensagem').'");</script>';
-
-return true;
-
-}
 
 function location($url,$mensagem){
 
@@ -737,7 +666,7 @@ function listObject($recset){
 
 $arrayObj = array();
 
-	while($row = mysql_fetch_array($recset)){
+	while($row = mysqli_fetch_array($recset,MYSQLI_ASSOC)){
 
 	array_push($arrayObj,$row);
 
@@ -1021,53 +950,6 @@ function uploadArquivo($file,$nomeImagem,$diretorio){
 	
 }
 
-	
-
-
-
-
-
-function alertDiv($codigo,$tipo,$urlDestino,$target,$urlImg){
-
-$query = "select * from et_mensagens where idMensagem = ".$codigo;
-
-$rs = $this->makeSQL($query);
-
-switch($tipo){
-
-case 'error':
-
-$string = '<div id="alert"><table border="0" height="100%"><tr><td align="center" valign="middle">'.mysql_result($rs,0,'mensagem').'</td></tr>
-
-<tr><td height="20">
-
-<a href="javascript:pesquisar_dados_cliente(\''.$urlDestino.'\',\''.$target.'\');"><img src="'.$urlImg.'bt/ok.gif" border="0"></a>
-
-</td></tr></table>
-
-</div>'; 
-
-break;
-
-default:
-
-$string = '<div id="alert"><table border="0" height="100%"><tr><td align="center" valign="middle">'.mysql_result($rs,0,'mensagem').'</td></tr>
-
-<tr><td height="20">
-
-<a href="javascript:pesquisar_dados_cliente(\''.$urlDestino.'\',\''.$target.'\');"><img src="'.$urlImg.'bt/ok.gif" border="0"></a>
-
-</td></tr></table>
-
-</div>'; 
-
-}
-
-return $string;
-
-}
-
-
 
 function formataCep($cep){
 
@@ -1332,7 +1214,7 @@ return str_replace("/imagens/images/",$url."/imagens/images/",$texto);
 }
 
 function antiInjection2($str) { #Remove palavras suspeitas de injection.
-$str = preg_replace(sql_regcase("/(\n|\r|%0a|%0d|Content-Type:|bcc:|to:|cc:|Autoreply:|from|select|insert|delete|where|drop table|show tables|show tables|\*|--|\\\\)/"), "", $str);
+//$str = preg_replace(sql_regcase("/(\n|\r|%0a|%0d|Content-Type:|bcc:|to:|cc:|Autoreply:|from|select|insert|delete|where|drop table|show tables|show tables|\*|--|\\\\)/"), "", $str);
 //$str = str_replace('../','',$str);
 //$str = str_replace('/&#117;s&#101;rf&#105;&#108;&#101;s/','http://img.msisites.com.br/',$str);
 
@@ -1340,7 +1222,8 @@ $str = preg_replace(sql_regcase("/(\n|\r|%0a|%0d|Content-Type:|bcc:|to:|cc:|Auto
 //$str = trim($str); # Remove espa�os vazios.
 //$str = strip_tags($str); # Remove tags HTML e PHP.
 //$str = addslashes($str); # Adiciona barras invertidas � uma string.
-return $str;
+return mysqli_real_escape_string($this->varcon,$str);
+//return $str;
 }
 
 
@@ -1465,6 +1348,6 @@ function trataRequestAntiInjection(){
 }
 
 
-}//FIM DA CLASSE
+}
 
 ?>

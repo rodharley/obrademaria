@@ -41,7 +41,7 @@ foreach($rsClientes as $key => $Cliente){
 $tpl->block("BLOCK_ITEM_LISTA");	
 }
 
-while($row = mysql_fetch_array($rsAnos)){
+while($row = $oGrupo->DAO_GerarArray($rsAnos)){
     $tpl->ID_ANO = $row['ano'];
     $tpl->LABEL_ANO = $row['ano'];  
     $tpl->block("BLOCK_ANO");   

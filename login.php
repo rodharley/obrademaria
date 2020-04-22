@@ -1,7 +1,8 @@
 <?php 
+
 include("tupi.inicializar.php");
 
-$tupi->trataRequestAntiInjection();
+//$tupi->trataRequestAntiInjection();
 unset($_SESSION['ag_nomeUsuario']);
 unset($_SESSION['ag_idUsuario']);
 unset($_SESSION['ag_perfilUsuario']);
@@ -27,11 +28,13 @@ $msg = new Mensagem();
 			
 			//executa agendamentos
 			$ag = new Agendamento();
+			if(!$ag->debug){
 			$ag->enviarEmailsAniversariantes();
 			$ag->enviarEmailsCartoesPrePagos();
 			$ag->enviarEmailsContasAPagar();
 			$ag->enviarEmailsPassaportes();
 			$ag->enviarEmailsChegadaGrupo();
+			}
 			//gera menu de acesso
 			$oAcesso = new acesso();
 			$acessos = $oAcesso->getRows(0,999,array(),array("perfil" => " = ".$user->perfil->id));

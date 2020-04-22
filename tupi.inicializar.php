@@ -9,9 +9,5 @@ header('Content-Type: text/html; charset=iso-8859-1');
 include("class/ready.php");
 
 include("vendor/autoload.php");
-
 $tupi = new Tupi();
-
-$tupi->abrirConexao();
-
 ?>

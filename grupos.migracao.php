@@ -16,7 +16,7 @@ $tpl->BREADCRUMB = '<ul class="breadcrumb">
 }
 $oGrupo = new Grupo();
 $rsAnos = $oGrupo->recuperaAnos();
-while($row = mysql_fetch_array($rsAnos)){
+while($row = $oGrupo->DAO_GerarArray($rsAnos)){
     $tpl->ID_ANO = $row['ano'];
     $tpl->LABEL_ANO = $row['ano'];  
     $tpl->block("BLOCK_ANO");   

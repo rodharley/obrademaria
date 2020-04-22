@@ -18,7 +18,7 @@ $oGrupo = new Grupo();
 $rsAnos = $oGrupo->recuperaAnos();
 //$rsGrupos = $oGrupo->getRows(0,999,array("ano"=>"desc"),array());	
 
-while($row = mysql_fetch_array($rsAnos)){
+while($row = $oGrupo->DAO_GerarArray($rsAnos)){
 	$tpl->ID_ANO = $row['ano'];
 	$tpl->LABEL_ANO = $row['ano'];	
 	$tpl->block("BLOCK_ANO");	
