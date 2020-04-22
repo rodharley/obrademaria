@@ -1,7 +1,7 @@
 <?
 
 class Biblioteca {
-	var $URI =  "C:/wamp64/www/obrademaria/";
+	/*var $URI =  "C:/wamp64/www/obrademaria/";
 	var $HASH_URL = 'obrademariadf*12';
 	var $PASSWORDTXT = 'obrademariadf*12';
 	var $REMETENTE = "contato@obrademariadf.com.br";
@@ -11,6 +11,16 @@ class Biblioteca {
 	var $usercn = "sistema@obrademaria.com.br";
 	var $senhacn = "$%VSDGS#g%hrdvB";
 	var $debug = true;
+	*/
+	var $URI =  "/home/obrademariadf/public_html/admin/";
+	var $HASH_URL = 'obrademariadf*12';
+	var $PASSWORDTXT = 'obrademariadf*12';
+	var $REMETENTE = "contato@obrademariadf.com.br";
+	var $TITULO = 'COMUNIDADE OBRA DE MARIA';
+	var $PAGINACAO = 10;
+	var $endpointcn = 'https://www.obrademariadf.com.br/mydocs/api/index.php/';
+	var $usercn = "sistema@obrademaria.com.br";
+	var $senhacn = "$%VSDGS#g%hrdvB";
 	
 	
 
