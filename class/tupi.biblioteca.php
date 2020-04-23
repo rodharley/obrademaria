@@ -18,7 +18,7 @@ class Biblioteca {
 	var $REMETENTE = "contato@obrademariadf.com.br";
 	var $TITULO = 'COMUNIDADE OBRA DE MARIA';
 	var $PAGINACAO = 10;
-	var $endpointcn = 'https://www.obrademariadf.com.br/mydocs/api/index.php/';
+	var $endpointcn = 'http://obrademariadf.com.br/mydocs/api/index.php/';
 	var $usercn = "sistema@obrademaria.com.br";
 	var $senhacn = "$%VSDGS#g%hrdvB";
 	
