@@ -21,7 +21,7 @@ class Biblioteca {
 	var $endpointcn = 'http://obrademariadf.com.br/mydocs/api/index.php/';
 	var $usercn = "sistema@obrademaria.com.br";
 	var $senhacn = "$%VSDGS#g%hrdvB";
-	
+	var $debug = false;
 	
 
 	
