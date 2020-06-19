@@ -1,0 +1,309 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="{URL_IMAGE_GRUPO}" alt="" height="140" class="shadow-sm">
+    <h2>Checkout Obra de Maria DF</h2>
+    <p class="lead">Você está adquirindo um pacote conosco, entre com seus dados e as informações</p>
+  </div>
+  <form class="needs-validation" novalidate="" action="checkoutEnd.php">
+  <div class="row">
+    <div class="col-md-6 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span >Seu Carrinho</span>
+        
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-danger" id="bt_menos">-</button>
+          <button type="button" class="btn btn-secondary" id="lbl_quantidade">{QUANTIDADE}</button>
+          <button type="button" class="btn btn-primary" id="bt_mais">+</button>
+        </div>
+        
+      </h4>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0 text-muted" >{GRUPO_NOME}</h6>
+            
+          </div>
+          <span class="text-muted">{GRUPO_VALOR_CURRENCY}</span>
+        </li>
+        <!-- BEGIN BLOCK_OPCIONAL -->
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          
+          <div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" value="1" name="opcional" class="custom-control-input" id="opcional" >
+              <label class="custom-control-label text-muted" for="opcional">{GRUPO_OPCIONAL_NOME}</label>
+            </div>
+            
+            
+          </div>
+          <span class="text-muted">{GRUPO_OPCIONAL_VALOR_CURRENCY}</span>
+        </li>
+        <!-- END BLOCK_OPCIONAL -->        
+        <li class="list-group-item d-flex justify-content-between">
+          <span class="text-muted">Total ({GRUPO_MOEDA})</span>
+          <strong class="text-muted" id="lbl_total">0,00</strong>
+        </li>
+      </ul>
+
+ 
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Código Promocional">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">Obeter Desconto</button>
+          </div>
+        </div>
+      
+      <hr class="mb-4">
+
+      <h4 class="mb-3">Pagamento</h4>
+
+      <div class="d-block my-3">
+        <div class="custom-control custom-radio">
+          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+          <label class="custom-control-label" for="credit">Cartão de crédito (GerenciaNet)</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="debit">Boleto (GerenciaNet)</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="paypal">Paypal</label>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="col-md-6 order-md-1">
+      <h4 class="mb-3">Meus Dados</h4>
+      
+        <input type="hidden" name="quantidade" id="quantidade" value="{QUANTIDADE}"/>
+        <input type="hidden" name="grupo" value="{ID_GRUPO}"/>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="cpf">CPF</label>
+            <input type="text" class="form-control" id="cpf" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error feedback-cpf">
+              Cpf requerido.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="nomecompleto">Nome Completo</label>
+            <input type="text" class="form-control" id="nomecompleto" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error">
+              Nome Completo Requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email">E-mail</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input type="email" class="form-control" id="email" placeholder="Username" required="">
+            <div class="invalid-feedback label-error" style="width: 100%;">
+              E-mail requirido.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="datanascimento">Data de Nascimento <span class="text-warning">(Opcional)</span></label>
+            <input type="text" class="form-control" id="datanascimento" placeholder="" value="">
+            
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="sexo">Sexo</label>
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="masculino" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+                <label class="custom-control-label" for="masculino">Masculino</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="feminino" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="feminino">Feminino</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Enderço</label>
+          <input type="text" class="form-control" id="address" placeholder="Rua" required="">
+          <div class="invalid-feedback label-error">
+            Please enter your shipping address.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="bairro">Bairro<span class="text-muted">(Optional)</span></label>
+          <input type="text" class="form-control" id="bairro" placeholder="Bairro">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="cep">CEP</label>
+            <input type="text" class="form-control" id="cep" placeholder="" required="">
+            <div class="invalid-feedback label-error">
+              CEP requerido.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="pais">País</label>
+            <input type="text" class="form-control" id="pais" placeholder="" required="">
+            <div class="invalid-feedback label-error">
+              País requerido.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="uf">Estado</label>
+            <select class="custom-select d-block w-100" id="uf" required="">
+              <option value="">Selecione...</option>
+              <option value="EX">Extrangeiro</option>
+              <!-- BEGIN BLOCK_ESTADO -->
+              <option value="{UF}">{UF}</option>
+              <!-- END BLOCK_ESTADO -->
+            </select>
+            <div class="invalid-feedback label-error">
+             Por favor selecione um estrado.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="cidade">Cidade</label>
+            <select class="custom-select d-block w-100" id="cidade" required="">
+              <option value="">Selecione...</option>
+          </select>
+            <div class="invalid-feedback label-error">
+              Por favor selecione um país.
+            </div>
+          </div>        
+          
+        </div>
+        <hr class="mb-4">
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="save-info">
+          <label class="custom-control-label" for="save-info">Save this information for next time</label>
+        </div>
+       
+       
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+    <hr class="mb-4">
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+  </div>
+  </div>
+</form>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2017-2018 Company Name</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+
+          document.getElementById("cpf").oninput = checkCpf;
+        }, false);
+      })();
+
+      function atualizaTela(){
+        if(haveOptional && $("#opcional").prop("checked")){
+          $("#lbl_total").html(cifrao+(floatToCurrency(quantidade*(valorPacote+valorPacoteOpcional))));
+        }else{
+        $("#lbl_total").html(cifrao+(floatToCurrency(quantidade*valorPacote)));
+        }
+
+        $("#lbl_quantidade").html($("#quantidade").val());
+      }
+
+      function floatToCurrency(valor){
+        return valor.format(2, 3, ".", ",");
+      }
+      function CurrencyToFloat(valor){
+        return parseFloat(valor);
+          
+      }
+      function checkCpf() {
+        
+        input = document.getElementById("cpf");
+        cpf = input.value.replaceAll("_","").replaceAll("-","").replaceAll(".","")
+        
+          if (valida_cpf(cpf) || cpf.length === 0) {
+            $(".feedback-cpf").html("Cpf requerido.");
+            input.setCustomValidity('');            
+          } else {
+            $(".feedback-cpf").html("Cpf Inválido.");
+            input.setCustomValidity('Cpf Inválido.');
+           }
+        }
+
+      $(document).ready(function(){
+           cifrao = '{GRUPO_MOEDA} ';
+           quantidade = {QUANTIDADE};
+           valorPacote = {GRUPO_VALOR};
+           valorPacoteOpcional = {GRUPO_OPCIONAL_VALOR};
+           cupom =0;
+           haveOptional = {GRUPO_OPCIONAL};
+        $("#bt_mais").click(function(){
+          quantidade++;
+          console.log(quantidade);
+            $("#quantidade").val(quantidade);
+            atualizaTela();
+        });
+        $("#bt_menos").click(function(){
+          if(quantidade > 1){
+            quantidade--;
+          }
+          console.log(quantidade);
+            $("#quantidade").val(quantidade);
+            atualizaTela();
+        });
+
+        $("#opcional").click(function(){
+          console.log(this.value);
+            atualizaTela();
+        });
+
+        $("#datanascimento").datepicker({ language: 'pt-BR' });
+        $("#cpf").inputmask({
+            mask: "999.999.999-99"
+        });
+
+        $('#uf').change(function(){
+    	    $('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$('#uf').val()); 
+        });
+
+
+        atualizaTela();
+      });
+    </script>

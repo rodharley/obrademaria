@@ -1,6 +1,7 @@
 {
     "require": {
         "monolog/monolog": "^1.23",
-        "mashape/unirest-php": "^3.0"
+        "mashape/unirest-php": "^3.0",
+        "gerencianet/gerencianet-sdk-php": "^2.4"
     }
 }

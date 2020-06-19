@@ -257,7 +257,7 @@ class Persistencia extends Biblioteca{
                     }
                     
                     $sql = "select ".$this->getFieldsList($elemento)." from ".$elemento['tbname']." $where $ordenacao limit $init, $limit";
-    
+
                     $rs =  $this->DAO_ExecutarQuery($sql);
                     $arrayItens = array();
                     if($this->DAO_NumeroLinhas($rs) > 0){
