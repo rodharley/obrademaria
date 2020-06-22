@@ -43,15 +43,11 @@
           <span class="text-muted">Total ({GRUPO_MOEDA})</span>
           <strong class="text-muted" id="lbl_total">0,00</strong>
         </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span class="text-muted">Total R$</span>
+          <strong class="text-muted" id="lbl_total_real">0,00</strong>
+        </li>
       </ul>
-
- 
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Código Promocional">
-          <div class="input-group-append">
-            <button type="submit" class="btn btn-secondary">Obeter Desconto</button>
-          </div>
-        </div>
       
       <hr class="mb-4">
 
@@ -368,11 +364,13 @@ function blockAcomp(numero,disabled){
           $("#boxAcompanhante").show();
         }
         if(haveOptional && $("#opcional").prop("checked")){
-          $("#lbl_total").html(cifrao+(floatToCurrency(quantidade*(valorPacote+valorPacoteOpcional))));
+          totalGeral = quantidade*(valorPacote+valorPacoteOpcional);
+          
         }else{
-        $("#lbl_total").html(cifrao+(floatToCurrency(quantidade*valorPacote)));
+          totalGeral =quantidade*valorPacote;
         }
-
+        $("#lbl_total").html(cifrao+floatToCurrency((totalGeral)));
+        $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral*cotacoes.USD.ask)));
         $("#lbl_quantidade").html($("#quantidade").val());
       }
 
@@ -382,6 +380,16 @@ function blockAcomp(numero,disabled){
       function CurrencyToFloat(valor){
         return parseFloat(valor);
           
+      }
+
+      function getCotacoes(){
+        $.get("https://economia.awesomeapi.com.br/all/USD-BRL,EUR-BRL,BTC-BRL",
+        function(data, status){
+          console.log("Data: " + data + "\nStatus: " + status);
+          cotacoes = data;
+          atualizaTela();
+        }
+        );
       }
       function checkCpf() {
         
@@ -398,6 +406,7 @@ function blockAcomp(numero,disabled){
         }
 
       $(document).ready(function(){
+           cotacoes = null;
            cifrao = '{GRUPO_MOEDA} ';
            quantidade = {QUANTIDADE};
            valorPacote = {GRUPO_VALOR};
@@ -434,7 +443,13 @@ function blockAcomp(numero,disabled){
     	    $('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$('#uf').val()); 
         });
 
+        $('.page-loader-wrapper').fadeOut();
+      $(document).ajaxStart(function() {
+        setTimeout(function() { $('.page-loader-wrapper').fadeIn(); }, 50);
+    }).ajaxStop(function() {
+        setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
+		});
 
-        atualizaTela();
+        getCotacoes();
       });
     </script>

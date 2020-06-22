@@ -47,7 +47,35 @@ String.prototype.replaceAll = String.prototype.replaceAll || function(needle, re
     <link href="plugins/font-awesome/css/all.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style>
-        .container {
+
+.page-loader-wrapper {
+    z-index: 99999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: sienna;
+    overflow: hidden;
+    text-align: center;
+}
+
+.page-loader-wrapper p {
+    font-size: 13px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.page-loader-wrapper .loader {
+    position: relative;
+    top: calc(50% - 30px);
+}
+
+
+.container {
   max-width: 960px;
 }
 
@@ -79,6 +107,14 @@ body {
   </head>
 
   <body class="bg-light" >
+    <div class="page-loader-wrapper">
+      <div class="loader">
+          <div class="preloader">
+            <i class="fas fa-spinner" aria-hidden="true"></i>
+          </div>
+          <p>Aguarde...</p>
+      </div>
+    </div>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-navbar shadow-lg flex-column flex-md-row">
       <a class="navbar-brand" href="#">
         <img src="img/checkout/obra-logo-branco.png" height="55"/>
