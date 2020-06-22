@@ -4,7 +4,7 @@
     <h2>Checkout Obra de Maria DF</h2>
     <p class="lead">Você está adquirindo um pacote conosco, entre com seus dados e as informações</p>
   </div>
-  <form class="needs-validation" novalidate="" action="checkoutEnd.php">
+  <form class="needs-validation" novalidate="" action="checkoutEnd.php" method="POST">
   <div class="row">
     <div class="col-md-6 order-md-2 mb-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -59,15 +59,15 @@
 
       <div class="d-block my-3">
         <div class="custom-control custom-radio">
-          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+          <input value="1" id="credit" name="pagamento" type="radio" class="custom-control-input" checked="" required="">
           <label class="custom-control-label" for="credit">Cartão de crédito (GerenciaNet)</label>
         </div>
         <div class="custom-control custom-radio">
-          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
+          <input value="2" id="debit" name="pagamento" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="debit">Boleto (GerenciaNet)</label>
         </div>
         <div class="custom-control custom-radio">
-          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
+          <input value="3" id="paypal" name="pagamento" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="paypal">Paypal</label>
         </div>
       </div>
@@ -105,12 +105,108 @@
             <div class="input-group-prepend">
               <span class="input-group-text">@</span>
             </div>
-            <input type="email" class="form-control" id="email" placeholder="Username" required="">
+            <input type="email" class="form-control" id="email" placeholder="email" required="">
             <div class="invalid-feedback label-error" style="width: 100%;">
               E-mail requirido.
             </div>
           </div>
         </div>
+        <div id="boxAcompanhante">
+        <h4 class="mb-3">Acompanhantes</h4>
+
+        <div class="row" id="acomp1">          
+          <div class="col-md-6 mb-3">
+            <label for="nomecompleto">Nome Acompanhante 1</label>
+            <input type="text" class="form-control" id="acompanhante1" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error">
+              Nomes acompanhante 1 Requerido.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="email">E-mail acompanhante 1</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">@</span>
+              </div>
+              <input type="email" class="form-control" id="email1" placeholder="email acompanhante 1" required="">
+              <div class="invalid-feedback label-error" style="width: 100%;">
+                E-mail acompanhante 1 requirido.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row" id="acomp2">          
+          <div class="col-md-6 mb-3">
+            <label for="nomecompleto">Nome Acompanhante 2</label>
+            <input type="text" class="form-control" id="acompanhante2" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error">
+              Nomes acompanhante 2 Requerido.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="email">E-mail acompanhante 2</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">@</span>
+              </div>
+              <input type="email" class="form-control" id="email2" placeholder="email acompanhante 2" required="">
+              <div class="invalid-feedback label-error" style="width: 100%;">
+                E-mail acompanhante 2 requirido.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row" id="acomp3">          
+          <div class="col-md-6 mb-3">
+            <label for="nomecompleto">Nome Acompanhante 3</label>
+            <input type="text" class="form-control" id="acompanhante3" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error">
+              Nomes acompanhante 3 Requerido.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="email">E-mail acompanhante 3</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">@</span>
+              </div>
+              <input type="email" class="form-control" id="email3" placeholder="email acompanhante 3" required="">
+              <div class="invalid-feedback label-error" style="width: 100%;">
+                E-mail acompanhante 3 requirido.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row" id="acomp4">          
+          <div class="col-md-6 mb-3">
+            <label for="nomecompleto">Nome Acompanhante 4</label>
+            <input type="text" class="form-control" id="acompanhante4" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error">
+              Nomes acompanhante 4 Requerido.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="email">E-mail acompanhante 4</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">@</span>
+              </div>
+              <input type="email" class="form-control" id="email4" placeholder="email acompanhante 4" required="">
+              <div class="invalid-feedback label-error" style="width: 100%;">
+                E-mail acompanhante 4 requirido.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="datanascimento">Data de Nascimento <span class="text-warning">(Opcional)</span></label>
@@ -121,11 +217,11 @@
             <label for="sexo">Sexo</label>
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input id="masculino" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+                <input value="m" id="masculino" name="sexo"  type="radio" class="custom-control-input" checked="" required="">
                 <label class="custom-control-label" for="masculino">Masculino</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="feminino" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                <input value="f" id="feminino" name="sexo"  type="radio" class="custom-control-input" required="">
                 <label class="custom-control-label" for="feminino">Feminino</label>
               </div>
             </div>
@@ -141,7 +237,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="bairro">Bairro<span class="text-muted">(Optional)</span></label>
+          <label for="bairro">Bairro<span class="text-warning">(Optional)</span></label>
           <input type="text" class="form-control" id="bairro" placeholder="Bairro">
         </div>
         <div class="row">
@@ -185,15 +281,7 @@
           </div>        
           
         </div>
-        <hr class="mb-4">
-
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="save-info">
-          <label class="custom-control-label" for="save-info">Save this information for next time</label>
-        </div>
-       
-       
-    </div>
+      </div>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -236,7 +324,49 @@
         }, false);
       })();
 
+function blockAcomp(numero,disabled){
+  let nome = $("#acompanhante"+numero);
+  let email = $("#email"+numero);
+  if(disabled){
+  nome.attr('disabled',disabled);
+  email.attr('disabled',disabled);
+  }else{
+  nome.removeAttr('disabled');
+  email.removeAttr('disabled');
+  }
+}
+
       function atualizaTela(){
+        if(quantidade == 1){
+          $("#boxAcompanhante").hide();
+          blockAcomp(1,true);
+          blockAcomp(2,true);
+          blockAcomp(3,true);
+          blockAcomp(4,true);
+        }else{
+          if(quantidade == 2){
+            blockAcomp(1,false);
+            blockAcomp(2,true);
+            blockAcomp(3,true);
+            blockAcomp(4,true);
+          }else if(quantidade == 3){
+            blockAcomp(1,false);
+            blockAcomp(2,false);
+            blockAcomp(3,true);
+            blockAcomp(4,true);
+          }else if(quantidade == 4){
+            blockAcomp(1,false);
+            blockAcomp(2,false);
+            blockAcomp(3,false);
+            blockAcomp(4,true);
+          }else{
+            blockAcomp(1,false);
+            blockAcomp(2,false);
+            blockAcomp(3,false);
+            blockAcomp(4,false);
+          }
+          $("#boxAcompanhante").show();
+        }
         if(haveOptional && $("#opcional").prop("checked")){
           $("#lbl_total").html(cifrao+(floatToCurrency(quantidade*(valorPacote+valorPacoteOpcional))));
         }else{
@@ -275,10 +405,11 @@
            cupom =0;
            haveOptional = {GRUPO_OPCIONAL};
         $("#bt_mais").click(function(){
+          if(quantidade < 5 ){
           quantidade++;
-          console.log(quantidade);
-            $("#quantidade").val(quantidade);
-            atualizaTela();
+          }
+          $("#quantidade").val(quantidade);
+          atualizaTela();
         });
         $("#bt_menos").click(function(){
           if(quantidade > 1){
