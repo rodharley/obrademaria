@@ -32,7 +32,7 @@ function enviarEmailTeste(){
 			while($linha = $this->DAO_GerarArray($rs)){
 			$email = '<table width="600" border="0" cellspacing="0" cellpadding="6" align="center">
 			  <tr>
-				<td background="http://www.obrademariadf.com.br/admin/docs/cartao1.jpg" height="534" align="right"  valign="top"><font color="#FFFFFF" size="+2" face="Palatino Linotype, Book Antiqua, Palatino, serif">'.$linha['nomeCompleto'].'</font></td>
+				<td background="http://www.obrademariadf.com.br/admin/docs/cartao1.jpg" height="534" align="right"  valign="top"><font color="#053055" size="+2" face="Palatino Linotype, Book Antiqua, Palatino, serif">'.$linha['nomeCompleto'].'</font></td>
 			  </tr>
 			</table>';
 
