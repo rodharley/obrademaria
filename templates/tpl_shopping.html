@@ -8,13 +8,12 @@
     <meta name="author" content="">
     <link rel="icon" href="img/favicon.png">
 
-    <title>Checkout Obra de Maria DF</title>
+    <title>Vendas Obra de Maria DF</title>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="plugins/jquery/jquery-3.5.1.min.js"></script>
-    <script src="plugins/popper/popper.min.js"></script>
     <script src="plugins/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
     <script src="plugins/imsky-holder-8220898/holder.min.js"></script>
     <script src="plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
@@ -22,14 +21,6 @@
     <script src="plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
     <script src="js/scripts.js"></script>
     <script>
-      /**
- * Number.prototype.format(n, x, s, c)
- * 
- * @param integer n: length of decimal
- * @param integer x: length of whole part
- * @param mixed   s: sections delimiter
- * @param mixed   c: decimal delimiter
- */
 Number.prototype.format = function(n, x, s, c) {
     var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
         num = this.toFixed(Math.max(0, ~~n));
@@ -40,6 +31,14 @@ Number.prototype.format = function(n, x, s, c) {
 String.prototype.replaceAll = String.prototype.replaceAll || function(needle, replacement) {
     return this.split(needle).join(replacement);
 };
+$(document).ready(function(){
+$('.page-loader-wrapper').fadeOut();
+      $(document).ajaxStart(function() {
+        setTimeout(function() { $('.page-loader-wrapper').fadeIn(); }, 50);
+    }).ajaxStop(function() {
+        setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
+		});
+});
     </script>
     <!-- Bootstrap core CSS -->
     <link href="plugins/bootstrap-4.5.0-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -94,11 +93,33 @@ String.prototype.replaceAll = String.prototype.replaceAll || function(needle, re
   border-radius: 5px;
 }
 body {
-  padding-top: 50px;
+ 
   background-image: url('http://www.obrademariadf.com.br/wp-content/uploads/2018/01/BANNER-revista2-01.jpg');
   background-attachment: fixed;
   color: #ffffff;
   font-weight: 400;
+}
+@media (min-width: 576px) {
+  body {
+    padding-top: 130px;
+  }
+}
+@media (min-width: 768px) {
+  body {
+    padding-top: 50px;;
+  }
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 50px;
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    padding-top: 50px;
+  }
 }
 .bg-navbar {
   background-color: sienna !important;
@@ -120,7 +141,7 @@ body {
         <img src="img/checkout/obra-logo-branco.png" height="55"/>
       </a>
       <span class="navbar-text">
-        Checkout Obra de Maria DF
+        Vendas Obra de Maria DF
       </span>
       <ul class="navbar-nav ml-md-auto">
        
@@ -136,8 +157,14 @@ body {
       </div>
     </nav>
     {CONTEUDO}
-
-    
-  
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">© 2020 Obra de Maria DF</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacidade</a></li>
+        <li class="list-inline-item"><a href="#">Termos de uso</a></li>
+        <li class="list-inline-item"><a href="#">Suporte</a></li>
+      </ul>
+    </footer>
+  </div>  
 
 </body></html>

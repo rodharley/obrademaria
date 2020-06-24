@@ -138,6 +138,7 @@ set
 		<atrib tbname="cpf" type="txt">cpf</atrib>
 
 		<atrib tbname="estadoCivil" type="fk" lazy="true" clrelation="EstadoCivil">estadoCivil</atrib>
+		<atrib tbname="cidade" type="fk" lazy="true" clrelation="Cidade">ocidadeEndereco</atrib>
 
 		<atrib tbname="dataNascimento" type="txt">dataNascimento</atrib>
 
@@ -195,7 +196,7 @@ set
 		<atrib tbname="image_passaporte" type="txt">imagePassaporte</atrib>
 		<atrib tbname="preferencial" type="int">preferencial</atrib>
 		<atrib tbname="bitEnviaCorrespondencia" type="int">enviaCorrespondencia</atrib>
-		
+		<atrib tbname="site" type="int">site</atrib>
 	</class>
 
 	<class name="CompanhiaAerea" tbname="ag_companhiaaerea" tbid="id" lazy="false">
@@ -288,6 +289,27 @@ set
 		<atrib tbname="descricao" type="txt">descricao</atrib>		
 
 	</class>
+
+<class name="GerenciaNetCheckOut" tbname="ag_gerencianet" tbid="id" lazy="true">
+
+		<atrib tbname="id" type="id">id</atrib>
+
+		<atrib tbname="idParticipante" type="fk" lazy="true" clrelation="Participante">participante</atrib>
+
+		<atrib tbname="charge_id" type="int">charge_id</atrib>		
+
+		<atrib tbname="total" type="int">total</atrib>
+
+		<atrib tbname="status" type="txt">status</atrib>		
+
+		<atrib tbname="created_at" type="txt">created_at</atrib>		
+
+		<atrib tbname="update_at" type="txt">update_at</atrib>
+		<atrib tbname="payment_url" type="txt">payment_url</atrib>
+		<atrib tbname="payment_method" type="txt">payment_method</atrib>
+		<atrib tbname="token" type="txt">token</atrib>
+	</class>
+
 
 	<class name="Grupo" tbname="ag_grupo" tbid="id" lazy="true">
 

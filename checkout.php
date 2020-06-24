@@ -18,9 +18,10 @@ if(isset($_REQUEST['idGrupo'])){
     $tpl->URL_IMAGE_GRUPO = $_REQUEST['foto'];
     $tpl->GRUPO_NOME = $oGrupo->nomePacote;
     $tpl->QUANTIDADE = 1;
+    $tpl->GRUPO_IDMOEDA = $oGrupo->moeda->id;
     $tpl->GRUPO_VALOR = $oGrupo->getValorTotal(0);
     $tpl->GRUPO_VALOR_CURRENCY = $oGrupo->money($oGrupo->getValorTotal(0),"atb");
-
+    $tpl->ID_GRUPO = $oGrupo->id;
     if($oGrupo->possuiPacoteOpcional ==1){
         $tpl->GRUPO_OPCIONAL_NOME = $oGrupo->nomePacoteOpcional;
         $tpl->GRUPO_OPCIONAL_VALOR = $oGrupo->getValorTotalOpcional();

@@ -48,4 +48,5 @@ include("modelo.LogParticipante.php");
 include("modelo.LogUsuario.php");
 include("modelo.Agendamento.php");
 include("modelo.Ticket.php");
+include("modelo.GerenciaNetCheckOut.php");
 ?>

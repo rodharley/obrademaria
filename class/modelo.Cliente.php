@@ -4,6 +4,7 @@ class Cliente extends Persistencia{
 	var $nomeCompleto;
 	var $cpf;
 	var $estadoCivil = NULL;
+	var $ocidadeEndereco = NULL;
 	var $dataNascimento;
 	var $sexo;
 	var $endereco;
@@ -33,6 +34,7 @@ class Cliente extends Persistencia{
 	var $estadoNascimento;
 	var $preferencial;
 	var $enviaCorrespondencia;
+	var $site;
 	var $imagePassaporte;
 	
 	public function recuperaTotal($busca){
@@ -512,7 +514,63 @@ class Cliente extends Persistencia{
  		return $dias_diferenca;
 	}
 	
-	
+	function saveBySite($request){
+		$obCidade  = new Cidade();
+		$obCidade->getById($request['cidade']);
+			
+		
+		$this->getByCpf($this->limpaDigitos($request['cpf']));
+		//cadastra o cliente no banco
+		$this->nomeCompleto = $request['nomeCompleto'];
+		$this->cpf = $this->limpaDigitos($request['cpf']);
+		$this->email = $request['email'];
+		$this->dataNascimento = $this->convdata($request['datanascimento'],"ntm");
+		$this->sexo = $request['sexo'];
+		$this->endereco = $request['endereco'];
+		$this->bairro = $request['bairro'];
+		$this->ocidadeEndereco = $obCidade->id != null ? $obCidade : null;
+		$this->cidadeEndereco = $obCidade->id != null ? $obCidade->nome : '';
+		$this->estadoEndereco = $obCidade->id != null ? $obCidade->siglaUf : '';
+		$this->paisEndereco = $request['pais'];
+		$this->cep = $this->limpaDigitos($request['cep']);
+		$this->preferencial = 0;
+		$this->enviaCorrespondencia = isset($request['mailmarketing']) ? 1 : 0;
+		$oEstadoCivil = new EstadoCivil();
+					$oEstadoCivil->id = 8;
+		$this->estadoCivil = $oEstadoCivil;
+		$this->site = 1;
+		$idCliente = $this->save();
+		return $idCliente;
+	}
+
+	function saveAcompanhanteBySite($nome,$email,$marketing){
+		//cadastra o cliente no banco
+		$this->nomeCompleto = $nome;
+		$this->cpf = '';
+		$this->email = $email;
+		$this->preferencial = 0;
+		$this->enviaCorrespondencia = isset($marketing);
+		$oEstadoCivil = new EstadoCivil();
+					$oEstadoCivil->id = 8;
+		$this->estadoCivil = $oEstadoCivil;
+		$this->site = 1;
+		$idCliente = $this->save();
+		return $idCliente;
+	}
+
+	function gravaLogCliente($mensagem){
+		//grava log de pagamento
+		$oLog = new LogUsuario();
+		$usuario = new Usuario();
+		$usuario->id = $_SESSION['ag_idUsuario'];
+		$data = date("Y-m-d H:i:s");
+		$movimento = $mensagem;
+		$oLog->usuario = $usuario;
+		$oLog->data = $data;
+		$oLog->movimento = $movimento;
+		$oLog->save();		
+		//fim da log
+	}
 
 }
 ?>

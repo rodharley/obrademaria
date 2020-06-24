@@ -7,7 +7,7 @@ $arrayfiltro  = array("siglaUf"=>" = '".$_REQUEST['idUf']."'");
 $arrayorderm  = array("nome"=>"ASC");
 $cidades = $oCidade->getRows(0,999,$arrayorderm,$arrayfiltro);
 
-echo '<option value="" selected="selected">Selecione...</option>';
+echo '<option value="0" selected="selected">Selecione...</option>';
 foreach($cidades as $key => $cidade){
 echo '<option value="'.$cidade->id.'">'.$cidade->nome.'</option>';	
 }

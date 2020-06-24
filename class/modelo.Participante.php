@@ -648,5 +648,21 @@ class Participante extends Persistencia{
 
 		return $total;
 	}
+
+	public function saveBySite($obGrupo,$obCliente,$opcional){
+		$this->dataInscricao = date("Y-m-d");
+		$this->valorTotal = $obGrupo->getValorTotal($opcional);
+		$this->custoTotal = $obGrupo->getCustoTotal($opcional);
+		$this->grupo = $obGrupo;
+		$this->cliente = $obCliente;
+		$this->idcn = 0;
+		$this->contrato = "";//$this->geraContrato();
+		$this->pacoteOpcional = $opcional;
+		$oSP = new StatusParticipante();
+		$oSP->id = $this->STATUS_PENDENTE();
+		$this->status = $oSP;
+		$newid = $this->save();
+		return $newid;
+	}
 }
 ?>

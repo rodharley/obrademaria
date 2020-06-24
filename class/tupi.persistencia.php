@@ -1,5 +1,6 @@
 <?php
-class Persistencia extends Biblioteca{
+
+class Persistencia extends Biblioteca {
     public $id = NULL;
 	public $mensagem;
 	public $conn;   

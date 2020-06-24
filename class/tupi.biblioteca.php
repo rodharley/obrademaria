@@ -1,14 +1,6 @@
 <?
 
 class Biblioteca extends Configuracao{
-	
-	
-
-	
-
-
-
-
 
 function arredondar_dois_decimal($valor) {
    $float_arredondar=round($valor * 100) / 100;

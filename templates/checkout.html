@@ -1,10 +1,10 @@
 <div class="container">
   <div class="py-5 text-center">
     <img class="d-block mx-auto mb-4" src="{URL_IMAGE_GRUPO}" alt="" height="140" class="shadow-sm">
-    <h2>Checkout Obra de Maria DF</h2>
+    <h2>Vendas - Obra de Maria DF</h2>
     <p class="lead">Você está adquirindo um pacote conosco, entre com seus dados e as informações</p>
   </div>
-  <form class="needs-validation" novalidate="" action="checkoutEnd.php" method="POST">
+  <form class="needs-validation submit" novalidate="" action="#" id="form" >
   <div class="row">
     <div class="col-md-6 order-md-2 mb-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -51,21 +51,21 @@
       
       <hr class="mb-4">
 
-      <h4 class="mb-3">Pagamento</h4>
+      <h4 class="mb-3">Tipo de Pagamento</h4>
 
       <div class="d-block my-3">
         <div class="custom-control custom-radio">
-          <input value="1" id="credit" name="pagamento" type="radio" class="custom-control-input" checked="" required="">
+          <input value="credit_card" id="credit" name="pagamento" type="radio" class="custom-control-input" checked="" required="">
           <label class="custom-control-label" for="credit">Cartão de crédito (GerenciaNet)</label>
         </div>
         <div class="custom-control custom-radio">
-          <input value="2" id="debit" name="pagamento" type="radio" class="custom-control-input" required="">
+          <input value="banking_billet" id="debit" name="pagamento" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="debit">Boleto (GerenciaNet)</label>
         </div>
-        <div class="custom-control custom-radio">
+        <!--div class="custom-control custom-radio">
           <input value="3" id="paypal" name="pagamento" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="paypal">Paypal</label>
-        </div>
+        </div-->
       </div>
     </div>
 
@@ -77,18 +77,18 @@
       <h4 class="mb-3">Meus Dados</h4>
       
         <input type="hidden" name="quantidade" id="quantidade" value="{QUANTIDADE}"/>
-        <input type="hidden" name="grupo" value="{ID_GRUPO}"/>
+        <input type="hidden" name="idGrupo" value="{ID_GRUPO}"/>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="cpf">CPF</label>
-            <input type="text" class="form-control" id="cpf" placeholder="" value="" required="">
+            <input value="00007311966" name="cpf" type="text" class="form-control" id="cpf" placeholder="" value="" required="">
             <div class="invalid-feedback label-error feedback-cpf">
               Cpf requerido.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="nomecompleto">Nome Completo</label>
-            <input type="text" class="form-control" id="nomecompleto" placeholder="" value="" required="">
+            <input value="Rodrigo Cruz" name="nomeCompleto" type="text" class="form-control" id="nomecompleto" placeholder="" value="" required="">
             <div class="invalid-feedback label-error">
               Nome Completo Requerido.
             </div>
@@ -101,7 +101,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">@</span>
             </div>
-            <input type="email" class="form-control" id="email" placeholder="email" required="">
+            <input value="rodrigo.cruz76@gmail.com" name="email" type="email" class="form-control" id="email" placeholder="email" required="">
             <div class="invalid-feedback label-error" style="width: 100%;">
               E-mail requirido.
             </div>
@@ -113,7 +113,7 @@
         <div class="row" id="acomp1">          
           <div class="col-md-6 mb-3">
             <label for="nomecompleto">Nome Acompanhante 1</label>
-            <input type="text" class="form-control" id="acompanhante1" placeholder="" value="" required="">
+            <input value="nome acompanhante1" name="acompanhante1" type="text" class="form-control" id="acompanhante1" placeholder="" value="" required="">
             <div class="invalid-feedback label-error">
               Nomes acompanhante 1 Requerido.
             </div>
@@ -124,7 +124,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">@</span>
               </div>
-              <input type="email" class="form-control" id="email1" placeholder="email acompanhante 1" required="">
+              <input value="emailacomanhante1@gmail.com" name="email1" type="email" class="form-control" id="email1" placeholder="email acompanhante 1" required="">
               <div class="invalid-feedback label-error" style="width: 100%;">
                 E-mail acompanhante 1 requirido.
               </div>
@@ -136,7 +136,7 @@
         <div class="row" id="acomp2">          
           <div class="col-md-6 mb-3">
             <label for="nomecompleto">Nome Acompanhante 2</label>
-            <input type="text" class="form-control" id="acompanhante2" placeholder="" value="" required="">
+            <input type="text" class="form-control" name="acompanhante2" id="acompanhante2" placeholder="" value="" required="">
             <div class="invalid-feedback label-error">
               Nomes acompanhante 2 Requerido.
             </div>
@@ -147,7 +147,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">@</span>
               </div>
-              <input type="email" class="form-control" id="email2" placeholder="email acompanhante 2" required="">
+              <input type="email" class="form-control" name="email2" id="email2" placeholder="email acompanhante 2" required="">
               <div class="invalid-feedback label-error" style="width: 100%;">
                 E-mail acompanhante 2 requirido.
               </div>
@@ -159,7 +159,7 @@
         <div class="row" id="acomp3">          
           <div class="col-md-6 mb-3">
             <label for="nomecompleto">Nome Acompanhante 3</label>
-            <input type="text" class="form-control" id="acompanhante3" placeholder="" value="" required="">
+            <input type="text" class="form-control" name="acompanhante3" id="acompanhante3" placeholder="" value="" required="">
             <div class="invalid-feedback label-error">
               Nomes acompanhante 3 Requerido.
             </div>
@@ -170,7 +170,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">@</span>
               </div>
-              <input type="email" class="form-control" id="email3" placeholder="email acompanhante 3" required="">
+              <input type="email" class="form-control" name="email3" id="email3" placeholder="email acompanhante 3" required="">
               <div class="invalid-feedback label-error" style="width: 100%;">
                 E-mail acompanhante 3 requirido.
               </div>
@@ -182,7 +182,7 @@
         <div class="row" id="acomp4">          
           <div class="col-md-6 mb-3">
             <label for="nomecompleto">Nome Acompanhante 4</label>
-            <input type="text" class="form-control" id="acompanhante4" placeholder="" value="" required="">
+            <input type="text" class="form-control" name="acompanhante4" id="acompanhante4" placeholder="" value="" required="">
             <div class="invalid-feedback label-error">
               Nomes acompanhante 4 Requerido.
             </div>
@@ -193,31 +193,29 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">@</span>
               </div>
-              <input type="email" class="form-control" id="email4" placeholder="email acompanhante 4" required="">
+              <input type="email" class="form-control" name="email4" id="email4" placeholder="email acompanhante 4" required="">
               <div class="invalid-feedback label-error" style="width: 100%;">
                 E-mail acompanhante 4 requirido.
               </div>
             </div>
           </div>
         </div>
-
-
-      </div>
+        </div>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="datanascimento">Data de Nascimento <span class="text-warning">(Opcional)</span></label>
-            <input type="text" class="form-control" id="datanascimento" placeholder="" value="">
+            <input value="12/03/1976" type="text" name="datanascimento" class="form-control" id="datanascimento" placeholder="" value="">
             
           </div>
           <div class="col-md-6 mb-3">
             <label for="sexo">Sexo</label>
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input value="m" id="masculino" name="sexo"  type="radio" class="custom-control-input" checked="" required="">
+                <input checked value="M" id="masculino" name="sexo"  type="radio" class="custom-control-input" checked="" required="">
                 <label class="custom-control-label" for="masculino">Masculino</label>
               </div>
               <div class="custom-control custom-radio">
-                <input value="f" id="feminino" name="sexo"  type="radio" class="custom-control-input" required="">
+                <input value="F" id="feminino" name="sexo"  type="radio" class="custom-control-input" required="">
                 <label class="custom-control-label" for="feminino">Feminino</label>
               </div>
             </div>
@@ -226,7 +224,7 @@
 
         <div class="mb-3">
           <label for="address">Enderço</label>
-          <input type="text" class="form-control" id="address" placeholder="Rua" required="">
+          <input value="sqn 405 bloco h apt 307" name="endereco" type="text" class="form-control" id="endereco" placeholder="Rua" required="">
           <div class="invalid-feedback label-error">
             Please enter your shipping address.
           </div>
@@ -234,19 +232,19 @@
 
         <div class="mb-3">
           <label for="bairro">Bairro<span class="text-warning">(Optional)</span></label>
-          <input type="text" class="form-control" id="bairro" placeholder="Bairro">
+          <input value="asa norte" type="text" name="bairro" class="form-control" id="bairro" placeholder="Bairro">
         </div>
         <div class="row">
           <div class="col-md-6">
             <label for="cep">CEP</label>
-            <input type="text" class="form-control" id="cep" placeholder="" required="">
+            <input value="70846080" type="text" name="cep" class="form-control" id="cep" placeholder="" required="">
             <div class="invalid-feedback label-error">
               CEP requerido.
             </div>
           </div>
           <div class="col-md-6">
             <label for="pais">País</label>
-            <input type="text" class="form-control" id="pais" placeholder="" required="">
+            <input value="Brasil" type="text" name="pais" class="form-control" id="pais" placeholder="" required="">
             <div class="invalid-feedback label-error">
               País requerido.
             </div>
@@ -255,7 +253,7 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="uf">Estado</label>
-            <select class="custom-select d-block w-100" id="uf" required="">
+            <select name="uf" class="custom-select d-block w-100" id="uf" required="">
               <option value="">Selecione...</option>
               <option value="EX">Extrangeiro</option>
               <!-- BEGIN BLOCK_ESTADO -->
@@ -268,7 +266,7 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="cidade">Cidade</label>
-            <select class="custom-select d-block w-100" id="cidade" required="">
+            <select name="cidade" class="custom-select d-block w-100" id="cidade" required="">
               <option value="">Selecione...</option>
           </select>
             <div class="invalid-feedback label-error">
@@ -277,23 +275,23 @@
           </div>        
           
         </div>
+        <hr class="mb-4">
+        <div class="custom-control custom-checkbox">
+          <input value="1" type="checkbox" class="custom-control-input" id="mailmarketing" name="mailmarketing">
+          <label class="custom-control-label" for="mailmarketing">Receber emails da Obra de Maria DF</label>
+        </div>
+    
       </div>
-  </div>
+
+    </div>
+    
   <div class="row">
     <div class="col-md-12">
     <hr class="mb-4">
-    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+    <button class="btn btn-primary btn-lg btn-block" type="submit" >Finalizar Compra</button>
   </div>
   </div>
 </form>
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">© 2017-2018 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
 </div>
 
 <script>
@@ -311,6 +309,10 @@
               if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
+              }else{
+                event.preventDefault();
+                event.stopPropagation();
+                postform();
               }
               form.classList.add('was-validated');
             }, false);
@@ -370,7 +372,11 @@ function blockAcomp(numero,disabled){
           totalGeral =quantidade*valorPacote;
         }
         $("#lbl_total").html(cifrao+floatToCurrency((totalGeral)));
+        if(idmoeda != 2){
         $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral*cotacoes.USD.ask)));
+        }else{
+          $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral)));
+        }
         $("#lbl_quantidade").html($("#quantidade").val());
       }
 
@@ -383,9 +389,10 @@ function blockAcomp(numero,disabled){
       }
 
       function getCotacoes(){
+        
         $.get("https://economia.awesomeapi.com.br/all/USD-BRL,EUR-BRL,BTC-BRL",
         function(data, status){
-          console.log("Data: " + data + "\nStatus: " + status);
+          
           cotacoes = data;
           atualizaTela();
         }
@@ -405,14 +412,48 @@ function blockAcomp(numero,disabled){
            }
         }
 
+
+        function postform(){
+            let form = $("#form").serialize();
+            
+            //funcao de sucesso
+            var funcSuccess = function(data) {
+            if(data.code == 200){
+              window.location.href="bilhete.php?charge_id="+data.data.charge_id;
+            
+            }else{
+              alert("Erro encontrado\n"+data.data.mensagem);
+            }
+            }
+            //funcao de erro
+            var funcDefaultError = function(erro) {
+            console.log(erro.status + '-' + erro.responseText);
+            }
+            postJson('ajax/shopping/checkout.php',form,funcSuccess,funcDefaultError);
+           
+        }
+
+        function postJson(url, data, sucesso, erro) {
+            $.ajax({
+                    type: "POST",
+                    url: url,
+                    dataType: "json",
+                    data: data
+                })
+                .done(sucesso)
+                .fail(erro);
+        }
+
       $(document).ready(function(){
            cotacoes = null;
            cifrao = '{GRUPO_MOEDA} ';
+           idmoeda = {GRUPO_IDMOEDA};
            quantidade = {QUANTIDADE};
            valorPacote = {GRUPO_VALOR};
            valorPacoteOpcional = {GRUPO_OPCIONAL_VALOR};
            cupom =0;
            haveOptional = {GRUPO_OPCIONAL};
+           
         $("#bt_mais").click(function(){
           if(quantidade < 5 ){
           quantidade++;
@@ -424,13 +465,13 @@ function blockAcomp(numero,disabled){
           if(quantidade > 1){
             quantidade--;
           }
-          console.log(quantidade);
+          
             $("#quantidade").val(quantidade);
             atualizaTela();
         });
 
         $("#opcional").click(function(){
-          console.log(this.value);
+          
             atualizaTela();
         });
 
@@ -439,17 +480,19 @@ function blockAcomp(numero,disabled){
             mask: "999.999.999-99"
         });
 
+        $("#cep").inputmask({
+            mask: "99.999-999"
+        });
+
         $('#uf').change(function(){
     	    $('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$('#uf').val()); 
         });
 
-        $('.page-loader-wrapper').fadeOut();
-      $(document).ajaxStart(function() {
-        setTimeout(function() { $('.page-loader-wrapper').fadeIn(); }, 50);
-    }).ajaxStop(function() {
-        setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
-		});
+       
+       
 
         getCotacoes();
       });
+
+
     </script>
