@@ -9,6 +9,14 @@ $cidades = $oCidade->getRows(0,999,$arrayorderm,$arrayfiltro);
 
 echo '<option value="0" selected="selected">Selecione...</option>';
 foreach($cidades as $key => $cidade){
-echo '<option value="'.$cidade->id.'">'.$cidade->nome.'</option>';	
+    if(isset($_REQUEST['selected'])){
+        if($_REQUEST['selected'] == $cidade->nome){
+            echo '<option value="'.$cidade->id.'" selected >'.$cidade->nome.'</option>';	
+        }else{
+        echo '<option value="'.$cidade->id.'" >'.$cidade->nome.'</option>';	
+        }
+    }else{
+        echo '<option value="'.$cidade->id.'">'.$cidade->nome.'</option>';	
+    }
 }
 ?>

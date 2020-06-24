@@ -30,7 +30,7 @@ $date = new DateTime(date("Y-m-d"));
 $date->add(new DateInterval('P3D'));
 
 $body = [
-  'message' => $mensagem, // mensagem para o pagador com até 80 caracteres
+  'message' => utf8_encode($mensagem), // mensagem para o pagador com até 80 caracteres
   'expire_at' => $date->format('Y-m-d') , // data de vencimento da tela de pagamento e do próprio boleto
   'request_delivery_address' => false, // solicitar endereço de entrega do comprador?
   'payment_method' => $tipoPagamento // formas de pagamento disponíveis
@@ -70,7 +70,7 @@ try {
         else
         $nomeItem = $obGrupo->nomePacote;
         $item_1 = [
-            'name' => $nomeItem, // nome do item, produto ou serviço
+            'name' => utf8_encode($nomeItem), // nome do item, produto ou serviço
             'amount' => intval($quantidade), // quantidade
             'value' => intval(str_replace(".","",str_replace(",","",$this->money($totalReal,"atb")))) // valor (1000 = R$ 10,00) (Obs: É possível a criação de itens com valores negativos. Porém, o valor total da fatura deve ser superior ao valor mínimo para geração de transações.)
         ];
