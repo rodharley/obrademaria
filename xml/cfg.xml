@@ -295,7 +295,10 @@ set
 		<atrib tbname="id" type="id">id</atrib>
 
 		<atrib tbname="idParticipante" type="fk" lazy="true" clrelation="Participante">participante</atrib>
-
+		<atrib tbname="idAcompanhante1" type="int">idAcompanhante1</atrib>
+		<atrib tbname="idAcompanhante2" type="int">idAcompanhante2</atrib>
+		<atrib tbname="idAcompanhante3" type="int">idAcompanhante3</atrib>
+		<atrib tbname="idAcompanhante4" type="int">idAcompanhante4</atrib>
 		<atrib tbname="charge_id" type="int">charge_id</atrib>		
 
 		<atrib tbname="total" type="int">total</atrib>

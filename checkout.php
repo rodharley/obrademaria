@@ -14,6 +14,9 @@ unset($_SESSION['ag_itensMenu']);
 //CARREGA DADOS DO GRUPO 
 if(isset($_REQUEST['idGrupo'])){
     $oGrupo = new Grupo();
+    $oAg = new Agendamento();
+    $oAg->getById(6);
+    $tpl->COTACAO = $oAg->destinatarios;
     $oGrupo->getById($_REQUEST['idGrupo']);	
     $tpl->URL_IMAGE_GRUPO = $_REQUEST['foto'];
     $tpl->GRUPO_NOME = $oGrupo->nomePacote;

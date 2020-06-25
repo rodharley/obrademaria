@@ -5,6 +5,16 @@ class Agendamento extends Persistencia{
 	var $descricao;
 	var $destinatarios ;
 
+	function atualizaDollar(){
+		$this->getById(6);
+    $cotacoes = file_get_contents("https://economia.awesomeapi.com.br/all/USD-BRL,EUR-BRL,BTC-BRL");
+    $json = json_decode($cotacoes,true);
+    $dollar = $json["USD"]["ask"];
+    $this->destinatarios = strval($dollar);
+	$this->save();
+	return true;
+	}
+
 function enviarEmailTeste(){
 	$this->getById(1);
 	echo "Remetente: " . $this->REMETENTE . "<br/>";

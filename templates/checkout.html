@@ -379,7 +379,7 @@ function blockAcomp(numero,disabled){
         }
         $("#lbl_total").html(cifrao+floatToCurrency((totalGeral)));
         if(idmoeda != 2){
-        $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral*cotacoes.USD.ask)));
+        $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral*cotacao)));
         }else{
           $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral)));
         }
@@ -475,7 +475,7 @@ function blockAcomp(numero,disabled){
         }
 
       $(document).ready(function(){
-           cotacoes = null;
+           cotacao = {COTACAO};
            cifrao = '{GRUPO_MOEDA} ';
            idmoeda = {GRUPO_IDMOEDA};
            quantidade = {QUANTIDADE};
@@ -536,7 +536,7 @@ function blockAcomp(numero,disabled){
        
        
 
-        getCotacoes();
+        atualizaTela();
       });
 
 

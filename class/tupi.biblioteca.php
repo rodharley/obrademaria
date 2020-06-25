@@ -8,7 +8,14 @@ function arredondar_dois_decimal($valor) {
    
 } 
 
-
+function convertvalorGerenciaNet($valor,$tipo){
+	if($tipo == 'dtg'){
+		$valorunico = strval($valor);
+        return doubleval(substr($valorunico,0,strlen($valorunico)-2).".".substr($valorunico,strlen($valorunico)-2));
+	}else{
+		return intval(str_replace(".","",str_replace(",","",$this->money($valor,"atb"))));
+	}
+}
 function loginContratosEmnuvem (){
 	
 	    $headers = array('Accept' => 'application/json','Token' => base64_encode($this->usercn.":".$this->senhacn));

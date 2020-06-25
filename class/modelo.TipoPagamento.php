@@ -27,6 +27,9 @@ class TipoPagamento extends Persistencia{
 	public function DEBITO(){
 		return 7;
 	}
+	public function GERENCIA_NET(){
+		return 8;
+	}
 }
 
 ?>

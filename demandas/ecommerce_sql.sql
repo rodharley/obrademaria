@@ -46,6 +46,11 @@ CREATE TABLE IF NOT EXISTS `ag_gerencianet` (
   KEY `idx_status` (`status`),
   KEY `fk_participante_gerencianet` (`idParticipante`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+--25/06/2020
 ALTER TABLE `ag_gerencianet`
   ADD CONSTRAINT `fk_participante_gerencianet` FOREIGN KEY (`idParticipante`) REFERENCES `ag_participante` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ALTER TABLE `ag_gerencianet` DROP FOREIGN KEY `fk_participante_gerencianet`; ALTER TABLE `ag_gerencianet` ADD CONSTRAINT `fk_participante_gerencianet` FOREIGN KEY (`idParticipante`) REFERENCES `ag_participante`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
+  ALTER TABLE `ag_gerencianet` ADD `idAcompanhante1` INT NULL AFTER `token`, ADD `idAcompanhante2` INT NULL AFTER `idAcompanhante1`, ADD `idAcompanhante3` INT NULL AFTER `idAcompanhante2`, ADD `idAcompanhante4` INT NULL AFTER `idAcompanhante3`; 
+  INSERT INTO `ag_agendamento` (`id`, `descricao`, `data`, `destinatarios`) VALUES (NULL, 'Cotacao do Dia', '2020-06-25', '1.00'); 
+  ALTER TABLE `ag_gerencianet` ADD `cotacao` DECIMAL(10,2) NOT NULL AFTER `idAcompanhante4`; 
 COMMIT;

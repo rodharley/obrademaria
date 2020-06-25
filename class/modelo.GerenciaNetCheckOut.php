@@ -13,6 +13,11 @@ class GerenciaNetCheckOut extends Persistencia {
     var $update_at;
     var $payment_url;
     var $token;
+    var $idAcompanhante1;
+    var $idAcompanhante2;
+    var $idAcompanhante3;
+    var $idAcompanhante4;
+
 
 public function getByChargeId($chargeId){
     return $this->getRow(array("charge_id"=>"=".$chargeId));
@@ -54,16 +59,14 @@ try {
 
     }
 
-    function createCharge($obParticipante,$obGrupo,$quantidade,$opcional){
-        
-        if($obGrupo->moeda->id != 2){
-        $cotacoes = file_get_contents("https://economia.awesomeapi.com.br/all/USD-BRL,EUR-BRL,BTC-BRL");
-         $json = json_decode($cotacoes,true);
+    function createCharge($obParticipante,$obGrupo,$quantidade,$opcional,$idPartAcomp1,$idPartAcomp2,$idPartAcomp3,$idPartAcomp4){
+        $obAgenda = new Agendamento();
+        $obAgenda->getById(6);
+        if($obGrupo->moeda->id != 2){        
          $total = $obGrupo->getValorTotal($opcional);
-         $totalReal = $total*$json["USD"]["ask"];
+         $totalReal = $total*doubleval($obAgenda->destinatarios);
         }else{
-            $totalReal = $obGrupo->getValorTotal($opcional);
-
+        $totalReal = $obGrupo->getValorTotal($opcional);
         }
         if($opcional)
         $nomeItem = $obGrupo->nomePacote."+".$obGrupo->nomePacoteOpcional;
@@ -109,6 +112,12 @@ try {
             $this->message = "Criação do ChargeId";
             $this->total = $this->money($totalReal*$quantidade,"bta");           
             $this->created_at = date("Y-m-d H:i:s");
+            $this->idAcompanhante1 = $idPartAcomp1!=0 ? $idPartAcomp1 :null;
+            $this->idAcompanhante2 = $idPartAcomp2!=0 ? $idPartAcomp2 :null;
+            $this->idAcompanhante3 = $idPartAcomp3!=0 ? $idPartAcomp3 :null;
+            $this->idAcompanhante4 = $idPartAcomp4!=0 ? $idPartAcomp4 :null;
+            //salva os ids dos acompanantes
+
             $this->save();
             return $charge;
         } catch (GerencianetException $e) {
@@ -161,15 +170,31 @@ try {
         $status = $ultimoStatus["status"];
         // Obtendo o ID da transação    
         $charge_id = $ultimoStatus["identifiers"]["charge_id"];
+        
         // Obtendo a String do status atual
     $statusAtual = $status["current"];
-
-    //tratar status do charge
-
+    
     //atualiza o pagamento
     $this->getByChargeId($charge_id);
     $this->status =$statusAtual;
     $this->token = $token;
+    //tratar status do charge
+    switch($statusAtual){
+        case 'paid':
+            $this->gerarPagamentos($ultimoStatus["value"]);
+        break;
+        case 'canceled':
+            
+        break;
+        case 'contested':
+        break;
+        case 'settled':
+        break;
+    }
+    
+
+
+    
     $this->save();
     return true;
     
@@ -181,4 +206,61 @@ try {
             throw $e;
         }
     }
+
+    private function gerarPagamentos($valorPago){
+        $qtd = 1;
+        if($this->idAcompanhante1 != null)
+            $qtd++;
+        if($this->idAcompanhante2 != null)
+            $qtd++;
+        if($this->idAcompanhante3 != null)
+            $qtd++;
+        if($this->idAcompanhante4 != null)
+            $qtd++;
+        
+
+        //converte para decimal o valor
+        $valor = $this->convertvalorGerenciaNet($valorPago)/$qtd;
+        
+
+        for($i=1;$i<=$qtd;$i++){
+            $part = new Participante();
+            $oTipoP = new TipoPagamento();
+            $oFin = new FinalidadePagamento();  
+            $pag = new Pagamento();          
+            $oTipoP->id = $oTipoP->GERENCIA_NET();
+            $oFin->id = 1;
+            if($i==1){
+                $part->getById($this->participante->id);
+            }else if($i == 2){
+                $part->getById($this->idAcompanhante1);
+            }else if($i == 3){
+                $part->getById($this->idAcompanhante2);
+            }else if($i == 4){
+                $part->getById($this->idAcompanhante3);
+            }else if($i == 5){
+                $part->getById($this->idAcompanhante4);
+            }
+            
+            $pag->dataPagamento = date("Y-m-d");
+            $pag->valorPagamento = $valor;
+            $pag->obs = 'pagamento automático vindo da gerencianet';
+            $pag->abatimentoAutomatico =1;
+            $this->moeda = $part->grupo->moeda;
+            $this->participante = $part;
+	        $this->tipo = $oTipoP;
+            $this->finalidade = $oFin;
+            $this->cancelado = 0;
+	        $this->devolucao = 0;
+            $this->valorParcela = 0;
+            
+		$this->cotacaoMoedaReal  = isset($_REQUEST['cotacaoMoedaReal']) ? $_REQUEST['cotacaoMoedaReal'] != "" ? $this->money($_REQUEST['cotacaoMoedaReal'],"bta") : 0 : 0;
+		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
+		$this->parcela = 1;
+        }
+        
+        
+    }
+
+    
 }
