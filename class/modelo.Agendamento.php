@@ -10,7 +10,8 @@ class Agendamento extends Persistencia{
     $cotacoes = file_get_contents("https://economia.awesomeapi.com.br/all/USD-BRL,EUR-BRL,BTC-BRL");
     $json = json_decode($cotacoes,true);
     $dollar = $json["USD"]["ask"];
-    $this->destinatarios = strval($dollar);
+	$this->destinatarios = strval($dollar);
+	$this->data = date("Y-m-d");
 	$this->save();
 	return true;
 	}
