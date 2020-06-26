@@ -9,7 +9,7 @@ function arredondar_dois_decimal($valor) {
 } 
 
 function convertvalorGerenciaNet($valor,$tipo){
-	if($tipo == 'dtg'){
+	if($tipo == 'gtd'){
 		$valorunico = strval($valor);
         return doubleval(substr($valorunico,0,strlen($valorunico)-2).".".substr($valorunico,strlen($valorunico)-2));
 	}else{

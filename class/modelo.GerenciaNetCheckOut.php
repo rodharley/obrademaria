@@ -17,6 +17,7 @@ class GerenciaNetCheckOut extends Persistencia {
     var $idAcompanhante2;
     var $idAcompanhante3;
     var $idAcompanhante4;
+    var $cotacao;
 
 
 public function getByChargeId($chargeId){
@@ -62,12 +63,14 @@ try {
     function createCharge($obParticipante,$obGrupo,$quantidade,$opcional,$idPartAcomp1,$idPartAcomp2,$idPartAcomp3,$idPartAcomp4){
         $obAgenda = new Agendamento();
         $obAgenda->getById(6);
-        if($obGrupo->moeda->id != 2){        
-         $total = $obGrupo->getValorTotal($opcional);
-         $totalReal = $total*doubleval($obAgenda->destinatarios);
-        }else{
-        $totalReal = $obGrupo->getValorTotal($opcional);
+        $cotacao = 1.0;
+        if($obGrupo->moeda->id != 2){           
+         $cotacao = $obAgenda->destinatarios;
         }
+        $total = $obGrupo->getValorTotal($opcional);
+        $totalReal = $total*$cotacao;
+        
+        
         if($opcional)
         $nomeItem = $obGrupo->nomePacote."+".$obGrupo->nomePacoteOpcional;
         else
@@ -116,6 +119,7 @@ try {
             $this->idAcompanhante2 = $idPartAcomp2!=0 ? $idPartAcomp2 :null;
             $this->idAcompanhante3 = $idPartAcomp3!=0 ? $idPartAcomp3 :null;
             $this->idAcompanhante4 = $idPartAcomp4!=0 ? $idPartAcomp4 :null;
+            $this->cotacao = $cotacao;
             //salva os ids dos acompanantes
 
             $this->save();
@@ -144,8 +148,7 @@ try {
 
     function UpdateByNotification(){
 
- 
-        /*
+       /*
         * Este token será recebido em sua variável que representa os parâmetros do POST
         * Ex.: $_POST['notification']
         */
@@ -178,10 +181,12 @@ try {
     $this->getByChargeId($charge_id);
     $this->status =$statusAtual;
     $this->token = $token;
+    $this->save();
     //tratar status do charge
     switch($statusAtual){
         case 'paid':
             $this->gerarPagamentos($ultimoStatus["value"]);
+            return 'pagamento gerado com suscesso';
         break;
         case 'canceled':
             
@@ -195,8 +200,8 @@ try {
 
 
     
-    $this->save();
-    return true;
+    
+    return "não foi executado nenhum procedimento";
     
    
     //print_r($chargeNotification);
@@ -218,9 +223,11 @@ try {
         if($this->idAcompanhante4 != null)
             $qtd++;
         
-
+        
+        
         //converte para decimal o valor
-        $valor = $this->convertvalorGerenciaNet($valorPago)/$qtd;
+        $valor = $this->convertvalorGerenciaNet($valorPago,'gtd')/$qtd;
+        
         
 
         for($i=1;$i<=$qtd;$i++){
@@ -228,8 +235,10 @@ try {
             $oTipoP = new TipoPagamento();
             $oFin = new FinalidadePagamento();  
             $pag = new Pagamento();          
+            $om = new Moeda();
             $oTipoP->id = $oTipoP->GERENCIA_NET();
             $oFin->id = 1;
+            $om->id = $om->REAL();
             if($i==1){
                 $part->getById($this->participante->id);
             }else if($i == 2){
@@ -243,20 +252,33 @@ try {
             }
             
             $pag->dataPagamento = date("Y-m-d");
-            $pag->valorPagamento = $valor;
+            $pag->valorPagamento = $this->money($valor,"bta");
             $pag->obs = 'pagamento automático vindo da gerencianet';
             $pag->abatimentoAutomatico =1;
-            $this->moeda = $part->grupo->moeda;
-            $this->participante = $part;
-	        $this->tipo = $oTipoP;
-            $this->finalidade = $oFin;
-            $this->cancelado = 0;
-	        $this->devolucao = 0;
-            $this->valorParcela = 0;
+            $pag->moeda = $om;
+            $pag->participante = $part;
+	        $pag->tipo = $oTipoP;
+            $pag->finalidade = $oFin;
+            $pag->cancelado = 0;
+	        $pag->devolucao = 0;
+            $pag->valorParcela = 0;
+            $pag->cotacaoMoedaReal=0;
+		    $pag->cotacaoReal = $this->cotacao;
+            $pag->parcela = 1;
+            $pag->save();
+            $oAbat = new Abatimento();	
+            $oG = new Grupo();
+		    $oG->getById($this->participante->grupo->id);
+            if($oG->moeda->id == $om->DOLLAR()){
+                $oAbat->valor = $pag->CALCULA_DOLLAR();
+            }else{
+                $oAbat->valor = $pag->CALCULA_REAL();
+            }	
+            $oAbat->participante = $this->participante;
+            $oAbat->pagamento = $pag;
+            $oAbat->save();
             
-		$this->cotacaoMoedaReal  = isset($_REQUEST['cotacaoMoedaReal']) ? $_REQUEST['cotacaoMoedaReal'] != "" ? $this->money($_REQUEST['cotacaoMoedaReal'],"bta") : 0 : 0;
-		$this->cotacaoReal  = $this->money($_REQUEST['cotacaoReal'],"bta");
-		$this->parcela = 1;
+	        $this->participante->atualiza_status();
         }
         
         

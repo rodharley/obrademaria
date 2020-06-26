@@ -311,6 +311,7 @@ set
 		<atrib tbname="payment_url" type="txt">payment_url</atrib>
 		<atrib tbname="payment_method" type="txt">payment_method</atrib>
 		<atrib tbname="token" type="txt">token</atrib>
+		<atrib tbname="cotacao" type="int">cotacao</atrib>
 	</class>
 
 
