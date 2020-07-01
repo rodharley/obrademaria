@@ -54,3 +54,6 @@ ALTER TABLE `ag_gerencianet`
   INSERT INTO `ag_agendamento` (`id`, `descricao`, `data`, `destinatarios`) VALUES (NULL, 'Cotacao do Dia', '2020-06-25', '1.00'); 
   ALTER TABLE `ag_gerencianet` ADD `cotacao` DECIMAL(10,2) NOT NULL AFTER `idAcompanhante4`; 
 COMMIT;
+--01/07/2020
+ALTER TABLE `ag_grupo` ADD `cotacao_a_vista` DECIMAL(10,2) NOT NULL DEFAULT '1.00' AFTER `modeloFicha`, ADD `cotacao_entrada` DECIMAL(10,2) NOT NULL DEFAULT '1.00' AFTER `cotacao_a_vista`, ADD `cotacao_parcelado` DECIMAL(10,2) NOT NULL DEFAULT '1.00' AFTER `cotacao_entrada`; 
+ALTER TABLE `ag_grupo` ADD `imagem_destaque` VARCHAR(200) NULL AFTER `cotacao_parcelado`; 

@@ -50,7 +50,7 @@ $msg = new Mensagem();
 			$_SESSION['ag_itensMenu'] = $listMenu;
 			//gravar usuario no cookie
 			setcookie("loginODM", $_REQUEST['email']);
-			$user->location("home.php","");
+			header("Location: home.php");
 			exit();
 		}
 	}

@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Biblioteca extends Configuracao{
 
@@ -570,84 +570,6 @@ return true;
 }
 
 
-
-function location($url,$mensagem){
-
-$str = '<script>';
-
-if($mensagem != ""){
-
-$str .= 'window.alert("'.$mensagem.'");';
-
-}
-
-if($url != ""){
-
-$str .= 'window.location.href="'.$url.'";';
-
-}
-
-
-
-$str .= '</script>';
-
-echo $str;
-
-exit();
-
-}
-
-function locationNewPage($url,$parametros){
-
-$str = '<script>';
-
-$str .= 'window.open("'.$url.'","'.$paramentros.'")';
-
-$str .= '</script>';
-
-echo $str;
-
-}
-
-
-
-function locationOpener($url,$mensagem){
-
-$str = '<script>';
-
-if($mensagem != ""){
-
-$str .= 'window.alert("'.$mensagem.'");';
-
-}
-
-if($url != ""){
-
-$str .= 'window.opener.location.href="'.$url.'";';
-
-$str .= 'window.close();';
-
-}
-
-
-
-$str .= '</script>';
-
-echo $str;
-
-return  true;
-
-}
-
-
-
-function javascript($script){
-
-echo '<script>'.$script.'</script>';
-
-return true;
-
-}
 
 
 

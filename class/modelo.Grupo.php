@@ -25,6 +25,11 @@ class Grupo extends Persistencia{
 	var $plano;
 	var $destino;
 	var $modeloFicha;
+	var $cotacaoAVista;
+	var $cotacaoParcelado;
+	var $cotacaoEntrada;
+	var $imagemDestaque;
+
 	
 	public function STATUS_ANDAMENTO(){
 		return 1;
@@ -136,6 +141,10 @@ class Grupo extends Persistencia{
 		$this->valorAdesao = $this->money($_POST['valorAdesao'] == '' ? 0 : $_POST['valorAdesao'] ,"bta");
 		$this->valorCusto = $this->money($_POST['valorCusto'] == '' ? 0 : $_POST['valorCusto'],"bta");
 		$this->cotacaoCusto = $this->money($_POST['cotacaoCusto'] == '' ? 0 : $_POST['cotacaoCusto'],"bta");
+
+		$this->cotacaoAVista = $this->money($_POST['cotacaoAVista'] == '' ? 0 : $_POST['cotacaoAVista'],"bta");
+		$this->cotacaoEntrada = $this->money($_POST['cotacaoEntrada'] == '' ? 0 : $_POST['cotacaoEntrada'],"bta");
+		$this->cotacaoParcelado = $this->money($_POST['cotacaoParcelado'] == '' ? 0 : $_POST['cotacaoParcelado'],"bta");
 		$this->ano = $_REQUEST['ano'];
 		//uploadArquivo roteiro
 		if($_FILES['roteiro']['name'] != ''){
@@ -145,7 +154,17 @@ class Grupo extends Persistencia{
 			
 			$this->roteiroAnexo = $nomeImagem;
 		}
-		//uploadArquivo pauta
+		//uploadArquivo destaque
+		if($_FILES['destaque']['name'] != ''){
+			$nomeImagem = date("d_m_Y_H_i_s").$this->removerAcento($_FILES['destaque']['name']);
+			$diretorio = $this->URI."/img/grupos/";		
+			$this->uploadArquivo($_FILES['destaque'],$nomeImagem,$diretorio);
+			
+			$this->imagemDestaque = $nomeImagem;
+		}
+
+		//upload pauta
+
 		if($_FILES['pauta']['name'] != ''){
 			$nomeImagem = date("d_m_Y_H_i_s").$this->removerAcento($_FILES['pauta']['name']);
 			$diretorio = $this->URI."/docs/";		
@@ -259,6 +278,11 @@ class Grupo extends Persistencia{
 		$this->valorAdesao = $this->money($_POST['valorAdesao'] == '' ? 0 : $_POST['valorAdesao'] ,"bta");
 		$this->valorCusto = $this->money($_POST['valorCusto'] == '' ? 0 : $_POST['valorCusto'],"bta");
 		$this->cotacaoCusto = $this->money($_POST['cotacaoCusto'] == '' ? 0 : $_POST['cotacaoCusto'],"bta");
+
+		$this->cotacaoAVista = $this->money($_POST['cotacaoAVista'] == '' ? 0 : $_POST['cotacaoAVista'],"bta");
+		$this->cotacaoEntrada = $this->money($_POST['cotacaoEntrada'] == '' ? 0 : $_POST['cotacaoEntrada'],"bta");
+		$this->cotacaoParcelado = $this->money($_POST['cotacaoParcelado'] == '' ? 0 : $_POST['cotacaoParcelado'],"bta");
+		
 		$this->destino = $_POST['destino'];
 		$this->plano = $_POST['plano'];
 		$this->ano = $_REQUEST['ano'];
@@ -278,6 +302,18 @@ class Grupo extends Persistencia{
 			unlink($diretorio.$this->pautaAnexo);		
 			$this->uploadArquivo($_FILES['pauta'],$nomeImagem,$diretorio);			
 			$this->pautaAnexo = $nomeImagem;
+		}
+		//uploadArquivo destaque
+		if($_FILES['destaque']['name'] != ''){
+			$nomeImagem = date("d_m_Y_H_i_s").$this->removerAcento($_FILES['destaque']['name']);
+			$diretorio = $this->URI."/img/grupos/";	
+			if($this->imagemDestaque != null){
+				$this->apagaImagem($this->imagemDestaque,$diretorio);
+			}
+			
+			$this->uploadArquivo($_FILES['destaque'],$nomeImagem,$diretorio);
+			
+			$this->imagemDestaque = $nomeImagem;
 		}
 				
 		if($_POST['nomePacoteOpcional'] != ''){

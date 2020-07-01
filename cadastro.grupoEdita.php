@@ -33,6 +33,10 @@ if(isset($_REQUEST['idGrupo'])){
 	$tpl->valorAdesao = $oGrupo->money($oGrupo->valorAdesao,'atb');
 	$tpl->valorCusto = $oGrupo->money($oGrupo->valorCusto,'atb');
 	$tpl->cotacaoCusto = $oGrupo->money($oGrupo->cotacaoCusto,'atb');
+
+	$tpl->cotacaoAVista = $oGrupo->money($oGrupo->cotacaoAVista,'atb');
+	$tpl->cotacaoParcelado = $oGrupo->money($oGrupo->cotacaoParcelado,'atb');
+	$tpl->cotacaoEntrada = $oGrupo->money($oGrupo->cotacaoEntrada,'atb');
 	$tpl->ano = $oGrupo->ano;
 	$idMoedaAtual = $oGrupo->moeda->id;
 	$idEstatusAtual = $oGrupo->status->id;
@@ -46,7 +50,7 @@ if(isset($_REQUEST['idGrupo'])){
 	$tpl->pautaAnexo = $oGrupo->pautaAnexo;
 	$tpl->plano = $oGrupo->plano;
 	$tpl->destino = $oGrupo->destino;
-	
+	$tpl->imagemDestaque = $oGrupo->imagemDestaque != null ? $oGrupo->imagemDestaque : 'default.jpg';
 	//contrato modelo
 	if($oGrupo->modeloContrato == 'contrato1.php')
 		$tpl->SELECTED_MODELO1 = 'selected';

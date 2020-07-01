@@ -25,6 +25,20 @@
           </div>
           <span class="text-muted">{GRUPO_VALOR_CURRENCY}</span>
         </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0 text-muted" >Adesão</h6>
+            
+          </div>
+          <span class="text-muted">{GRUPO_VALOR_ADESAO_CURRENCY}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0 text-muted" >Taxa de Embarque</h6>
+            
+          </div>
+          <span class="text-muted">{GRUPO_VALOR_EMBARQUE_CURRENCY}</span>
+        </li>
         <!-- BEGIN BLOCK_OPCIONAL -->
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           
@@ -43,30 +57,84 @@
           <span class="text-muted">Total ({GRUPO_MOEDA})</span>
           <strong class="text-muted" id="lbl_total">0,00</strong>
         </li>
-        <li class="list-group-item d-flex justify-content-between">
-          <span class="text-muted">Total R$</span>
-          <strong class="text-muted" id="lbl_total_real">0,00</strong>
-        </li>
       </ul>
+      <hr class="mb-4">
+
+      <h4 class="mb-3">Formas de Pagamento</h4>
+      <div class="d-block my-3">
+        <div class="custom-control custom-radio">
+          <input value="credit_card" id="formaAVista" name="forma" type="radio" class="custom-control-input" checked="" required="">
+          <label class="custom-control-label" for="formaAVista">A Vista (5% de Desconto) <span class="badge badge-success">Dollar: {COTACAO_CURRENCY}</span></label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input value="banking_billet" id="formaEntrada" name="forma" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="formaEntrada">Entrada + Parcelado no Cartão em até 12X <span class="badge badge-success">Dollar: {COTACAO_ENTRADA_CURRENCY}</span></label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input value="banking_billet" id="formaParcelado" name="forma" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="formaParcelado">Parcelado no cheque em {PARCELAMAXIMA} vezes <span class="badge badge-success">Dollar: {COTACAO_PARCELADO_CURRENCY}</span></label>
+        </div>
+      </div>
       
       <hr class="mb-4">
 
       <h4 class="mb-3">Tipo de Pagamento</h4>
-
+      <div id="tipoAVista">        
       <div class="d-block my-3">
         <div class="custom-control custom-radio">
-          <input value="credit_card" id="credit" name="pagamento" type="radio" class="custom-control-input" checked="" required="">
-          <label class="custom-control-label" for="credit">Cartão de crédito (GerenciaNet)</label>
+          <input value="transferencia" id="transferenciaAVista" name="pagamentoAVista" type="radio" class="custom-control-input" checked="" required="">
+          <label class="custom-control-label" for="transferenciaAVista">Transferência Bancária</label>
         </div>
         <div class="custom-control custom-radio">
-          <input value="banking_billet" id="debit" name="pagamento" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="debit">Boleto (GerenciaNet)</label>
+          <input value="banking_billet" id="boletoAVista" name="pagamentoAVista" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="boletoAVista">Boleto (GerenciaNet)</label>
         </div>
+      </div>
+    </div>
+    
+    <div id="tipoEntrada">
+      <h5 class="mb-3">Entrada 20%: <span id="valor20" class="badge badge-success"></span></h5>
+      <div class="d-block my-3">
+        <div class="custom-control custom-radio">
+          <input value="transferencia" id="entradatransferenciaEntrada" name="entradaPagamentoEntrada" type="radio" class="custom-control-input" checked="" required="">
+          <label class="custom-control-label" for="entradatransferenciaEntrada">Transferência Bancária</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input value="banking_billet" id="entradaBoletoEntrada" name="entradaPagamentoEntrada" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="entradaBoletoEntrada">Boleto (GerenciaNet)</label>
+        </div>
+      </div>
+      <h5 class="mb-3">Parcelamento: <span id="valor80" class="badge badge-success"></span></h5>
+      <div class="custom-control custom-radio">
+        <input value="credit_card" id="creditoEntrada" name="pagamentoEntrada" checked type="radio" class="custom-control-input" checked="" required="">
+        <label class="custom-control-label" for="creditoEntrada" id="creditoEntradaLabel">Cartão de crédito (GerenciaNet até 12 vezes com juros)</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input value="cheque" id="chequeEntrada" name="pagamentoEntrada" type="radio" class="custom-control-input" checked="" required="">
+        <label class="custom-control-label" for="chequeEntrada" id="chequeEntradaLabel">Cheque</label>
+      </div>  
+    </div>
+
+
+    <div id="tipoParcelado">
+      <h5 class="mb-3">Parcelado em <span id="qtdParcelas" class="badge badge-success"> {PARCELAMAXIMA} vezes</span></h5>
+      <div class="d-block my-3">
+        <div class="custom-control custom-radio">
+          <input value="cheque" id="cheque" name="pagamentoParcelado" type="radio" class="custom-control-input" checked="" required="">
+          <label class="custom-control-label" for="cheque" id="chequeParceladoLabel">Cheque</label>
+        </div>        
         <!--div class="custom-control custom-radio">
           <input value="3" id="paypal" name="pagamento" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="paypal">Paypal</label>
         </div-->
       </div>
+    </div>
+      <ul class="list-group m-3">
+        <li class="list-group-item d-flex justify-content-between">
+          <span class="text-muted">Total Final R$</span>
+          <strong class="text-muted" id="lbl_total_real">0,00</strong>
+        </li>
+      </ul>
     </div>
 
 
@@ -342,7 +410,7 @@ function blockAcomp(numero,disabled){
 
       function atualizaTela(){
         if(quantidade == 1){
-          $("#boxAcompanhante").hide();
+          $("#boxAcompanhante").hide('slow');
           blockAcomp(1,true);
           blockAcomp(2,true);
           blockAcomp(3,true);
@@ -369,7 +437,7 @@ function blockAcomp(numero,disabled){
             blockAcomp(3,false);
             blockAcomp(4,false);
           }
-          $("#boxAcompanhante").show();
+          $("#boxAcompanhante").show('slow');
         }
         if(haveOptional && $("#opcional").prop("checked")){
           totalGeral = quantidade*(valorPacote+valorPacoteOpcional);
@@ -378,8 +446,47 @@ function blockAcomp(numero,disabled){
           totalGeral =quantidade*valorPacote;
         }
         $("#lbl_total").html(cifrao+floatToCurrency((totalGeral)));
+
+        let dollar =cotacao;
+
+
+        if($("#formaAVista").prop("checked")){
+          dollar = cotacao;
+          totalGeral = totalGeral-(totalGeral*0.05);
+          $("#tipoAVista").show('slow');
+          $("#tipoParcelado").hide();
+          $("#tipoEntrada").hide();
+        }
+        if($("#formaEntrada").prop("checked")){
+          dollar = cotacaoEntrada;
+          if(idmoeda != 2){            
+            $("#valor20").html("R$ "+floatToCurrency(totalGeral*dollar*0.2)); 
+            $("#valor80").html("R$ "+floatToCurrency(totalGeral*dollar*0.8));
+            $("#chequeEntradaLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar*0.8)/parcelamaxima));
+            }else{
+              $("#valor20").html("R$ "+totalGeral*0.2);
+              $("#valor80").html("R$ "+floatToCurrency(totalGeral*0.8));
+              $("#chequeEntradaLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*0.8)/parcelamaxima));
+            }
+          
+          $("#tipoAVista").hide();
+          $("#tipoParcelado").hide();
+          $("#tipoEntrada").show('slow');
+        }
+        if($("#formaParcelado").prop("checked")){
+          dollar = cotacaoParcelado;
+          if(idmoeda != 2){  
+          $("#chequeParceladoLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar)/parcelamaxima));
+          }else{
+            $("#chequeParceladoLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral)/parcelamaxima));  
+          }
+          $("#tipoAVista").hide();
+          $("#tipoParcelado").show('slow');
+          $("#tipoEntrada").hide();
+        }
+        
         if(idmoeda != 2){
-        $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral*cotacao)));
+        $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral*dollar)));
         }else{
           $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral)));
         }
@@ -476,6 +583,8 @@ function blockAcomp(numero,disabled){
 
       $(document).ready(function(){
            cotacao = {COTACAO};
+           cotacaoEntrada = {COTACAO_ENTRADA};
+           cotacaoParcelado = {COTACAO_PARCELADO};
            cifrao = '{GRUPO_MOEDA} ';
            idmoeda = {GRUPO_IDMOEDA};
            quantidade = {QUANTIDADE};
@@ -483,6 +592,7 @@ function blockAcomp(numero,disabled){
            valorPacoteOpcional = {GRUPO_OPCIONAL_VALOR};
            cupom =0;
            haveOptional = {GRUPO_OPCIONAL};
+           parcelamaxima = {PARCELAMAXIMA};
            
         $("#bt_mais").click(function(){
           if(quantidade < 5 ){
@@ -503,6 +613,10 @@ function blockAcomp(numero,disabled){
         $("#opcional").click(function(){
           
             atualizaTela();
+        });
+        $("#formaEntrada,#formaAVista,#formaParcelado").click(function()
+        {
+          atualizaTela();
         });
 
         $("#datanascimento").datepicker({ language: 'pt-BR' });

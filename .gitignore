@@ -1,3 +1,5 @@
 class/tupi.configuracao.php
 img/passaportes/*
+img/grupos/*
+!img/grupos/default.jpg
 !img/passaportes/default.png

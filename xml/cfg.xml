@@ -362,6 +362,10 @@ set
 		<atrib tbname="modeloContrato" type="txt">modeloContrato</atrib>	
 		<atrib tbname="plano" type="txt">plano</atrib>	
 		<atrib tbname="destino" type="txt">destino</atrib>	
+		<atrib tbname="cotacao_a_vista" type="int">cotacaoAVista</atrib>
+		<atrib tbname="cotacao_entrada" type="int">cotacaoEntrada</atrib>
+		<atrib tbname="cotacao_parcelado" type="int">cotacaoParcelado</atrib>
+		<atrib tbname="imagem_destaque" type="txt">imagemDestaque</atrib>
 		</class>
 
 	<class name="LogAcesso" tbname="ag_logacesso" tbid="id" lazy="false">

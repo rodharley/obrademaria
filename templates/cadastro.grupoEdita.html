@@ -38,7 +38,7 @@ $("#ano").mask("9999");
     </div>
     <div class="span3">
     <div class="control-group">
-      <label for="cotacaoCusto" class="control-label">Data de Chegada:</label>  
+      <label for="dataChegada" class="control-label">Data de Chegada:</label>  
 	  <div class="controls">
          <input type="text" name="dataChegada" id="dataChegada" data-datepicker="datepicker" placeholder="Data de Chegada" class="span2 required" value="{dataChegada}">
 		</div>
@@ -137,20 +137,33 @@ $("#ano").mask("9999");
     </div>
     <div class="span3">
     <div class="control-group">
-      <label for="cotacaoCusto" class="control-label">Cambio:</label>  
+      <label for="cotacaoCusto" class="control-label">Cambio de Custo:</label>  
 	  <div class="controls">
         <input type="text" id="cotacaoCusto" class="input-xlarge required span1" name="cotacaoCusto" value="{cotacaoCusto}" placeholder="Custo" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
 		</div>
       </div>
     </div>
 	 </div>
-
+   <div class="row">
+     <div class="span8">
     <div class="control-group">
       <label for="plano" class="control-label">Plano do Seguro:</label>
       <div class="controls">
         <input type="text" name="plano" id="plano" class="input-xlarge span6" value="{plano}" />
       </div>
     </div>
+    </div>
+    <div class="span3">
+      <div class="control-group">
+        <label for="cotacaoAVista" class="control-label">Cambio à vista:</label>  
+      <div class="controls">
+          <input type="text" id="cotacaoAVista" class="input-xlarge required span1" name="cotacaoAVista" value="{cotacaoAVista}" placeholder="Cotação à vista" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+      </div>
+        </div>
+      </div>
+   </div>
+<div class="row">
+   <div class="span8">
      <div class="control-group">
       <label for="destino" class="control-label">Destino do Seguro:</label>
       <div class="controls">
@@ -158,7 +171,18 @@ $("#ano").mask("9999");
         <br />
         <a href="docs/{pautaAnexo}" target="_blank">{pautaAnexo}</a> </div>
     </div>
-
+   </div>
+   <div class="span3">
+    <div class="control-group">
+      <label for="cotacaoEntrada" class="control-label">Cambio com Entrada:</label>  
+    <div class="controls">
+        <input type="text" id="cotacaoEntrada" class="input-xlarge required span1" name="cotacaoEntrada" value="{cotacaoEntrada}" placeholder="Cotação com Entrada" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+    </div>
+      </div>
+    </div>
+  </div>
+<div class="row">
+  <div class="span8">
     <div class="control-group">
       <label for="roteiro" class="control-label">Roteiro:</label>
       <div class="controls">
@@ -166,6 +190,18 @@ $("#ano").mask("9999");
         <br />
          <a href="docs/{roteiroAnexo}" target="_blank">{roteiroAnexo}</a> </div>
     </div>
+  </div>
+  <div class="span3">
+    <div class="control-group">
+      <label for="cotacaoParcelado" class="control-label">Cambio Parcelado:</label>  
+    <div class="controls">
+        <input type="text" id="cotacaoParcelado" class="input-xlarge required span1" name="cotacaoParcelado" value="{cotacaoParcelado}" placeholder="Cotação parcelado" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+    </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span6">
      <div class="control-group">
       <label for="pauta" class="control-label">Pauta de Reunião:</label>
       <div class="controls">
@@ -173,6 +209,18 @@ $("#ano").mask("9999");
         <br />
         <a href="docs/{pautaAnexo}" target="_blank">{pautaAnexo}</a> </div>
     </div>
+    </div>
+    <div class="span6">
+      <div class="control-group">
+       <label for="pauta" class="control-label">Imagem Destaque:</label>
+       <div class="controls">
+         <input type="file" name="destaque" id="destaque" />
+         <br />
+         <img src="img/grupos/{imagemDestaque}" height="20"/>
+          </div>
+     </div>
+     </div>
+  </div>
     <div class="accordion" id="accordion">
       <div class="accordion-group">
         <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Pacote Opcional </a> </div>
