@@ -81,3 +81,5 @@ TRUNCATE `ag_gerencianet`;
 ALTER TABLE `ag_gerencianet` ADD CONSTRAINT `fk_venda_site_gerencianet` FOREIGN KEY (`id_venda_site`) REFERENCES `ag_venda_site`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
 ALTER TABLE `ag_venda_site` ADD `opcional` TINYINT(1) NOT NULL DEFAULT '0' AFTER `cotacao`, ADD `quantidade` TINYINT(1) NOT NULL DEFAULT '1' AFTER `opcional`, ADD `forma_pagamento` VARCHAR(50) NOT NULL AFTER `quantidade`, ADD `tipo_pagamento1` VARCHAR(50) NOT NULL AFTER `forma_pagamento`, ADD `tipo_pagamento2` VARCHAR(50) NULL AFTER `tipo_pagamento1`; 
 ALTER TABLE `ag_venda_site` ADD `total` DECIMAL(10,2) NOT NULL AFTER `tipo_pagamento2`; 
+-- 04/07/2020
+INSERT INTO `ag_menu` (`id`, `idMenuPai`, `descricao`, `url`) VALUES ('', '2', 'Compras Web', 'web.filtro.php'); 

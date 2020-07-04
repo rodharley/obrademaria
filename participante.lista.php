@@ -68,6 +68,11 @@ foreach($rsPartic as $key => $participante){
 		$tpl->URL_CONTRATO = $oParticipante->endpointcn.'free/pdf/assinado/1/'.$participante->id.'.pdf';
 		$tpl->block("BLOCK_CONTRATO_NUVEM");
 	}
+	if($participante->site == 1){
+		$tpl->WEB = 'inline';
+	}else{
+		$tpl->WEB = 'none';
+	}
 	
 
 

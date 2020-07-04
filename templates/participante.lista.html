@@ -43,26 +43,28 @@
         <thead>
             <tr>
                 <th width="50">Status</th>
+                <th width="50">Web</th>
                 <th class="yellow">CPF</th>
                 <th class="yellow">Data Inscr.</th>
                 <th class="yellow">Nome</th>
                 <th class="yellow">Opcional</th>
                 <th class="yellow">Pago {CIFRAO}</th>
                 <th class="yellow">Situação</th>
-                <th class="yellow" width="140">Opções</th>
+                <th class="yellow" width="80">Opções</th>
             </tr>
         </thead>
         <tbody>
             <!-- BEGIN BLOCK_ITEM_LISTA -->
             <tr>
-                <td><i class="{STATUS_ABAT}" title="Status do Abatimento"></i></td>
-                <td>{CPF}</td>
-                <td>{DT_INSCR}</td>
+                <td style="text-align: center;"><i class="{STATUS_ABAT}" title="Status do Abatimento"></i></td>
+                <td style="text-align: center;" ><img title="Comprado pela Internet" src='img/globe.png' style="display:{WEB}; height:30px;" ></td>
+                <td style="text-align: center;">{CPF}</td>
+                <td style="text-align: center;">{DT_INSCR}</td>
                 <td><a href="cadastro.clienteEdita.php?idCliente={ID_CLIENTE_HASH}">{NOME}</a></td>
-                <td>{OPCIONAL}</td>
-                <td title="{RESTA}">{PAGO}</td>
-                <td>{SITUACAO}</td>
-                <td align="center">
+                <td style="text-align: center;">{OPCIONAL}</td>
+                <td style="text-align: center;" title="{RESTA}">{PAGO}</td>
+                <td style="text-align: center;">{SITUACAO}</td>
+                <td style="text-align: center;">
                     <div class="btn-group">
                         <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Ações <span class="caret"></span>

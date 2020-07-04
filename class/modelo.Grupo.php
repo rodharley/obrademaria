@@ -112,7 +112,7 @@ class Grupo extends Persistencia{
 	$sql = "select * from ag_grupo" ;
 	if($ano != "")
 		$sql .= " where ano = ".$ano;
-	   $sql .= " order by dataEmbarque asc";
+	   $sql .= " order by id desc";
 	  $sql .= " limit $inicio, $fim";
 	 
 	return $this->getSQL($sql);

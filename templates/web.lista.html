@@ -1,0 +1,60 @@
+<script>
+    $(document).ready(function() {
+        
+
+
+        $('.paginar').click(function() {
+            jQuery.ajax({
+                type: "GET",
+                url: "web.lista.php?ajax=1&idGrupo={ID_GRUPO_HASH}&pagina=" + $('#manipulacao').val(),
+                beforeSend: function() {
+                    jQuery('#content').html('<p align="center">Processando...<br /><img src="img/ajax_loading_pequeno.gif" /></p>');
+                },
+                success: function(msg) {
+                    jQuery("#content").html(msg);
+                }
+            });
+        });
+    });
+</script>
+<section>
+    <h2>{NOME_GRUPO}</h2>
+    <h1>Compras Web<br/><small>Lista das compras realizadas pela internet:</small></h1>
+    
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th width="">Reserva</th> 
+                <th width="">Participante(s)</th>
+                <th width="">Forma</th>
+                <th width="">Tipo</th>
+                <th width="">GerenciaNet</th>                               
+            </tr>
+        </thead>
+        <tbody>
+            <!-- BEGIN BLOCK_ITEM_LISTA -->
+            <tr>
+                <td style="text-align: center;">{RESERVA}</td>
+                <td style="text-align: left;"><a href="cadastro.clienteEdita.php?idCliente={ID_CLIENTE_HASH}">{PARTICIPANTE}</a></td></td>
+                <td style="text-align: left;">{FORMA}</td>
+                <td style="text-align: left;">{TIPO}</td>
+                <td style="text-align: left;">{CHARGE_IDS}</td>                
+            </tr>
+            <!-- END BLOCK_ITEM_LISTA -->
+        </tbody>
+    </table>
+</section>
+<!-- BEGIN BLOCK_PAGINACAO -->
+<section>
+    <ul class="pager">
+        <li class="previous">
+            <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PAGINA_ANTERIOR}';">&larr; Anterior</a>
+        </li>
+        <li>Página <input type="text" class="span1" name="pagina" id="pagina" value="{PAGINA}" onchange="document.getElementById('manipulacao').value = this.value" />
+            <a href="#" class="paginar">Ir</a> Total de Páginas: {TOTAL_PAGINAS}</li>
+        <li class="next">
+            <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PROXIMA_PAGINA}';">Próxima &rarr;</a>
+        </li>
+    </ul>
+</section>
+<!-- END BLOCK_PAGINACAO -->

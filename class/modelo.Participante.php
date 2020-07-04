@@ -595,7 +595,7 @@ class Participante extends Persistencia{
 
 	function atualiza_status(){
 		$total  = $this->valorTotal;
-		$sql = "select sum(valor) as total from ag_abatimento where idParticipante = ".$this->id;
+		$sql = "select sum(valor) as total from ag_abatimento a inner join ag_pagamento p on p.id = a.idPagamento where (p.pago = 1 or p.site = 0) and a.idParticipante = ".$this->id;
 		$rs = $this->DAO_ExecutarQuery($sql);
 		$totalAbatimento = $this->money($this->money($this->DAO_Result($rs,"total",0),"atb"),"bta");
 		if($totalAbatimento >= $total || $total == 0)

@@ -224,6 +224,10 @@ class VendaSite extends Persistencia {
     
     }
 
+public function printReserva(){
+    return str_pad($this->id,10,"0",STR_PAD_LEFT);
+}
+
 
 function printFormaPagamento(){
     switch ($this->formaPagamento) {
@@ -249,4 +253,16 @@ public function printInfoCheque(){
     return '<div class="card"><div class="card-body">Entrar em contato com a obrademariadf pelo telefone 61-233330023</div></div>';
 }
 
+
+
+public function pesquisa($inicio,$fim,$idGrupo){
+$sql = "select v.* from ag_venda_site v inner join ag_participante p on p.id = v.id_participante where p.grupo =".$idGrupo." limit $inicio, $fim";
+return $this->getSQL($sql);
+}
+
+public function recuperaTotal($idGrupo){
+    $rs = $this->DAO_ExecutarQuery("select count(v.id) as total from ag_venda_site v inner join ag_participante p on p.id = v.id_participante where p.grupo =".$idGrupo);
+		return $this->DAO_Result($rs,"total",0);
+
+}
 }

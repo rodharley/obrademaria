@@ -9,7 +9,7 @@ class GerenciaNetCheckOut extends Persistencia {
 	var $status;	
 	var $message = NULL;
     var $participante = NULL;
-    var $venda = NULL;
+    var  $venda = NULL;
     var $total;
     var $created_at;
     var $payment_method;
@@ -201,13 +201,13 @@ try {
 
     private function gerarPagamentos($valorPago){
         $qtd = 1;
-        if($this->idAcompanhante1 != null)
+        if($this->venda->acompanhante1 != null)
             $qtd++;
-        if($this->idAcompanhante2 != null)
+        if($this->venda->acompanhante2 != null)
             $qtd++;
-        if($this->idAcompanhante3 != null)
+        if($this->venda->acompanhante3 != null)
             $qtd++;
-        if($this->idAcompanhante4 != null)
+        if($this->venda->acompanhante4 != null)
             $qtd++;
         
         
@@ -229,13 +229,13 @@ try {
             if($i==1){
                 $part->getById($this->participante->id);
             }else if($i == 2){
-                $part->getById($this->idAcompanhante1);
+                $part->getById($this->venda->acompanhante1);
             }else if($i == 3){
-                $part->getById($this->idAcompanhante2);
+                $part->getById($this->venda->acompanhante2);
             }else if($i == 4){
-                $part->getById($this->idAcompanhante3);
+                $part->getById($this->venda->acompanhante3);
             }else if($i == 5){
-                $part->getById($this->idAcompanhante4);
+                $part->getById($this->venda->acompanhante4);
             }
             
             $pag->dataPagamento = date("Y-m-d");
@@ -243,14 +243,14 @@ try {
             $pag->obs = 'pagamento automático vindo da gerencianet';
             $pag->abatimentoAutomatico =1;
             $pag->moeda = $om;
-            $pag->participante = $part;
+            $pag->participante = $this->participante;
 	        $pag->tipo = $oTipoP;
             $pag->finalidade = $oFin;
             $pag->cancelado = 0;
 	        $pag->devolucao = 0;
             $pag->valorParcela = 0;
             $pag->cotacaoMoedaReal=0;
-		    $pag->cotacaoReal = $this->cotacao;
+		    $pag->cotacaoReal = $this->venda->cotacao;
             $pag->parcela = 1;
             $pag->site = 1;
 	        $pag->pago = 1;
@@ -263,11 +263,11 @@ try {
             }else{
                 $oAbat->valor = $pag->CALCULA_REAL();
             }	
-            $oAbat->participante = $this->participante;
+            $oAbat->participante = $part;
             $oAbat->pagamento = $pag;
             $oAbat->save();
             
-	        $this->participante->atualiza_status();
+	        $part->atualiza_status();
         }
         
         
