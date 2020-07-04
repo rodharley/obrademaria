@@ -31,6 +31,18 @@ Number.prototype.format = function(n, x, s, c) {
 String.prototype.replaceAll = String.prototype.replaceAll || function(needle, replacement) {
     return this.split(needle).join(replacement);
 };
+
+function showMessage(title="Mensagem",message="Ocorreu um erro de conexão com os servidores, tente novamente mais tarde."){
+  $("#modalMessageTitle").html(title == '' ? "Mensagem" : title);
+  $("#modalMessageBody").html(message == '' ? "Ocorreu um erro de conexão com os servidores, tente novamente mais tarde." : message);
+  $("#modalMessage").modal('show');
+}
+function hideMessage(){
+  $("#modalMessageTitle").html("");
+  $("#modalMessageBody").html("");
+  $("#modalMessage").modal('hide');
+}
+
 $(document).ready(function(){
 $('.page-loader-wrapper').fadeOut();
       $(document).ajaxStart(function() {
@@ -92,6 +104,12 @@ $('.page-loader-wrapper').fadeOut();
   padding: 5px;
   border-radius: 5px;
 }
+.modal {
+  color:#000000;
+}
+.card {
+  color:#000000; 
+}
 body {
  
   background-image: url('http://www.obrademariadf.com.br/wp-content/uploads/2018/01/BANNER-revista2-01.jpg');
@@ -131,7 +149,7 @@ body {
     <div class="page-loader-wrapper">
       <div class="loader">
           <div class="preloader">
-            <i class="fas fa-spinner" aria-hidden="true"></i>
+            <img src="img/ajax-loading.gif" height="40"/>
           </div>
           <p>Aguarde...</p>
       </div>
@@ -166,5 +184,23 @@ body {
       </ul>
     </footer>
   </div>  
-
+  <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="modalMessage" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalMessageTitle">...</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modalMessageBody">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
 </body></html>

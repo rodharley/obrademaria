@@ -24,6 +24,8 @@ class Pagamento extends Persistencia{
 	var $bandeira = NULL;
 	var $valorParcela;
 	var $numeroCartao;
+	var $site;
+	var $pago;
 	
 	public function getPagamentos($grupo,$tipo){
 	$sql = "select p.* from ag_pagamento p inner join ag_participante c on c.id = p.participante where c.grupo = $grupo and p.tipo = $tipo and p.bitcancelado = 0 order by dataPagamento desc";	
@@ -414,6 +416,8 @@ function incluirPagamento(){
 	$this->tipo = $oTipoP;
 	$this->finalidade = $oFin;
 	$this->cancelado = 0;
+	$this->site = 0;
+	$this->pago = 1;
 	$this->devolucao = $_REQUEST['dev'];
 	$this->valorParcela = 0;
 	switch ($_REQUEST['tipo']){
@@ -630,6 +634,10 @@ function incluirPagamento(){
 
 return $idPagamento;
 }
+
+
+
+
 
 function CALCULA_REAL($valor = 0){
 	$moeda = new Moeda();

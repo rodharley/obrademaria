@@ -11,6 +11,7 @@ class Participante extends Persistencia{
 	var $status;
 	var $voucher;
 	var $idcn = null;
+	var $site;
 
 	public function STATUS_PENDENTE(){
 		return 1;
@@ -110,6 +111,7 @@ class Participante extends Persistencia{
 		$this->grupo = $oGrupo;
 		$this->cliente = $oCliente;
 		$this->idcn = 0;
+		$this->site = 0;
 		$this->contrato = "";//$this->geraContrato();
 		$this->pacoteOpcional = $pacoteOpcional;
 		$oSP = new StatusParticipante();
@@ -183,6 +185,7 @@ class Participante extends Persistencia{
 		$this->grupo = $oGrupo;
 		$this->cliente = $oCliente;
 		$this->idcn = 0;
+		$this->site = 0;
 		$this->contrato = "";//$this->geraContrato();
 		$this->pacoteOpcional = $pacoteOpcional;
 		$oSP = new StatusParticipante();
@@ -656,6 +659,7 @@ class Participante extends Persistencia{
 		$this->grupo = $obGrupo;
 		$this->cliente = $obCliente;
 		$this->idcn = 0;
+		$this->site = 1;
 		$this->contrato = "";//$this->geraContrato();
 		$this->pacoteOpcional = $opcional;
 		$oSP = new StatusParticipante();

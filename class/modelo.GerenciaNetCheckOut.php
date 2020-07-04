@@ -1,29 +1,31 @@
 <?php 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
+
+
 class GerenciaNetCheckOut extends Persistencia {
     var $id = NULL;
 	var $charge_id;
 	var $status;	
 	var $message = NULL;
-	var $participante = NULL;
+    var $participante = NULL;
+    var $venda = NULL;
     var $total;
     var $created_at;
     var $payment_method;
     var $update_at;
     var $payment_url;
     var $token;
-    var $idAcompanhante1;
-    var $idAcompanhante2;
-    var $idAcompanhante3;
-    var $idAcompanhante4;
-    var $cotacao;
+    
 
 
 public function getByChargeId($chargeId){
     return $this->getRow(array("charge_id"=>"=".$chargeId));
 }
 
+public function getByVendasId($vendaId){
+    return $this->getRows(0,4,array(),array("venda"=>"=".$vendaId));
+}
 
 function createLinkPagamento($charge_id,$mensagem,$tipoPagamento){
        
@@ -60,33 +62,25 @@ try {
 
     }
 
-    function createCharge($obParticipante,$obGrupo,$quantidade,$opcional,$idPartAcomp1,$idPartAcomp2,$idPartAcomp3,$idPartAcomp4){
-        $obAgenda = new Agendamento();
-        $obAgenda->getById(6);
-        $cotacao = 1.0;
-        if($obGrupo->moeda->id != 2){           
-         $cotacao = $obAgenda->destinatarios;
-        }
-        $total = $obGrupo->getValorTotal($opcional);
-        $totalReal = $total*$cotacao;
-        
-        
-        if($opcional)
+    function createCharge($obParticipante,$obGrupo,$obVenda,$valor){
+       
+
+
+        if($obVenda->opcional)
         $nomeItem = $obGrupo->nomePacote."+".$obGrupo->nomePacoteOpcional;
         else
         $nomeItem = $obGrupo->nomePacote;
         $item_1 = [
             'name' => utf8_encode($nomeItem), // nome do item, produto ou serviço
-            'amount' => intval($quantidade), // quantidade
-            'value' => intval(str_replace(".","",str_replace(",","",$this->money($totalReal,"atb")))) // valor (1000 = R$ 10,00) (Obs: É possível a criação de itens com valores negativos. Porém, o valor total da fatura deve ser superior ao valor mínimo para geração de transações.)
+            'amount' => intval($obVenda->quantidade), // quantidade
+            'value' => intval(str_replace(".","",str_replace(",","",$this->money($valor,"atb")))) // valor (1000 = R$ 10,00) (Obs: É possível a criação de itens com valores negativos. Porém, o valor total da fatura deve ser superior ao valor mínimo para geração de transações.)
         ];
-         
          
         $items =  [
             $item_1
         ];
         $metadata = [
-            "custom_id"=> strval($obParticipante->id),
+            "custom_id"=> strval($obVenda->id),
             "notification_url"=>$this->urlScripts."chargegn.php"
         ];
         
@@ -108,28 +102,21 @@ try {
         try {
             $api = new Gerencianet($this->getOptions());
             $charge = $api->createCharge([], $body);
-
+            
+            $this->venda = $obVenda;
             $this->participante = $obParticipante;
             $this->charge_id = $charge['data']['charge_id'];	
             $this->status  = "new";
             $this->message = "Criação do ChargeId";
-            $this->total = $this->money($totalReal*$quantidade,"bta");           
+            $this->total = $this->money($valor,"bta");           
             $this->created_at = date("Y-m-d H:i:s");
-            $this->idAcompanhante1 = $idPartAcomp1!=0 ? $idPartAcomp1 :null;
-            $this->idAcompanhante2 = $idPartAcomp2!=0 ? $idPartAcomp2 :null;
-            $this->idAcompanhante3 = $idPartAcomp3!=0 ? $idPartAcomp3 :null;
-            $this->idAcompanhante4 = $idPartAcomp4!=0 ? $idPartAcomp4 :null;
-            $this->cotacao = $cotacao;
-            //salva os ids dos acompanantes
-
             $this->save();
             return $charge;
         } catch (GerencianetException $e) {
-           /* print_r($e->code);
-            print_r($e->error);
-            print_r($e->errorDescription);*/
+           
             throw $e;
         } catch (Exception $e) {
+            
             throw $e;
         }
     }
@@ -265,6 +252,8 @@ try {
             $pag->cotacaoMoedaReal=0;
 		    $pag->cotacaoReal = $this->cotacao;
             $pag->parcela = 1;
+            $pag->site = 1;
+	        $pag->pago = 1;
             $pag->save();
             $oAbat = new Abatimento();	
             $oG = new Grupo();

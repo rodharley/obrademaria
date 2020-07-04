@@ -3,13 +3,7 @@
 include("tupi.inicializar.php");
 $codTemplate = 'tpl_shopping';
 include("tupi.template.inicializar.php"); 
-//$tupi->trataRequestAntiInjection();
-unset($_SESSION['ag_nomeUsuario']);
-unset($_SESSION['ag_idUsuario']);
-unset($_SESSION['ag_perfilUsuario']);
-unset($_SESSION['ag_idPerfilUsuario']);
-unset($_SESSION['ag_emailUsuario']);
-unset($_SESSION['ag_itensMenu']);
+
 
 //CARREGA DADOS DO GRUPO 
 if(isset($_REQUEST['idGrupo'])){

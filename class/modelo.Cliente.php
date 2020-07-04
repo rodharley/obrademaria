@@ -420,6 +420,18 @@ class Cliente extends Persistencia{
 	return false;
 	}
 	}
+
+	function getByemail($email){
+		$sql = "select * from ag_cliente where email = '".$email."'";
+		$rs = $this->getSQL($sql);
+		if (count($rs) > 0){
+		$this->getById($rs[0]->id);
+		return true;
+		}else{
+		return false;
+		}
+		}
+
 	function getByCpfNome($cpf,$nome){
 	if($cpf != "")
 	$sql = "select * from ag_cliente where cpf = '".$cpf."'";
@@ -544,6 +556,8 @@ class Cliente extends Persistencia{
 	}
 
 	function saveAcompanhanteBySite($nome,$email,$marketing){
+
+		$this->getByEmail($email);
 		//cadastra o cliente no banco
 		$this->nomeCompleto = $nome;
 		$this->cpf = '';
