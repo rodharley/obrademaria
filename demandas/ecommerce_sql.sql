@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `ag_venda_site` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 ALTER TABLE `ag_venda_site` ADD CONSTRAINT `fk_participante_venda_site` FOREIGN KEY (`id_participante`) REFERENCES `ag_participante`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
 ALTER TABLE `ag_gerencianet` CHANGE `idParticipante` `id_participante` INT(11) NOT NULL; 
-ALTER TABLE `ag_gerencianet` DROP `cotacao`, `idAcompanhante1`, DROP `idAcompanhante2`, DROP `idAcompanhante3`, DROP `idAcompanhante4`; 
+ALTER TABLE `ag_gerencianet` DROP `cotacao`, DROP `idAcompanhante1`, DROP `idAcompanhante2`, DROP `idAcompanhante3`, DROP `idAcompanhante4`; 
 ALTER TABLE `ag_gerencianet` ADD `id_venda_site` BIGINT NOT NULL AFTER `token`; 
 TRUNCATE `ag_gerencianet`;
 ALTER TABLE `ag_gerencianet` ADD CONSTRAINT `fk_venda_site_gerencianet` FOREIGN KEY (`id_venda_site`) REFERENCES `ag_venda_site`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
