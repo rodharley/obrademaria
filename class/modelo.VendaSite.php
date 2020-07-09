@@ -24,10 +24,11 @@ class VendaSite extends Persistencia {
         $obAgenda = new Agendamento();
         $obAgenda->getById(6);
         $cotacao = 1.0;
-        
+        $desconto = 0;
         if($grupo->moeda->id != 2){    
             switch($formaPagamento){
-                case 'formaAVista':                   
+                case 'formaAVista':  
+                    $desconto = 0.05;                 
                     $cotacao = $grupo->cotacaoAVista;
                 break;
                 case 'formaParcelado':
@@ -41,7 +42,8 @@ class VendaSite extends Persistencia {
             }       
           
         }
-        $total = $grupo->getValorTotal($opcional)*$quantidade;        
+        $valor = $grupo->getValorTotal($opcional)*$quantidade;
+        $total = ($valor) - ($valor*$desconto);        
         $totalReal = $total*$cotacao;
         $this->participante = $participante;
         $this->total = $this->money($totalReal,"bta");           
@@ -247,10 +249,26 @@ function printFormaPagamento(){
 }
 
 public function printInfoTransferencia(){
-    return '<div class="card"><div class="card-body">Conta CorrenteBanco do BrasilAg: 22323-2 CC: 1231233-2</div></div>';
+    return '<div class="card"><div class="card-body">
+        Contas para transferência:<br/>
+        Banco do Brasil<br/>
+        <img src="img/bancos/bb.png" width="48"/>
+        Ag. 0452-9 - Cc. 138706-5
+        <br/><br/>
+        Itaú<br/>
+        <img src="img/bancos/itau.png" width="48"/>
+        Ag. 522 - Cc 6071-4
+    </div></div>';
 }
 public function printInfoCheque(){
-    return '<div class="card"><div class="card-body">Entrar em contato com a obrademariadf pelo telefone 61-233330023</div></div>';
+    return '<div class="card"><div class="card-body">
+    Pagamentos em cheque, deve entrar em contato <br/>
+    Obra de Maria DF 
+    Telefone:<br/> +55 61 3201-5116
+    WhatsApp:<br/>
+    <img src="img/whatsapp.png" width="48"/>
+    +55 61 98100-7508
+    </div></div>';
 }
 
 

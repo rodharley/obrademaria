@@ -20,21 +20,21 @@
       <ul class="list-group mb-3">
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0 text-muted" >{GRUPO_NOME}</h6>
+            <h6 class="my-0 text-muted" >{GRUPO_NOME} ({GRUPO_MOEDA})</h6>
             
           </div>
           <span class="text-muted">{GRUPO_VALOR_CURRENCY}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0 text-muted" >Adesão</h6>
+            <h6 class="my-0 text-muted" >Adesão ({GRUPO_MOEDA})</h6>
             
           </div>
           <span class="text-muted">{GRUPO_VALOR_ADESAO_CURRENCY}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0 text-muted" >Taxa de Embarque</h6>
+            <h6 class="my-0 text-muted" >Taxa de Embarque ({GRUPO_MOEDA})</h6>
             
           </div>
           <span class="text-muted">{GRUPO_VALOR_EMBARQUE_CURRENCY}</span>
@@ -64,15 +64,15 @@
       <div class="d-block my-3">
         <div class="custom-control custom-radio">
           <input value="formaAVista" id="formaAVista" name="forma" type="radio" class="custom-control-input" checked="" required="">
-          <label class="custom-control-label" for="formaAVista">A Vista (5% de Desconto) <span class="badge badge-success">Dollar: {COTACAO_CURRENCY}</span></label>
+          <label class="custom-control-label" for="formaAVista">A Vista (5% de Desconto) <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_CURRENCY}</span></label>
         </div>
         <div class="custom-control custom-radio">
           <input value="formaEntrada" id="formaEntrada" name="forma" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="formaEntrada">Entrada + Parcelado no Cartão em até 12X <span class="badge badge-success">Dollar: {COTACAO_ENTRADA_CURRENCY}</span></label>
+          <label class="custom-control-label" for="formaEntrada">Entrada + Parcelado no Cartão em até 12X <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_ENTRADA_CURRENCY}</span></label>
         </div>
         <div class="custom-control custom-radio">
           <input value="formaParcelado" id="formaParcelado" name="forma" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="formaParcelado">Parcelado no cheque em {PARCELAMAXIMA} vezes <span class="badge badge-success">Dollar: {COTACAO_PARCELADO_CURRENCY}</span></label>
+          <label class="custom-control-label" for="formaParcelado">Parcelado no cheque em {PARCELAMAXIMA} vezes <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_PARCELADO_CURRENCY}</span></label>
         </div>
       </div>
       
@@ -98,7 +98,23 @@
     </div>
     
     <div id="tipoEntrada">
+
       <h5 class="mb-3">Entrada 20%: <span id="valor20" class="badge badge-success"></span></h5>
+      <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="uf">Entrada</label>
+        <select name="percentualEntrada" class="custom-select d-block w-100" id="percentualEntrada" required="">          
+          <option value="0.2">20%</option>
+          <option value="0.3">30%</option>
+          <option value="0.4">40%</option>
+          <option value="0.5">50%</option>
+          <option value="0.6">60%</option>
+        </select>
+        <div class="invalid-feedback label-error">
+         Por favor selecione um estado.
+        </div>
+      </div>
+    </div>
       <div class="d-block my-3">
         <div class="custom-control custom-radio">
           <input value="transferencia" id="entradatransferenciaEntrada" name="entradaPagamentoEntrada" type="radio" class="custom-control-input" checked="" required="">
@@ -138,9 +154,9 @@
         </div-->
       </div>
     </div>
-      <ul class="list-group m-3">
+      <ul class="list-group mb-3">
         <li class="list-group-item d-flex justify-content-between">
-          <span class="text-muted">Total Final R$</span>
+          <span class="text-muted">Total Final (R$)</span>
           <strong class="text-muted" id="lbl_total_real">0,00</strong>
         </li>
       </ul>
@@ -357,13 +373,7 @@
           <input value="1" checked="checked" type="checkbox" class="custom-control-input" id="mailmarketing" name="mailmarketing">
           <label class="custom-control-label" for="mailmarketing">Receber emails da Obra de Maria DF</label>
         </div>
-        <div class="custom-control custom-checkbox">
-          <input value="1"  type="checkbox" class="custom-control-input" id="termos" name="termos" required>
-          <label class="custom-control-label" for="termos">Li o contrato e aceito os termos</label>
-          <div class="invalid-feedback label-error">
-            Por favor aceite os termos.
-          </div>
-        </div>
+        
       </div>
 
     </div>
@@ -371,12 +381,46 @@
   <div class="row">
     <div class="col-md-12">
     <hr class="mb-4">
-    <button class="btn btn-primary btn-lg btn-block" type="submit" >Finalizar Compra</button>
+    <button class="btn btn-primary btn-lg btn-block" type="submit" >Continuar</button>
   </div>
   </div>
 </form>
 </div>
-
+<div id="modalContrato" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Termos do Contrato</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="contratobody">
+        {CONTRATO}
+      </div>
+      <div class="modal-footer" style="display: inline;">
+        <form class="needs-validation2 submit" novalidate="" action="#" id="formAceite" >
+        <div class="row">
+          <div class="col-md-6">
+            <div class="custom-control custom-checkbox">
+              <input value="1" type="checkbox" class="custom-control-input" id="aceite" name="aceite" required>
+              <label class="custom-control-label" for="aceite">de acordo com os termos do contrato</label>
+              <div class="invalid-feedback label-error">
+                Por favor aceite os termos do contrato.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="postForm">Aceito</button>
+          </div>
+        </div>       
+      </form>
+      </div>
+    </div>
+    
+  </div>
+</div>
 <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
@@ -385,7 +429,7 @@
         window.addEventListener('load', function() {
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
           var forms = document.getElementsByClassName('needs-validation');
-
+          var forms2 = document.getElementsByClassName('needs-validation2');
           // Loop over them and prevent submission
           var validation = Array.prototype.filter.call(forms, function(form) {
             form.addEventListener('submit', function(event) {
@@ -395,6 +439,21 @@
               }else{
                 event.preventDefault();
                 event.stopPropagation();
+                mostraContrato();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+
+          var validation2 = Array.prototype.filter.call(forms2, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }else{
+                event.preventDefault();
+                event.stopPropagation();
+                $("#modalContrato").modal('hide');
                 postform();
               }
               form.classList.add('was-validated');
@@ -454,7 +513,7 @@ function blockAcomp(numero,disabled){
         }else{
           totalGeral =quantidade*valorPacote;
         }
-        $("#lbl_total").html(cifrao+floatToCurrency((totalGeral)));
+        $("#lbl_total").html(floatToCurrency((totalGeral)));
 
         let dollar =cotacao;
 
@@ -468,14 +527,16 @@ function blockAcomp(numero,disabled){
         }
         if($("#formaEntrada").prop("checked")){
           dollar = cotacaoEntrada;
+          var percententrada = $("#percentualEntrada").val();
+          var resto =1 - percententrada;
           if(idmoeda != 2){            
-            $("#valor20").html("R$ "+floatToCurrency(totalGeral*dollar*0.2)); 
-            $("#valor80").html("R$ "+floatToCurrency(totalGeral*dollar*0.8));
-            $("#chequeEntradaLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar*0.8)/parcelamaxima));
+            $("#valor20").html("R$ "+floatToCurrency(totalGeral*dollar*percententrada)); 
+            $("#valor80").html("R$ "+floatToCurrency(totalGeral*dollar*resto));
+            $("#chequeEntradaLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar*resto)/parcelamaxima));
             }else{
-              $("#valor20").html("R$ "+totalGeral*0.2);
-              $("#valor80").html("R$ "+floatToCurrency(totalGeral*0.8));
-              $("#chequeEntradaLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*0.8)/parcelamaxima));
+              $("#valor20").html("R$ "+totalGeral*percententrada);
+              $("#valor80").html("R$ "+floatToCurrency(totalGeral*resto));
+              $("#chequeEntradaLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*resto)/parcelamaxima));
             }
           
           $("#tipoAVista").hide();
@@ -543,6 +604,9 @@ function blockAcomp(numero,disabled){
           $("#mailmarketing").prop("checked",false);
         }
         $('#cidade').load('ajax/comboCidadesPorUf.php?selected='+cliente.cidadeEndereco+'&idUf='+$('#uf').val());
+
+        
+        
       }
       function checkCpf() {
         
@@ -558,6 +622,19 @@ function blockAcomp(numero,disabled){
            }
         }
 
+        function mostraContrato(){
+        $("#contratobody").html($("#contratobody").html().replaceAll("##nomeCompleto##",$("#nomeCompleto").val()));
+        $("#contratobody").html($("#contratobody").html().replaceAll("##nacionalidade##",$("#pais").val()));
+        //$("#contratobody").html($("#contratobody").html().replaceAll("##estado_civil##",""));
+        //$("#contratobody").html($("#contratobody").html().replaceAll("##rg##","000"));
+        //$("#contratobody").html($("#contratobody").html().replaceAll("##rgOrgaoExpedidor##","SSP"));
+        $("#contratobody").html($("#contratobody").html().replaceAll("##cpf##",$("#cpf").val()));
+        $("#contratobody").html($("#contratobody").html().replaceAll("##endereco##",$("#endereco").val()));
+        $("#contratobody").html($("#contratobody").html().replaceAll("##uf##",$("#uf").val()));
+        $("#contratobody").html($("#contratobody").html().replaceAll("##cidade##",$("#cidade option:selected" ).text()));
+        $("#contratobody").html($("#contratobody").html().replaceAll("##total##",floatToCurrency(totalGeral)));
+            $("#modalContrato").modal('show');
+        }
 
         function postform(){
             let form = $("#form").serialize();
@@ -594,6 +671,7 @@ function blockAcomp(numero,disabled){
         }
 
       $(document).ready(function(){
+           totalGeral = 0;
            cotacao = {COTACAO};
            cotacaoEntrada = {COTACAO_ENTRADA};
            cotacaoParcelado = {COTACAO_PARCELADO};
@@ -628,6 +706,9 @@ function blockAcomp(numero,disabled){
         });
         $("#formaEntrada,#formaAVista,#formaParcelado").click(function()
         {
+          atualizaTela();
+        });
+        $("#percentualEntrada").change(function(){
           atualizaTela();
         });
 

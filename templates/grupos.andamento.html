@@ -4,7 +4,11 @@ $(document).ready(function(){
 	
 		
 	$('.paginar').click(function(){
-		jQuery.ajax({
+		pesquisar();
+	});
+});
+function pesquisar(){
+  jQuery.ajax({
 		type: "GET",
 		url: "grupos.andamento.php?pesquisa="+$("#pesquisa").val()+"&ajax=1&pagina="+$('#manipulacao').val(),
 		beforeSend: function( ) {
@@ -14,8 +18,7 @@ $(document).ready(function(){
 		jQuery("#content").html(msg);
 		}
 		});
-	});
-});
+}
 
 </script>
 <section>
@@ -62,6 +65,7 @@ $(document).ready(function(){
     <a href="#" class="paginar" onclick="document.getElementById('manipulacao').value = '{PAGINA_ANTERIOR}';">&larr; Anterior</a>
     </li>
     <li class="form-search">
+      <input type="number" class="input-medium" id="muda" name="muda" value="{PAGINA}" onchange="document.getElementById('manipulacao').value = this.value; pesquisar();"/>  
         <input type="text" class="input-medium search-query" id="pesquisa" name="pesquisa" value="{PESQUISA}"/>
         <button class="btn-default paginar" type="button" ><i class="icon-search"></i>Procurar</button>
         	

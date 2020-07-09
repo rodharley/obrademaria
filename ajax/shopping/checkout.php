@@ -125,8 +125,8 @@ case 'formaAVista':
     }
 break;
 case 'formaEntrada':
-    $valorEntrada = ($obVenda->total)*0.2;
-    $valorResto = ($obVenda->total)*0.8;
+    $valorEntrada = ($obVenda->total)*$_REQUEST['percentualEntrada'];
+    $valorResto = ($obVenda->total)*(1-$_REQUEST['percentualEntrada']);
     $valorParcela = $valorResto/$mesesParcela;
     if($_REQUEST['entradaPagamentoEntrada'] == 'transferencia'){
         $obVenda->incluirPagamentoSiteTransferencia($valorEntrada);
