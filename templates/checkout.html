@@ -663,14 +663,15 @@ function blockAcomp(numero,disabled){
         $("#bairro").val(cliente.bairro);
         $("#cep").val(cliente.cep);
         $("#pais").val(cliente.paisEndereco);
-        $("#uf").val(cliente.estadoEndereco);
         if(cliente.enviaCorrespondencia == 1){
           $("#mailmarketing").prop("checked",true); 
         }else{
           $("#mailmarketing").prop("checked",false);
         }
+        if(cliente.estadoEndereco != null){
+        $("#uf").val(cliente.estadoEndereco);        
         $('#cidade').load('ajax/comboCidadesPorUf.php?selected='+cliente.cidadeEndereco+'&idUf='+$('#uf').val());
-
+        }
         
         
       }
