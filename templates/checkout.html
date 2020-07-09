@@ -386,6 +386,7 @@
   </div>
 </form>
 </div>
+<textarea style="display: none;" id="txtContrato">{CONTRATO}</textarea>
 <div id="modalContrato" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -396,7 +397,6 @@
         </button>
       </div>
       <div class="modal-body" id="contratobody">
-        {CONTRATO}
       </div>
       <div class="modal-footer" style="display: inline;">
         <form class="needs-validation2 submit" novalidate="" action="#" id="formAceite" >
@@ -463,6 +463,72 @@
           document.getElementById("cpf").oninput = checkCpf;
         }, false);
       })();
+
+
+      $(document).ready(function(){
+           totalGeral = 0;
+           cotacao = {COTACAO};
+           cotacaoEntrada = {COTACAO_ENTRADA};
+           cotacaoParcelado = {COTACAO_PARCELADO};
+           cifrao = '{GRUPO_MOEDA} ';
+           idmoeda = {GRUPO_IDMOEDA};
+           quantidade = {QUANTIDADE};
+           valorPacote = {GRUPO_VALOR};
+           valorPacoteOpcional = {GRUPO_OPCIONAL_VALOR};
+           cupom =0;
+           haveOptional = {GRUPO_OPCIONAL};
+           parcelamaxima = {PARCELAMAXIMA};
+           
+        $("#bt_mais").click(function(){
+          if(quantidade < 5 ){
+          quantidade++;
+          }
+          $("#quantidade").val(quantidade);
+          atualizaTela();
+        });
+        $("#bt_menos").click(function(){
+          if(quantidade > 1){
+            quantidade--;
+          }
+          
+            $("#quantidade").val(quantidade);
+            atualizaTela();
+        });
+
+        $("#opcional").click(function(){
+          
+            atualizaTela();
+        });
+        $("#formaEntrada,#formaAVista,#formaParcelado").click(function()
+        {
+          atualizaTela();
+        });
+        $("#percentualEntrada").change(function(){
+          atualizaTela();
+        });
+
+        $("#datanascimento").datepicker({ language: 'pt-BR' });
+        $("#cpf").inputmask({
+            mask: "999.999.999-99"
+        });
+
+        $("#cep").inputmask({
+            mask: "99.999-999"
+        });
+
+        $('#uf').change(function(){
+    	    $('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$('#uf').val()); 
+        });
+        $("#cpf").change(function(){
+
+          buscaPeloCpf();      
+        });
+       
+       
+
+        atualizaTela();
+
+      });
 
 function blockAcomp(numero,disabled){
   let nome = $("#acompanhante"+numero);
@@ -623,17 +689,15 @@ function blockAcomp(numero,disabled){
         }
 
         function mostraContrato(){
-        $("#contratobody").html($("#contratobody").html().replaceAll("##nomeCompleto##",$("#nomeCompleto").val()));
-        $("#contratobody").html($("#contratobody").html().replaceAll("##nacionalidade##",$("#pais").val()));
-        //$("#contratobody").html($("#contratobody").html().replaceAll("##estado_civil##",""));
-        //$("#contratobody").html($("#contratobody").html().replaceAll("##rg##","000"));
-        //$("#contratobody").html($("#contratobody").html().replaceAll("##rgOrgaoExpedidor##","SSP"));
-        $("#contratobody").html($("#contratobody").html().replaceAll("##cpf##",$("#cpf").val()));
-        $("#contratobody").html($("#contratobody").html().replaceAll("##endereco##",$("#endereco").val()));
-        $("#contratobody").html($("#contratobody").html().replaceAll("##uf##",$("#uf").val()));
-        $("#contratobody").html($("#contratobody").html().replaceAll("##cidade##",$("#cidade option:selected" ).text()));
-        $("#contratobody").html($("#contratobody").html().replaceAll("##total##",floatToCurrency(totalGeral)));
-            $("#modalContrato").modal('show');
+          $("#contratobody").html($("#txtContrato").val().replaceAll("##nomeCompleto##",$("#nomeCompleto").val())
+          .replaceAll("##nacionalidade##",$("#pais").val())
+          .replaceAll("##cpf##",$("#cpf").val())
+          .replaceAll("##endereco##",$("#endereco").val())
+          .replaceAll("##uf##",$("#uf").val())
+          .replaceAll("##cidade##",$("#cidade option:selected" ).text())
+          .replaceAll("##total##",floatToCurrency(totalGeral))
+          );
+          $("#modalContrato").modal('show');
         }
 
         function postform(){
@@ -670,70 +734,7 @@ function blockAcomp(numero,disabled){
                 .fail(erro);
         }
 
-      $(document).ready(function(){
-           totalGeral = 0;
-           cotacao = {COTACAO};
-           cotacaoEntrada = {COTACAO_ENTRADA};
-           cotacaoParcelado = {COTACAO_PARCELADO};
-           cifrao = '{GRUPO_MOEDA} ';
-           idmoeda = {GRUPO_IDMOEDA};
-           quantidade = {QUANTIDADE};
-           valorPacote = {GRUPO_VALOR};
-           valorPacoteOpcional = {GRUPO_OPCIONAL_VALOR};
-           cupom =0;
-           haveOptional = {GRUPO_OPCIONAL};
-           parcelamaxima = {PARCELAMAXIMA};
-           
-        $("#bt_mais").click(function(){
-          if(quantidade < 5 ){
-          quantidade++;
-          }
-          $("#quantidade").val(quantidade);
-          atualizaTela();
-        });
-        $("#bt_menos").click(function(){
-          if(quantidade > 1){
-            quantidade--;
-          }
-          
-            $("#quantidade").val(quantidade);
-            atualizaTela();
-        });
-
-        $("#opcional").click(function(){
-          
-            atualizaTela();
-        });
-        $("#formaEntrada,#formaAVista,#formaParcelado").click(function()
-        {
-          atualizaTela();
-        });
-        $("#percentualEntrada").change(function(){
-          atualizaTela();
-        });
-
-        $("#datanascimento").datepicker({ language: 'pt-BR' });
-        $("#cpf").inputmask({
-            mask: "999.999.999-99"
-        });
-
-        $("#cep").inputmask({
-            mask: "99.999-999"
-        });
-
-        $('#uf').change(function(){
-    	    $('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$('#uf').val()); 
-        });
-        $("#cpf").change(function(){
-
-          buscaPeloCpf();      
-        });
-       
-       
-
-        atualizaTela();
-
-      });
+      
 
       function buscaPeloCpf(){
         var funcSuccess = function(data) {
@@ -744,7 +745,7 @@ function blockAcomp(numero,disabled){
             }
             //funcao de erro
             var funcDefaultError = function(erro) {
-              
+              showMessage();
             //console.log(erro.status + '-' + erro.responseText);
             }
             postJson('ajax/shopping/clienteByCpf.php',{"cpf":$("#cpf").val()},funcSuccess,funcDefaultError);

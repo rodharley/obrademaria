@@ -79,7 +79,7 @@ $tpl2->taxaAdesao =$oGrupo->money($oGrupo->valorAdesao,"atb");
 $tpl2->total = "##total##";
 $tpl2->block("BLOCK_PADRAO");
 $contrato = $tpl2->showString();
-$contrato = str_replace(",<strong>##estado_civil##</strong>","",$contrato);
+$contrato = str_replace("<strong>##estado_civil##</strong>,","",$contrato);
 $tpl->CONTRATO =   str_replace("da Cédula de Identidade n°<strong>##rg## - ##rgOrgaoExpedidor##</strong>, e","",$contrato);
             
 
