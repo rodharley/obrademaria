@@ -669,8 +669,8 @@ function blockAcomp(numero,disabled){
           $("#mailmarketing").prop("checked",false);
         }
         if(cliente.estadoEndereco != null){
-        $("#uf").val(cliente.estadoEndereco);        
-        $('#cidade').load('ajax/comboCidadesPorUf.php?selected='+cliente.cidadeEndereco+'&idUf='+$('#uf').val());
+        $("#uf").val(cliente.estadoEndereco.trim());        
+        $('#cidade').load('ajax/comboCidadesPorUf.php?selected='+cliente.cidadeEndereco.trim()+'&idUf='+$('#uf').val());
         }
         
         
