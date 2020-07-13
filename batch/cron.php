@@ -1,5 +1,5 @@
 <?php
-include("../tupi.inicializar.php");
+include(str_replace("batch\cron.php","",$_SERVER['SCRIPT_FILENAME'])."tupi.inicializar.php");
 try{
     //executa agendamentos
 	$ag = new Agendamento();
