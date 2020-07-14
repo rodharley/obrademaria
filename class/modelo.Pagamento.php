@@ -31,6 +31,18 @@ class Pagamento extends Persistencia{
 	$sql = "select p.* from ag_pagamento p inner join ag_participante c on c.id = p.participante where c.grupo = $grupo and p.tipo = $tipo and p.bitcancelado = 0 order by dataPagamento desc";	
 	return $this->getSQL($sql);
 	}
+	public function getPagamentosParticipanteNaoPagos($idparticipante){
+		$sql = "select p.* from ag_pagamento p where p.participante = $idparticipante and p.site = 1 and pago = 0";	
+		return $this->getSQL($sql);
+		}
+	
+
+	
+
+	public function getValorPagamentosPorTipoeParticipante($participante,$tipo,$obs){
+		$sql = "select sum(valorPagamento) as total from ag_pagamento p where p.participante = $participante and p.tipo = $tipo and p.bitcancelado = 0 and obs like '%$obs'";	
+		return $this->DAO_ExecutarQuery($sql);
+		}
 	
 	public function pagamentosPeriodo($datai,$dataf){
 	$sql = "select * from ag_pagamento where id in (select min(id) from ag_pagamento where dataPagamento between '".$datai."' and '".$dataf."' group by participante) order by dataPagamento";

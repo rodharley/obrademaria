@@ -27,6 +27,10 @@ public function getByVendasId($vendaId){
     return $this->getRows(0,4,array(),array("venda"=>"=".$vendaId));
 }
 
+public function getByVendasNaoPagasId($vendaId){
+    return $this->getRows(0,4,array(),array("venda"=>"=".$vendaId,"status"=>"!='paid'"));
+}
+
 function createLinkPagamento($charge_id,$mensagem,$tipoPagamento){
        
 // $charge_id refere-se ao ID da transação gerada anteriormente

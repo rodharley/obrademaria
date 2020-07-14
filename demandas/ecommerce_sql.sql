@@ -83,3 +83,6 @@ ALTER TABLE `ag_venda_site` ADD `opcional` TINYINT(1) NOT NULL DEFAULT '0' AFTER
 ALTER TABLE `ag_venda_site` ADD `total` DECIMAL(10,2) NOT NULL AFTER `tipo_pagamento2`; 
 -- 04/07/2020
 INSERT INTO `ag_menu` (`id`, `idMenuPai`, `descricao`, `url`) VALUES ('', '2', 'Compras Web', 'web.filtro.php'); 
+--11/07/2020
+ALTER TABLE `ag_grupo` ADD `desconto_avista` INT(3) NOT NULL DEFAULT '0' AFTER `imagem_destaque`; 
+ALTER TABLE `ag_venda_site` ADD `desconto` INT(3) NOT NULL DEFAULT '0' AFTER `total`; 

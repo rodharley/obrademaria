@@ -547,10 +547,15 @@ class Cliente extends Persistencia{
 		$this->cep = $this->limpaDigitos($request['cep']);
 		$this->preferencial = 0;
 		$this->enviaCorrespondencia = isset($request['mailmarketing']) ? 1 : 0;
+		$this->rg = $request['rg'];
+		$this->orgaoEmissorRg = $request['orgaoExpedidor'];
+		$this->celular = $request['celular'];
+		$this->telefoneResidencial = $request['telefoneFixo'];
+
 		$oEstadoCivil = new EstadoCivil();
-					$oEstadoCivil->id = 8;
+		$oEstadoCivil->id = $request['estadoCivil'];
 		$this->estadoCivil = $oEstadoCivil;
-		$this->site = 1;
+		$this->site = 1;		
 		$idCliente = $this->save();
 		return $idCliente;
 	}

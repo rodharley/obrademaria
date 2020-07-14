@@ -29,7 +29,7 @@ class Grupo extends Persistencia{
 	var $cotacaoParcelado;
 	var $cotacaoEntrada;
 	var $imagemDestaque;
-
+	var $descontoAVista;
 	
 	public function STATUS_ANDAMENTO(){
 		return 1;
@@ -141,7 +141,7 @@ class Grupo extends Persistencia{
 		$this->valorAdesao = $this->money($_POST['valorAdesao'] == '' ? 0 : $_POST['valorAdesao'] ,"bta");
 		$this->valorCusto = $this->money($_POST['valorCusto'] == '' ? 0 : $_POST['valorCusto'],"bta");
 		$this->cotacaoCusto = $this->money($_POST['cotacaoCusto'] == '' ? 0 : $_POST['cotacaoCusto'],"bta");
-
+		$this->descontoAVista = $_POST['descontoAVista'];
 		$this->cotacaoAVista = $this->money($_POST['cotacaoAVista'] == '' ? 0 : $_POST['cotacaoAVista'],"bta");
 		$this->cotacaoEntrada = $this->money($_POST['cotacaoEntrada'] == '' ? 0 : $_POST['cotacaoEntrada'],"bta");
 		$this->cotacaoParcelado = $this->money($_POST['cotacaoParcelado'] == '' ? 0 : $_POST['cotacaoParcelado'],"bta");
@@ -278,7 +278,7 @@ class Grupo extends Persistencia{
 		$this->valorAdesao = $this->money($_POST['valorAdesao'] == '' ? 0 : $_POST['valorAdesao'] ,"bta");
 		$this->valorCusto = $this->money($_POST['valorCusto'] == '' ? 0 : $_POST['valorCusto'],"bta");
 		$this->cotacaoCusto = $this->money($_POST['cotacaoCusto'] == '' ? 0 : $_POST['cotacaoCusto'],"bta");
-
+		$this->descontoAVista = $_POST['descontoAVista'];
 		$this->cotacaoAVista = $this->money($_POST['cotacaoAVista'] == '' ? 0 : $_POST['cotacaoAVista'],"bta");
 		$this->cotacaoEntrada = $this->money($_POST['cotacaoEntrada'] == '' ? 0 : $_POST['cotacaoEntrada'],"bta");
 		$this->cotacaoParcelado = $this->money($_POST['cotacaoParcelado'] == '' ? 0 : $_POST['cotacaoParcelado'],"bta");

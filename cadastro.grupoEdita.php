@@ -51,6 +51,7 @@ if(isset($_REQUEST['idGrupo'])){
 	$tpl->plano = $oGrupo->plano;
 	$tpl->destino = $oGrupo->destino;
 	$tpl->imagemDestaque = $oGrupo->imagemDestaque != null ? $oGrupo->imagemDestaque : 'default.jpg';
+	$tpl->DESCONTO = $oGrupo->descontoAVista;
 	//contrato modelo
 	if($oGrupo->modeloContrato == 'contrato1.php')
 		$tpl->SELECTED_MODELO1 = 'selected';

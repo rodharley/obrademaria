@@ -182,13 +182,22 @@ $("#ano").mask("9999");
     </div>
   </div>
 <div class="row">
-  <div class="span8">
+  <div class="span4">
     <div class="control-group">
       <label for="roteiro" class="control-label">Roteiro:</label>
       <div class="controls">
         <input type="file" name="roteiro" id="roteiro" />
         <br />
          <a href="docs/{roteiroAnexo}" target="_blank">{roteiroAnexo}</a> </div>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="control-group">
+      <label for="descontoAVista" class="control-label">Desconto à Vista:</label>
+      <div class="controls">
+        <input value="{DESCONTO}" type="number" class="required span2 input-xlarge" name="descontoAVista" id="descontoAVista" />
+        <br />
+      </div>
     </div>
   </div>
   <div class="span3">

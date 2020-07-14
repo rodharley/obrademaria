@@ -9,6 +9,7 @@ include("tupi.template.inicializar.php");
 if(isset($_REQUEST['idGrupo'])){
     $oGrupo = new Grupo();
     $oAg = new Agendamento();
+    $oec = new EstadoCivil();
     $oAg->getById(6);
 
     $oGrupo->getById($_REQUEST['idGrupo']);	
@@ -24,7 +25,8 @@ if(isset($_REQUEST['idGrupo'])){
     $tpl->COTACAO_CURRENCY = $oGrupo->money($oGrupo->cotacaoAVista,"atb");
     $tpl->COTACAO_ENTRADA_CURRENCY = $oGrupo->money($oGrupo->cotacaoEntrada,"atb");
     $tpl->COTACAO_PARCELADO_CURRENCY = $oGrupo->money($oGrupo->cotacaoParcelado,"atb");
-
+    $tpl->DESCONTO_A_VISTA = $oGrupo->descontoAVista;
+    $tpl->TEXT_DESCONTO_A_VISTA = $oGrupo->descontoAVista != 0 ? '('.$oGrupo->descontoAVista.'% de Desconto)' : '';
     $tpl->URL_IMAGE_GRUPO = 'img/grupos/'.$oGrupo->imagemDestaque;
     $tpl->GRUPO_NOME = $oGrupo->nomePacote;
     $tpl->QUANTIDADE = 1;
@@ -32,19 +34,27 @@ if(isset($_REQUEST['idGrupo'])){
     if( $oGrupo->moeda->id == 2){
         $tpl->DISPLAY_DOLLAR = 'd-none';
     }
-    $tpl->GRUPO_VALOR = $oGrupo->getValorTotal(0);
+    $tpl->GRUPO_VALOR = $oGrupo->valorPacote;
     $tpl->GRUPO_VALOR_CURRENCY = $oGrupo->money($oGrupo->valorPacote,"atb");
     $tpl->GRUPO_VALOR_ADESAO_CURRENCY = $oGrupo->money($oGrupo->valorAdesao,"atb");
+    $tpl->GRUPO_VALOR_ADESAO = $oGrupo->valorAdesao;
     $tpl->GRUPO_VALOR_EMBARQUE_CURRENCY = $oGrupo->money($oGrupo->valorTaxaEmbarque,"atb");
+    $tpl->GRUPO_VALOR_EMBARQUE = $oGrupo->valorTaxaEmbarque;
     $tpl->ID_GRUPO = $oGrupo->id;
     if($oGrupo->possuiPacoteOpcional ==1){
         $tpl->GRUPO_OPCIONAL_NOME = $oGrupo->nomePacoteOpcional;
-        $tpl->GRUPO_OPCIONAL_VALOR = $oGrupo->getValorTotalOpcional();
-        $tpl->GRUPO_OPCIONAL_VALOR_CURRENCY = $oGrupo->money($oGrupo->getValorTotalOpcional(),"atb");
+        $tpl->GRUPO_OPCIONAL_VALOR = $oGrupo->valorPacoteOpcional;
+        $tpl->GRUPO_OPCIONAL_VALOR_CURRENCY = $oGrupo->money($oGrupo->valorPacoteOpcional,"atb");
+        $tpl->GRUPO_OPCIONAL_VALOR_ADESAO = $oGrupo->valorAdesaoOpcional;
+        $tpl->GRUPO_OPCIONAL_VALOR_ADESAO_CURRENCY = $oGrupo->money($oGrupo->valorAdesaoOpcional,"atb");
+        $tpl->GRUPO_OPCIONAL_VALOR_EMBARQUE= $oGrupo->valorTaxaEmbarqueOpcional;
+        $tpl->GRUPO_OPCIONAL_VALOR_EMBARQUE_CURRENCY = $oGrupo->money($oGrupo->valorTaxaEmbarqueOpcional,"atb");
         $tpl->block('BLOCK_OPCIONAL');
 
     }else{
         $tpl->GRUPO_OPCIONAL_VALOR = 0;
+        $tpl->GRUPO_OPCIONAL_VALOR_ADESAO = 0;
+        $tpl->GRUPO_OPCIONAL_VALOR_EMBARQUE = 0;
     }
     $tpl->GRUPO_MOEDA = $oGrupo->moeda->cifrao;
     $tpl->GRUPO_OPCIONAL = $oGrupo->possuiPacoteOpcional;
@@ -79,8 +89,8 @@ $tpl2->taxaAdesao =$oGrupo->money($oGrupo->valorAdesao,"atb");
 $tpl2->total = "##total##";
 $tpl2->block("BLOCK_PADRAO");
 $contrato = $tpl2->showString();
-$contrato = str_replace("<strong>##estado_civil##</strong>,","",$contrato);
-$tpl->CONTRATO =   str_replace("da Cédula de Identidade n°<strong>##rg## - ##rgOrgaoExpedidor##</strong>, e","",$contrato);
+$tpl->CONTRATO = str_replace("BRASILIA-DF,_____ de ______________________ de __________","BRASILIA-DF,".Date("d")." de ".$oGrupo->mesExtenso(Date("n"))." de ".date("Y").",",$contrato);
+//$tpl->CONTRATO =   str_replace("da Cédula de Identidade n°<strong>##rg## - ##rgOrgaoExpedidor##</strong>, e","",$contrato);
             
 
     //endereco
@@ -90,7 +100,13 @@ $tpl->CONTRATO =   str_replace("da Cédula de Identidade n°<strong>##rg## - ##rgO
     foreach ($ufs as $key => $uf) {
         $tpl->UF = $uf->uf;
         $tpl->block("BLOCK_ESTADO");
-        # code...
+    }
+
+    $rsec = $oec->getRows(0,99,array('descricao'=>'ASC'));
+    foreach ($rsec as $key => $ec) {
+        $tpl->ID_ESTADO_CIVIL = $ec->id;
+        $tpl->DESC_ESTADO_CIVIL = $ec->descricao;
+        $tpl->block("BLOCK_ESTADO_CIVIL");
     }
     
 }

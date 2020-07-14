@@ -2,7 +2,8 @@
   <div class="py-5 text-center">
     <img class="d-block mx-auto mb-4" src="{URL_IMAGE_GRUPO}" alt="" height="140" class="shadow-sm">
     <h2>Vendas - Obra de Maria DF</h2>
-    <p class="lead">Você está adquirindo um pacote conosco, entre com seus dados e as informações</p>
+    <h3>Compre agora!</h3>
+    <p class="lead">Você está adquirindo uma peregrinação com a Obra de Maria Brasília. Preencha seus dados</p>
   </div>
   <form class="needs-validation submit" novalidate="" action="#" id="form" >
   <div class="row">
@@ -46,11 +47,23 @@
             <div class="custom-control custom-checkbox">
               <input type="checkbox" value="1" name="opcional" class="custom-control-input" id="opcional" >
               <label class="custom-control-label text-muted" for="opcional">{GRUPO_OPCIONAL_NOME}</label>
-            </div>
-            
-            
+            </div>    
           </div>
           <span class="text-muted">{GRUPO_OPCIONAL_VALOR_CURRENCY}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0 text-muted" >Adesão ({GRUPO_MOEDA})</h6>
+            
+          </div>
+          <span class="text-muted">{GRUPO_OPCIONAL_VALOR_ADESAO_CURRENCY}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0 text-muted" >Taxa de Embarque ({GRUPO_MOEDA})</h6>
+            
+          </div>
+          <span class="text-muted">{GRUPO_OPCIONAL_VALOR_EMBARQUE_CURRENCY}</span>
         </li>
         <!-- END BLOCK_OPCIONAL -->        
         <li class="list-group-item d-flex justify-content-between">
@@ -64,7 +77,7 @@
       <div class="d-block my-3">
         <div class="custom-control custom-radio">
           <input value="formaAVista" id="formaAVista" name="forma" type="radio" class="custom-control-input" checked="" required="">
-          <label class="custom-control-label" for="formaAVista">A Vista (5% de Desconto) <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_CURRENCY}</span></label>
+          <label class="custom-control-label" for="formaAVista">A Vista {TEXT_DESCONTO_A_VISTA} <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_CURRENCY}</span></label>
         </div>
         <div class="custom-control custom-radio">
           <input value="formaEntrada" id="formaEntrada" name="forma" type="radio" class="custom-control-input" required="">
@@ -72,7 +85,7 @@
         </div>
         <div class="custom-control custom-radio">
           <input value="formaParcelado" id="formaParcelado" name="forma" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="formaParcelado">Parcelado no cheque em {PARCELAMAXIMA} vezes <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_PARCELADO_CURRENCY}</span></label>
+          <label class="custom-control-label" for="formaParcelado">Parcelado <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_PARCELADO_CURRENCY}</span></label>
         </div>
       </div>
       
@@ -99,20 +112,21 @@
     
     <div id="tipoEntrada">
 
-      <h5 class="mb-3">Entrada 20%: <span id="valor20" class="badge badge-success"></span></h5>
+      <h5 class="mb-3">Entrada: <span id="valor20" class="badge badge-success"></span></h5>
       <div class="row">
       <div class="col-md-6 mb-3">
-        <label for="uf">Entrada</label>
+        <label for="percentualEntrada">Percentual</label>
         <select name="percentualEntrada" class="custom-select d-block w-100" id="percentualEntrada" required="">          
-          <option value="0.2">20%</option>
-          <option value="0.3">30%</option>
-          <option value="0.4">40%</option>
-          <option value="0.5">50%</option>
+          <option value="0.20">20%</option>
+          <option value="0.25">25%</option>
+          <option value="0.30">30%</option>
+          <option value="0.35">35%</option>
+          <option value="0.40">40%</option>
+          <option value="0.45">45%</option>
+          <option value="0.50">50%</option>
+          <option value="0.55">55%</option>
           <option value="0.6">60%</option>
         </select>
-        <div class="invalid-feedback label-error">
-         Por favor selecione um estado.
-        </div>
       </div>
     </div>
       <div class="d-block my-3">
@@ -132,7 +146,7 @@
       <h5 class="mb-3">Parcelamento: <span id="valor80" class="badge badge-success"></span></h5>
       <div class="custom-control custom-radio">
         <input value="credit_card" id="creditoEntrada" name="pagamentoEntrada" checked type="radio" class="custom-control-input" required="">
-        <label class="custom-control-label" for="creditoEntrada" id="creditoEntradaLabel">Cartão de crédito (GerenciaNet até 12 vezes com juros)</label>
+        <label class="custom-control-label" for="creditoEntrada" id="creditoEntradaLabel">Cartão de crédito (GerenciaNet até 12 vezes sem juros)</label>
       </div>
       <div class="custom-control custom-radio">
         <input value="cheque" id="chequeEntrada" name="pagamentoEntrada" type="radio" class="custom-control-input" checked="" required="">
@@ -147,14 +161,24 @@
         <div class="custom-control custom-radio">
           <input value="cheque" id="cheque" name="pagamentoParcelado" type="radio" class="custom-control-input" checked="" required="">
           <label class="custom-control-label" for="cheque" id="chequeParceladoLabel">Cheque</label>
-        </div>        
+        </div>    
+        <div class="custom-control custom-radio">
+          <input value="credit_card" id="creditoParcelado" name="pagamentoParcelado" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="creditoParcelado" id="creditoEntradaLabel">Cartão de crédito (GerenciaNet até 12 vezes sem juros)</label>
+        </div>   
+        
         <!--div class="custom-control custom-radio">
           <input value="3" id="paypal" name="pagamento" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="paypal">Paypal</label>
         </div-->
       </div>
     </div>
+    <hr class="mb-4">
       <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between">
+          <span class="text-muted">Desconto (R$)</span>
+          <strong class="text-muted" id="lbl_desconto_real">0,00</strong>
+        </li>
         <li class="list-group-item d-flex justify-content-between">
           <span class="text-muted">Total Final (R$)</span>
           <strong class="text-muted" id="lbl_total_real">0,00</strong>
@@ -172,31 +196,75 @@
         <input type="hidden" name="quantidade" id="quantidade" value="{QUANTIDADE}"/>
         <input type="hidden" name="idGrupo" value="{ID_GRUPO}"/>
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <div class="col-md-5 mb-3">
             <label for="cpf">CPF</label>
             <input  name="cpf" type="text" class="form-control" id="cpf" placeholder="" value="" required="">
             <div class="invalid-feedback label-error feedback-cpf">
               Cpf requerido.
             </div>
           </div>
-          <div class="col-md-6 mb-3">
-            <label for="nomeCompleto">Nome Completo</label>
+          <div class="col-md-3 mb-3">
+            <label for="rg">RG</label>
+            <input  name="rg" type="text" maxlength="10" class="form-control" id="rg" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error feedback-cpf">
+              Rg requerido.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="orgaoExpedidor">Orgão Expedidor</label>
+            <input  name="orgaoExpedidor" type="text" maxlength="10" class="form-control" id="orgaoExpedidor" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error feedback-cpf">
+              Orgão Expedidor requerido.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="nomeCompleto">Nome Completo</label>
             <input  name="nomeCompleto" type="text" class="form-control" id="nomeCompleto" placeholder="" value="" required="">
             <div class="invalid-feedback label-error">
               Nome Completo Requerido.
             </div>
-          </div>
         </div>
-
-        <div class="mb-3">
-          <label for="email">E-mail</label>
+        <div class="row">
+          <div class="col-md-7 mb-3">
+            <label for="email">E-mail</label>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">@</span>
             </div>
             <input  name="email" type="email" class="form-control" id="email" placeholder="email" required="">
-            <div class="invalid-feedback label-error" style="width: 100%;">
+            <div class="invalid-feedback label-error">
               E-mail requirido.
+            </div>
+          </div>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="estadoCivil">Estado Civil</label>
+            <select name="estadoCivil" class="custom-select d-block w-100" id="estadoCivil" required="">
+              <option value="">Selecione...</option>            
+              <!-- BEGIN BLOCK_ESTADO_CIVIL -->
+              <option value="{ID_ESTADO_CIVIL}">{DESC_ESTADO_CIVIL}</option>
+              <!-- END BLOCK_ESTADO_CIVIL -->
+            </select>
+            <div class="invalid-feedback label-error">
+             Por favor selecione um estado civil.
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="celular">Celular</label>
+            <input  name="celular" type="text" class="form-control" id="celular" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error ">
+              Celular requerido.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="telefoneFixo">Tel. Fixo</label>
+            <input  name="telefoneFixo" type="text" class="form-control" id="telefoneFixo" placeholder="" value="" required="">
+            <div class="invalid-feedback label-error ">
+              Telefone Fixo requerido.
             </div>
           </div>
         </div>
@@ -319,7 +387,7 @@
           <label for="address">Enderço</label>
           <input  name="endereco" type="text" class="form-control" id="endereco" placeholder="Rua" required="">
           <div class="invalid-feedback label-error">
-            Please enter your shipping address.
+            Endereço Requerido
           </div>
         </div>
 
@@ -466,18 +534,28 @@
 
 
       $(document).ready(function(){
+
+           desconto = {DESCONTO_A_VISTA};
            totalGeral = 0;
+           descontoFinal = 0;
            cotacao = {COTACAO};
            cotacaoEntrada = {COTACAO_ENTRADA};
            cotacaoParcelado = {COTACAO_PARCELADO};
            cifrao = '{GRUPO_MOEDA} ';
            idmoeda = {GRUPO_IDMOEDA};
            quantidade = {QUANTIDADE};
-           valorPacote = {GRUPO_VALOR};
-           valorPacoteOpcional = {GRUPO_OPCIONAL_VALOR};
            cupom =0;
            haveOptional = {GRUPO_OPCIONAL};
            parcelamaxima = {PARCELAMAXIMA};
+
+           valorPacote = {GRUPO_VALOR};
+           valorAdesao = {GRUPO_VALOR_ADESAO};
+           valorEmbarque = {GRUPO_VALOR_EMBARQUE};
+
+           valorOpcional = {GRUPO_OPCIONAL_VALOR};
+           valorOpcionalAdesao = {GRUPO_OPCIONAL_VALOR_ADESAO};
+           valorOpcionalEmbarque = {GRUPO_OPCIONAL_VALOR_EMBARQUE};
+           
            
         $("#bt_mais").click(function(){
           if(quantidade < 5 ){
@@ -511,6 +589,12 @@
         $("#cpf").inputmask({
             mask: "999.999.999-99"
         });
+        $("#telefoneFixo").inputmask(
+          {mask: ["99 9999-9999","99 99999-9999"]}
+        );
+        $("#celular").inputmask(
+          {mask: ["99 9999-9999","99 99999-9999"]}
+        );
 
         $("#cep").inputmask({
             mask: "99.999-999"
@@ -543,6 +627,8 @@ function blockAcomp(numero,disabled){
 }
 
       function atualizaTela(){
+        descontoFinal = 0;
+        totalGeral = 0;
         if(quantidade == 1){
           $("#boxAcompanhante").hide('slow');
           blockAcomp(1,true);
@@ -574,10 +660,10 @@ function blockAcomp(numero,disabled){
           $("#boxAcompanhante").show('slow');
         }
         if(haveOptional && $("#opcional").prop("checked")){
-          totalGeral = quantidade*(valorPacote+valorPacoteOpcional);
+          totalGeral = quantidade*(valorPacote+valorAdesao+valorEmbarque+valorOpcional+valorOpcionalAdesao+valorOpcionalEmbarque);
           
         }else{
-          totalGeral =quantidade*valorPacote;
+          totalGeral =quantidade*(valorPacote+valorAdesao+valorEmbarque);
         }
         $("#lbl_total").html(floatToCurrency((totalGeral)));
 
@@ -586,7 +672,17 @@ function blockAcomp(numero,disabled){
 
         if($("#formaAVista").prop("checked")){
           dollar = cotacao;
-          totalGeral = totalGeral-(totalGeral*0.05);
+          if(desconto != 0){
+            if(haveOptional && $("#opcional").prop("checked")){
+            descontoFinal = (valorPacote+valorOpcional)*(desconto/100) * quantidade;
+            }else{
+              descontoFinal = (valorPacote)*(desconto/100) * quantidade; 
+            }
+            
+          }else{
+            descontoFinal = 0;
+          }
+          totalGeral = (totalGeral) - descontoFinal;
           $("#tipoAVista").show('slow');
           $("#tipoParcelado").hide();
           $("#tipoEntrada").hide();
@@ -622,8 +718,10 @@ function blockAcomp(numero,disabled){
         }
         
         if(idmoeda != 2){
+        $("#lbl_desconto_real").html("R$ "+floatToCurrency((descontoFinal*dollar)));
         $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral*dollar)));
         }else{
+          $("#lbl_desconto_real").html("R$ "+floatToCurrency((descontoFinal)));
           $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral)));
         }
         $("#lbl_quantidade").html($("#quantidade").val());
@@ -651,6 +749,8 @@ function blockAcomp(numero,disabled){
 
       function preencheForm(cliente){
         console.log(cliente);
+        $("#rg").val(cliente.rg);
+        $("#orgaoExpedidor").val(cliente.orgaoEmissorRg)
         $("#nomeCompleto").val(cliente.nomeCompleto);
         $("#email").val(cliente.email);
         $("#datanascimento").val(cliente.dataNascimento);
@@ -663,13 +763,20 @@ function blockAcomp(numero,disabled){
         $("#bairro").val(cliente.bairro);
         $("#cep").val(cliente.cep);
         $("#pais").val(cliente.paisEndereco);
+        $("#telefoneFixo").val(cliente.telefoneResidencial);
+        $("#celular").val(cliente.celular);
         if(cliente.enviaCorrespondencia == 1){
           $("#mailmarketing").prop("checked",true); 
         }else{
           $("#mailmarketing").prop("checked",false);
         }
+        if(cliente.estadoCivil != null){
+          $("#estadoCivil").val(cliente.estadoCivil.id.trim());   
+        }
+        
         if(cliente.estadoEndereco != null){
-        $("#uf").val(cliente.estadoEndereco.trim());        
+        $("#uf").val(cliente.estadoEndereco.trim());       
+        
         $('#cidade').load('ajax/comboCidadesPorUf.php?selected='+cliente.cidadeEndereco.trim()+'&idUf='+$('#uf').val());
         }
         
@@ -697,6 +804,9 @@ function blockAcomp(numero,disabled){
           .replaceAll("##uf##",$("#uf").val())
           .replaceAll("##cidade##",$("#cidade option:selected" ).text())
           .replaceAll("##total##",floatToCurrency(totalGeral))
+          .replaceAll("##rg##",$("#rg").val())
+          .replaceAll("##rgOrgaoExpedidor##",$("#orgaoExpedidor").val())
+          .replaceAll("##estado_civil##",$("#estadoCivil option:selected" ).text())
           );
           $("#modalContrato").modal('show');
         }

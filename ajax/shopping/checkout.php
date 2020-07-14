@@ -111,15 +111,15 @@ $idVenda = $obVenda->createVenda($obParticipante,$obGrupo,isset($_REQUEST['opcio
 switch($_REQUEST['forma']){
     
 case 'formaAVista':
-    $valorPagamento = $obVenda->total - ($obVenda->total*0.05);
+    $valorPagamento = $obVenda->total;
     if($_REQUEST['pagamentoAVista'] == 'transferencia'){
-        $obVenda->incluirPagamentoSiteTransferencia($valorPagamento);
+        $obVenda->incluirPagamentoSiteTransferencia($valorPagamento,"Pagamentos pela internet a vista");
     } else if($_REQUEST['pagamentoAVista'] == 'boleto'){
         $chargeBoleto = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$valorPagamento);
         $linkBoleto = $obCheckout->createLinkPagamento($chargeBoleto['data']['charge_id'],'','banking_billet');
 
     }elseif($_REQUEST['pagamentoAVista'] == 'cheque'){
-        $obVenda->incluirPagamentoSiteCheque($valorPagamento,date("Y-m-d"));
+        $obVenda->incluirPagamentoSiteCheque($valorPagamento,date("Y-m-d"),"Pagamentos pela internet a vista");
     }else{
         throw new Exception("Tipo de Pagamento não encontrado");
     }
@@ -129,13 +129,13 @@ case 'formaEntrada':
     $valorResto = ($obVenda->total)*(1-$_REQUEST['percentualEntrada']);
     $valorParcela = $valorResto/$mesesParcela;
     if($_REQUEST['entradaPagamentoEntrada'] == 'transferencia'){
-        $obVenda->incluirPagamentoSiteTransferencia($valorEntrada);
+        $obVenda->incluirPagamentoSiteTransferencia($valorEntrada,"Pagamentos pela internet entrada");
     }elseif($_REQUEST['entradaPagamentoEntrada'] == 'boleto'){
-        $chargeBoleto = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$valorEntrada);
+        $chargeBoleto = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,($valorEntrada/$obVenda->quantidade));
         $linkBoleto = $obCheckout->createLinkPagamento($chargeBoleto['data']['charge_id'],'','banking_billet');
 
     }elseif($_REQUEST['entradaPagamentoEntrada'] == 'cheque'){
-        $obVenda->incluirPagamentoSiteCheque($valorEntrada, date("Y-m-d"));
+        $obVenda->incluirPagamentoSiteCheque($valorEntrada, date("Y-m-d"),"Pagamentos pela internet entrada");
     }else{
         throw new Exception("Tipo de Pagamento não encontrado");
     }
@@ -143,14 +143,14 @@ case 'formaEntrada':
     //parcelado
     if($_REQUEST['pagamentoEntrada'] == 'credit_card'){
         $obCheckout = new GerenciaNetCheckOut();
-        $chargeCartao = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$valorResto);
+        $chargeCartao = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$valorResto/$obVenda->quantidade);
         $linkCartao = $obCheckout->createLinkPagamento($chargeCartao['data']['charge_id'],'','credit_card');
     }elseif($_REQUEST['pagamentoEntrada'] == 'cheque'){
         
         for($i=1;$i<=$mesesParcela;$i++){
             $dataAtual = DateTime::createFromFormat("Y-m-d",date("Y-m-d"));
             $dataAtual->add(new DateInterval("P".$i."M"));
-            $obVenda->incluirPagamentoSiteCheque($valorParcela,$dataAtual->format("Y-m-d"));
+            $obVenda->incluirPagamentoSiteCheque($valorParcela,$dataAtual->format("Y-m-d"),"Pagamentos pela internet parcelamento");
         }
     }else{
         throw new Exception("Tipo de Pagamento não encontrado");
@@ -158,13 +158,20 @@ case 'formaEntrada':
 
 break;
 case 'formaParcelado':
-    $valorParcela = ($obVenda->total)/$mesesParcela;
-    
-    for($i=1;$i<=$mesesParcela;$i++){
-        $dataAtual = DateTime::createFromFormat("Y-m-d",date("Y-m-d"));
-        $dataAtual->add(new DateInterval("P".$i."M"));
-        $obVenda->incluirPagamentoSiteCheque($valorParcela,$dataAtual->format("Y-m-d"));
+    if($_REQUEST['pagamentoParcelado'] == 'credit_card')
+    {
+        $obCheckout = new GerenciaNetCheckOut();
+        $chargeCartao = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$obVenda->total/$obVenda->quantidade);
+        $linkCartao = $obCheckout->createLinkPagamento($chargeCartao['data']['charge_id'],'','credit_card');
+    }elseif($_REQUEST['pagamentoParcelado'] == 'cheque'){
+        $valorParcela = ($obVenda->total)/$mesesParcela;
+        for($i=1;$i<=$mesesParcela;$i++){
+            $dataAtual = DateTime::createFromFormat("Y-m-d",date("Y-m-d"));
+            $dataAtual->add(new DateInterval("P".$i."M"));
+            $obVenda->incluirPagamentoSiteCheque($valorParcela,$dataAtual->format("Y-m-d"),"Pagamentos pela internet parcelado");
+        }
     }
+    
 break;
 }
 

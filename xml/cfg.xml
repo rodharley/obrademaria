@@ -230,6 +230,7 @@ set
 		<atrib tbname="cotacao_entrada" type="int">cotacaoEntrada</atrib>
 		<atrib tbname="cotacao_parcelado" type="int">cotacaoParcelado</atrib>
 		<atrib tbname="imagem_destaque" type="txt">imagemDestaque</atrib>
+		<atrib tbname="desconto_avista" type="int">descontoAVista</atrib>
 		</class>
 
 	<class name="LogAcesso" tbname="ag_logacesso" tbid="id" lazy="false">
@@ -406,6 +407,7 @@ set
 		<atrib tbname="quantidade" type="int">quantidade</atrib>
 		<atrib tbname="tipo_pagamento1" type="txt">tipoPagamento1</atrib>
 		<atrib tbname="tipo_pagamento2" type="txt">tipoPagamento2</atrib>
+		<atrib tbname="desconto" type="int">desconto</atrib>
 	</class>
 	<class name="Voo" tbname="ag_voo" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>	

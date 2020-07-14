@@ -19,6 +19,7 @@ class VendaSite extends Persistencia {
     var $quantidade;
     var $tipoPagamento1;
     var $tipoPagamento2;
+    var $desconto;
 
     public function createVenda($participante,$grupo,$opcional,$quantidade,$formaPagamento,$tipoPagamento1,$tipoPagamento2,$idAcompanhante1,$idAcompanhante2,$idAcompanhante3,$idAcompanhante4){
         $obAgenda = new Agendamento();
@@ -28,7 +29,7 @@ class VendaSite extends Persistencia {
         if($grupo->moeda->id != 2){    
             switch($formaPagamento){
                 case 'formaAVista':  
-                    $desconto = 0.05;                 
+                    $desconto = $grupo->descontoAVista;                 
                     $cotacao = $grupo->cotacaoAVista;
                 break;
                 case 'formaParcelado':
@@ -42,8 +43,19 @@ class VendaSite extends Persistencia {
             }       
           
         }
-        $valor = $grupo->getValorTotal($opcional)*$quantidade;
-        $total = ($valor) - ($valor*$desconto);        
+        if($desconto > 0){
+            if($opcional){
+               $pacote = $grupo->valorPacote+$grupo->valorPacoteOpcional;
+            }else{
+                $pacote = $grupo->valorPacote;
+            }
+        $valorDescontado = ($pacote)*($desconto/100);
+        }else{
+        $valorDescontado = 0;
+        }
+
+        $valor = $grupo->getValorTotal($opcional) * $quantidade;
+        $total = ($valor) - ($valorDescontado*$quantidade);        
         $totalReal = $total*$cotacao;
         $this->participante = $participante;
         $this->total = $this->money($totalReal,"bta");           
@@ -58,13 +70,14 @@ class VendaSite extends Persistencia {
         $this->quantidade = $quantidade;
         $this->tipoPagamento1 = $tipoPagamento1;
         $this->tipoPagamento2 = $tipoPagamento2;
+        $this->desconto = $desconto;
         return $this->save();
     }
     
 
 
 
-    function incluirPagamentoSiteTransferencia($valor){
+    function incluirPagamentoSiteTransferencia($valor,$obs){
         $qtd = 1;
         if($this->acompanhante1 != null)
             $qtd++;
@@ -102,7 +115,7 @@ class VendaSite extends Persistencia {
             
             $pag->dataPagamento = date("Y-m-d");
             $pag->valorPagamento = $this->money($valor/$qtd,"bta");
-            $pag->obs = 'pagamento de venda web';
+            $pag->obs = $obs;
             $pag->abatimentoAutomatico =1;
             $pag->moeda = $om;
             $pag->participante = $this->participante;
@@ -134,7 +147,7 @@ class VendaSite extends Persistencia {
         }
     }
     
-    function incluirPagamentoSiteCheque($valor,$dataPagamento){
+    function incluirPagamentoSiteCheque($valor,$dataPagamento,$obs){
 
         $qtd = 1;
         if($this->acompanhante1 != null)
@@ -177,7 +190,7 @@ class VendaSite extends Persistencia {
             
             $pag->dataPagamento = $dataPagamento;
             $pag->valorPagamento = $this->money($valor/$qtd,"bta");
-            $pag->obs = 'pagamento de venda web';
+            $pag->obs = $obs;
             $pag->abatimentoAutomatico =1;
             $pag->moeda = $om;
             $pag->participante = $this->participante;

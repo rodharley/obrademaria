@@ -19,57 +19,72 @@
           <div>
             <h6 class="my-0 text-muted" >STATUS</h6>            
           </div>
-          <span class="badge badge-warning">EM ABERTO</span>
+          <span class="badge badge-{STATUS_COLOR}">{STATUS_NAME}</span>
         </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0 text-muted" >Pacote ({GRUPO_MOEDA})</h6>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0 text-muted" >{GRUPO_NOME} ({GRUPO_MOEDA})</h6>
+              
+            </div>
+            <span class="text-muted">{GRUPO_VALOR_CURRENCY}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0 text-muted" >Adesão ({GRUPO_MOEDA})</h6>
+              
+            </div>
+            <span class="text-muted">{GRUPO_VALOR_ADESAO_CURRENCY}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0 text-muted" >Taxa de Embarque ({GRUPO_MOEDA})</h6>
+              
+            </div>
+            <span class="text-muted">{GRUPO_VALOR_EMBARQUE_CURRENCY}</span>
+          </li>
+          <!-- BEGIN BLOCK_OPCIONAL -->
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
             
-          </div>
-          <span class="text-muted">{GRUPO_VALOR_PACOTE_CURRENCY}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0 text-muted" >Adesão ({GRUPO_MOEDA})</h6>
-            
-          </div>
-          <span class="text-muted">{GRUPO_VALOR_ADESAO_CURRENCY}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0 text-muted" >Taxa de Embarque ({GRUPO_MOEDA})</h6>            
-          </div>
-          <span class="text-muted">{GRUPO_VALOR_EMBARQUE_CURRENCY}</span>
-        </li>
-        <!-- BEGIN BLOCK_OPCIONAL -->
-        <li class="list-group-item d-flex justify-content-between lh-condensed">          
-          <div>
-            <div class="custom-control custom-checkbox">
-              <label class="custom-control-label text-muted" for="opcional">Opcional</label>
-            </div>           
-          </div>
-          <span class="text-muted">{GRUPO_OPCIONAL_VALOR_CURRENCY}</span>
-        </li>
-        <!-- END BLOCK_OPCIONAL --> 
-        
-      </li>       
-        <li class="list-group-item d-flex justify-content-between">
-          <span class="text-muted">Total ({GRUPO_MOEDA})</span>
-          <strong class="text-muted" id="lbl_total">{TOTAL_DOLLAR}</strong>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-          <span class="text-muted">Dollar (R$)</span>
-          <strong class="text-muted" id="lbl_total"> {COTACAO}</strong>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <span class="text-muted">Desconto(R$)</span>
-          <strong class="text-muted" id="lbl_total_real">{DESCONTO}</strong>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <span class="text-muted">Total Final(R$)</span>
-          <strong class="text-muted" id="lbl_total_real">R$ {VALOR_TOTAL}</strong>
-        </li>
-      </ul>
+            <div>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" value="1" name="opcional" class="custom-control-input" id="opcional" >
+                <label class="custom-control-label text-muted" for="opcional">{GRUPO_OPCIONAL_NOME}</label>
+              </div>    
+            </div>
+            <span class="text-muted">{GRUPO_OPCIONAL_VALOR_CURRENCY}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0 text-muted" >Adesão ({GRUPO_MOEDA})</h6>
+              
+            </div>
+            <span class="text-muted">{GRUPO_OPCIONAL_VALOR_ADESAO_CURRENCY}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0 text-muted" >Taxa de Embarque ({GRUPO_MOEDA})</h6>
+              
+            </div>
+            <span class="text-muted">{GRUPO_OPCIONAL_VALOR_EMBARQUE_CURRENCY}</span>
+          </li>
+          <!-- END BLOCK_OPCIONAL --> 
+          <li class="list-group-item d-flex justify-content-between">
+            <span class="text-muted">Participantes</span>
+            <strong class="text-muted">{QUANTIDADE}</strong>
+          </li>  
+          <li class="list-group-item d-flex justify-content-between">
+            <span class="text-muted">Cotação do Dollar</span>
+            <strong class="text-muted">{COTACAO}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span class="text-muted">Desconto (R$)</span>
+            <strong class="text-muted">{DESCONTO}</strong>
+          </li>     
+          <li class="list-group-item d-flex justify-content-between">
+            <span class="text-muted">Total (R$)</span>
+            <strong class="text-muted" >{VALOR_TOTAL}</strong>
+          </li>
+        </ul>
       <hr class="mb-4">
       <h4 class="mb-3">Formas de Pagamento</h4>
       <div class="d-block my-3">        
@@ -102,15 +117,15 @@
 
         <!--  BEGIN BLOCK_ENTRADA -->   
             <!--  BEGIN BLOCK_BOLETO_ENTRADA --> 
-            <h6>Entrada de 20% no Boleto</h6>     
+            <h6>Entrada de <span class="badge badge-success">R$ {ENTRADA}</span> no Boleto</h6>     
             <a class="btn btn-primary btn-lg btn-block" href="{URLGN_BOLETO}" target="_blank" >IMPRIMIR BOLETO</a>
             <!--  END BLOCK_BOLETO_ENTRADA -->  
             <!--  BEGIN BLOCK_CHEQUE_ENTRADA -->  
-            <h6>Entrada de 20% em cheque</h6>     
+            <h6>Entrada de <span class="badge badge-success">R$ {ENTRADA}</span> em cheque</h6>     
             {INFO_CHEQUE} 
             <!--  END BLOCK_CHEQUE_ENTRADA --> 
             <!--  BEGIN BLOCK_TRANSFERENCIA_ENTRADA -->  
-            <h6>Entrada de 20% transferência bancária</h6>     
+            <h6>Entrada de <span class="badge badge-success">R$ {ENTRADA}</span> transferência bancária</h6>     
             {INFO_TRANSFERENCIA}
             <!--  END BLOCK_TRANSFERENCIA_ENTRADA -->
             
@@ -133,6 +148,10 @@
         <h6>Parcelamento no cheque</h6>  
         {INFO_CHEQUE}        
         <!--  END BLOCK_PARCELADO -->
+         <!--  BEGIN BLOCK_CARTAO_PARCELADO -->
+         <h6>Parcelamento no cartão de crédito</h6>
+         <a class="btn btn-primary btn-lg btn-block" href="{URLGN_CARTAO}" target="_blank" >PAGAR COM CARTÃO</a>
+         <!--  END BLOCK_CARTAO_PARCELADO --> 
       </div>      
          
      
