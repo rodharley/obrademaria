@@ -1,0 +1,75 @@
+<style>
+    .changestatus {
+        cursor: pointer;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        $(".changestatus").click(function(){
+            alteraStatus($(this).attr("val"));
+        });
+    });
+    function postJson(url, data, sucesso, erro) {
+            $.ajax({
+                    type: "POST",
+                    url: url,
+                    dataType: "json",
+                    data: data
+                })
+                .done(sucesso)
+                .fail(erro);
+        }
+    function alteraStatus(idpagamento){
+        console.log(idpagamento);
+     //funcao de sucesso
+     var funcSuccess = function(data) {
+            if(data.code == 200){
+                $("#boxstatus"+idpagamento).html(data.data.status == 1 ?
+                 '<span val="'+idpagamento+'" title="Mudar status" class="changestatus label label-success">Pago</span>'
+                 :
+                 '<span val="'+idpagamento+'" title="Mudar status" class="changestatus label label-warning">Em aberto</span>');
+                
+              
+            
+            }else{
+              //showMessage("Erro", data.data.mensagem);
+              alert("Erro encontrado\n"+data.data.mensagem);
+            }
+            }
+            //funcao de erro
+            var funcDefaultError = function(erro) {
+              //showMessage();
+              alert("Erro encontrado\n"+data.data.mensagem);
+            }
+            postJson('ajax/updatePagamento.php',{id:idpagamento},funcSuccess,funcDefaultError);
+    }
+</script>
+<section>
+    <h2>{RESERVA}</h2>
+    <h1>Compras Web<br/><small>Editar Pagamentos da Venda</small></h1>
+    
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th width="">Transação</th> 
+                <th width="">Tipo</th> 
+                <th width="">Método</th> 
+                <th width="">Valor</th>
+                <th width="">Status</th>                 
+                                        
+            </tr>
+        </thead>
+        <tbody>
+            <!-- BEGIN BLOCK_ITEM_LISTA -->
+            <tr>
+                <td style="text-align: center;">{TRANSACAO}</td>
+                <td style="text-align: center;">{TIPO}</td>
+                <td style="text-align: center;">{METODO}</td>
+                <td style="text-align: left;">{VALOR}</td></td>
+                <td style="text-align: left;" id="boxstatus{ID}">{STATUS}</td>                
+                
+            </tr>
+            <!-- END BLOCK_ITEM_LISTA -->
+        </tbody>
+    </table>
+</section>

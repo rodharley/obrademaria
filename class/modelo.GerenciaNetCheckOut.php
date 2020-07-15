@@ -278,4 +278,8 @@ try {
     }
 
     
+
+    function getMetodo(){
+        return $this->payment_method == 'banking_billet' ? 'Boleto' : "Cartão";
+    }
 }

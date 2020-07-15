@@ -42,6 +42,7 @@ $tpl->PROXIMA_PAGINA = $configPaginacao['proximaPagina'];
 $tpl->PAGINA = $pagina;
 foreach($rsvendas as $key => $venda){
 	$tpl->RESERVA = $venda->printReserva();
+	$tpl->ID_VENDA = $venda->md5_encrypt($venda->id);
 	$tpl->ID_CLIENTE_HASH = $venda->md5_encrypt($venda->participante->cliente->id);
 
 	$compras = $oGn->getByVendasId($venda->id);

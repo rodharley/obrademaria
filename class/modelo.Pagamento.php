@@ -34,7 +34,12 @@ class Pagamento extends Persistencia{
 	public function getPagamentosParticipanteNaoPagos($idparticipante){
 		$sql = "select p.* from ag_pagamento p where p.participante = $idparticipante and p.site = 1 and pago = 0";	
 		return $this->getSQL($sql);
-		}
+	}
+
+	public function getPagamentosParticipanteWeb($idparticipante){
+		$sql = "select p.* from ag_pagamento p where p.participante = $idparticipante and p.site = 1";	
+		return $this->getSQL($sql);
+	}
 	
 
 	
