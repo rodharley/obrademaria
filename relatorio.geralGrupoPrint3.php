@@ -94,6 +94,7 @@ display:none;
 }
 .well{
 background-color:#FFFFFF;
+}
 .rodape {
  padding: 2px;
   margin-top: 10px;
