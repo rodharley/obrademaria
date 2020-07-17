@@ -86,15 +86,7 @@ INSERT INTO `ag_menu` (`id`, `idMenuPai`, `descricao`, `url`) VALUES ('', '2', '
 --11/07/2020
 ALTER TABLE `ag_grupo` ADD `desconto_avista` INT(3) NOT NULL DEFAULT '0' AFTER `imagem_destaque`; 
 ALTER TABLE `ag_venda_site` ADD `desconto` INT(3) NOT NULL DEFAULT '0' AFTER `total`; 
---17/07/20202
--- phpMyAdmin SQL Dump
--- version 4.9.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1:3306
--- Tempo de geração: 17-Jul-2020 às 21:06
--- Versão do servidor: 8.0.18
--- versão do PHP: 7.3.12
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
