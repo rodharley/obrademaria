@@ -86,13 +86,17 @@
           </li>
         </ul>
       <hr class="mb-4">
-      <h4 class="mb-3">Formas de Pagamento</h4>
+      <h4 class="mb-3">Forma de Pagamento</h4>
       <div class="d-block my-3">        
         <h5>{FORMA}</h5>
       </div>
       <hr class="mb-4">
       <h4 class="mb-3">Tipo de Pagamento</h4>
       <div class="d-block my-3">
+        <!--  BEGIN BLOCK_OUTROS -->
+        <h6>Outros meios de pagamento</h6>  
+              {INFO_OUTROS}
+        <!--  END BLOCK_OUTROS -->
         <!--  BEGIN BLOCK_AVISTA -->   
               <!--  BEGIN BLOCK_TRANSFERENCIA_AVISTA -->  
               <h6>Transferência bancária</h6>  
@@ -132,7 +136,7 @@
             
             <!--  BEGIN BLOCK_CARTAO_ENTRADA_RESTO -->
             <h6>Restante no cartão de crédito</h6>
-            <a class="btn btn-primary btn-lg btn-block" href="{URLGN_CARTAO}" target="_blank" >PAGAR COM CARTÃO</a>
+            <a class="btn btn-primary btn-lg btn-block" href="{URLGN_CARTAO}" >PAGAR COM CARTÃO</a>
             <!--  END BLOCK_CARTAO_ENTRADA_RESTO --> 
             
             <!--  BEGIN BLOCK_CHEQUE_ENTRADA_RESTO -->
@@ -150,7 +154,7 @@
         <!--  END BLOCK_PARCELADO -->
          <!--  BEGIN BLOCK_CARTAO_PARCELADO -->
          <h6>Parcelamento no cartão de crédito</h6>
-         <a class="btn btn-primary btn-lg btn-block" href="{URLGN_CARTAO}" target="_blank" >PAGAR COM CARTÃO</a>
+         <a class="btn btn-primary btn-lg btn-block" href="{URLGN_CARTAO}" >PAGAR COM CARTÃO</a>
          <!--  END BLOCK_CARTAO_PARCELADO --> 
       </div>      
          

@@ -84,7 +84,24 @@ set
 		<atrib tbname="emissor" type="fk" lazy="true" clrelation="Cliente">emissor</atrib>
 		<atrib tbname="parcela" type="int">parcela</atrib>		
 	</class>
-
+	<class name="MyCieloCheckout" tbname="ag_checkout_cielo" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>
+		<atrib tbname="venda" type="fk" lazy="true" clrelation="VendaSite">venda</atrib>
+		<atrib tbname="checkout_url" type="txt">checkoutUrl</atrib>		
+		<atrib tbname="profile" type="txt">profile</atrib>
+		<atrib tbname="version" type="int">version</atrib>	
+		<atrib tbname="amount" type="int">amount</atrib>
+		<atrib tbname="created_date" type="txt">created_date</atrib>
+		<atrib tbname="checkout_cielo_order_number" type="txt">checkout_cielo_order_number</atrib>
+		<atrib tbname="payment_method_type" type="int">payment_method_type</atrib>
+		<atrib tbname="payment_method_brand" type="int">payment_method_brand</atrib>
+		<atrib tbname="payment_method_bank" type="int">payment_method_bank</atrib>
+		<atrib tbname="payment_installments" type="int">payment_installments</atrib>
+		<atrib tbname="payment_maskedcreditcard" type="txt">payment_maskedcreditcard</atrib>
+		<atrib tbname="payment_status" type="int">payment_status</atrib>
+		<atrib tbname="tid" type="txt">tid</atrib>
+		<atrib tbname="test_transaction" type="int">test_transaction</atrib>
+	</class>
 	<class name="Cidade" tbname="ag_cidades" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>
 		<atrib tbname="idUf" type="fk" lazy="true" clrelation="Uf">uf</atrib>

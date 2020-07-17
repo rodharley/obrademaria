@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Unirest\\' => array($vendorDir . '/mashape/unirest-php/src'),
     'Gerencianet' => array($vendorDir . '/gerencianet/gerencianet-sdk-php/src'),
+    'Cielo' => array($vendorDir . '/developercielo/webservice-1.5-php/src'),
 );

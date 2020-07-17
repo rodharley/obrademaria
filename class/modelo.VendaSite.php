@@ -256,7 +256,7 @@ function printFormaPagamento(){
                     return "Parcelado";
                     break;
         default:
-            return "Não Identificado";
+            return "Outras";
             break;
     }
 }

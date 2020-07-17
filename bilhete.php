@@ -12,23 +12,32 @@ if(isset($_REQUEST['charge_id'])){
     $oVenda = new VendaSite();
     $oGrupo = new Grupo();
     $oGn = new GerenciaNetCheckOut();
+    $oCielo = new MyCieloCheckout();
     $oparticipante = new Participante();
     $oPagamento = new Pagamento();
     $oTp = new TipoPagamento();
     if($oVenda->getById($_REQUEST['charge_id'])){
     $oGrupo = $oVenda->participante->grupo;
-    $vendaserenciaNet = $oGn->getByVendasId($oVenda->id);     
+    $vendaserenciaNet = $oGn->getByVendasId($oVenda->id);
+    $vendasCielo = $oCielo->getByVendasId($oVenda->id);     
     $tpl->STATUS_COLOR = 'warning';
     $tpl->STATUS_NAME = 'EM ABERTO';
 
     //VERIFICA OS PAGAMENTOS ONLINE
-    $pagNaoPagos = $oPagamento->getPagamentosParticipanteNaoPagos($oVenda->participante->id);
+    /*$pagNaoPagos = $oPagamento->getPagamentosParticipanteNaoPagos($oVenda->participante->id);
     if(count($pagNaoPagos) == 0){        
         $pagNaoPagos = $oGn->getByVendasNaoPagasId($oVenda->id);        
-        if(count($pagNaoPagos) == 0){                   
-            $tpl->STATUS_COLOR = 'success';
-            $tpl->STATUS_NAME = 'PAGO';
-        }       
+        if(count($pagNaoPagos) == 0){  
+            $pagNaoPagos = $oCielo->getByVendasNaoPagasId($oVenda->id);                 
+            if(count($pagNaoPagos) == 0){
+                $tpl->STATUS_COLOR = 'success';
+                $tpl->STATUS_NAME = 'PAGO';
+            }       
+        }
+    }*/
+    if($oVenda->participante->status->id == 2){
+        $tpl->STATUS_COLOR = 'success';
+        $tpl->STATUS_NAME = 'PAGO';
     }
 
     $tpl->GRUPO_NOME = $oGrupo->nomePacote;
@@ -87,6 +96,10 @@ if(isset($_REQUEST['charge_id'])){
     $tpl->CHARGE_ID = str_pad($oVenda->id,10,"0",STR_PAD_LEFT);
     $tpl->FORMA = $oVenda->printFormaPagamento();
     switch ($oVenda->formaPagamento) {
+        case 'formaOutros':
+            $tpl->INFO_OUTROS = $oVenda->printInfoTransferencia();
+                    $tpl->block("BLOCK_OUTROS");
+        break;
         case 'formaAVista':            
             switch ($oVenda->tipoPagamento1) {
                 case 'cheque':
@@ -94,6 +107,9 @@ if(isset($_REQUEST['charge_id'])){
                     $tpl->block("BLOCK_CHEQUE_AVISTA");
                 break;  
                 case 'boleto':
+                    if($charge->payment_method == 'banking_billet'){
+                        $tpl->URLGN_BOLETO = $charge->payment_url;                        
+                    } 
                     $tpl->block("BLOCK_BOLETO_AVISTA");
                 break;
                 case 'transferencia':
@@ -141,10 +157,9 @@ if(isset($_REQUEST['charge_id'])){
                     $tpl->block("BLOCK_CHEQUE_ENTRADA_RESTO");
                 break;
                 case 'credit_card':
-                    foreach ($vendaserenciaNet as $key => $charge) {                        
-                        if($charge->payment_method == 'credit_card'){
-                            $tpl->URLGN_CARTAO = $charge->payment_url;                           
-                        }                        
+                    foreach ($vendasCielo as $key => $charge) {                        
+                          $tpl->URLGN_CARTAO = $charge->checkoutUrl;                           
+                                             
                     }
                     $tpl->block("BLOCK_CARTAO_ENTRADA_RESTO");
                 break;
@@ -158,11 +173,10 @@ if(isset($_REQUEST['charge_id'])){
                     $tpl->block("BLOCK_PARCELADO");
                 break;
                 case 'credit_card':
-                    foreach ($vendaserenciaNet as $key => $charge) {                        
-                        if($charge->payment_method == 'credit_card'){
-                            $tpl->URLGN_CARTAO = $charge->payment_url;                           
-                        }                        
-                    }
+                    foreach ($vendasCielo as $key => $charge) {                        
+                        $tpl->URLGN_CARTAO = $charge->checkoutUrl;                           
+                                           
+                  }
                     $tpl->block("BLOCK_CARTAO_PARCELADO");
                 break;
             }

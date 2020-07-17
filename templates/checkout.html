@@ -87,6 +87,10 @@
           <input value="formaParcelado" id="formaParcelado" name="forma" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="formaParcelado">Parcelado <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_PARCELADO_CURRENCY}</span></label>
         </div>
+        <div class="custom-control custom-radio">
+          <input value="formaOutros" id="formaOutros" name="forma" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="formaOutros">Outras Formas (Apenas Reservar Lugar)</label>
+        </div>
       </div>
       
       <hr class="mb-4">
@@ -146,7 +150,7 @@
       <h5 class="mb-3">Parcelamento: <span id="valor80" class="badge badge-success"></span></h5>
       <div class="custom-control custom-radio">
         <input value="credit_card" id="creditoEntrada" name="pagamentoEntrada" checked type="radio" class="custom-control-input" required="">
-        <label class="custom-control-label" for="creditoEntrada" id="creditoEntradaLabel">Cartão de crédito (GerenciaNet até 12 vezes sem juros)</label>
+        <label class="custom-control-label" for="creditoEntrada" id="creditoEntradaLabel">Cartão de crédito (Cielo até 12 vezes sem juros)</label>
       </div>
       <div class="custom-control custom-radio">
         <input value="cheque" id="chequeEntrada" name="pagamentoEntrada" type="radio" class="custom-control-input" checked="" required="">
@@ -164,7 +168,7 @@
         </div>    
         <div class="custom-control custom-radio">
           <input value="credit_card" id="creditoParcelado" name="pagamentoParcelado" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="creditoParcelado" id="creditoEntradaLabel">Cartão de crédito (GerenciaNet até 12 vezes sem juros)</label>
+          <label class="custom-control-label" for="creditoParcelado" id="creditoEntradaLabel">Cartão de crédito (Cielo até 12 vezes sem juros)</label>
         </div>   
         
         <!--div class="custom-control custom-radio">
@@ -577,7 +581,7 @@
           
             atualizaTela();
         });
-        $("#formaEntrada,#formaAVista,#formaParcelado").click(function()
+        $("#formaEntrada,#formaAVista,#formaParcelado,#formaOutros").click(function()
         {
           atualizaTela();
         });
@@ -668,7 +672,11 @@ function blockAcomp(numero,disabled){
         $("#lbl_total").html(floatToCurrency((totalGeral)));
 
         let dollar =cotacao;
-
+        if($("#formaOutros").prop("checked")){
+          $("#tipoAVista").hide();
+          $("#tipoParcelado").hide();
+          $("#tipoEntrada").hide();
+        }
 
         if($("#formaAVista").prop("checked")){
           dollar = cotacao;

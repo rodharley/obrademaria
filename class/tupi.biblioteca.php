@@ -87,7 +87,7 @@ return  $str;
 }
 
 function limpaDigitos($texto){
-return str_replace(".","",str_replace("-","",str_replace("/","",str_replace("_","",$texto))));
+return str_replace(".","",str_replace("-","",str_replace("/","",str_replace("_","",str_replace(" ","",$texto)))));
 }
 
 
@@ -1005,7 +1005,7 @@ function extenso($valor,$maiusculas)
 
 
         $fim = count($inteiro) - ($inteiro[count($inteiro)-1] > 0 ? 1 : 2); 
-
+		$rt = "";
         for ($i=0;$i<count($inteiro);$i++) { 
 
                 $valor = $inteiro[$i]; 

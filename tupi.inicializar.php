@@ -9,5 +9,18 @@ header('Content-Type: text/html; charset=iso-8859-1');
 include("class/ready.php");
 
 include("vendor/autoload.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Commons.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Address.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Cart.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Customer.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Discount.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Item.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Options.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Order.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Payment.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Services.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Shipping.php");
+include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Transaction.php");
+
 $tupi = new Tupi();
 ?>

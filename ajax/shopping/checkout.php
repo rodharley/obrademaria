@@ -2,6 +2,7 @@
 include("../../tupi.inicializar.php");
 $obVenda = new VendaSite();
 $obCheckout = new GerenciaNetCheckOut();
+$obCielo = new MyCieloCheckout();
 $obCliente = new Cliente();
 $obGrupo = new Grupo();
 $obCidade = new Cidade();
@@ -101,6 +102,10 @@ switch($_REQUEST['forma']){
         $tipoPagamento1 = $_REQUEST['pagamentoParcelado'];
         $tipoPagamento2 = '';
     break;
+    case 'formaOutros':
+        $tipoPagamento1 = 'Outros meios de pagamento';
+        $tipoPagamento2 = '';
+    break;
     }
 
 
@@ -109,7 +114,8 @@ switch($_REQUEST['forma']){
 $idVenda = $obVenda->createVenda($obParticipante,$obGrupo,isset($_REQUEST['opcional'])?1:0,$_REQUEST['quantidade'],$formaPagamento,$tipoPagamento1,$tipoPagamento2,$idPartAcomp1,$idPartAcomp2,$idPartAcomp3,$idPartAcomp4);
 
 switch($_REQUEST['forma']){
-    
+ case 'formaOutros':
+break;  
 case 'formaAVista':
     $valorPagamento = $obVenda->total;
     if($_REQUEST['pagamentoAVista'] == 'transferencia'){
@@ -142,9 +148,12 @@ case 'formaEntrada':
 
     //parcelado
     if($_REQUEST['pagamentoEntrada'] == 'credit_card'){
-        $obCheckout = new GerenciaNetCheckOut();
-        $chargeCartao = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$valorResto/$obVenda->quantidade);
-        $linkCartao = $obCheckout->createLinkPagamento($chargeCartao['data']['charge_id'],'','credit_card');
+        //$obCheckout = new GerenciaNetCheckOut();
+        //$chargeCartao = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$valorResto/$obVenda->quantidade);
+        //$linkCartao = $obCheckout->createLinkPagamento($chargeCartao['data']['charge_id'],'','credit_card');
+        $response = $obCielo->createLinkPagamento($obParticipante,$obGrupo,$obVenda,$valorResto/$obVenda->quantidade);
+        $linkCartao = $response->settings->checkoutUrl;
+
     }elseif($_REQUEST['pagamentoEntrada'] == 'cheque'){
         
         for($i=1;$i<=$mesesParcela;$i++){
@@ -160,9 +169,11 @@ break;
 case 'formaParcelado':
     if($_REQUEST['pagamentoParcelado'] == 'credit_card')
     {
-        $obCheckout = new GerenciaNetCheckOut();
-        $chargeCartao = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$obVenda->total/$obVenda->quantidade);
-        $linkCartao = $obCheckout->createLinkPagamento($chargeCartao['data']['charge_id'],'','credit_card');
+        //$obCheckout = new GerenciaNetCheckOut();
+        //$chargeCartao = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$obVenda->total/$obVenda->quantidade);
+        //$linkCartao = $obCheckout->createLinkPagamento($chargeCartao['data']['charge_id'],'','credit_card');
+        $response = $obCielo->createLinkPagamento($obParticipante,$obGrupo,$obVenda,$obVenda->total/$obVenda->quantidade);
+        $linkCartao = $response->settings->checkoutUrl;
     }elseif($_REQUEST['pagamentoParcelado'] == 'cheque'){
         $valorParcela = ($obVenda->total)/$mesesParcela;
         for($i=1;$i<=$mesesParcela;$i++){

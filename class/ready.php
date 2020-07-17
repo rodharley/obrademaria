@@ -50,4 +50,5 @@ include("modelo.Agendamento.php");
 include("modelo.Ticket.php");
 include("modelo.GerenciaNetCheckOut.php");
 include("modelo.VendaSite.php");
+include("modelo.CieloCheckout.php");
 ?>
