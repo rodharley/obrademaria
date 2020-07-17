@@ -21,7 +21,7 @@
         "require-dev": {
             "phpunit/phpunit": "@stable"
         },
-        "time": "2016-11-04T16:54:37+00:00",
+        "time": "2015-07-21T12:00:23+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
