@@ -11,5 +11,8 @@ class Options extends Commons {
     'AntifraudEnabled' => [
       'is_bool' => [],
     ],
+    'ReturnUrl' => [
+      'empty' => ['negate' => FALSE],
+    ]
   ];
 }
