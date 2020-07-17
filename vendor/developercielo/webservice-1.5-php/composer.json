@@ -1,0 +1,23 @@
+{
+    "name": "developercielo/webservice-1.5-php",
+    "license": "MIT",
+    "description": "SDK PHP para integração com webservice 1.5 da Cielo",
+    "homepage": "https://github.com/DeveloperCielo/Webservice-1.5-php",
+    "require": {
+        "ext-libxml": "*",
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    },
+    "autoload": {
+        "psr-0": {
+            "Cielo": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Cielo": "tests"
+        }
+    }
+}
