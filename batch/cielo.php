@@ -6,7 +6,7 @@ include("../tupi.inicializar.php");
 try{
 
     // Create some handlers
-    $stream = new StreamHandler(__DIR__.'/log_cielo.log', Logger::DEBUG);
+    $stream = new StreamHandler(__DIR__.'/log_cielo.log', Logger::INFO);
     $logger = new Logger('cielo');
     $logger->pushHandler($stream);
     $logger->info(print_r($_REQUEST));
