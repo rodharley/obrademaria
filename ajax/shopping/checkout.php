@@ -188,6 +188,16 @@ break;
 
 
 if($obCheckout->conn->commit()){
+
+    //enviando email com dados da compra:
+    $html = "Parabéns peregrino ".$_REQUEST['nomeCompleto'].", bem vindo à Obra de Maria DF!<br/><br/>";
+    $html .= "Você está recebendo este email porque acabou de se inscrever em nosso roteiro de peregrinação : ".$obGrupo->nomePacote.".<br/><br/>";
+    $html .= "Sua inscrição foi realizada com sucesso!</br>Para dar continuidade, clique no link abaixo para realizar o pagamento ou entre em contato conosco!<br/>";
+    $html .= "<a href='".$obGrupo->urlSite."/bilhete.php?charge_id=".$obVenda->id."'>Acessar minha reserva</a>";
+    $tplemail = new Template("tpl_email_ecomerce");
+    $tplemail->CONTEUDO = $html;
+    $obVenda->mail_html($_REQUEST['email'],$obVenda->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());
+
     echo json_encode(array("code"=>"200","data"=>array("charge_id"=>$idVenda)));
 }else{
     echo json_encode(array("code"=>"500","data"=>array("mensagem"=>"Erro interno, tente novamente mais tarde")));
