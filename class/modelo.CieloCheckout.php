@@ -258,6 +258,16 @@ class MyCieloCheckout extends Persistencia {
            
        break;
        case '3':
+        $this->checkout_cielo_order_number = $order->checkout_cielo_order_number;
+        $this->payment_status = $order->payment_status;
+        $this->payment_method_type = $order->payment_method_type;
+        $this->payment_method_brand = $order->payment_method_brand;
+        $this->payment_maskedcreditcard =$order->payment_maskedcreditcard;
+        $this->payment_installments = $order->payment_installments;
+        $this->tid = $order->tid;
+        $this->test_transaction = $order->test_transaction;
+        $this->save();        
+         return 'pagamento foi rejeitado!';
        break;
        case '4':
        break;
