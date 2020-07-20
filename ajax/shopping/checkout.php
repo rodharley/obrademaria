@@ -194,7 +194,7 @@ if($obCheckout->conn->commit()){
     $html .= "Você está recebendo este email porque acabou de se inscrever em nosso roteiro de peregrinação : ".$obGrupo->nomePacote.".<br/><br/>";
     $html .= "Sua inscrição foi realizada com sucesso!</br>Para dar continuidade, clique no link abaixo para realizar o pagamento ou entre em contato conosco!<br/>";
     $html .= "<a href='".$obGrupo->urlSite."/bilhete.php?charge_id=".$obVenda->id."'>Acessar minha reserva</a>";
-    $tplemail = new Template("tpl_email_ecomerce");
+    $tplemail = new Template("../../templates/tpl_email_ecommerce.html");
     $tplemail->CONTEUDO = $html;
     $obVenda->mail_html($_REQUEST['email'],$obVenda->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());
 
