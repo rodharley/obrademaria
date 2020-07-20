@@ -15,8 +15,8 @@ try{
     @$logger->DEBUG($_REQUEST['MerchantId']);
     $obj = new MyCieloCheckout();
     $url  = isset($_REQUEST['URL']) ? $_REQUEST['URL'] : '';
-    $idVenda = isset($_REQUEST['MerchantOrderNumber']) ?$_REQUEST['MerchantOrderNumber'] : '';
-    $return = $obj->UpdateByNotification($url,$idVenda);
+    $idVenda = isset($_REQUEST['MerchantOrderNumber']) ?$_REQUEST['MerchantOrderNumber'] : '0s';
+    $return = $obj->UpdateByNotification($url,$idVenda,$logger);
     @$logger->info($return);
     
     echo json_encode(array("code"=>"200","data"=>array("message"=>utf8_encode($return))));
