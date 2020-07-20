@@ -3,3 +3,4 @@ img/passaportes/*
 img/grupos/*
 !img/grupos/default.jpg
 !img/passaportes/default.png
+batch/log_cielo.log

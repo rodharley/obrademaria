@@ -191,7 +191,7 @@ class MyCieloCheckout extends Persistencia {
 
    try {
     
-
+    if($this->getByVendasId($idVenda)){
     $headers = array('Accept' => 'application/json','MerchantId'=>$this->cieloClientID,'Content-Type'=>'application/json; charset=utf-8');
 		        //$query = Unirest\Request\Body::json($Order);
             $response = Unirest\Request::get($this->endpointCielo.'/orders/'.$this->cieloClientID.'/'.$idVenda, $headers);
@@ -208,7 +208,7 @@ class MyCieloCheckout extends Persistencia {
             }
 
             $order = $response->body;
-            $this->getByVendasId($idVenda);
+           
       /*{
     "order_number": "Pedido01",
     "amount": 101,
@@ -273,11 +273,13 @@ class MyCieloCheckout extends Persistencia {
        break;
    }
    
-
+  }else{
+    return "não foi executado nenhum procedimento";
+  }
 
    
    
-   return "não foi executado nenhum procedimento";
+   
    
        } catch (Exception $e) {
            throw $e;
