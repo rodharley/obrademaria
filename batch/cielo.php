@@ -15,7 +15,7 @@ try{
     @$logger->DEBUG($_REQUEST['MerchantId']);
     $obj = new MyCieloCheckout();
     $url  = isset($_REQUEST['URL']) ? $_REQUEST['URL'] : '';
-    $idVenda = isset($_REQUEST['MerchantOrderNumber']) ?$_REQUEST['MerchantOrderNumber'] : '0s';
+    $idVenda = isset($_REQUEST['MerchantOrderNumber']) ?$_REQUEST['MerchantOrderNumber'] : '0';
     $return = $obj->UpdateByNotification($url,$idVenda,$logger);
     @$logger->info($return);
     
