@@ -257,10 +257,7 @@ class MyCieloCheckout extends Persistencia {
 }
 */
    //tratar status do charge
-   switch($order->payment_status){
-       case '2':
-
-          $this->checkout_cielo_order_number = $order->checkout_cielo_order_number;
+   $this->checkout_cielo_order_number = $order->checkout_cielo_order_number;
           $this->payment_status = $order->payment_status;
           $this->payment_method_type = $order->payment_method_type;
           $this->payment_method_brand = $order->payment_method_brand;
@@ -269,22 +266,31 @@ class MyCieloCheckout extends Persistencia {
           $this->tid = $order->tid;
           $this->test_transaction = $order->test_transaction;
           $this->save();
+   switch($order->payment_status){
+       case '2':          
            $this->gerarPagamentos($order->amount);
+           //enviando email com dados da compra:
+          $html = "Parabéns peregrino ".$_REQUEST['nomeCompleto'].", Seu Pagamento de R$ ".$this->money($this->amount,"atb")." foi aprovado!<br/><br/>";
+          $html .= "O Valor será adicionado a sua reserva no roteiro de peregrinação : ".$this->participante->grupo->nomePacote.".<br/><br/>";
+          $html .= "Para consultar sua reserva, clique no link abaixo ou entre em contato conosco!<br/>";
+          $html .= "<a href='".$this->urlSite."/bilhete.php?charge_id=".$this->venda->id."'>Acessar minha reserva</a>";
+          $tplemail = new Template("../../templates/tpl_email_ecommerce.html");
+          $tplemail->CONTEUDO = $html;
+          $this->mail_html($this->participante->email,$this->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());
            return 'pagamento gerado com suscesso';
        break;
        case '1':
            
        break;
        case '3':
-        $this->checkout_cielo_order_number = $order->checkout_cielo_order_number;
-        $this->payment_status = $order->payment_status;
-        $this->payment_method_type = $order->payment_method_type;
-        $this->payment_method_brand = $order->payment_method_brand;
-        $this->payment_maskedcreditcard =$order->payment_maskedcreditcard;
-        $this->payment_installments = $order->payment_installments;
-        $this->tid = $order->tid;
-        $this->test_transaction = $order->test_transaction;
-        $this->save();        
+          //enviando email com dados da compra:
+          $html = "Peregrino ".$_REQUEST['nomeCompleto'].", Seu Pagamento de R$ ".$this->money($this->amount,"atb")." foi recusado pela operadora do cartão.<br/><br/>";
+          $html .= "Entre em contato conosco para resolver o problema no roteiro de peregrinação : ".$this->participante->grupo->nomePacote.".<br/><br/>";
+          $html .= "Para consultar sua reserva, clique no link abaixo ou entre em contato conosco!<br/>";
+          $html .= "<a href='".$this->urlSite."/bilhete.php?charge_id=".$this->venda->id."'>Acessar minha reserva</a>";
+          $tplemail = new Template("../../templates/tpl_email_ecommerce.html");
+          $tplemail->CONTEUDO = $html;
+          $this->mail_html($this->participante->email,$this->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());     
          return 'pagamento foi rejeitado!';
        break;
        case '4':
