@@ -16,7 +16,6 @@ class MyCieloCheckout extends Persistencia {
     var $checkoutUrl;
     var $profile;
     var $version;
-    var $participante = NULL;
     var $venda = NULL;
     var $amount;
     var $created_date;
@@ -182,7 +181,7 @@ class MyCieloCheckout extends Persistencia {
             
 
             $this->venda = $obVenda;
-            $this->participante = $obParticipante;
+            
             $this->order_number = $obVenda->id;	
             $this->payment_status  = 1;
             $this->amount = $this->money($valor,"bta");           
@@ -270,13 +269,13 @@ class MyCieloCheckout extends Persistencia {
        case '2':          
            $this->gerarPagamentos($order->amount);
            //enviando email com dados da compra:
-          $html = "Parabéns peregrino ".$_REQUEST['nomeCompleto'].", Seu Pagamento de R$ ".$this->money($this->amount,"atb")." foi aprovado!<br/><br/>";
-          $html .= "O Valor será adicionado a sua reserva no roteiro de peregrinação : ".$this->participante->grupo->nomePacote.".<br/><br/>";
+          $html = "Parabéns peregrino ".$this->venda->participante->nomeCompleto.", Seu Pagamento de R$ ".$this->money($this->amount,"atb")." foi aprovado!<br/><br/>";
+          $html .= "O Valor será adicionado a sua reserva no roteiro de peregrinação : ".$this->venda->participante->grupo->nomePacote.".<br/><br/>";
           $html .= "Para consultar sua reserva, clique no link abaixo ou entre em contato conosco!<br/>";
           $html .= "<a href='".$this->urlSite."/bilhete.php?charge_id=".$this->venda->id."'>Acessar minha reserva</a>";
-          $tplemail = new Template("../../templates/tpl_email_ecommerce.html");
+          $tplemail = new Template("../templates/tpl_email_ecommerce.html");
           $tplemail->CONTEUDO = $html;
-          $this->mail_html($this->participante->email,$this->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());
+          $this->mail_html($this->venda->participante->email,$this->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());
            return 'pagamento gerado com suscesso';
        break;
        case '1':
@@ -284,13 +283,13 @@ class MyCieloCheckout extends Persistencia {
        break;
        case '3':
           //enviando email com dados da compra:
-          $html = "Peregrino ".$_REQUEST['nomeCompleto'].", Seu Pagamento de R$ ".$this->money($this->amount,"atb")." foi recusado pela operadora do cartão.<br/><br/>";
-          $html .= "Entre em contato conosco para resolver o problema no roteiro de peregrinação : ".$this->participante->grupo->nomePacote.".<br/><br/>";
+          $html = "Peregrino ".$this->venda->participante->nomeCompleto.", Seu Pagamento de R$ ".$this->money($this->amount,"atb")." foi recusado pela operadora do cartão.<br/><br/>";
+          $html .= "Entre em contato conosco para resolver o problema no roteiro de peregrinação : ".$this->venda->participante->grupo->nomePacote.".<br/><br/>";
           $html .= "Para consultar sua reserva, clique no link abaixo ou entre em contato conosco!<br/>";
           $html .= "<a href='".$this->urlSite."/bilhete.php?charge_id=".$this->venda->id."'>Acessar minha reserva</a>";
-          $tplemail = new Template("../../templates/tpl_email_ecommerce.html");
+          $tplemail = new Template("../templates/tpl_email_ecommerce.html");
           $tplemail->CONTEUDO = $html;
-          $this->mail_html($this->participante->email,$this->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());     
+          $this->mail_html($this->venda->participante->email,$this->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());     
          return 'pagamento foi rejeitado!';
        break;
        case '4':

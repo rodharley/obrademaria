@@ -177,6 +177,13 @@ try {
     switch($statusAtual){
         case 'paid':
             $this->gerarPagamentos($ultimoStatus["value"]);
+            $html = "Parabéns peregrino ".$this->participante->nomeCompleto.", Seu Pagamento de R$ ".$this->money($this->total,"atb")." foi aprovado!<br/><br/>";
+          $html .= "O Valor será adicionado a sua reserva no roteiro de peregrinação : ".$this->participante->grupo->nomePacote.".<br/><br/>";
+          $html .= "Para consultar sua reserva, clique no link abaixo ou entre em contato conosco!<br/>";
+          $html .= "<a href='".$this->urlSite."/bilhete.php?charge_id=".$this->venda->id."'>Acessar minha reserva</a>";
+          $tplemail = new Template("../templates/tpl_email_ecommerce.html");
+          $tplemail->CONTEUDO = $html;
+          $this->mail_html($this->participante->email,$this->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());
             return 'pagamento gerado com suscesso';
         break;
         case 'canceled':
