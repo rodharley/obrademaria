@@ -210,14 +210,14 @@
           <div class="col-md-3 mb-3">
             <label for="rg">RG</label>
             <input  name="rg" type="text" maxlength="10" class="form-control" id="rg" placeholder="" value="" required="">
-            <div class="invalid-feedback label-error feedback-cpf">
+            <div class="invalid-feedback label-error">
               Rg requerido.
             </div>
           </div>
           <div class="col-md-4 mb-3">
             <label for="orgaoExpedidor">Orgão Expedidor</label>
             <input  name="orgaoExpedidor" type="text" maxlength="10" class="form-control" id="orgaoExpedidor" placeholder="" value="" required="">
-            <div class="invalid-feedback label-error feedback-cpf">
+            <div class="invalid-feedback label-error">
               Orgão Expedidor requerido.
             </div>
           </div>
@@ -260,14 +260,14 @@
           <div class="col-md-6 mb-3">
             <label for="celular">Celular</label>
             <input  name="celular" type="text" class="form-control" id="celular" placeholder="" value="" required="">
-            <div class="invalid-feedback label-error ">
+            <div class="invalid-feedback label-error feedback-celular">
               Celular requerido.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="telefoneFixo">Tel. Fixo</label>
             <input  name="telefoneFixo" type="text" class="form-control" id="telefoneFixo" placeholder="" value="" required="">
-            <div class="invalid-feedback label-error ">
+            <div class="invalid-feedback label-error feedback-telefoneFixo ">
               Telefone Fixo requerido.
             </div>
           </div>
@@ -531,7 +531,8 @@
               form.classList.add('was-validated');
             }, false);
           });
-
+          document.getElementById("celular").oninput = checkCelular;
+          document.getElementById("telefoneFixo").oninput = checkTelefoneFixo;
           document.getElementById("cpf").oninput = checkCpf;
         }, false);
       })();
@@ -756,7 +757,7 @@ function blockAcomp(numero,disabled){
 
 
       function preencheForm(cliente){
-        console.log(cliente);
+ 
         $("#rg").val(cliente.rg);
         $("#orgaoExpedidor").val(cliente.orgaoEmissorRg)
         $("#nomeCompleto").val(cliente.nomeCompleto);
@@ -790,6 +791,50 @@ function blockAcomp(numero,disabled){
         
         
       }
+      function limpaForm(){
+ 
+      $("#rg").val('');
+      $("#orgaoExpedidor").val('')
+      $("#nomeCompleto").val('');
+      $("#email").val('');
+      $("#datanascimento").val('');
+        $("#masculino").prop("checked",true); 
+      $("#endereco").val('');
+      $("#bairro").val('');
+      $("#cep").val('');
+      $("#pais").val('');
+      $("#telefoneFixo").val('');
+      $("#celular").val(''); 
+      $("#mailmarketing").prop("checked",true); 
+      $("#estadoCivil").val(1);   
+      $("#uf").val('');       
+      $("#cidade").val(''); 
+        
+      }
+      function checkCelular(){
+        input = document.getElementById("celular");
+        celular = input.value.replaceAll("_","").replaceAll("-","").replaceAll(" ","");
+
+        if ((celular.length == 10 || celular.length == 11) || celular.length === 0) {
+            $(".feedback-celular").html("Celular requerido.");
+            input.setCustomValidity('');            
+          } else {
+            $(".feedback-celular").html("Celular Inválido.");
+            input.setCustomValidity('Celular Inválido.');
+           }
+      }
+      function checkTelefoneFixo(){
+        input = document.getElementById("telefoneFixo");
+        telefoneFixo = input.value.replaceAll("_","").replaceAll("-","").replaceAll(" ","");
+        
+        if ((telefoneFixo.length == 10 || telefoneFixo.length == 11) || telefoneFixo.length === 0) {
+            $(".feedback-telefoneFixo").html("Telefone Fixo requerido.");
+            input.setCustomValidity('');            
+          } else {
+            $(".feedback-telefoneFixo").html("Telefone Fixo Inválido.");
+            input.setCustomValidity('Telefone Fixo Inválido.');
+           }
+      }
       function checkCpf() {
         
         input = document.getElementById("cpf");
@@ -802,7 +847,7 @@ function blockAcomp(numero,disabled){
             $(".feedback-cpf").html("Cpf Inválido.");
             input.setCustomValidity('Cpf Inválido.');
            }
-        }
+      }
 
         function mostraContrato(){
           $("#contratobody").html($("#txtContrato").val().replaceAll("##nomeCompleto##",$("#nomeCompleto").val())
@@ -825,7 +870,6 @@ function blockAcomp(numero,disabled){
             //funcao de sucesso
             var funcSuccess = function(data) {
             if(data.code == 200){
-              console.log(data);
               window.location.href="bilhete.php?charge_id="+data.data.charge_id;
             
             }else{
@@ -836,7 +880,7 @@ function blockAcomp(numero,disabled){
             //funcao de erro
             var funcDefaultError = function(erro) {
               showMessage();
-            //console.log(erro.status + '-' + erro.responseText);
+
             }
             postJson('ajax/shopping/checkout.php',form,funcSuccess,funcDefaultError);
            
@@ -856,8 +900,9 @@ function blockAcomp(numero,disabled){
       
 
       function buscaPeloCpf(){
+        limpaForm();
+        if($("#cpf").val() != ""){
         var funcSuccess = function(data) {
-            console.log(data.code);
               if(data.code == 200){
                 preencheForm(data.data);
               }
@@ -865,9 +910,9 @@ function blockAcomp(numero,disabled){
             //funcao de erro
             var funcDefaultError = function(erro) {
               showMessage();
-            //console.log(erro.status + '-' + erro.responseText);
+
             }
             postJson('ajax/shopping/clienteByCpf.php',{"cpf":$("#cpf").val()},funcSuccess,funcDefaultError);
-
+        }
       }
     </script>

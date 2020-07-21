@@ -31,6 +31,23 @@ class MyCieloCheckout extends Persistencia {
     var $tid;
     var $test_transaction;
     
+    function getStatus(){
+      switch ($this->payment_status) {
+        case 1:
+          return 'Iniciado';
+          break;
+          case 2:
+            return 'Pago';
+            break;
+            case 3:
+              return 'Rejeitado';
+              break;
+        default:
+        return 'Não Identificado';
+          break;
+      }
+     
+  }
 
     public function getByChargeId($chargeId){
         return $this->getRow(array("checkout_cielo_order_number"=>"=".$chargeId));
@@ -52,8 +69,8 @@ class MyCieloCheckout extends Persistencia {
                 $nomeItem = $obGrupo->nomePacote;
             // Instantiate cart's item object and set it to an array of product items.
             $properties = [
-              'Name' => substr($nomeItem,0,128),
-              'Description' => substr($obGrupo->destino,0,256),
+              'Name' => utf8_encode(substr($nomeItem,0,128)),
+              'Description' => utf8_encode(substr($obGrupo->destino,0,256)),
               'UnitPrice' => intval(str_replace(".","",str_replace(",","",$this->money($valor,"atb")))),
               'Quantity' => intval($obVenda->quantidade),
               'Type' => 'Service',
@@ -73,12 +90,12 @@ class MyCieloCheckout extends Persistencia {
             
             // Instantiate shipping address' object.
             $properties = [
-              'Street' => $obParticipante->cliente->endereco,
+              'Street' => utf8_encode($obParticipante->cliente->endereco),
               'Number' => "000",
               'Complement' => '',
-              'District' => $obParticipante->cliente->endereco,
-              'City' => $obParticipante->cliente->cidadeEndereco,
-              'State' => $obParticipante->cliente->estadoEndereco,
+              'District' => utf8_encode($obParticipante->cliente->bairro),
+              'City' => utf8_encode($obParticipante->cliente->cidadeEndereco),
+              'State' => utf8_encode($obParticipante->cliente->estadoEndereco),
             ];
             $Address = new Address($properties);
             
@@ -113,7 +130,7 @@ class MyCieloCheckout extends Persistencia {
             // Instantiate customer's object.
             $properties = [
               'Identity' => $obParticipante->cliente->cpf,
-              'FullName' => $obParticipante->cliente->nomeCompleto,
+              'FullName' => utf8_encode($obParticipante->cliente->nomeCompleto),
               'Email' => $obParticipante->cliente->email,
               'Phone' => substr($this->limpaDigitos($obParticipante->cliente->celular != "" ? $obParticipante->cliente->celular : $obParticipante->cliente->telefoneResidencial),0,11),
             ];
@@ -138,10 +155,11 @@ class MyCieloCheckout extends Persistencia {
               'Options' => $Options,
             ];
             $Order = new Order($properties);
-            
+             
             $headers = array('Accept' => 'application/json','MerchantId'=>$this->cieloClientID,'Content-Type'=>'application/json; charset=utf-8');
 		        $query = Unirest\Request\Body::json($Order);
             $response = Unirest\Request::post($this->endpointCielo.'/orders', $headers, $query);
+            
             if($response->code != 200 && $response->code != 201){
                 if(isset($response->body)){
                 throw new Exception($response->body->message);

@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=iso-8859-1");
 include("../../tupi.inicializar.php");
 $obCliente = new Cliente();
 try{

@@ -22,15 +22,7 @@ $oPagamento = new Pagamento();
 $oGn = new GerenciaNetCheckOut();
 $oV->getById($oV->md5_decrypt($_REQUEST['idVenda']));
 $pagamentos = $oPagamento->getPagamentosParticipanteWeb($oV->participante->id);
-$pagamentosGn = $oGn->getByVendasId($oV->id);
-foreach($pagamentosGn as $key => $venda){
-    $tpl->TRANSACAO = $venda->charge_id;
-    $tpl->TIPO = 'Automático (Gerencia Net)';
-    $tpl->METODO = $venda->getMetodo();
-    $tpl->STATUS = $venda->status == 'paid' ? '<span class="label label-success">Pago</span>' :'<span class="label label-warning">Em aberto</span>';
-    $tpl->VALOR = 'R$ '.$oV->money($venda->total,"atb");
-    $tpl->block("BLOCK_ITEM_LISTA");
-}
+
 foreach($pagamentos as $key => $pag){
 	$tpl->TRANSACAO = '-';
     $tpl->TIPO = 'Manual';

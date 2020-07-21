@@ -25,6 +25,7 @@ $tpl->ID_GRUPO_HASH = $_REQUEST['idGrupo'];
 $oV = new VendaSite();
 $oP = new Participante();
 $oGn = new GerenciaNetCheckOut();
+$OCielo = new MyCieloCheckout();
 $totalVendas = $oV->recuperaTotal($idGrupo);
 $pagina = isset($_REQUEST['pagina']) ? $_REQUEST['pagina'] : 1;
 $configPaginacao = $oV->paginar($totalVendas,$pagina);
@@ -46,11 +47,16 @@ foreach($rsvendas as $key => $venda){
 	$tpl->ID_CLIENTE_HASH = $venda->md5_encrypt($venda->participante->cliente->id);
 
 	$compras = $oGn->getByVendasId($venda->id);
+	$comprasCielo = $OCielo->getByVendasId($venda->id);
 	$charges = "";
 	foreach ($compras as $key => $compra) {
 		$charges .= $compra->charge_id." - ".$compra->status."<br/>";
 	}
-	$tpl->CHARGE_IDS = $charges;
+	$tids = "";
+	foreach ($comprasCielo as $key => $compra) {
+		$tids .= $compra->tid." - ".$compra->getStatus()."<br/>";
+	}
+	$tpl->TIDS = $tids;
 
 	$participantes = $venda->participante->cliente->nomeCompleto;
 	if($venda->acompanhante1 != null){
