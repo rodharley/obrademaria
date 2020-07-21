@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=iso-8859-1");
 include("../../tupi.inicializar.php");
 $obVenda = new VendaSite();
 $obCheckout = new GerenciaNetCheckOut();
@@ -13,6 +14,7 @@ try{
 $obCheckout->conn->autocommit(false);
 $obCheckout->conn->begin_transaction();
 
+$_REQUEST = $obCheckout->utf8_decode_array($_REQUEST);
 
 if(!$obGrupo->getById($_REQUEST['idGrupo'])){
     throw new Exception("Grupo não encontrado");

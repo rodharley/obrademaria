@@ -2,6 +2,32 @@
 
 class Biblioteca extends Configuracao{
 
+function utf8_decode_array($array){
+	foreach ($array as $key => $value) {
+		if(is_array($value)){
+			$value =  $this->utf8_decode_array($value);
+		}else{
+			if(!is_numeric($value))
+				$value = utf8_decode($value);
+		}
+		$array[$key] = $value;
+	}
+	return $array;
+}
+function utf8_encode_array($array){
+	foreach ($array as $key => $value) {
+		if(is_array($value)){
+			$value =  $this->utf8_encode_array($value);
+		}else{
+			if(!is_numeric($value))
+				$value = utf8_encode($value);
+		}
+		$array[$key] = $value;
+	}
+	return $array;
+}
+
+
 function arredondar_dois_decimal($valor) {
    $float_arredondar=round($valor * 100) / 100;
      return $float_arredondar;
