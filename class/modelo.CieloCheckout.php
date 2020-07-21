@@ -185,12 +185,11 @@ class MyCieloCheckout extends Persistencia {
     }
 
 
-  function UpdateByNotification($url,$idVenda,$logger){
-
-     
+  function UpdateByNotification($url,$idVenda,$logger){     
 
    try {
-    
+    $logger->info("entrou aqui");
+    $logger->info($idVenda);
     if($this->getByVendasId($idVenda)){
     $headers = array('Accept' => 'application/json','MerchantId'=>$this->cieloClientID,'Content-Type'=>'application/json; charset=utf-8');
 		        //$query = Unirest\Request\Body::json($Order);
