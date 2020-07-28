@@ -1,6 +1,8 @@
-class/tupi.configuracao.php
-img/passaportes/*
-img/grupos/*
-!img/grupos/default.jpg
-!img/passaportes/default.png
-batch/log_cielo.log
+admin/class/tupi.configuracao.php
+admin/img/passaportes/*
+admin/img/grupos/*
+!admin/img/grupos/default.jpg
+!admin/img/passaportes/default.png
+admin/batch/log_cielo.log
+img/packages/*
+img/slider/*
