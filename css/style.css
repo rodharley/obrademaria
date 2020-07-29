@@ -821,7 +821,7 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
 }
 /*===================================================== 06.Counter section css goes here =======================================================*/
  .count-down-bg {
-     background: transparent url("../images/bgimage/countbg.jpg") repeat scroll 0 0;
+     background: transparent url("../images/bgimage/slide1.jpg") repeat scroll 0 0;
      background-repeat: no-repeat;
      background-size: cover;
      background-position: center center;
@@ -1085,7 +1085,7 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
 }
 /*===================================================== 10.Testimonial section css goes here =======================================================*/
  .testimonial-area {
-     background: transparent url("../images/bgimage/testimonial.jpg") no-repeat center center/cover;
+     background: transparent url("../images/bgimage/testimonial.png") no-repeat center center/cover;
      position: relative;
 }
  .testimonial-area:before {
@@ -1222,7 +1222,7 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
 }
 /*===================================================== 12.subscribe area section css goes here =======================================================*/
  .subscribe-bg {
-     background: #37b721 url("../images/bgimage/subscribe.jpg") no-repeat scroll center center/cover;
+     background: #37b721 url("../images/bgimage/newsletter.png") no-repeat scroll center center/cover;
      position: relative;
 }
  .subscribe-bg:before {

@@ -11,23 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Banco de dados: `obrademariadf1`
---
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `ag_roteiro`
---
-
 DROP TABLE IF EXISTS `ag_roteiro`;
 CREATE TABLE IF NOT EXISTS `ag_roteiro` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -39,8 +22,6 @@ CREATE TABLE IF NOT EXISTS `ag_roteiro` (
   PRIMARY KEY (`id`),
   KEY `fk_roteiro_grupo` (`grupo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
-
 DROP TABLE IF EXISTS `ag_slide`;
 CREATE TABLE IF NOT EXISTS `ag_slide` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -53,11 +34,13 @@ CREATE TABLE IF NOT EXISTS `ag_slide` (
   PRIMARY KEY (`id`),
   KEY `fk_slide_roteiro` (`roteiro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
-
 ALTER TABLE `ag_slide`
   ADD CONSTRAINT `fk_slide_roteiro` FOREIGN KEY (`roteiro`) REFERENCES `ag_roteiro` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 ALTER TABLE `ag_roteiro`
   ADD CONSTRAINT `fk_roteiro_grupo` FOREIGN KEY (`grupo`) REFERENCES `ag_grupo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `ag_roteiro` ADD `continent` VARCHAR(20) NOT NULL AFTER `card_description`, ADD INDEX `idx_continente` (`continent`); 
+ALTER TABLE `ag_roteiro` ADD `likes` INT NOT NULL AFTER `continent`; 
+ALTER TABLE `ag_roteiro` CHANGE `likes` `likes` INT(11) NOT NULL DEFAULT '0'; 
+ALTER TABLE `ag_roteiro` DROP `card_value`;
+ALTER TABLE `ag_roteiro` ADD `unlikes` INT NOT NULL DEFAULT '0' AFTER `likes`; 
 COMMIT;

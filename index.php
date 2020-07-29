@@ -1,9 +1,10 @@
 <?php
 include("admin/tupi.inicializar.php"); 
-
+$roteiro = new Roteiro();
 $slide = new Slide();
 $sliders = $slide->getRows();
-
+$continentes = $roteiro->getContinentesDispoiveis();
+$roteirosPartida = $roteiro->pesquisar('',null,false,0,6);
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="bt-br">
@@ -42,7 +43,7 @@ $sliders = $slide->getRows();
 					
 
 					<!-- LAYER NR. 5 -->
-					<div class="tp-caption lfb tp-resizeme  header-btn" data-x="center" data-hoffset="0" data-y="center" data-voffset="120" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","speed":2000,"to":"o:1;","delay":750,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' style="z-index: 8;"><a href="#" class="travel-primary-btn hvr-fade"><?= $item->buttomText?></a>
+					<div class="tp-caption lfb tp-resizeme  header-btn" data-x="center" data-hoffset="0" data-y="center" data-voffset="120" data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","speed":2000,"to":"o:1;","delay":750,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' style="z-index: 8;"><a href="packages.php?id=<?=$item->roteiro->id?>" class="travel-primary-btn hvr-fade"><?= $item->buttomText?></a>
 					</div>
 				</li>
 				<?php }?>
@@ -258,13 +259,61 @@ $sliders = $slide->getRows();
 		</div>
 	</div>
 </section> <!-- header tab based search area end-->
+
+<section class="popular-packages pb-70 pt-100">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="section-title text-center">
+					<h2>Roteiros mais próximos</h2>
+					<p>Nossos Roteiros por ordem de partida</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<?php 
+			foreach ($roteirosPartida as $key => $rp) {
+				$stars = $rp->getNumberStars();
+			?>
+			<div class="col-md-4 col-sm-6">
+				<div class="single-package">
+					<div class="package-image">
+						<a href="package.php?id=<?=$rp->id?>"><img src="img/packages/<?= $rp->cardImage?>" alt="">
+						</a>
+					</div>
+					<div class="package-content">
+						<h3><?= $rp->cardTitle?></h3>
+						<p><?= $rp->cardDescription?> <span><?=$rp->grupo->moeda->cifrao." ".$roteiro->money($rp->grupo->valorPacote,"atb")?></span>
+						</p>
+					</div>
+					<div class="package-calto-action">
+						<ul class="ct-action">
+							<li><a href="package.php?id=<?=$rp->id?>" class="travel-booking-btn hvr-shutter-out-horizontal">Compre Agora</a>
+							</li>
+							<li>
+								<i class="fa <?=$stars >=1 ? 'fa-star' : 'fa-star-o';?>"></i>
+								<i class="fa <?=$stars >=2 ? 'fa-star' : 'fa-star-o';?>"></i>
+								<i class="fa <?=$stars >=3 ? 'fa-star' : 'fa-star-o';?>"></i>
+								<i class="fa <?=$stars >=4 ? 'fa-star' : 'fa-star-o';?>"></i>
+								<i class="fa <?=$stars >=5 ? 'fa-star' : 'fa-star-o';?>"></i>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div> <!-- single package end -->
+			<?php } ?>
+			
+		</div>
+	</div>
+</section> <!--end  popular packajge -->
+
 <section class="section-paddings popular-country">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="section-title-version-2-black text-center">
-					<h2>Most popular destinations</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit Etiam at ipsum at ligula vestibulum </p>
+					<h2>Roteiros Mais Populares</h2>
+					<p>Separamos aqui os roteiros mais populares por continente para você.</p>
 				</div>
 			</div>
 		</div>
@@ -272,935 +321,81 @@ $sliders = $slide->getRows();
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="destination-tab-menu">
 					<ul class="destination-menu" id="myTab2">
-						<li  class="active"><a href="#asia" data-easein="fadeIn">Asia</a>
+					<?php 
+					foreach($continentes as $key => $c){					
+					?>	
+					<li  class="<?= $key == 0 ? 'active' : ''?>"><a href="#cont<?=$c->id?>" data-easein="fadeIn"><?=$c->continent?></a>
 						</li>
-						<li><a href="#europe" data-easein="fadeIn">Europe</a>
-						</li>
-						<li><a href="#america" data-easein="fadeIn">America</a>
-						</li>
-						<li><a href="#africa" data-easein="fadeIn">Africa</a>
-						</li>
-						<li><a href="#australia" data-easein="fadeIn">Australia</a>
-						</li>
+					<? }?>
+						
 					</ul>
 				</div><!-- tab menu end -->
 
 				<div class="destination-countrys">
 					<div class="tab-content" id="tab-content2">
 						<!-- Asia tab content start -->
-						<div class="tab-pane" id="asia">
+						<?php 
+					foreach($continentes as $key => $c){	
+						$roteiros = $roteiro->getByContinent($c->continent,4);				
+					?>
+						<div class="tab-pane <?= $key == 0 ? 'active' : ''?>" id="cont<?=$c->id?>">
 							<div class="row">
+							<?php foreach($roteiros as $key => $r){	?>
 								<div class="col-sm-3 col-md-3 padding-bottom">
 									<div class="single-country">
 										<figure>
-											<a href="#"><img src="images/destination/pd1.jpg" alt="" class="img-responsive img-rounded">
+											<a href="#"><img src="img/packages/<?=$r->cardImage?>" alt="" class="img-responsive img-rounded">
 											</a>
 											<figcaption>
 												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">London, Eangland</span>
+													<span><img src="images/icon/map.png" alt=""><?= $r->cardTitle ?></span>
 													<ul class="tower-bridge">
-														<li>London Bridge</li>
-														<li>3 Tours</li>
+														<li><?= $r->cardDescription?></li>
+														<li><?=$r->grupo->ano?></li>
 													</ul>
 												</div>
 												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
+													<a href="package.php?id=<?=$r->id?>" class="travel-booking-btn hvr-shutter-out-horizontal">Compre Agora</a>
 												</div>
 											</figcaption>
 										</figure>
 									</div>
-								</div>
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd2.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Rome, Italy</span>
-													<ul class="tower-bridge">
-														<li>Colosiam</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd3.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Delhi, India</span>
-													<ul class="tower-bridge">
-														<li>India Gate</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd4.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Paris, France</span>
-													<ul class="tower-bridge">
-														<li>Eiffel Tower</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
+								</div>	
+							<?php }?>							
 							</div>
-						</div> <!-- Asia tab content end -->
-
-						<div class="tab-pane active" id="europe">
-							<div class="row">
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd1.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd2.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-
-								<div class=" col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd3.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd4.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-							</div>
-						</div><!-- europe tab content end -->
-
-						<div class="tab-pane" id="america">
-							<div class="row">
-								<div class=" col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd1.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-								<div class=" col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd2.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-
-								<div class=" col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd3.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd4.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-							</div>
-						</div> <!-- america tab content end-->
-
-						<div class="tab-pane" id="africa">
-							<div class="row">
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd1.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd2.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd3.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-								<div class=" col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd4.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-							</div>
-						</div><!-- america tab content end-->
-
-						<div class="tab-pane" id="australia">
-							<div class="row">
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd1.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-								<div class=" col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd2.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-  
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd3.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-								<div class="col-sm-3 col-md-3 padding-bottom">
-									<div class="single-country">
-										<figure>
-											<a href="#"><img src="images/destination/pd4.jpg" alt="" class="img-responsive img-rounded">
-											</a>
-											<figcaption>
-												<div class="city-name">
-													<span><img src="images/icon/map.png" alt="">Eangland, London</span>
-													<ul class="tower-bridge">
-														<li>Tower Bridge</li>
-														<li>3 Tours</li>
-													</ul>
-												</div>
-												<div class="travel-book-btn">
-													<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-							</div>
-						</div> <!-- australia tab content end-->
+						</div> 
+					<?php } ?>						
+					
 					</div>
 				</div> <!-- tab content end -->
 			</div>
 		</div>
 	</div>
 </section>
-<section class="popular-packages pb-70 pt-100">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="section-title text-center">
-					<h2>Our most popular packges</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit Etiam at ipsum at ligula vestibulum sodales Sed luctus orci vel nibh aliquam laoreet Aenean accumsan </p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 col-sm-6">
-				<div class="single-package">
-					<div class="package-image">
-						<a href="#"><img src="images/packages/1.jpg" alt="">
-						</a>
-					</div>
-					<div class="package-content">
-						<h3>Dubai â€“ All Stunning Places</h3>
-						<p>4 Days, 5 Nights Start From <span>$500</span>
-						</p>
-					</div>
-					<div class="package-calto-action">
-						<ul class="ct-action">
-							<li><a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-							</li>
-							<li>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div> <!-- single package end -->
 
-			<div class="col-md-4 col-sm-6">
-				<div class="single-package">
-					<div class="package-image">
-						<a href="#"><img src="images/packages/2.jpg" alt="">
-						</a>
-					</div>
-					<div class="package-content">
-						<h3>Thailand â€“ All Stunning Places</h3>
-						<p>4 Days, 5 Nights Start From <span>$500</span>
-						</p>
-					</div>
-					<div class="package-calto-action">
-						<ul class="ct-action">
-							<li><a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-							</li>
-							<li>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div> <!-- single package end -->
-
-			<div class="col-md-4 col-sm-6">
-				<div class="single-package">
-					<div class="package-image">
-						<a href="#"><img src="images/packages/3.jpg" alt="">
-						</a>
-					</div>
-					<div class="package-content">
-						<h3>England â€“ All Stunning Places</h3>
-						<p>4 Days, 5 Nights Start From <span>$500</span>
-						</p>
-					</div>
-					<div class="package-calto-action">
-						<ul class="ct-action">
-							<li><a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-							</li>
-							<li>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div> <!-- single package end -->
-
-			<div class="col-md-4 col-sm-6">
-				<div class="single-package">
-					<div class="package-image">
-						<a href="#"><img src="images/packages/4.jpg" alt="">
-						</a>
-					</div>
-					<div class="package-content">
-						<h3>Italy â€“ All Stunning Places</h3>
-						<p>4 Days, 5 Nights Start From <span>$500</span>
-						</p>
-					</div>
-					<div class="package-calto-action">
-						<ul class="ct-action">
-							<li><a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-							</li>
-							<li>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div> <!-- single package end -->
-
-			<div class="col-md-4 col-sm-6">
-				<div class="single-package">
-					<div class="package-image">
-						<a href="#"><img src="images/packages/5.jpg" alt="">
-						</a>
-					</div>
-					<div class="package-content">
-						<h3>Brazil â€“ All Stunning Places</h3>
-						<p>4 Days, 5 Nights Start From <span>$500</span>
-						</p>
-					</div>
-					<div class="package-calto-action">
-						<ul class="ct-action">
-							<li><a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-							</li>
-							<li>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div> <!-- single package end -->
-
-			<div class="col-md-4 col-sm-6">
-				<div class="single-package">
-					<div class="package-image">
-						<a href="#"><img src="images/packages/6.jpg" alt="">
-						</a>
-					</div>
-					<div class="package-content">
-						<h3>India â€“ All Stunning Places</h3>
-						<p>4 Days, 5 Nights Start From <span>$500</span>
-						</p>
-					</div>
-					<div class="package-calto-action">
-						<ul class="ct-action">
-							<li><a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Book Now</a>
-							</li>
-							<li>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div> <!-- single package end -->
-		</div>
-	</div>
-</section> <!--end  popular packajge -->
 
 <section class="countdown count-down-bg image-bg-padding-100">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12-col-xs-12">
 				<div class="count-down-titile">
-					<h3>Special Tour in May, Discover <span class="color-one">Thailand</span> for 50 <br> Customers with <span class="color-two">Discount 30%</span> </h3>
+					<h3>Viagem Especial em <span class="color-one">Terra Santa</span> Promocional <br> com <span class="color-two">20% de desconto</span> </h3>
 				</div>
 				<div class="count-timer text-center">
 					<div class="time-wrapper">
-						<p>Itâ€™s limited seating! Hurry up</p>
+						<p>Vagas limitadas! Corra e Garanta o seu</p>
 						<div class="timer">
-							<div data-countdown="2018/12/15"></div>
+							<div data-countdown="2021/03/20"></div>
 						</div>
 					</div>
 				</div>
 				<div class="buy-now text-center">
-					<a href="#" class="travel-primary-btn hvr-fade">Buy Now</a>
+					<a href="package.php" class="travel-primary-btn hvr-fade">Compre Agora</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>  <!--end  countdown -->
-
-<section class="pb-70 pt-100">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="section-title text-center">
-					<h2>Most popular destination</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit Etiam at ipsum at ligula vestibulum sodales Sed luctus orci vel nibh aliquam laoreet Aenean accumsan </p>
-				</div>
-			</div>
-		</div>
-		<div class="destination-slider-active owl-carousel">
-			<div class="single-destination">
-				<figure>
-					<a href="#"><img src="images/destination/1.jpg" alt="">
-					</a>
-					<figcaption>
-						<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Read More</a>
-					</figcaption>
-				</figure>
-				<div class="des-city">
-					<a href="#"><i class="fa fa-map-marker"></i>Sydney, Australia</a>
-					<h4>Opera House <span>3 Tours</span></h4>
-				</div>
-			</div> <!-- single popular destination  end-->
-
-			<div class="single-destination">
-				<figure>
-					<a href="#"><img src="images/destination/2.jpg" alt="">
-					</a>
-					<figcaption>
-						<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Read More</a>
-					</figcaption>
-				</figure>
-				<div class="des-city">
-					<a href="#"><i class="fa fa-map-marker"></i>London, Eangland</a>
-					<h4>Tower Bridge<span>5 Tours</span></h4>
-				</div>
-			</div> <!-- single popular destination  end-->
-
-			<div class="single-destination">
-				<figure>
-					<a href="#"><img src="images/destination/3.jpg" alt="">
-					</a>
-					<figcaption>
-						<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Read More</a>
-					</figcaption>
-				</figure>
-				<div class="des-city">
-					<a href="#"><i class="fa fa-map-marker"></i>Paris, France</a>
-					<h4>Eiffel Tower<span>4 Tours</span></h4>
-				</div>
-			</div> <!-- single popular destination  end-->
-
-			<div class="single-destination">
-				<figure>
-					<a href="#"><img src="images/destination/4.jpg" alt="">
-					</a>
-					<figcaption>
-						<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Read More</a>
-					</figcaption>
-				</figure>
-				<div class="des-city">
-					<a href="#"><i class="fa fa-map-marker"></i>New york, USA</a>
-					<h4>Statue Of Liberty<span>3 Tours</span></h4>
-				</div>
-			</div> <!-- single popular destination  end-->
-
-			<div class="single-destination">
-				<figure>
-					<a href="#"><img src="images/destination/5.jpg" alt="">
-					</a>
-					<figcaption>
-						<a href="#" class="travel-booking-btn hvr-shutter-out-horizontal">Read More</a>
-					</figcaption>
-				</figure>
-				<div class="des-city">
-					<a href="#"><i class="fa fa-map-marker"></i>Agra, India</a>
-					<h4>Tajmahal<span>5 Tours</span></h4>
-				</div>
-			</div> <!-- single popular destination  end-->
-		</div>
-	</div>
-</section> <!-- end popular destination-->
-
-<section class="trabble-bg image-bg-padding-100">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="section-title-white text-center">
-					<h2>Why Choose travlestar</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit Etiam at ipsum at ligula vestibulum sodales Sed luctus orci vel nibh aliquam laoreet Aenean accumsan </p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<!-- single travel start -->
-			<div class="col-md-4 col-sm-6">
-				<div class="single-travel">
-					<div class="media">
-						<div class="media-left media-middle travel-number">
-							<span>01.</span>
-						</div>
-						<div class="media-body travel-content">
-							<h4>Travel Arrangements</h4>
-							<p>Lorem ipsum dolor sit amet consect adiu piscing elit sed diam nonum euismo tincidunt ut.</p>
-						</div>
-					</div>
-				</div>
-			</div> <!-- single travel end -->
-
-			<div class="col-md-4 col-sm-6">
-				<div class="single-travel">
-					<div class="media">
-						<div class="media-left media-middle travel-number">
-							<span>02.</span>
-						</div>
-						<div class="media-body travel-content">
-							<h4>Cheap Flights</h4>
-							<p>Lorem ipsum dolor sit amet consect adiu piscing elit sed diam nonum euismo tincidunt ut.</p>
-						</div>
-					</div>
-				</div>
-			</div> <!-- single travel end -->
-
-			<div class="col-md-4 col-sm-6">
-				<div class="single-travel">
-					<div class="media">
-						<div class="media-left media-middle travel-number">
-							<span>03.</span>
-						</div>
-						<div class="media-body travel-content">
-							<h4>Hand-picked tours</h4>
-							<p>Lorem ipsum dolor sit amet consect adiu piscing elit sed diam nonum euismo tincidunt ut.</p>
-						</div>
-					</div>
-				</div>
-			</div> <!-- single travel end -->
-
-			<div class="col-md-4 col-sm-6">
-				<div class="single-travel">
-					<div class="media">
-						<div class="media-left media-middle travel-number">
-							<span>04.</span>
-						</div>
-						<div class="media-body travel-content">
-							<h4>Privet Guide</h4>
-							<p>Lorem ipsum dolor sit amet consect adiu piscing elit sed diam nonum euismo tincidunt ut.</p>
-						</div>
-					</div>
-				</div>
-			</div> <!-- single travel end -->
-
-			<div class="col-md-4 col-sm-6">
-				<div class="single-travel">
-					<div class="media">
-						<div class="media-left media-middle travel-number">
-							<span>05.</span>
-						</div>
-						<div class="media-body travel-content">
-							<h4>Special Activities</h4>
-							<p>Lorem ipsum dolor sit amet consect adiu piscing elit sed diam nonum euismo tincidunt ut.</p>
-						</div>
-					</div>
-				</div>
-			</div> <!-- single travel end -->
-
-			<div class="col-md-4 col-sm-6">
-				<div class="single-travel">
-					<div class="media">
-						<div class="media-left media-middle travel-number">
-							<span>06.</span>
-						</div>
-						<div class="media-body travel-content">
-							<h4>Best Price Guarantee</h4>
-							<p>Lorem ipsum dolor sit amet consect adiu piscing elit sed diam nonum euismo tincidunt ut.</p>
-						</div>
-					</div>
-				</div>
-			</div> <!-- single travel end -->
-		</div>
-	</div>
-</section> <!-- choose trabble end here -->
-
-<!-- guide and Expert Advice strat -->
-<section class="section-paddings">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="section-title text-center">
-					<h2>Travel guide and Expert Advice</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit Etiam at ipsum at ligula vestibulum sodales Sed luctus orci vel nibh aliquam laoreet Aenean accumsan </p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<!-- single travel blog-->
-			<div class="col-md-4 col-sm-6 phone-layout-s">
-				<div class="single-travel-blog">
-					<div class="blog-image">
-						<a href="#"><img src="images/blog/1.jpg" alt="">
-						</a>
-					</div>
-					<div class="blog-content">
-						<div class="blog-meta">
-							<div class="post-date">
-								<span><i class="fa fa-calendar"></i> 12 Sep, 2018</span>
-							</div>
-							<ul class="post-social">
-								<li><a href="#"><i class="fa fa-comments"></i>3</a>
-								</li>
-								<li><a href="#"><i class="fa fa-heart-o"></i>43</a>
-								</li>
-							</ul>
-						</div>
-						<div class="blog-post-content">
-							<h4>Tips for taking a long-term trip with kids.</h4>
-							<p>Lorem ipsum dolor sit amet consepctetur adipiscing elit Etiam at ipsum at ligula vestibulum sodales Sed luctus.</p>
-							<a href="#">Read More <i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</div> <!--end single travel guide & security-->
-
-			<div class="col-md-4 col-sm-6 phone-layout-s">
-				<div class="single-travel-blog">
-					<div class="blog-image">
-						<a href="#"><img src="images/blog/2.jpg" alt="">
-						</a>
-					</div>
-					<div class="blog-content">
-						<div class="blog-meta">
-							<div class="post-date">
-								<span><i class="fa fa-calendar"></i> 12 Aug, 2018</span>
-							</div>
-							<ul class="post-social">
-								<li><a href="#"><i class="fa fa-comments"></i>3</a>
-								</li>
-								<li><a href="#"><i class="fa fa-heart-o"></i>43</a>
-								</li>
-							</ul>
-						</div>
-						<div class="blog-post-content">
-							<h4>Tips for taking a long-term trip with kids.</h4>
-							<p>Lorem ipsum dolor sit amet consepctetur adipiscing elit Etiam at ipsum at ligula vestibulum sodales Sed luctus.</p>
-							<a href="#">Read More <i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</div> <!--end single travel guide & security-->
-
-			<div class="col-md-4 col-sm-6 phone-layout-s">
-				<div class="single-travel-blog">
-					<div class="blog-image">
-						<a href="#"><img src="images/blog/3.jpg" alt="">
-						</a>
-					</div>
-					<div class="blog-content">
-						<div class="blog-meta">
-							<div class="post-date">
-								<span><i class="fa fa-calendar"></i> 12 Jul, 2018</span>
-							</div>
-							<ul class="post-social">
-								<li><a href="#"><i class="fa fa-comments"></i>3</a>
-								</li>
-								<li><a href="#"><i class="fa fa-heart-o"></i>43</a>
-								</li>
-							</ul>
-						</div>
-						<div class="blog-post-content">
-							<h4>Tips for taking a long-term trip with kids.</h4>
-							<p>Lorem ipsum dolor sit amet consepctetur adipiscing elit Etiam at ipsum at ligula vestibulum sodales Sed luctus.</p>
-							<a href="#">Read More <i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</div> <!-- single travel guide & security end-->
-		</div>
-	</div>
-</section> <!--End guide and Expert Advice strat -->
 
 <!-- testimonial area start here -->
 <section class="testimonial-area image-bg-padding-100">
@@ -1209,7 +404,7 @@ $sliders = $slide->getRows();
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="section-title-white text-center mbt-100">
-						<h2>What travellers Say About Us</h2>
+						<h2>O que nossos peregrinos contam sobre nós</h2>
 					</div>
 				</div>
 			</div>
@@ -1242,7 +437,7 @@ $sliders = $slide->getRows();
 					<div class="carousel-text slider-for col-sm-8 col-sm-offset-2">
 						<div class="testimonial-message">
 							<div class="message">
-								<p>Lorem ipsum dolor sit amet, consecteituer adipiscing eluit, sed diapm nonummy nibhu euismod tincidunt ut laoreet dolor you magna aliquam erat volutpat. Ut wisi enim adefra miniumyp veniam, quis nostrud exerci tation ullavolutpat.</p>
+								<p>A Obra de Maria DF nos proporcionou a melhor viagem das nossas vidas, Muito obrigado!!</p>
 							</div>
 							<div class="rating">
 								<i class="fa fa-star"></i>
@@ -1252,8 +447,8 @@ $sliders = $slide->getRows();
 								<i class="fa fa-star"></i>
 							</div>
 							<div class="client-bio">
-								<h4>Jhonthan Smith</h4>
-								<span>London Trip Travelers</span>
+								<h4>Maria Helena</h4>
+								<span>São Paulo - Brasil</span>
 							</div>
 						</div> <!-- client testimonial end -->
 
@@ -1348,96 +543,6 @@ $sliders = $slide->getRows();
 	</div>
 </section> <!-- testimonial area end here -->
 
-<div class="section-paddings incredible-places">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="section-title text-center">
-					<h2>Incredible Places</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit Etiam at ipsum at ligula vestibulum sodales Sed luctus orci vel nibh aliquam laoreet Aenean accumsan</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 col-sm-6">
-			<div class="single-place">
-				<figure>
-					<a href="#"><img src="images/place/1.jpg" alt="">
-					</a>
-					<figcaption>
-						<h4>Place <span>Eiffel Tower</span></h4>
-						<h4>Caption By: <span>Michel Jusi</span></h4>
-					</figcaption>
-				</figure>
-			</div>
-		</div> <!-- end single place -->
-
-		<div class="col-md-4 col-sm-6">
-			<div class="single-place">
-				<figure>
-					<a href="#"><img src="images/place/2.jpg" alt="">
-					</a>
-					<figcaption>
-						<h4>Place <span>China Town</span></h4>
-						<h4>Caption By: <span>Daniel Baci</span></h4>
-					</figcaption>
-				</figure>
-			</div>
-		</div> <!-- end single place -->
-
-		<div class="col-md-4 col-sm-6">
-			<div class="single-place">
-				<figure>
-					<a href="#"><img src="images/place/3.jpg" alt="">
-					</a>
-					<figcaption>
-						<h4>Place <span>England Bridge</span></h4>
-						<h4>Caption By: <span>John Adam</span></h4>
-					</figcaption>
-				</figure>
-			</div>
-		</div> <!-- end single place -->
-
-		<div class="col-md-4 col-sm-6">
-			<div class="single-place">
-				<figure>
-					<a href="#"><img src="images/place/4.jpg" alt="">
-					</a>
-					<figcaption>
-						<h4>Place <span>Eiffel Tower</span></h4>
-						<h4>Caption By: <span>Michel Jusi</span></h4>
-					</figcaption>
-				</figure>
-			</div>
-		</div> <!-- end single place -->
-
-		<div class="col-md-4 col-sm-6">
-			<div class="single-place">
-				<figure>
-					<a href="#"><img src="images/place/5.jpg" alt="">
-					</a>
-					<figcaption>
-						<h4>Place <span>China Town</span></h4>
-						<h4>Caption By: <span>Daniel Baci</span></h4>
-					</figcaption>
-				</figure>
-			</div>
-		</div> <!-- end single place -->
-
-		<div class="col-md-4 col-sm-6">
-			<div class="single-place">
-				<figure>
-					<a href="#"><img src="images/place/3.jpg" alt="">
-					</a>
-					<figcaption>
-						<h4>Place <span>England Bridge</span></h4>
-						<h4>Caption By: <span>John Adam</span></h4>
-					</figcaption>
-				</figure>
-			</div>
-		</div> <!-- end single place -->
-	</div>
-</div> <!-- incredible place end here -->
-
 
 <section class="subscribe-area subscribe-bg image-bg-padding-100">
 	<div class="container">
@@ -1466,89 +571,6 @@ $sliders = $slide->getRows();
 	</div>
 </section> <!-- subscribe area end here -->
 
-<section class="section-paddings">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="section-title text-center">
-					<h2>Out trusted partners</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit Etiam at ipsum at ligula vestibulum sodales Sed luctus orci vel nibh aliquam laoreet Aenean accumsan </p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<!-- partners images -->
-			<div class="partner-slider-active owl-carousel">
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/1.png" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/2.png" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/3.png" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/4.png" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/5.png" alt="">
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- partners images -->
-		<div class="row">
-			<!-- partners images -->
-			<div class="partner-slider-active owl-carousel">
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/1.png" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/2.png" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/3.png" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/4.png" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="single-pertner">
-					<div class="partner-image">
-						<a href="#"><img src="images/partner/5.png" alt="">
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>	<!-- end partners images -->
-	</div>
-</section> <!--end partner section -->
 
 <footer class="footer-area">
 	<div class="container">
@@ -1557,7 +579,7 @@ $sliders = $slide->getRows();
 			<div class="col-md-3 col-sm-6">
 				<div class="single-footer">
 					<div class="footer-title">
-						<a href="#"><img src="images/logo.png" alt="">
+						<a href="#"><img src="img/obra-logo-branco.png" alt="">
 						</a>
 					</div>
 					<div class="footer-left">
@@ -1565,9 +587,9 @@ $sliders = $slide->getRows();
 							<p>Lorem ipsum dolor sit amet conset ctetur adipiscin elit Etiam at ipsum at ligula vestibulum sodales.</p>
 						</div>
 						<ul class="footer-contact">
-							<li><img class="map" src="images/icon/map.png" alt="">Seventh Avenue New York</li>
-							<li><img class="map" src="images/icon/phone.png" alt="">+123-456-7890</li>
-							<li><img class="map" src="images/icon/gmail.png" alt="">info@yourcompany.com</li>
+							<li><img class="map" src="images/icon/map.png" alt="">SRTVS 701, Bloco II, Sala 208, Ed. Chateaubriand</li>
+							<li><img class="map" src="images/icon/phone.png" alt="">61 3201-5116 | 61 98352-0475</li>
+							<li><img class="map" src="images/icon/gmail.png" alt="">vendas@obrademariadf.com.br</li>
 						</ul>
 					</div>
 				</div>
@@ -1577,7 +599,7 @@ $sliders = $slide->getRows();
 				<div class="single-footer">
 					<div class="single-recent-post">
 						<div class="footer-title">
-							<h3>Recent News</h3>
+							<h3>Posts Recentes</h3>
 						</div>
 						<ul class="recent-post">
 							<li>
@@ -1625,15 +647,15 @@ $sliders = $slide->getRows();
 			<div class="col-md-3 col-sm-6">
 				<div class="single-footer">
 					<div class="footer-title">
-						<h3>Destination</h3>
+						<h3>Destinos</h3>
 					</div>
 					<ul class="footer-gallery">
 						<li>
 							<a href="#">
 								<div class="image-overlay">
-									<img src="images/destination/1.jpg" alt="">
+									<img src="img/packages/SANTO SEPULCRO 1.jpg" alt="">
 									<div class="overly-city">
-										<span>Austrila</span>
+										<span>Terra Santa</span>
 									</div>
 								</div>
 							</a>
@@ -1641,9 +663,9 @@ $sliders = $slide->getRows();
 						<li>
 							<a href="#">
 								<div class="image-overlay">
-									<img src="images/destination/2.jpg" alt="">
+									<img src="img/packages/DSC_0190.png" alt="">
 									<div class="overly-city">
-										<span>England</span>
+										<span>Inglaterra</span>
 									</div>
 								</div>
 							</a>
@@ -1676,37 +698,31 @@ $sliders = $slide->getRows();
 			<div class="col-md-3 col-sm-6 f-phone-responsive">
 				<div class="single-footer">
 					<div class="footer-title">
-						<h3>Quick Contact</h3>
+						<h3>Entre em Contato</h3>
 					</div>
 					<div class="footer-contact-form">
 						<form action="#">
 							<ul class="footer-form-element">
 								<li>
-									<input type="text" name="email" id="email" placeholder="" value="Email Address" onblur="if(this.value==''){this.value='Email Address'}" onfocus="if(this.value=='Email Address'){this.value=''}">
+									<input type="text" name="email" id="email" placeholder="" value="Email" onblur="if(this.value==''){this.value='Email Address'}" onfocus="if(this.value=='Email Address'){this.value=''}">
 								</li>
 								<li>
-									<textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+									<textarea name="message" id="message" cols="30" rows="10" placeholder="Mensagem"></textarea>
 								</li>
 								<li>
-									<button>Send</button>
+									<button>Enviar</button>
 								</li>
 							</ul>
 						</form>
 					</div>
 					<div class="footer-social-media">
 						<div class="social-footer-title">
-							<h3>Follow Us</h3>
+							<h3>siga-nos</h3>
 						</div>
 						<ul class="footer-social-link">
-							<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a>
+							<li class="facebook"><a href="https://www.facebook.com/ObraDeMariaDf/"><i class="fa fa-facebook"></i></a>
 							</li>
-							<li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a>
-							</li>
-							<li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a>
+							<li class="twitter"><a href="https://www.instagram.com/obrademariadf/"><i class="fa fa-instagram"></i></a>
 							</li>
 						</ul>
 					</div>
@@ -1718,18 +734,17 @@ $sliders = $slide->getRows();
 			<div class="footer-bottom">
 				<div class="col-md-5">
 					<div class="copyright">
-						<p>Copyright &copy; 2018 Trabble By <a href="#"><span>SylTheme</span></a></p>
+						<p>Copyright &copy; 2020 Criado por <a href="#"><span>Obra de Maria DF</span></a></p>
 					</div>
 				</div>
 				<div class="col-md-7">
 					<ul class="payicon pull-right">
-						<li>We Accept</li>
-						<li><img src="images/payicon01.png" alt=""></li>
+						<li>Nós Aceitamos</li>
 						<li><img src="images/payicon02.png" alt=""></li>
 						<li><img src="images/payicon03.png" alt=""></li>
-						<li><img src="images/payicon04.png" alt=""></li>
+						
 						<li><img src="images/payicon05.png" alt=""></li>
-						<li><img src="images/payicon06.png" alt=""></li>
+						
 					</ul>
 				</div>
 			</div>

@@ -363,8 +363,10 @@ set
 		<atrib tbname="id" type="id">id</atrib>
 		<atrib tbname="grupo" type="fk" lazy="true" clrelation="Grupo">grupo</atrib>
 		<atrib tbname="card_image" type="txt">cardImage</atrib>				
-		<atrib tbname="card_title" type="txt">cardTitle</atrib>		
-		<atrib tbname="card_value" type="int">cardValue</atrib>
+		<atrib tbname="card_title" type="txt">cardTitle</atrib>	
+		<atrib tbname="continent" type="txt">continent</atrib>		
+		<atrib tbname="likes" type="int">likes</atrib>
+		<atrib tbname="unlikes" type="int">unlikes</atrib>
 		<atrib tbname="card_description" type="txt">cardDescription</atrib>
 </class>
 <class name="Slide" tbname="ag_slide" tbid="id" lazy="true">
