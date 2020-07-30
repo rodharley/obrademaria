@@ -93,7 +93,7 @@ if(isset($_GET['id'])){
 				<div class="row">
 					<!-- tabs content -->
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane fade " id="description">
+						<div role="tabpanel" class="tab-pane fade  in active" id="description">
 							
 							<div class="row">
 								<!-- left content -->
@@ -162,7 +162,7 @@ if(isset($_GET['id'])){
 							</div>
 						</div>
 
-						<div role="tabpanel" class="tab-pane fade in active" id="fotos">
+						<div role="tabpanel" class="tab-pane fade" id="fotos">
 							<div class="row">
 								<div class="col-md-12 col-sm-12">
 									<div class="tour-description">
