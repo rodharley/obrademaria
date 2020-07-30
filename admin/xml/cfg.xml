@@ -258,6 +258,10 @@ set
 		<atrib tbname="cotacao_parcelado" type="int">cotacaoParcelado</atrib>
 		<atrib tbname="imagem_destaque" type="txt">imagemDestaque</atrib>
 		<atrib tbname="desconto_avista" type="int">descontoAVista</atrib>
+		<atrib tbname="local" type="txt">local</atrib>
+		<atrib tbname="idade_minima" type="int">idadeMinima</atrib>
+		<atrib tbname="max_pessoa" type="int">maxPessoa</atrib>
+		<atrib tbname="duracao" type="int">duracao</atrib>		
 		</class>
 
 	<class name="LogAcesso" tbname="ag_logacesso" tbid="id" lazy="false">

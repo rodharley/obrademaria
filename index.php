@@ -281,7 +281,7 @@ $roteirosPartida = $roteiro->pesquisar('',null,false,0,6);
 					</div>
 					<div class="package-content">
 						<h3><?= $rp->cardTitle?></h3>
-						<p><?= $rp->cardDescription?> <span><?=$rp->grupo->moeda->cifrao." ".$roteiro->money($rp->grupo->valorPacote,"atb")?></span>
+						<p><?= $rp->cardDescription?> <span><?=$rp->grupo->moeda->cifrao." ".$roteiro->money($rp->grupo->getValorTotal(0),"atb")?></span>
 						</p>
 					</div>
 					<div class="package-calto-action">

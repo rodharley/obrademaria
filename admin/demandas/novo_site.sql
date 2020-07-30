@@ -154,3 +154,5 @@ ALTER TABLE `ag_review`
 ALTER TABLE `ag_video`
   ADD CONSTRAINT `fk_video_roteiro` FOREIGN KEY (`roteiro`) REFERENCES `ag_roteiro` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+ALTER TABLE `ag_grupo` ADD `local` VARCHAR(150) NULL AFTER `desconto_avista`, ADD `idade_minima` INT NULL AFTER `local`, ADD `max_pessoa` INT NULL AFTER `idade_minima`, ADD `duracao` INT NULL AFTER `max_pessoa`;

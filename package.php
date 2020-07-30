@@ -2,8 +2,12 @@
 include("admin/tupi.inicializar.php"); 
 if(isset($_GET['id'])){
 	$obRoteiro = new Roteiro();
+	$obPart = new Participante();
 	$obRoteiro->getById($_GET['id']);
 	$stars = $obRoteiro->getNumberStars();
+	$inscritos = $obPart->recuperaTotal($obRoteiro->grupo->id);
+	$vagas = $obRoteiro->grupo->maxPessoa - $inscritos;
+	
 }else{
 	header(("location:index.php"));
 }
@@ -119,12 +123,12 @@ if(isset($_GET['id'])){
 												</div>
 												<div class="col-md-5 col-sm-5">
 													<div class="info-details">
-														<p>Thailand</p>
-														<p>4 days</p>
-														<p>12+</p>
-														<p>5</p>
-														<p>15/5/2018</p>
-														<p>19/5/2018</p>
+														<p><?= $obRoteiro->grupo->local?></p>
+														<p><?= $obRoteiro->grupo->duracao?> dias</p>
+														<p><?= $obRoteiro->grupo->idadeMinima?>+</p>
+														<p><?= $obRoteiro->grupo->maxPessoa?></p>
+														<p><?= $obRoteiro->convdata($obRoteiro->grupo->dataEmbarque,"mtn");?></p>
+														<p><?= $obRoteiro->convdata($obRoteiro->grupo->dataChegada,"mtn");?></p>
 													</div>
 												</div>
 											</div>
@@ -186,12 +190,19 @@ if(isset($_GET['id'])){
 								<div class="col-md-12 col-sm-12">
 									<div class="tour-description">
 										<h4>Videos</h4>
+										<?php 
+										
+										if(count($obRoteiro->videos) > 0){
+											$video = $obRoteiro->videos[0];
+											# code...
+										?>
 										<!-- Video -->
-										<div class="tab-video-area video-bg">
+										<div class="tab-video-area video-bg" style="background: #37b721 url('img/packages/<?=$obRoteiro->image?>') no-repeat scroll center center/cover;">
 											<div class="video-play-btn">
-												<a href="https://www.youtube.com/watch?v=UQneDljrWm0" class="video_iframe"><span><i class="fa fa-play"></i></span></a>
+												<a href="<?=$video->name?>" class="video_iframe"><span><i class="fa fa-play"></i></span></a>
 											</div>
 										</div><!-- Video -->
+										<?php } ?>
 									</div>
 								</div>
 							</div>
@@ -222,7 +233,7 @@ if(isset($_GET['id'])){
 					<div class="booking-form">
 						<div class="booking-title">
 							<h2>Compre Agora</h2>
-							<h4>Restam apenas x Vagas!!!</h4>
+							<h4>Restam apenas <span class="color-one"><?=$vagas?></span> Vagas!!!</h4>
 						</div>
 						<div class="form-group">
 								<button type="button" onclick="window.location.href= 'admin/checkout.php?idGrupo=<?=$obRoteiro->grupo->id?>';" class="booking-confirm hvr-shutter-out-horizontal">COMPRAR</a>

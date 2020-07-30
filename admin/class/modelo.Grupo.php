@@ -30,6 +30,10 @@ class Grupo extends Persistencia{
 	var $cotacaoEntrada;
 	var $imagemDestaque;
 	var $descontoAVista;
+	var $local;
+	var $idadeMinima;
+	var $maxPessoa;
+	var $duracao;
 	
 	public function STATUS_ANDAMENTO(){
 		return 1;
