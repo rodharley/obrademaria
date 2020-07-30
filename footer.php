@@ -29,6 +29,7 @@
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <!-- chossen js -->
     <script src="js/chosen.jquery.min.js"></script>
+    >
     <!-- Revolution JS -->
     <script src="js/assets/revolution/jquery.themepunch.revolution.min.js"></script>
     <script src="js/assets/revolution/jquery.themepunch.tools.min.js"></script>

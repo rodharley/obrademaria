@@ -52,5 +52,9 @@ include("modelo.GerenciaNetCheckOut.php");
 include("modelo.VendaSite.php");
 include("modelo.CieloCheckout.php");
 include('modelo.roteiro.php');
-include('modelo.slide.php')
+include('modelo.slide.php');
+include('modelo.etinerario.php');
+include('modelo.foto.php');
+include('modelo.review.php');
+include('modelo.video.php');
 ?>

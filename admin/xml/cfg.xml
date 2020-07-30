@@ -196,12 +196,22 @@ set
 		<atrib tbname="id" type="id">id</atrib>	
 		<atrib tbname="descricao" type="txt">descricao</atrib>		
 	</class>
-
-	<class name="FinalidadePagamento" tbname="ag_finalidadepagamento" tbid="id" lazy="false">
+<class name="Etinerario" tbname="ag_etinerario" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>
+		<atrib tbname="title" type="txt">title</atrib>
+		<atrib tbname="description" type="txt">description</atrib>
+		<atrib tbname="ordem" type="int">order</atrib>
+		<atrib tbname="roteiro" type="fk" lazy="true" clrelation="Roteiro">roteiro</atrib>
+</class>
+<class name="FinalidadePagamento" tbname="ag_finalidadepagamento" tbid="id" lazy="false">
 		<atrib tbname="id" type="id">id</atrib>	
 		<atrib tbname="descricao" type="txt">descricao</atrib>		
-	</class>
-
+</class>
+<class name="Foto" tbname="ag_foto" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>
+		<atrib tbname="name" type="txt">name</atrib>
+		<atrib tbname="roteiro" type="fk" lazy="true" clrelation="Roteiro">roteiro</atrib>
+</class>
 <class name="GerenciaNetCheckOut" tbname="ag_gerencianet" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>
 		<atrib tbname="id_participante" type="fk" lazy="true" clrelation="Participante">participante</atrib>
@@ -358,7 +368,13 @@ set
 		<atrib tbname="capacidade" type="txt">capacidade</atrib>	
 		<atrib tbname="idGrupo" type="fk" lazy="true" clrelation="Grupo">grupo</atrib>	
 	</class>
-
+<class name="Review" tbname="ag_review" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>
+		<atrib tbname="review" type="txt">review</atrib>
+		<atrib tbname="date" type="txt">date</atrib>
+		<atrib tbname="cliente" type="fk" lazy="true" clrelation="Cliente">cliente</atrib>	
+		<atrib tbname="roteiro" type="fk" lazy="true" clrelation="Roteiro">roteiro</atrib>
+</class>
 <class name="Roteiro" tbname="ag_roteiro" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>
 		<atrib tbname="grupo" type="fk" lazy="true" clrelation="Grupo">grupo</atrib>
@@ -368,6 +384,13 @@ set
 		<atrib tbname="likes" type="int">likes</atrib>
 		<atrib tbname="unlikes" type="int">unlikes</atrib>
 		<atrib tbname="card_description" type="txt">cardDescription</atrib>
+		<atrib tbname="image" type="txt">image</atrib>	
+		<atrib tbname="title" type="txt">title</atrib>
+		<atrib tbname="description" type="txt">description</atrib>		
+		<atrib tbname="" type="set" lazy="true" clrelation="Review" clorder="date" clfk="roteiro">reviews</atrib>
+		<atrib tbname="" type="set" lazy="true" clrelation="Foto" clorder="id" clfk="roteiro">photos</atrib>
+		<atrib tbname="" type="set" lazy="true" clrelation="Video" clorder="id" clfk="roteiro">videos</atrib>
+		<atrib tbname="" type="set" lazy="true" clrelation="Etinerario" clorder="order" clfk="roteiro">itineraryes</atrib>
 </class>
 <class name="Slide" tbname="ag_slide" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>
@@ -444,6 +467,11 @@ set
 		<atrib tbname="tipo_pagamento1" type="txt">tipoPagamento1</atrib>
 		<atrib tbname="tipo_pagamento2" type="txt">tipoPagamento2</atrib>
 		<atrib tbname="desconto" type="int">desconto</atrib>
+	</class>
+	<class name="Video" tbname="ag_video" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>
+		<atrib tbname="name" type="txt">name</atrib>
+		<atrib tbname="roteiro" type="fk" lazy="true" clrelation="Roteiro">roteiro</atrib>
 	</class>
 	<class name="Voo" tbname="ag_voo" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>	

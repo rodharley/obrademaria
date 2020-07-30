@@ -7,8 +7,13 @@ class Roteiro extends Persistencia {
     var $continent;
     var $likes;
     var $grupo =null;
-
-
+    var $description;
+    var $title;
+    var $image;
+    var $itineraryes = null;
+    var $videos =null;
+    var $reviews = null;
+    var $photos =null;
 
     function getContinentesDispoiveis (){
         $sql = "select * from ag_roteiro group by continent";

@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html class="no-js" lang="bt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">

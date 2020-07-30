@@ -27,14 +27,14 @@
 			<div class="row">
 				<div class="col-md-2 col-sm-2 col-xs-12 tap-v-responsive">
 					<div class="logo-area">
-						<a href="index.html"><img src="img/obra-logo-branco.png" alt="">
+						<a href="index.php"><img src="img/obra-logo-branco.png" alt="">
 						</a>
 					</div>
 				</div>
 				<div class="col-md-10">
 					<nav>
 						<ul class="main-menu text-right">
-							<li class="active"><a href="index.html">Home</a>
+							<li><a href="index.html">Home</a>
 								
 							</li>
 							<li><a href="package-version-one.html">Roteiros</a>
