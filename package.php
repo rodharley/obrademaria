@@ -93,7 +93,7 @@ if(isset($_GET['id'])){
 				<div class="row">
 					<!-- tabs content -->
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane fade  in active" id="description">
+						<div role="tabpanel" class="tab-pane fade in active" id="description">
 							
 							<div class="row">
 								<!-- left content -->
