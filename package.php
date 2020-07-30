@@ -76,11 +76,11 @@ if(isset($_GET['id'])){
 
 				<div class="package-tab-menu">
 					<ul class="package-tab-menu" role="tablist" id="tab7">
-						<li role="presentation" ><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Descrição</a>
+						<li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Descrição</a>
 						</li>
 						<li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Etinerário</a>
 						</li>
-						<li role="presentation" class="active"><a href="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a>
+						<li role="presentation" ><a href="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a>
 						</li>
 						<li role="presentation"><a href="#video" aria-controls="video" role="tab" data-toggle="tab">Videos</a>
 						</li>
