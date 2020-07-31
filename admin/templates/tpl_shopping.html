@@ -44,11 +44,20 @@ function hideMessage(){
 }
 
 $(document).ready(function(){
-$('.page-loader-wrapper').fadeOut();
-      $(document).ajaxStart(function() {
-        setTimeout(function() { $('.page-loader-wrapper').fadeIn(); }, 50);
+
+  $('#status').fadeOut();
+		$('#preloader').delay(350).fadeOut('fast');
+
+
+
+    $(document).ajaxStart(function() {
+		$('#status').fadeIn();
+		$('#preloader').delay(350).fadeIn('fast');
+        //setTimeout(function() { $('.page-loader-wrapper').fadeIn(); }, 50);
     }).ajaxStop(function() {
-        setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
+		$('#status').fadeOut();
+		$('#preloader').delay(350).fadeOut('fast');
+        //setTimeout(function() { $('.page-loader-wrapper').fadeOut(); }, 50);
 		});
 });
     </script>
@@ -58,7 +67,25 @@ $('.page-loader-wrapper').fadeOut();
     <link href="plugins/font-awesome/css/all.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style>
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fefefe;
+  z-index: 9999; }
 
+#status {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-image: url("../images/preloader.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: -100px 0 0 -100px; }
 .page-loader-wrapper {
     z-index: 99999999;
     position: fixed;
@@ -110,13 +137,18 @@ $('.page-loader-wrapper').fadeOut();
 .card {
   color:#000000; 
 }
-body {
- 
-  background-image: url('http://www.obrademariadf.com.br/wp-content/uploads/2018/01/BANNER-revista2-01.jpg');
+body {  
+  background-image: url({BACKGROUND});
+  background-size: cover;
   background-attachment: fixed;
   color: #ffffff;
   font-weight: 400;
 }
+.bg-darken {
+  height: 100%;
+  background-image: linear-gradient(to bottom,  rgba(0, 0, 0, 0.7) ,rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7) ,rgba(0, 0, 0, 0.0));
+}
+
 @media (min-width: 576px) {
   body {
     padding-top: 130px;
@@ -140,20 +172,21 @@ body {
   }
 }
 .bg-navbar {
-  background-color: sienna !important;
+  background-color: #37b721 !important;
+}
+
+hr {
+  border-top: 1px solid rgba(255,255,255,.7);
 }
     </style>
   </head>
 
-  <body class="bg-light" >
-    <div class="page-loader-wrapper">
-      <div class="loader">
-          <div class="preloader">
-            <img src="img/ajax-loading.gif" height="40"/>
-          </div>
-          <p>Aguarde...</p>
-      </div>
-    </div>
+  <body class="" >
+    <div class="bg-darken">
+    
+    <div id="preloader">
+      <div id="status">&nbsp;</div>
+  </div>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-navbar shadow-lg flex-column flex-md-row">
       <a class="navbar-brand" href="#">
         <img src="img/checkout/obra-logo-branco.png" height="55"/>
@@ -171,31 +204,31 @@ body {
         </li>
        
       </ul>
-     
-      </div>
     </nav>
     {CONTEUDO}
     <footer class="my-5 pt-5 text-muted text-center text-small">
       <p class="mb-1">© 2020 Obra de Maria DF</p>      
     </footer>
   </div>  
-  <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="modalMessage" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalMessageTitle">...</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="modalMessageBody">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
-          
-        </div>
+  
+</body>
+<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="modalMessage" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalMessageTitle">...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modalMessageBody">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+        
       </div>
     </div>
   </div>
-</body></html>
+</div>
+</html>

@@ -22,7 +22,7 @@
 		var $this = $(this),
 			finalDate = $(this).data('countdown');
 		$this.countdown(finalDate, function (event) {
-			$this.html(event.strftime('<ul><li><span class="cdown days"><span class="time-count">%-D</span><p class="day-css">Days</p></span></li><li><span class="cdown hour"><span class="time-count">%-H</span> <p class="day-css">Hour</p></span><l/i><li><span class="cdown minutes"><span class="time-count">%M</span> <p class="day-css">Min</p></span></li><li> <span class="cdown second"><span class="time-count">%S</span> <p class="day-css">Sec</p></span></li></ul>'));
+			$this.html(event.strftime('<ul><li><span class="cdown days"><span class="time-count">%-D</span><p class="day-css">Dias</p></span></li><li><span class="cdown hour"><span class="time-count">%-H</span> <p class="day-css">Horas</p></span><l/i><li><span class="cdown minutes"><span class="time-count">%M</span> <p class="day-css">Min</p></span></li><li> <span class="cdown second"><span class="time-count">%S</span> <p class="day-css">Seg</p></span></li></ul>'));
 		});
 	});
 
@@ -428,33 +428,30 @@ function postJson(url, data, sucesso, erro) {
 		.done(sucesso)
 		.fail(erro);
 }
-function showMessage(tipo,texto){
-	if(tipo == 'erro'){
-		$("#dialog-message").removeClass('text-success').addClass('text-danger');
-	}else{
-		$("#dialog-message").removeClass('text-danger').addClass('text-success');
-	}
-
-	$("#dialog-message").html(texto);
+function getJson(url, sucesso, erro) {
+	$.ajax({
+			type: "GET",
+			url: url,
+			dataType: "json"
+		})
+		.done(sucesso)
+		.fail(erro);
 }
-function enviarEmail(){
-	let form = $("#formEmail").serialize();
-            
+
+function footerEnviarEmail(){
+	let form = $("#footerForm").serialize();
+	$("#footerForm")[0].reset();
+    $("#footer-submit-icon").addClass("fa-refresh");
 	//funcao de sucesso
 	var funcSuccess = function(data) {
-	if(data.code == 200){
-		showMessage("sucesso", data.data.mensagem);
-		
-	}else{
-	  showMessage("erro", data.data.mensagem);
-	  //alert("Erro encontrado\n"+data.data.mensagem);
-	}
+		$("#footer-submit-icon").removeClass("fa-refresh");
 	}
 	//funcao de erro
 	var funcDefaultError = function(erro) {
-	  showMessage('erro','Erro ao enviar o email');
-
+		$("#footer-submit-icon").removeClass("fa-refresh");
 	}
 	postJson('ajax/sentEmail.php',form,funcSuccess,funcDefaultError);
 	return false;
 }
+
+

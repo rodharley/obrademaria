@@ -27,7 +27,7 @@ if(isset($_REQUEST['idGrupo'])){
     $tpl->COTACAO_PARCELADO_CURRENCY = $oGrupo->money($oGrupo->cotacaoParcelado,"atb");
     $tpl->DESCONTO_A_VISTA = $oGrupo->descontoAVista;
     $tpl->TEXT_DESCONTO_A_VISTA = $oGrupo->descontoAVista != 0 ? '('.$oGrupo->descontoAVista.'% de Desconto)' : '';
-    $tpl->URL_IMAGE_GRUPO = 'img/grupos/'.$oGrupo->imagemDestaque;
+    $tpl->BACKGROUND = 'img/grupos/'.$oGrupo->imagemDestaque;
     $tpl->GRUPO_NOME = $oGrupo->nomePacote;
     $tpl->QUANTIDADE = 1;
     $tpl->GRUPO_IDMOEDA = $oGrupo->moeda->id;

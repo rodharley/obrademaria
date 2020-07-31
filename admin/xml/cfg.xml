@@ -375,6 +375,8 @@ set
 <class name="Review" tbname="ag_review" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>
 		<atrib tbname="review" type="txt">review</atrib>
+		<atrib tbname="name" type="txt">name</atrib>
+		<atrib tbname="email" type="txt">email</atrib>
 		<atrib tbname="date" type="txt">date</atrib>
 		<atrib tbname="cliente" type="fk" lazy="true" clrelation="Cliente">cliente</atrib>	
 		<atrib tbname="roteiro" type="fk" lazy="true" clrelation="Roteiro">roteiro</atrib>
@@ -387,6 +389,7 @@ set
 		<atrib tbname="continent" type="txt">continent</atrib>		
 		<atrib tbname="likes" type="int">likes</atrib>
 		<atrib tbname="unlikes" type="int">unlikes</atrib>
+		<atrib tbname="countDown" type="int">countDown</atrib>
 		<atrib tbname="card_description" type="txt">cardDescription</atrib>
 		<atrib tbname="image" type="txt">image</atrib>	
 		<atrib tbname="title" type="txt">title</atrib>

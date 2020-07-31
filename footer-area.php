@@ -2,10 +2,10 @@
 	<div class="container">
 		<div class="row">
 			<!-- footer left -->
-			<div class="col-md-3 col-sm-6">
+			<div class="col-md-6 col-sm-12">
 				<div class="single-footer">
 					<div class="footer-title">
-						<a href="#"><img src="img/obra-logo-branco.png" alt="">
+						<a href="#"><img src="img/obra-logo-branco.png" alt="" style="width: 30%;">
 						</a>
 					</div>
 					<div class="footer-left">
@@ -21,101 +21,34 @@
 				</div>
 			</div> <!-- footer left -->
 
-			<div class="col-md-3 col-sm-6">
-				<div class="single-footer">
-					<div class="single-recent-post">
-						<div class="footer-title">
-							<h3>Posts Recentes</h3>
-						</div>
-						<ul class="recent-post">
-							<li>
-								<a href="#">
-									<div class="post-thum">
-										<img src="images/blog/f4.jpg" alt="" class="img-rounded">
-									</div>
-									<div class="post-content">
-										<p>A Clean Website Gives More Experience To The Visitors.
-										</p>
-										<span>12 July, 2018</span>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="post-thum">
-										<img src="images/blog/f5.jpg" alt="" class="img-rounded">
-									</div>
-									<div class="post-content">
-										<p>A Clean Website Gives More Experience To The Visitors.
-										</p>
-										<span>12 July, 2018</span>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="post-thum">
-										<img src="images/blog/f6.jpg" alt="" class="img-rounded">
-									</div>
-									<div class="post-content">
-										<p>A Clean Website Gives More Experience To The Visitors.
-										</p>
-										<span>12 July, 2018</span>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>	<!-- footer latest news -->
+			
 
 			<!-- footer destination -->
-			<div class="col-md-3 col-sm-6">
+			<?php
+				$footerRoteiro = new Roteiro();
+				$footerRoteiros = $footerRoteiro->getRoteirosRandomicos(4);
+			?>
+			<div class="col-md-3 col-sm-12">
 				<div class="single-footer">
 					<div class="footer-title">
 						<h3>Destinos</h3>
 					</div>
 					<ul class="footer-gallery">
+						<?php foreach ($footerRoteiros as $key => $value) {
+							# code...
+						?>
 						<li>
-							<a href="#">
+							<a href="package.php?id=<?=$value->id?>">
 								<div class="image-overlay">
-									<img src="img/packages/SANTO SEPULCRO 1.jpg" alt="">
+									<img src="img/packages/<?=$value->cardImage?>" alt="">
 									<div class="overly-city">
-										<span>Terra Santa</span>
+										<span><?= $value->grupo->local?></span>
 									</div>
 								</div>
 							</a>
 						</li>
-						<li>
-							<a href="#">
-								<div class="image-overlay">
-									<img src="img/packages/DSC_0190.png" alt="">
-									<div class="overly-city">
-										<span>Inglaterra</span>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="image-overlay">
-									<img src="images/destination/3.jpg" alt="">
-									<div class="overly-city">
-										<span>France</span>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<div class="image-overlay">
-									<img src="images/destination/4.jpg" alt="">
-									<div class="overly-city">
-										<span>America</span>
-									</div>
-								</div>
-							</a>
-						</li>
+						<? }?>
+						
 					</ul>
 				</div>
 			</div>	<!-- footer destination -->
@@ -127,16 +60,16 @@
 						<h3>Entre em Contato</h3>
 					</div>
 					<div class="footer-contact-form">
-						<form action="#">
+						<form action="#" method="post" id="footerForm" onsubmit="return footerEnviarEmail();" >
 							<ul class="footer-form-element">
 								<li>
-									<input type="text" name="email" id="email" placeholder="" value="Email" onblur="if(this.value==''){this.value='Email Address'}" onfocus="if(this.value=='Email Address'){this.value=''}">
+									<input type="text" name="email" id="email" placeholder="Email *" required>
 								</li>
 								<li>
-									<textarea name="message" id="message" cols="30" rows="10" placeholder="Mensagem"></textarea>
+									<textarea name="message" id="message" cols="30" rows="10" placeholder="Mensagem *" required></textarea>
 								</li>
 								<li>
-									<button>Enviar</button>
+									<button type="submit"><i class="fa" id="footer-submit-icon"></i> Enviar</button>
 								</li>
 							</ul>
 						</form>

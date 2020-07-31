@@ -56,17 +56,24 @@ if(isset($_GET['id'])){
 						<li>
 							<span>
 							   
-								<i class="fa <?=$stars >=1 ? 'fa-star' : 'fa-star-o';?>"></i>
-								<i class="fa <?=$stars >=2 ? 'fa-star' : 'fa-star-o';?>"></i>
-								<i class="fa <?=$stars >=3 ? 'fa-star' : 'fa-star-o';?>"></i>
-								<i class="fa <?=$stars >=4 ? 'fa-star' : 'fa-star-o';?>"></i>
-								<i class="fa <?=$stars >=5 ? 'fa-star' : 'fa-star-o';?>"></i>
+								<i id="star1" class="fa <?=$stars >=1 ? 'fa-star' : 'fa-star-o';?>"></i>
+								<i id="star2" class="fa <?=$stars >=2 ? 'fa-star' : 'fa-star-o';?>"></i>
+								<i id="star3" class="fa <?=$stars >=3 ? 'fa-star' : 'fa-star-o';?>"></i>
+								<i id="star4" class="fa <?=$stars >=4 ? 'fa-star' : 'fa-star-o';?>"></i>
+								<i id="star5"class="fa  <?=$stars >=5 ? 'fa-star' : 'fa-star-o';?>"></i>
 							
 							 </span> (<?= count($obRoteiro->reviews)?> Reviews)
-						</li>
-					
+						</li>						
 						<li><?= $obRoteiro->grupo->moeda->cifrao.' '.$obRoteiro->money($obRoteiro->grupo->getValorTotal(0),"atb")?></li>
 					</ul>
+					<div class="blog-meta">
+							<ul class="post-social">
+								<li><a href="javascript:void(0);" id="do_unlike"><i class="fa fa-thumbs-o-down"></i><span class="lbl_unlike"><?= $obRoteiro->unlikes?></span></a>
+								</li>
+								<li><a href="javascript:void(0);" id="do_like"><i class="fa fa-thumbs-o-up"></i><span class="lbl_like"><?= $obRoteiro->likes?></span></a>
+								</li>
+							</ul>
+						</div>
 					<?php if(count($obRoteiro->photos) > 0){ ?>
 					<div class="package-features-image">
 						<img src="img/fotos/<?=$obRoteiro->photos[0]->name?>" alt="" class="img-responsove border-raduis-3">
@@ -213,12 +220,60 @@ if(isset($_GET['id'])){
 							<div class="row">
 								<div class="col-md-12 col-sm-12">
 									<div class="tour-description">
-										<h4>Reviews</h4>
-										<?php foreach ($obRoteiro->reviews as $key => $review) {
-												
-											?>
-										<p><?= $review->review?></p>
-										<?php } ?>
+										<h4>Últimos Comentários</h4>	
+												<div class="blog-comments">
+													
+													<div class="comments-body">
+													<?php foreach ($obRoteiro->reviews as $key => $review) {												
+													?>
+													<!-- Single Comments -->
+													<div class="single-comments">
+														<div class="main">
+															<div class="head">
+															<img src="images/abstract-user.png" alt="#" />
+																<h4><?=$review->name?></h4>
+															</div>
+															<div class="body">
+																<p class="meta"><?=$obRoteiro->convdata($review->date,"mtnh")?></p>
+																<p><?=$review->review?></p>
+															</div>
+														</div>
+													</div><!-- Single Comments -->
+													<?php } ?>													
+													</div>
+												</div><!--/ End Comments -->
+											
+											
+												<div class="comment-respond">
+													<div class="comment-reply-title">
+														<h3>Deixe seu comentário</h3>
+													</div>
+													<div class="comment-form">
+														<form action="#" method="post" id="formReview" onsubmit="return enviarReview();">
+															<div class="form-group">
+																<label>Nome</label>
+																<input name="name" type="text" class="form-control" placeholder="Nome *" required >
+															</div>
+															<div class="form-group">
+																<label>Email</label>
+																<input name="email" type="email" placeholder="email" class="form-control">
+															</div>
+															<div class="form-group">
+																<label>Comentário</label>
+																<textarea name="message" placeholder="Mensagem *" class="form-control" rows="4" required ></textarea>
+															</div>
+															<div class="form-group">
+															<p class="text-danger text-center" id="dialog-review"></p>
+															</div>
+															<div class="full-widthfull-width">
+																<input value="Submit"  type="submit" value="Enviar">
+															</div>
+															<input type="hidden" name="roteiro" value="<?=$obRoteiro->id?>"/>
+														</form>
+													</div>
+												</div>
+											
+										
 									</div>
 								</div>
 							</div>
@@ -282,5 +337,124 @@ if(isset($_GET['id'])){
 	<a href="#"><i class = "fa fa-angle-up"></i></a>
 </div> <!-- Scroll to top jump button end-->
 <? include('footer.php');?>
+<script>
+$(document).ready(function(){
+	$("#do_like").click(function(){
+		dolike(1);
+	});
+	$("#do_unlike").click(function(){
+		dolike(-1);
+
+	});
+
+});
+
+function showMessage(tipo,texto,tag){
+	if(tipo == 'erro'){
+		$(tag).removeClass('text-success').addClass('text-danger');
+	}else{
+		$(tag).removeClass('text-danger').addClass('text-success');
+	}
+
+	$(tag).html(texto);
+}
+function enviarEmail(){
+	let form = $("#formEmail").serialize();
+    $("#formEmail")[0].reset();
+	//funcao de sucesso
+	var funcSuccess = function(data) {
+	if(data.code == 200){
+		showMessage("sucesso", data.data.mensagem,"#dialog-message");
+		
+	}else{
+	  showMessage("erro", data.data.mensagem,"#dialog-message");
+	  //alert("Erro encontrado\n"+data.data.mensagem);
+	}
+	}
+	//funcao de erro
+	var funcDefaultError = function(erro) {
+	  showMessage('erro','Erro ao enviar o email',"#dialog-message");
+
+	}
+	postJson('ajax/sentEmail.php',form,funcSuccess,funcDefaultError);
+	return false;
+}
+
+
+function enviarReview(){
+	let form = $("#formReview").serialize();
+    $("#formReview")[0].reset();        
+	//funcao de sucesso
+	var funcSuccess = function(data) {
+	if(data.code == 200){
+		showMessage("sucesso", data.data.mensagem, "#dialog-review");
+		
+	}else{
+	  showMessage("erro", data.data.mensagem, "#dialog-review");
+	  //alert("Erro encontrado\n"+data.data.mensagem);
+	}
+	}
+	//funcao de erro
+	var funcDefaultError = function(erro) {
+	  showMessage('erro','Erro ao enviar o review', "#dialog-review");
+
+	}
+	postJson('ajax/sentReview.php',form,funcSuccess,funcDefaultError);
+	return false;
+}
+
+function dolike(value){
+	var funcSuccess = function(data) {
+	if(data.code == 200){
+		//showMessage("sucesso", data.data.mensagem);
+		$(".lbl_like").html(data.data.likes);
+		$(".lbl_unlike").html(data.data.unlikes);
+		makeStars(data.data.stars)
+	}
+	}
+	//funcao de erro
+	var funcDefaultError = function(erro) {
+	  console.log(erro);
+	}
+	postJson('ajax/dolike.php',{"like":value,"roteiro":<?=$obRoteiro->id?>},funcSuccess,funcDefaultError);
+}
+
+function makeStars(stars){
+	$("#star1").removeClass("fa-star").removeClass("fa-star-o");
+	$("#star2").removeClass("fa-star").removeClass("fa-star-o");
+	$("#star3").removeClass("fa-star").removeClass("fa-star-o");
+	$("#star4").removeClass("fa-star").removeClass("fa-star-o");
+	$("#star5").removeClass("fa-star").removeClass("fa-star-o");
+	if(stars >=1){
+		$("#star1").addClass("fa-star")
+	}else{
+		$("#star1").addClass("fa-star-o");
+	}
+
+	if(stars >=2){
+		$("#star2").addClass("fa-star")
+	}else{
+		$("#star2").addClass("fa-star-o");
+	}
+
+	if(stars >=3){
+		$("#star3").addClass("fa-star")
+	}else{
+		$("#star3").addClass("fa-star-o");
+	}
+
+	if(stars >=4){
+		$("#star4").addClass("fa-star")
+	}else{
+		$("#star4").addClass("fa-star-o");
+	}
+
+	if(stars >=5){
+		$("#star5").addClass("fa-star")
+	}else{
+		$("#star5").addClass("fa-star-o");
+	}
+}
+</script>
 </body>
 </html>

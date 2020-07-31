@@ -156,3 +156,6 @@ ALTER TABLE `ag_video`
 COMMIT;
 
 ALTER TABLE `ag_grupo` ADD `local` VARCHAR(150) NULL AFTER `desconto_avista`, ADD `idade_minima` INT NULL AFTER `local`, ADD `max_pessoa` INT NULL AFTER `idade_minima`, ADD `duracao` INT NULL AFTER `max_pessoa`;
+ALTER TABLE `ag_review` ADD `name` VARCHAR(150) NOT NULL AFTER `roteiro`, ADD `email` VARCHAR(150) NOT NULL AFTER `name`; 
+ALTER TABLE `ag_review` CHANGE `cliente` `cliente` INT(11) NULL; 
+ALTER TABLE `ag_roteiro` ADD `countDown` TINYINT NOT NULL DEFAULT '0' AFTER `description`; 

@@ -3661,6 +3661,190 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
      color: #454545;
      text-transform: capitalize;
 }
+
+
+.single-package-details .blog-meta {
+     color: #727272;
+     font-size: 14px;
+     font-weight: 400;
+     overflow: hidden;
+     padding-bottom: 20px;
+}
+.single-package-details .blog-meta .post-social {
+     text-align: right;
+}
+.single-package-details .blog-meta .post-social li {
+     display: inline-block;
+     margin: 0 10px;
+}
+.single-package-details .blog-meta .post-social li a {
+     display: block;
+     color: #727272;
+     font-size: 18px;
+     font-weight: 400;
+}
+.single-package-details .blog-meta .post-social li a i {
+     margin-right: 5px;
+}
+
+
+
+
+.single-package-area .blog-comments {
+     padding: 30px 15px;
+     background: #fff;
+     margin-top: 30px;
+}
+.single-package-area .blog-comments h2 {
+     text-transform: capitalize;
+     font-size: 20px;
+     margin-bottom: 15px;
+     padding-bottom: 15px;
+     position: relative;
+     display: inline-block;
+     color: #454545;
+}
+.single-package-area .blog-comments h2:before {
+     position: absolute;
+     left: 0;
+     bottom: -1px;
+     content: "";
+     width: 10%;
+     height: 2px;
+     content: "";
+     background: #f17b37;
+     transition: all ease-in-out 0.3s;
+}
+.single-package-area .blog-comments .single-comments {
+     overflow: hidden;
+     border-bottom: 1px solid #e2e2e2;
+     padding-bottom: 30px;
+     margin-bottom: 30px;
+     margin-top: 30px;
+}
+.single-package-area .blog-comments .single-comments:last-child {
+     border: 0px;
+     margin: 0;
+     padding: 0;
+}
+.single-package-area .blog-comments .single-comments .head {
+     float: left;
+     margin-right: 20px;
+     text-align: center;
+     width: 15%;
+}
+.single-package-area .blog-comments .single-comments .body {
+     float: left;
+     width: 82%;
+     padding: 10px;
+     position: relative;
+     background: #37b721;
+}
+.single-package-area .blog-comments .single-comments .body:before {
+     border-right-color: #37b721 !important;
+     position: absolute;
+     left: -12px;
+     top: -1px;
+     content: "";
+     border-bottom: 5px solid transparent;
+     border-right: 13px solid;
+     border-top: 14px solid transparent;
+}
+.single-package-area .blog-comments .single-comments .body p {
+     margin-top: 10px;
+     color: #ffffff;
+     line-height: 30px;
+}
+.single-package-area .blog-comments .single-comments img {
+     width: 65px;
+     height: 65px;
+     border-radius: 100%;
+}
+.single-package-area .blog-comments .single-comments h4 {
+     margin: 5px 0 0;
+     font-size: 16px;
+     text-align: left;
+     font-weight: 400;
+     color: #454545;
+     text-align: center;
+}
+.single-package-area .blog-comments .single-comments .meta {
+     font-size: 14px;
+     margin: 0;
+     color: #fff;
+     font-weight: 500;
+}
+.single-package-area .blog-comments .single-comments a {
+     text-transform: uppercase;
+     font-size: 12px;
+     color: #fff;
+     font-weight: 400;
+}
+.single-package-area .blog-comments:hover h2:before {
+     width: 50%;
+}
+.single-package-area .comment-respond {
+     margin-top: 50px;
+}
+
+.single-package-area .comment-respond .comment-reply-title h3 {
+     color: #454545;
+     display: inline-block;
+     font-size: 20px;
+     margin-bottom: 15px;
+     padding-bottom: 15px;
+     position: relative;
+     text-transform: capitalize;
+}
+ .single-package-area .comment-respond .comment-reply-title h3:before {
+     position: absolute;
+     left: 0;
+     bottom: -1px;
+     content: "";
+     width: 50%;
+     height: 2px;
+     content: "";
+     background: #f17b37;
+}
+ .single-package-area .comment-respond label {
+     font-size: 15px;
+     color: #454545;
+     font-style: italic;
+}
+ .single-package-area .comment-respond input {
+     height: 40px;
+}
+ .single-package-area .comment-respond input, .single-package-area .comment-respond textarea {
+     background-color: #f9f9f9;
+     border-radius: 0;
+     box-shadow: none;
+     font-size: 15px;
+     margin: 10px 0;
+     padding: 10px 20px;
+     outline: none;
+}
+ .single-package-area .comment-respond input:focus, .single-package-area .comment-respond textarea:focus {
+     border: 1px solid #37b721;
+}
+.single-package-area .comment-respond input[type="submit"] {
+     background: #37b721;
+     border-radius: 0;
+     color: #fff;
+     border: none;
+     font-size: 15px;
+     font-weight: 500;
+     margin-top: 20px;
+     height: 40px;
+     text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
  .single-package-details .package-content li {
      position: relative;
      display: inline-block;
