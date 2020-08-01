@@ -4625,8 +4625,13 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
 }
 
 /*========= 05.popular packajge section css goes here ================*/
+.single-package .package-image{
+     overflow: hidden;
+     min-height: 300;
+ }
  .popular-packages .single-package .package-image{
-     overflow: hidden;     
+     overflow: hidden;
+  
  }
 .popular-packages .single-package .package-image img {
      transform: scale(1.1);

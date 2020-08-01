@@ -17,9 +17,7 @@ class Roteiro extends Persistencia {
     var $photos =null;
 
 
-    function pesquisa(){
-        return $this->getRows();
-    }
+    
 
     function getCountDown (){        
         return $this->getRow(array("countDown"=>"=1"));
@@ -38,19 +36,22 @@ class Roteiro extends Persistencia {
         return $this->getRows(0,$count,array("likes"=>"desc"),array("continent"=>"='".$continent."'"));
     }
 
-    function pesquisar($termo='',$ano=null,$contador=false,$init=0,$end=99999){
+    function pesquisar($termo='',$ano='', $local='',$contador=false,$init=0,$end=99999){
         if($contador){
-            $sql = "select cound(r.id) as total from ag_roteiro r inner join ag_grupo g on g.id = r.grupo ";
+            $sql = "select count(r.id) as total from ag_roteiro r inner join ag_grupo g on g.id = r.grupo ";
         }else{
             $sql = "select r.* from ag_roteiro r inner join ag_grupo g on g.id = r.grupo ";
         }
         $sql .= "where 1 = 1 ";
 
         if($termo != ''){
-            $sql .= " and r.title like '%$termo%' ";
+            $sql .= " and (r.title like '%$termo%' or r.description like '%$termo%' or r.card_title like '%$termo%' or r.card_description like '%$termo%') ";
         }
-        if($ano != null){
+        if($ano != ''){
             $sql .= " and g.ano = $ano";
+        }
+        if($local != ''){
+            $sql .= " and g.local = '$local'";
         }
         $sql .= " order by g.ano asc";
 

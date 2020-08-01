@@ -10,24 +10,34 @@
 			<div class="hotels-form">
 							<form action="packages.php" method="post" >
 								<div class="hotel-input-6 input-b">
-									<input type="text" name="termo" id="keyword" class="hotel-input-first" placeholder="Digite sua pesquisa">
+									<input type="text" name="termo" id="keyword" value="<?=isset($_REQUEST['termo']) ? $_REQUEST['termo'] : ''?>" class="hotel-input-first" placeholder="Digite sua pesquisa">
 								</div>
 								<div class="hotel-input-4 input-b">
 									<select id='standard1' name='local' class='custom-select'>
 										<option value=''>Local</option>
 										<?php foreach ($locais as $key => $value) {
+										if(isset($_REQUEST['local'])){
 										?>
+										<option value='<?=$value->local?>' <?=$_REQUEST['local'] == $value->local ? 'selected' : ''  ?>><?=$value->local?></option>
+										<? }else{?>
 										<option value='<?=$value->local?>'><?=$value->local?></option>
-										<? }?>
+										<? 
+										}
+										}?>
 									</select>
 								</div> 
 								<div class="hotel-input-4 input-b">
 									<select id='standard2' name='ano' class='custom-select'>
 										<option value=''>Ano</option>
 										<?php foreach ($anos as $key => $value) {
-										?>
-										<option value='<?=$value->ano?>'><?=$value->ano?></option>
-										<? }?>
+										if(isset($_REQUEST['ano'])){
+											?>
+											<option value='<?=$value->ano?>' <?=$_REQUEST['ano'] == $value->ano ? 'selected' : ''  ?>><?=$value->ano?></option>
+											<? }else{?>
+											<option value='<?=$value->ano?>'><?=$value->ano?></option>
+											<? 
+											}
+											}?>
 									</select>
 								</div> 
 								

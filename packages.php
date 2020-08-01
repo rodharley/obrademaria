@@ -1,8 +1,14 @@
 <?php
 include("admin/tupi.inicializar.php");
 $menusite = 1;
+$pagina = 1;
+if(isset($_REQUEST['pagina'])){
+	$pagina = $_REQUEST['pagina'];
+}
 $obRoteiro = new Roteiro();
-$rs = $obRoteiro->pesquisa($_POST);
+$total = $obRoteiro->pesquisar(isset($_REQUEST['termo']) ? $_REQUEST['termo'] : '', isset($_REQUEST['ano']) ? $_REQUEST['ano'] : '', isset($_REQUEST['local']) ? $_REQUEST['local'] : '',true);
+$paginador = $obRoteiro->paginar($total,$pagina);
+$rs = $obRoteiro->pesquisar(isset($_REQUEST['termo']) ? $_REQUEST['termo'] : '', isset($_REQUEST['ano']) ? $_REQUEST['ano'] : '',isset($_REQUEST['local']) ? $_REQUEST['local'] : '',false,$paginador['primeiroRegistro'],$paginador['quantidadePorPagina']);
 ?>
 <?php include("include-header.php") ?>
 <body>
@@ -21,8 +27,7 @@ $rs = $obRoteiro->pesquisa($_POST);
 				 <div class="bredcrums-content">
 					 <h2></h2>
 					 <ul>
-						<li></li>
-						<li></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -40,7 +45,7 @@ $rs = $obRoteiro->pesquisa($_POST);
 			?>
 			<div class="col-md-4 col-sm-6">
 				<div class="single-package">
-					<div class="package-image">
+					<div class="package-image" style="min-height: 300px;">
 						<a href="#"><img src="img/packages/<?=$r->cardImage?>" alt="">
 						</a>
 					</div>
@@ -63,7 +68,7 @@ $rs = $obRoteiro->pesquisa($_POST);
 			<?php }?>
 			
 		</div>
-
+				<?php if($paginador['totalPaginas'] > 1){ ?>
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				<ul class="pagination">
@@ -76,6 +81,7 @@ $rs = $obRoteiro->pesquisa($_POST);
 				</ul>
 			</div><!-- pagination end here -->
 		</div>
+				<?php } ?>
 	</div>
 </section><!-- single popular destination  end-->
 

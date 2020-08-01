@@ -4,7 +4,7 @@ $roteiro = new Roteiro();
 $slide = new Slide();
 $sliders = $slide->getRows();
 $continentes = $roteiro->getContinentesDispoiveis();
-$roteirosPartida = $roteiro->pesquisar('',null,false,0,6);
+$roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 ?>
 <?php include("include-header.php") ?>
 <body> 
