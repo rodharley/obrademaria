@@ -6,13 +6,13 @@ $sliders = $slide->getRows();
 $continentes = $roteiro->getContinentesDispoiveis();
 $roteirosPartida = $roteiro->pesquisar('',null,false,0,6);
 ?>
-<?php include("header.php") ?>
+<?php include("include-header.php") ?>
 <body> 
 <!-- Preloader -->
 <div id="preloader">
     <div id="status">&nbsp;</div>
 </div>	
-<?php include('menu.php'); ?>
+<?php include('include-menu.php'); ?>
 <!-- slider area start here -->
 <section class="slider-area">
 	<div class="rev_slider_wrapper">
@@ -51,212 +51,7 @@ $roteirosPartida = $roteiro->pesquisar('',null,false,0,6);
 	</div> <!-- END end slider container wrapper -->
 </section> <!-- slider area end here -->
 
-<section class="tabbased-search-area">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="tabbable-menu">
-					<ul class="tab-menu" id="myTab1">
-						<li class="active"><h6><a href="#hotels" data-easein="fadeIn">Hotels<img src="images/icon/hotel.png" alt=""></a></h6>
-						</li>
-						<li><h6><a href="#tour" data-easein="fadeIn">Tour<img src="images/icon/tour.png" alt=""></a></h6>
-						</li>
-						<li><h6><a href="#flights" data-easein="fadeIn">Flights<img src="images/icon/fly.png" alt=""></a></h6>
-						</li>
-						<li><h6><a href="#vehicles" data-easein="fadeIn">Vehicles<img src="images/icon/car.png" alt=""></a></h6>
-						</li>
-						<li><h6><a href="#ship"  data-easein="fadeIn">Ship<img src="images/icon/ship.png" alt=""></a></h6>
-						</li>
-					</ul>
-				</div> <!-- tab menu end here -->
-
-				<!-- tab content strat here -->
-				<div class="tab-content" id="tab-content1">
-					<div class="tab-pane active" id="hotels">
-						<div class="hotels-form">
-							<form action="#" method="post">
-								<div class="hotel-input-2 input-b">
-									<input type="text" name="s" id="keyword" class="hotel-input-first" placeholder="Type Keyword">
-								</div>
-								<div class="hotel-input-4 input-b">
-									<select id='standard1' name='standard' class='custom-select'>
-										<option value=''>Select a Location</option>
-										<option value='Us'>America</option>
-										<option value='Canda'>Canada</option>
-										<option value='london'>London</option>
-										<option value='france'>Paris</option>
-										<option value='bd'>Bangladesh</option>
-									</select>
-								</div> 
-								<div class="hotel-input-1 input-s">
-									<input type="text" name="s" id="datepicker" class="hotel-input-first" placeholder="Check-In">
-								</div>
-								<div class="hotel-input-1 input-s">
-									<input type="text" name="s" id="datepicker1" class="hotel-input-first" placeholder="Check-out">
-								</div>
-								<div class="hotel-input-1 input-s">
-									<input type="number" name="s" id="number" class="hotel-input-first" placeholder="Guest">
-								</div>
-								<div class="hotel-input-1 input-s">
-									<input type="text" name="s" id="budget" class="hotel-input-first" placeholder="Budget">
-								</div>
-								<div class="searc-btn-7">
-									<button type="submit">Search</button>
-								</div>
-							</form>
-						</div>
-					</div> <!-- hotel form end here -->
-
-					<div class="tab-pane" id="tour">
-						<div class="hotels-form">
-							<form action="#" method="post">
-								<div class="hotel-input-4-23 input-b">
-									<input type="text" name="s" id="keyword2" class="hotel-input-first" placeholder="Type Keyword">
-								</div>
-								<div class="hotel-input-4-23 input-b">
-									<select id='standard2' name='standard' class='custom-select'>
-										<option value=''>Select a Location</option>
-										<option value='Us'>America</option>
-										<option value='Canda'>Canada</option>
-										<option value='london'>London</option>
-										<option value='france'>Paris</option>
-										<option value='bd'>Bangladesh</option>
-									</select>
-								</div>
-								<div class="hotel-input-4-23 input-s">
-									<input type="text" name="s" id="datepicker2" class="hotel-input-first" placeholder="Check-In Date">
-								</div>
-								<div class="hotel-input-4-23 input-s">
-									<input type="number" name="s" id="number1" class="hotel-input-first" placeholder="Number of Guest">
-								</div>
-								<div class="searc-btn-7">
-									<button type="submit">Search</button>
-								</div>
-							</form>
-						</div>
-					</div> <!-- hotel form end here -->
-
-					<div class="tab-pane" id="flights">
-						<div class="flights-form">
-							<form action="#" method="post">
-								<div class="tour-input-20 input-b">
-									<select id='standard3' name='standard' class='custom-select'>
-										<option value=''>Origin City or airport</option>
-										<option value='Us'>America</option>
-										<option value='Canda'>Canada</option>
-										<option value='london'>London</option>
-										<option value='france'>Paris</option>
-										<option value='bd'>Bangladesh</option>
-									</select>
-								</div>
-								<div class="tour-input-20 input-b">
-									<select id='standard4' name='standard' class='custom-select'>
-										<option value=''>Destination City</option>
-										<option value='Us'>America</option>
-										<option value='Canda'>Canada</option>
-										<option value='london'>London</option>
-										<option value='france'>Paris</option>
-										<option value='bd'>Bangladesh</option>
-									</select>
-								</div>
-								<div class="tour-input-15 input-s">
-									<input type="text" name="s" id="datepicker3" class="hotel-input-first" placeholder="Daparture date">
-								</div>
-								<div class="tour-input-15 input-s">
-									<input type="text" name="s" id="datepicker4" class="hotel-input-first" placeholder="Return date">
-								</div>
-								<div class="tour-input-15 input-b">
-									<select id='nosearch' name='standard' class='custom-select'>
-										<option value=''>Economy</option>
-										<option value='Economy'>Economy</option>
-										<option value='Business'>Business</option>
-									</select>
-								</div>
-								<div class="tour-input-7-5 input-s input-xm">
-									<select id='nosearch1' name='standard' class='custom-select'>
-										<option value=''>Adult</option>
-										<option value='1'>1</option>
-										<option value='2'>2</option>
-										<option value='3'>3</option>
-										<option value='4'>4</option>
-										<option value='5'>5</option>
-										<option value='6'>6</option>
-										<option value='7'>7</option>
-										<option value='8'>8</option>
-										<option value='9'>9</option>
-										<option value='10'>10</option>
-									</select>
-								</div>
-								<div class="tour-input-7-5  input-s input-xm">
-									<select id='nosearch2' name='standard' class='custom-select'>
-										<option value=''>Kids</option>
-										<option value='1'>1</option>
-										<option value='2'>2</option>
-										<option value='3'>3</option>
-										<option value='4'>4</option>
-										<option value='5'>5</option>
-										<option value='6'>6</option>
-										<option value='7'>7</option>
-										<option value='8'>8</option>
-										<option value='9'>9</option>
-										<option value='10'>10</option>
-									</select>
-								</div>
-								<div class="searc-btn-7 flights-search-btn">
-									<button type="submit">Search</button>
-								</div>
-							</form>
-						</div>
-					</div> <!-- flights form start here -->
-
-					<div class="tab-pane" id="vehicles">
-						<div class="hotels-form">
-							<form action="#" method="post">
-								<div class="hotel-input-4-23  input-s">
-									<input type="text" name="s" id="pickupdate" class="hotel-input-first" placeholder="Pickup Date & time">
-								</div>
-								<div class="hotel-input-4-23 input-s">
-									<input type="number" name="s" id="hours" class="hotel-input-first" placeholder="Hours">
-								</div>
-								<div class="hotel-input-4-23 input-s">
-									<input type="text" name="s" id="pickup" class="hotel-input-first" placeholder="Pickup Location">
-								</div>
-								<div class="hotel-input-4-23 input-s">
-									<input type="text" name="s" id="location" class="hotel-input-first" placeholder="Drop Location">
-								</div>
-								<div class="searc-btn-7">
-									<button type="submit">Search</button>
-								</div>
-							</form>
-						</div>
-					</div> <!-- vehicles form end here -->
-
-					<div class="tab-pane" id="ship">
-						<div class="hotels-form">
-							<form action="#" method="post">
-								<div class="hotel-input-4-23 input-s">
-									<input type="text" name="s" id="shippickupdate" class="hotel-input-first" placeholder="Pickup Date & time">
-								</div>
-								<div class="hotel-input-4-23 input-s">
-									<input type="number" name="s" id="time" class="hotel-input-first" placeholder="Hours">
-								</div>
-								<div class="hotel-input-4-23 input-s">
-									<input type="text" name="s" id="name" class="hotel-input-first" placeholder="Pickup Location">
-								</div>
-								<div class="hotel-input-4-23 input-s">
-									<input type="text" name="s" id="drop-location" class="hotel-input-first" placeholder="Drop Location">
-								</div>
-								<div class="searc-btn-7">
-									<button type="submit">Search</button>
-								</div>
-							</form>
-						</div>
-					</div><!-- ship form end here -->
-				</div><!-- tab content end -->
-			</div>
-		</div>
-	</div>
-</section> <!-- header tab based search area end-->
+<?php include('include-search.php')?>
 
 <section class="popular-packages pb-70 pt-100">
 	<div class="container">
@@ -370,12 +165,12 @@ $roteirosPartida = $roteiro->pesquisar('',null,false,0,6);
 		</div>
 	</div>
 </section>
-<? include('countdown-area.php');?>
-<? include('reviews-area.php');?>
-<? include('footer-area.php');?>
+<? include('include-countdown-area.php');?>
+<? include('include-reviews-area.php');?>
+<? include('include-footer-area.php');?>
 <div class="to-top pos-rtive">
 	<a href="#"><i class = "fa fa-angle-up"></i></a>
 </div><!-- Scroll to top-->    
-    <?php include('footer.php') ?>
+    <?php include('include-footer.php') ?>
 </body>
 </html>

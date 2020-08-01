@@ -34,7 +34,9 @@ $reviews = $reviewsReview->getRandomicos(5);
 							<div class="message">
 								<p><?= $rev->review?></p>
 							</div>
+							<div class="rating">
 							<?= $rev->roteiro->getStarsHtml()?>
+							</div>
 							<div class="client-bio">
 								<h4><?= $rev->name?></h4>
 								<span><?= $rev->date?></span>

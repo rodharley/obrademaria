@@ -14,7 +14,7 @@
 				<div class="header-top-right text-right">
 					<div class="col-md-2 col-sm-2 col-xs-12 book-tab">
 						<div class="book-btn">
-							<a href="#">Book Online</a>
+							<a href="#">Vendas Online</a>
 						</div>
 					</div>
 				</div>
@@ -34,22 +34,18 @@
 				<div class="col-md-10">
 					<nav>
 						<ul class="main-menu text-right">
-							<li><a href="index.html">Home</a>
+							<li class="<?= $menusite == 0 ? 'active' : '';?>"><a href="index.php">Home</a>
 								
 							</li>
-							<li><a href="package-version-one.html">Roteiros</a>
+							<li class="<?= $menusite == 1 ? 'active' : '';?>"><a href="packages.php">Roteiros</a>
 								
 							</li>
-							<li><a href="hotel-version-one.html">A Obra de Maria</a>
+							<li><a href="index.php#aobra">A Obra de Maria</a>
 								
 							</li>
-							<li><a href="hotel-version-one.html">Revista</a>
+							<li><a target="_blank" href="http://online.pubhtml5.com/vvvl/vhrc/">Revista</a>
 							</li>
-							<li><a href="blog-version-one.html">Nosso Time</a>
-								
-							</li>
-							
-							<li><a href="contact.html">Contato</a>
+							<li class="<?= $menusite == 2 ? 'active' : '';?>"><a href="contact.php">Contato</a>
 							</li>
 						</ul>
 					</nav>

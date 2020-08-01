@@ -457,6 +457,7 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
      right: 0;
      text-align: center;
      margin-top: -200px;
+     z-index: 9;
 }
  .tabbased-search-area a:focus {
      outline: none;
@@ -514,10 +515,10 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
      opacity: 1;
      visibility: visible;
 }
- .tabbased-search-area .tab-content .custom-select-open div {
+ .tabbased-search-area .custom-select-open div {
      text-align: left !important;
 }
- .tabbased-search-area .tab-content .hotels-form input, .tabbased-search-area .tab-content .flights-form input {
+ .tabbased-search-area .hotels-form input, .tabbased-search-area .flights-form input {
      -moz-user-select: none;
      background: #ffffff none repeat scroll 0 0;
      border: medium none;
@@ -528,29 +529,34 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
      text-align: left;
      width: 100%;
 }
- .tabbased-search-area .tab-content .hotels-form input:focus, .tabbased-search-area .tab-content .flights-form input:focus {
+ .tabbased-search-area .hotels-form input:focus, .tabbased-search-area .flights-form input:focus {
      outline: none;
 }
- .tabbased-search-area .tab-content .hotels-form input::-webkit-input-placeholder, .tabbased-search-area .tab-content .flights-form input::-webkit-input-placeholder {
+ .tabbased-search-area .hotels-form input::-webkit-input-placeholder, .tabbased-search-area .flights-form input::-webkit-input-placeholder {
      color: #555555;
 }
- .tabbased-search-area .tab-content .hotels-form input::-moz-input-placeholder, .tabbased-search-area .tab-content .flights-form input::-moz-input-placeholder {
+ .tabbased-search-area .hotels-form input::-moz-input-placeholder, .tabbased-search-area .flights-form input::-moz-input-placeholder {
      color: #555555;
 }
- .tabbased-search-area .tab-content .hotels-form input::-ms-input-placeholder, .tabbased-search-area .tab-content .flights-form input::-ms-input-placeholder {
+ .tabbased-search-area .hotels-form input::-ms-input-placeholder, .tabbased-search-area .flights-form input::-ms-input-placeholder {
      color: #555555;
 }
- .tabbased-search-area .tab-content .hotels-form .hotel-input-2, .tabbased-search-area .tab-content .flights-form .hotel-input-2 {
+ .tabbased-search-area .hotels-form .hotel-input-2, .tabbased-search-area .flights-form .hotel-input-2 {
      width: 20%;
      float: left;
      border-right: 1px solid #ccc;
 }
- .tabbased-search-area .tab-content .hotels-form .hotel-input-4, .tabbased-search-area .tab-content .flights-form .hotel-input-4 {
+ .tabbased-search-area .hotels-form .hotel-input-4, .tabbased-search-area .flights-form .hotel-input-4 {
      width: 25%;
      float: left;
      border-right: 1px solid #ccc;
 }
- .tabbased-search-area .tab-content .hotels-form .hotel-input-4 .custom-select, .tabbased-search-area .tab-content .flights-form .hotel-input-4 .custom-select {
+.tabbased-search-area .hotels-form .hotel-input-6 {
+     width: 37%;
+     float: left;
+     border-right: 1px solid #ccc;
+}
+ .tabbased-search-area .hotels-form .hotel-input-4 .custom-select, .tabbased-search-area .flights-form .hotel-input-4 .custom-select {
      width: 100%;
      height: 53px;
      border: none;
@@ -558,17 +564,17 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
      background-repeat: no-repeat;
      background-position: center right 25px;
 }
- .tabbased-search-area .tab-content .hotels-form .hotel-input-4 .custom-select a, .tabbased-search-area .tab-content .flights-form .hotel-input-4 .custom-select a {
+ .tabbased-search-area .hotels-form .hotel-input-4 .custom-select a, .tabbased-search-area .flights-form .hotel-input-4 .custom-select a {
      color: #555555;
      text-align: left;
      padding: 16px 20px;
 }
- .tabbased-search-area .tab-content .hotels-form .hotel-input-4-23, .tabbased-search-area .tab-content .flights-form .hotel-input-4-23 {
+ .tabbased-search-area .hotels-form .hotel-input-4-23, .tabbased-search-area .flights-form .hotel-input-4-23 {
      width: 23%;
      float: left;
      border-right: 1px solid #ccc;
 }
- .tabbased-search-area .tab-content .hotels-form .hotel-input-4-23 .custom-select, .tabbased-search-area .tab-content .flights-form .hotel-input-4-23 .custom-select {
+ .tabbased-search-area .hotels-form .hotel-input-4-23 .custom-select, .tabbased-search-area .flights-form .hotel-input-4-23 .custom-select {
      width: 100%;
      height: 53px;
      border: none;
@@ -576,25 +582,25 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
      background-repeat: no-repeat;
      background-position: center right 25px;
 }
- .tabbased-search-area .tab-content .hotels-form .hotel-input-4-23 .custom-select a, .tabbased-search-area .tab-content .flights-form .hotel-input-4-23 .custom-select a {
+ .tabbased-search-area .hotels-form .hotel-input-4-23 .custom-select a, .tabbased-search-area .flights-form .hotel-input-4-23 .custom-select a {
      color: #555555;
      text-align: left;
      padding: 16px 20px;
      width: 265px;
 }
- .tabbased-search-area .tab-content .hotels-form .hotel-input-1, .tabbased-search-area .tab-content .flights-form .hotel-input-1 {
+ .tabbased-search-area .hotels-form .hotel-input-1, .tabbased-search-area .flights-form .hotel-input-1 {
      width: 12%;
      float: left;
      border-right: 1px solid #ccc;
 }
- .tabbased-search-area .tab-content .hotels-form .hotel-input-1:last-child, .tabbased-search-area .tab-content .flights-form .hotel-input-1:last-child {
+ .tabbased-search-area .hotels-form .hotel-input-1:last-child, .tabbased-search-area .flights-form .hotel-input-1:last-child {
      border-right: none;
 }
- .tabbased-search-area .tab-content .hotels-form .searc-btn-7, .tabbased-search-area .tab-content .flights-form .searc-btn-7 {
+ .tabbased-search-area .hotels-form .searc-btn-7, .tabbased-search-area .flights-form .searc-btn-7 {
      width: 6%;
      float: left;
 }
- .tabbased-search-area .tab-content .hotels-form .searc-btn-7 button, .tabbased-search-area .tab-content .flights-form .searc-btn-7 button {
+ .tabbased-search-area  .hotels-form .searc-btn-7 button, .tabbased-search-area .flights-form .searc-btn-7 button {
      background: #37b721 none repeat scroll 0 0;
      border: medium none;
      border-radius: 0 5px 5px 0;
@@ -606,10 +612,10 @@ Tags: 	hotel, resort, tour, tourism, tourist, tours website, travel, traveler, t
      padding: 0 24px;
      transition: all ease-in-out 0.3s;
 }
- .tabbased-search-area .tab-content .hotels-form .searc-btn-7 button:hover, .tabbased-search-area .tab-content .flights-form .searc-btn-7 button:hover {
+ .tabbased-search-area .hotels-form .searc-btn-7 button:hover, .tabbased-search-area .flights-form .searc-btn-7 button:hover {
      background: #f17b37;
 }
- .tabbased-search-area .tab-content .flights-form input {
+ .tabbased-search-area .flights-form input {
      -moz-user-select: none;
      background: #ffffff none repeat scroll 0 0;
      border: medium none;

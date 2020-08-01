@@ -21,6 +21,6 @@ include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Payment.php");
 include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Services.php");
 include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Shipping.php");
 include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Transaction.php");
-
+$menusite = 0;
 $tupi = new Tupi();
 ?>

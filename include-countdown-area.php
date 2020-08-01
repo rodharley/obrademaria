@@ -24,5 +24,5 @@ if($return){
 			</div>
 		</div>
 	</div>
-</section>  <!--end  countdown -->
+</section>
 <? }?>

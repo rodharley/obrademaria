@@ -1,5 +1,6 @@
 <?php
 include("admin/tupi.inicializar.php"); 
+$menusite = 1;
 if(isset($_GET['id'])){
 	$obRoteiro = new Roteiro();
 	$obPart = new Participante();
@@ -13,13 +14,13 @@ if(isset($_GET['id'])){
 }
 
 ?>
-<?php include("header.php");?>
+<?php include("include-header.php");?>
 <body>
 <!-- Preloader -->
 <div id="preloader">
     <div id="status">&nbsp;</div>
 </div>	  
-<?php include('menu.php'); ?>
+<?php include('include-menu.php'); ?>
 <!-- blog breadcrumb version one strat here -->
 <section class="breadcrumb-blog-version-one">
 	<div class="single-bredcurms" style="background-image:url('img/packages/<?=$obRoteiro->image?>');">
@@ -332,11 +333,11 @@ if(isset($_GET['id'])){
 		</div>
 	</div>
 </section>
-<? include('footer-area.php');?>
+<? include('include-footer-area.php');?>
 <div class="to-top pos-rtive">
 	<a href="#"><i class = "fa fa-angle-up"></i></a>
 </div> <!-- Scroll to top jump button end-->
-<? include('footer.php');?>
+<? include('include-footer.php');?>
 <script>
 $(document).ready(function(){
 	$("#do_like").click(function(){

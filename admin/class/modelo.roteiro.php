@@ -16,6 +16,11 @@ class Roteiro extends Persistencia {
     var $reviews = null;
     var $photos =null;
 
+
+    function pesquisa(){
+        return $this->getRows();
+    }
+
     function getCountDown (){        
         return $this->getRow(array("countDown"=>"=1"));
     }
@@ -83,8 +88,7 @@ class Roteiro extends Persistencia {
 
     function getStarsHtml(){
         $n = $this->getNumberStars();
-        $html = '<div class="rating">';
-        $html .= '<i class="fa ';
+        $html = '<i class="fa ';
         $html .= $n < 1 ? 'fa-star-o' : 'fa-star';
         $html .= '"></i>';
         $html .= '<i class="fa ';
@@ -99,8 +103,6 @@ class Roteiro extends Persistencia {
         $html .= '<i class="fa ';
         $html .= $n < 5 ? 'fa-star-o' : 'fa-star';
         $html .= '"></i>';
-        
-        $html .='</div>';
         return $html;
     }
 }

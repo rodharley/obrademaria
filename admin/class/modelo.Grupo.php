@@ -45,6 +45,15 @@ class Grupo extends Persistencia{
 		return 3;
 	}
 	
+
+	function getGruposAgrupadosPorLocais (){
+        $sql = "select g.* from ag_grupo g inner join ag_roteiro r on g.id = r.grupo  where g.idStatus = 1 and g.local != '' group by g.local";
+        return $this->getSQL($sql);
+	}
+	function getGruposAgrupadosPorAno (){
+        $sql = "select g.* from ag_grupo g inner join ag_roteiro r on g.id = r.grupo  where g.idStatus = 1 group by g.ano";
+        return $this->getSQL($sql);
+    }
 	
 	public function migrarParticipantes(){
 		$p = new Participante();
