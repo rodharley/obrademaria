@@ -9,7 +9,14 @@ $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 1;
 
 
 $obRoteiro = new Roteiro();
-$obRoteiro->getById($id);
+$obGrupo = new Grupo();
+$obFoto = new Foto();
+$obVideo = new Video();
+$tpl->RADIONAO = 'checked="true"';
+if($id != 0){
+if(!$obRoteiro->getById($id)){
+    $obRoteiro->getById(1);
+}
 $tpl->ID = $obRoteiro->id;
 $tpl->DURACAO = $obRoteiro->grupo->duracao;
 $tpl->MAX_PESSOA = $obRoteiro->grupo->maxPessoa;
@@ -31,13 +38,34 @@ $tpl->CARD_TITLE = $obRoteiro->cardTitle;
 $tpl->IMAGE = $obRoteiro->image;
 $tpl->DESCRIPTION = $obRoteiro->description;
 $tpl->TITLE = $obRoteiro->title;
-$rsRoteiros = $obRoteiro->getRows();
 
+$rsfotos = $obFoto->getByRoteiro($obRoteiro->id);
+foreach($rsfotos as $key => $value){
+    $tpl->FOTO = $value->name;
+    $tpl->ID_FOTO = $value->id;
+    $tpl->block("BLOCK_FOTO");
+}
+$rsVideos = $obVideo->getByRoteiro($obRoteiro->id);
+if(count($rsVideos)>0){
+$tpl->VIDEO = $rsVideos[0]->name;
+}
+$tpl->BLOCK("BLOCK_EDITAR");
+}
+$rsRoteiros = $obRoteiro->getRows();
+$rsGrupos = $obGrupo->getRows(0,999,array("id"=>"desc"),array("status"=>"=1"));
 foreach ($rsRoteiros as $key => $value) {
     $tpl->ID_ROTEIRO = $value->id;
     $tpl->NOME_ROTEIRO = $value->cardTitle;
-    $tpl->SELECTED_ROTEIRO = $value->id == $obRoteiro->id ? 'selected' : '';
+    if($id != 0)
+        $tpl->SELECTED_ROTEIRO = $value->id == $obRoteiro->id ? 'selected' : '';
     $tpl->block('BLOCK_ROTEIRO');
+}
+foreach ($rsGrupos as $key => $value) {
+    $tpl->ID_GRUPO = $value->id;
+    $tpl->NOME_GRUPO = $value->id."-".$value->nomePacote;
+    if($id != 0)
+        $tpl->SELECTED_GRUPO = $value->id == $obRoteiro->grupo->id ? 'selected' : '';
+    $tpl->block('BLOCK_GRUPO');
 }
 
 

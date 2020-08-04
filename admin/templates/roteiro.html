@@ -1,27 +1,63 @@
 <script>
     $(document).ready(function(){
-        $("#grupo").change(function(){
-            window.location.href = 'roteiro.php?id='+$("#grupo").val();
+        $("#roteiro").change(function(){
+            window.location.href = 'roteiro.php?id='+$("#roteiro").val();
         });
+        $("#excluirRoteiro").click(function(){
+            if($("#roteiro").val() != 0){
+                if(confirm("Tem certeza que deseja excluir esse roteiro")){
+                    window.location.href = 'roteiro.response.php?acao=excluir&id='+$("#roteiro").val();
+                }
+            }
+        });
+        $(".excluirFoto").click(function(){
+            if(confirm("Tem certeza que deseja excluir essa foto")){
+                    window.location.href = 'roteiro.response.php?acao=excluirfoto&id='+$("#roteiro").val()+'&idfoto='+$(this).attr('id');
+                }
+        })
     });
 </script>
 <section>
     <h1>Roteiros<br/><small>EDITAR OS DADOS DO ROTEIRO.</small></h1>
+    <div class="row">
+        <div class="form-field span10">
+            <div class="control-group">
+                <label for="roteiro" class="control-label">ROTEIRO:</label>
+                <select name="roteiro" id="roteiro" class="span10" >
+                    <option value="0" style="background-color: aqua;" >NOVO ROTEIRO</option>
+                    <!-- BEGIN BLOCK_ROTEIRO -->
+                    <option value="{ID_ROTEIRO}" {SELECTED_ROTEIRO} >{NOME_ROTEIRO}</option>
+                    <!-- END BLOCK_ROTEIRO-->
+                </select>
+                
+            </div>
+        </div>
 
-   
-    <div class="form-field">
-        <div class="control-group">
-            <label for="grupo" class="control-label">ROTEIRO:</label>
-            <select name="grupo" id="grupo" class="span12">
-                <!-- BEGIN BLOCK_ROTEIRO -->
-                <option value="{ID_ROTEIRO}" {SELECTED_ROTEIRO} >{NOME_ROTEIRO}</option>
-                <!-- END BLOCK_ROTEIRO-->
-            </select>
+
+        <div class="form-field span2">
+            <div class="control-group">
+                <label for="roteiro" class="control-label">EXCLUIR:</label>
+                <button class="btn btn-danger" id="excluirRoteiro">Excluir</button>
+            </div>
         </div>
     </div>
+   
+    
     <fieldset>
         <legend>DADOS GERAIS</legend>
         <form class="form" id="frmEdit" method="post" action="roteiro.response.php">
+            <div class="row">
+                <div class="form-field span12">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">GRUPO:</label>
+                        <select name="grupo" id="grupo" class="span12">
+                            <!-- BEGIN BLOCK_GRUPO -->
+                            <option value="{ID_GRUPO}" {SELECTED_GRUPO} >{NOME_GRUPO}</option>
+                            <!-- END BLOCK_GRUPO-->
+                        </select>
+                    </div>
+                </div>
+            </div>
         <div class="row">
             <div class="form-field span6">
                 <div class="control-group">
@@ -100,7 +136,7 @@
         </div>
         </form>
     </fieldset>
-
+<!-- BEGIN BLOCK_EDITAR -->
     <fieldset>
         <legend>DADOS DO CARD</legend>
         <form class="form" id="frmEdit" method="post" action="roteiro.response.php" enctype="multipart/form-data" >
@@ -168,16 +204,58 @@
                 <div class="control-group">
                     <label for="description" class="control-label">DESCRIÇÃO:</label>
                     <p>Descrição que aparece  no roteiro</p>
-                    <input name="description" type="text" class="input-xlarge" value="{DESCRIPTION}"/>
+                    <input name="description" type="text" class="input-xlarge span12" value="{DESCRIPTION}"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-field span12">
+                <div class="control-group">
+                    <label for="description" class="control-label">LINK DE VIDEO:</label>
+                    <p>Video do roteiro</p>
+                    <input name="video" type="text" class="input-xlarge span12" value="{VIDEO}" placeholder="Http://..."/>
                 </div>
             </div>
         </div>
         <div class="form-actions">
             <input type="hidden" value="dados" name="acao" id="acao" />
-            <input type="hidden" value="{ID}" name="id" id="idCard" />
+            <input type="hidden" value="{ID}" name="id" id="idRoteiro" />
             <button class="btn btn-primary" type="submit">SALVAR</button>
     </div>
         </form>
     </fieldset>
+
+    <fieldset>
+        <legend>FOTOS</legend>
+        <form class="form" id="frmEdit" method="post" action="roteiro.response.php" enctype="multipart/form-data" >
+        <div class="row">
+         <div class="form-field span6">
+            <div class="control-group">
+                <label for="foto" class="control-label">Foto:</label>
+                <p>(tamanho qualquer)</p>
+                <input name="foto" type="file" class="input-xlarge"/>                
+            </div>
+            
+        </div>
+        </div>
+        <div class="form-actions">
+            <input type="hidden" value="foto" name="acao" id="acao" />
+            <input type="hidden" value="{ID}" name="id" id="idFoto" />
+            <button class="btn btn-primary" type="submit">ENVIAR FOTO</button>
+        </div>
+        <div class="row">
+            <!-- BEGIN BLOCK_FOTO -->
+            <div class="span3">
+               <img src="../img/fotos/{FOTO}" style="height: 100px;"/>
+               <button type="button" class="btn btn-danger excluirFoto" id="{ID_FOTO}"><i class="icon-trash icon-white"></i></button>
+                
+            </div>
+            <!-- END BLOCK_FOTO -->
+        </div>
+        
+        </form>
+    </fieldset>
     
+
+<!-- END BLOCK_EDITAR -->
 </section>

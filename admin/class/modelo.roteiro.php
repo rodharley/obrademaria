@@ -25,11 +25,26 @@ class Roteiro extends Persistencia {
         $this->countDown = $value;        
     }
 
+    function getFolder(){
+        return str_replace("admin/","",$this->URI)."img/packages/";
+    }
+    function excluir(){
+        if($this->cardImage!= null && $this->cardImage != '')
+            $this->apagaImagem($this->cardImage,$this->getFolder());
+        if($this->image!= null && $this->image != '')    
+            $this->apagaImagem($this->image,$this->getFolder());
+        $obFoto = new Foto();
+        $rsfotos = $obFoto->getByRoteiro($this->id);
+        foreach ($rsfotos as $key => $value) {
+            $this->apagaImagem($value->name,$obFoto->getFolder());
+        }
+        $this->delete($this->id);
+    }
     function salvaCardImage($file){
         if($file['name'] != ''){            
             $names = explode(".",$file['name']);
             $nome = $this->grupo->id."_cardimage.".$names[count($names)-1];
-            $this->uploadArquivo($file,$nome,str_replace("admin/","",$this->URI)."img/packages/");
+            $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->cardImage = $nome;
         }
     }

@@ -5,20 +5,34 @@ include("tupi.seguranca.php");
 
 $id =$_REQUEST['id'];
 $obRoteiro = new Roteiro();
-$obRoteiro->getById($id);
 $obGrupo = new Grupo();
-$obGrupo->getById($obRoteiro->grupo->id);
+$obFoto = new Foto();
+$obVideo = new Video();
+if($id != ''){
+$obRoteiro->getById($id);
+}
+
+
 switch($_REQUEST['acao']){
+    case 'excluir':
+        $obRoteiro->excluir();
+    break;
     case 'dadosGerais':
+        $obGrupo->getById($_REQUEST['grupo']);
         $obGrupo->local = $_REQUEST['local'];
         $obGrupo->idadeMinima = $_REQUEST['idadeMinima'];
         $obGrupo->maxPessoa = $_REQUEST['maxPessoa'];
         $obGrupo->duracao = $_REQUEST['duracao'];
         $obGrupo->save();
+        
+        $obRoteiro->grupo = $obGrupo;
         $obRoteiro->setCountDown($_REQUEST['countdown']);
         $obRoteiro->continent = implode(" E ",$_REQUEST['continent']);
         $obRoteiro->likes = $_REQUEST['likes'];
         $obRoteiro->unlikes = $_REQUEST['unlikes'];
+        if($obRoteiro->cardTitle == ''){
+            $obRoteiro->cardTitle = $obGrupo->nomePacote;
+        }
         $obRoteiro->save();
 
     break;
@@ -33,9 +47,34 @@ switch($_REQUEST['acao']){
         $obRoteiro->title = $_REQUEST['title'];
        $obRoteiro->description = $_REQUEST['description'];
        $obRoteiro->salvaImage($_FILES['image']);
+       if($_REQUEST['video'] != ''){
+           $rsvideos = $obVideo->getByRoteiro($obRoteiro->id);
+           if(count($rsvideos)>0){
+            $video = $rsvideos[0];
+           }else{
+               $video = new Video();
+               $video->roteiro = $obRoteiro;
+           }
+           $video->name = $_REQUEST['video'];
+           $video->save();
+
+       }else{
+        $rsvideos = $obVideo->getByRoteiro($obRoteiro->id);
+        if(count($rsvideos) > 0){
+            $video = $rsvideos[0];
+            $video->delete($video->id);
+        }
+        }
        $obRoteiro->save();
 
    break;
+   case 'foto':
+    $obFoto->salvaFoto($_FILES['foto'],$obRoteiro);    
+break;
+    case 'excluirfoto':
+        $obFoto->getById($_REQUEST['idfoto']);
+        $obFoto->excluir();
+    break;
 }
 $_SESSION['tupi.mensagem'] = 67;
 header('Location:roteiro.php?id='.$obRoteiro->id);
