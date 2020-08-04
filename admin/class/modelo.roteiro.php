@@ -17,7 +17,31 @@ class Roteiro extends Persistencia {
     var $photos =null;
 
 
-    
+    function setCountDown($value){
+        if($value == 1){
+            $sql = "update ag_roteiro set countDown = 0";
+            $this->DAO_ExecutarQuery($sql);
+        }
+        $this->countDown = $value;        
+    }
+
+    function salvaCardImage($file){
+        if($file['name'] != ''){            
+            $names = explode(".",$file['name']);
+            $nome = $this->grupo->id."_cardimage.".$names[count($names)-1];
+            $this->uploadArquivo($file,$nome,str_replace("admin/","",$this->URI)."img/packages/");
+            $this->cardImage = $nome;
+        }
+    }
+
+    function salvaImage($file){
+        if($file['name'] != ''){            
+            $names = explode(".",$file['name']);
+            $nome = $this->grupo->id."_image.".$names[count($names)-1];
+            $this->uploadArquivo($file,$nome,str_replace("admin/","",$this->URI)."img/packages/");
+            $this->image = $nome;
+        }
+    }
 
     function getCountDown (){        
         return $this->getRow(array("countDown"=>"=1"));

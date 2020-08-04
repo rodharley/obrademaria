@@ -1,0 +1,183 @@
+<script>
+    $(document).ready(function(){
+        $("#grupo").change(function(){
+            window.location.href = 'roteiro.php?id='+$("#grupo").val();
+        });
+    });
+</script>
+<section>
+    <h1>Roteiros<br/><small>EDITAR OS DADOS DO ROTEIRO.</small></h1>
+
+   
+    <div class="form-field">
+        <div class="control-group">
+            <label for="grupo" class="control-label">ROTEIRO:</label>
+            <select name="grupo" id="grupo" class="span12">
+                <!-- BEGIN BLOCK_ROTEIRO -->
+                <option value="{ID_ROTEIRO}" {SELECTED_ROTEIRO} >{NOME_ROTEIRO}</option>
+                <!-- END BLOCK_ROTEIRO-->
+            </select>
+        </div>
+    </div>
+    <fieldset>
+        <legend>DADOS GERAIS</legend>
+        <form class="form" id="frmEdit" method="post" action="roteiro.response.php">
+        <div class="row">
+            <div class="form-field span6">
+                <div class="control-group">
+                    <label for="grupo" class="control-label">CONTINENTE:</label>
+                    <p class="text-sm">Para filtrar os roteiros por continente</p>
+                    <div class="controls">
+                    <input type="checkbox" name="continent[]" value="ÁFRICA" {CHECKED_AFRICA}/>  África
+                    <input type="checkbox" name="continent[]" value="AMÉRICA DO NORTE" {CHECKED_AMN}/> Ámérica do Norte
+                    <input type="checkbox" name="continent[]" value="AMÉRICA DO SUL" {CHECKED_AMS}/> Ámerica do Sul
+                    <input type="checkbox" name="continent[]" value="ÁSIA" {CHECKED_ASIA}/> Ásia
+                    <input type="checkbox" name="continent[]" value="EUROPA" {CHECKED_EUR}/> Europa
+                    <input type="checkbox" name="continent[]" value="OCEANIA" {CHECKED_OCE}/> Oceania
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="form-field span6">
+                <div class="control-group">
+                    <label for="grupo" class="control-label">APARECER NO CRONÔMETRO DA TELA INICIAL:</label>
+                    <p>Se selecionado ele aparece na tela inicial com o cronômetro</p>
+                    <input type="radio" name="countdown" value="1" {RADIOSIM}/> SIM
+                    <input type="radio" name="countdown" value="0" {RADIONAO}/> NÃO
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="form-field span3">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">Likes:</label>
+                        <p class="text-mutted">número de likes</p>
+                        <input type="number"  class="form-control" name="likes" value="{LIKES}"/>
+                    </div>
+                </div>
+                <div class="form-field span3">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">UnLikes:</label>
+                        <p class="text-mutted">número de unlikes</p>
+                        <input type="number" class="form-control" name="unlikes" value="{UNLIKES}"/>
+                    </div>
+                </div>
+                <div class="form-field span6">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">Local:</label>
+                        <p class="text-mutted">Cidade principal para o filtro da pesquisa</p>
+                        <input type="text" class="form-control" name="local" value="{LOCAL}"/>
+                    </div>
+                </div>
+        </div>
+        <div class="row">                
+                <div class="form-field span4">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">Idade mínima:</label>
+                        <p class="text-mutted">idade mínima do participante</p>
+                        <input type="number" name="idadeMinima"  class="form-control" value="{IDADE_MINIMA}"/>
+                    </div>
+                </div>
+                <div class="form-field span4">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">Máximo de Participantes:</label>
+                        <p class="text-mutted">para calcular as vagas restantes </p>
+                        <input type="number" name="maxPessoa"  class="form-control" value="{MAX_PESSOA}"/>
+                    </div>
+                </div>
+                <div class="form-field span4">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">Duração (dias):</label>
+                        <p class="text-mutted">quantidade de dias  </p>
+                        <input type="number" name="duracao"  class="form-control" value="{DURACAO}"/>
+                    </div>
+                </div>
+        </div>
+        <div class="form-actions">
+                <input type="hidden" value="dadosGerais" name="acao" id="acao" />
+                <input type="hidden" value="{ID}" name="id" id="idGeral" />
+                <button class="btn btn-primary" type="submit">SALVAR</button>
+        </div>
+        </form>
+    </fieldset>
+
+    <fieldset>
+        <legend>DADOS DO CARD</legend>
+        <form class="form" id="frmEdit" method="post" action="roteiro.response.php" enctype="multipart/form-data" >
+        <div class="row">
+        <div class="form-field span6">
+            <div class="control-group">
+                <label for="grupo" class="control-label">TÍTULO DO CARD:</label>
+                <p>Título que aparece no card do roteiro na pesquisa e página inicial</p>
+                <input name="cardTitle" type="text" class="input-xlarge" value="{CARD_TITLE}"/>
+            </div>
+        </div>
+        <div class="form-field span6">
+            <div class="control-group">
+                <label for="grupo" class="control-label">Imagem do Card:</label>
+                <p>(tamanho 400x300)</p>
+                <input name="cardImage" type="file" class="input-xlarge"/>
+                <img src='../img/packages/{CARD_IMAGE}' style="height: 100px;"/>
+                <p>{CARD_IMAGE}</p>
+            </div>
+            
+        </div>
+        </div>
+        <div class="row">
+            <div class="form-field span12">
+                <div class="control-group">
+                    <label for="grupo" class="control-label">DESCRIÇÃO DO CARD:</label>
+                    <p>Descrição que aparece no card do roteiro na pesquisa e página inicial</p>
+                    <input name="cardDescription" type="text" class="input-xlarge" value="{CARD_DESCRIPTION}"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="hidden" value="dadosCard" name="acao" id="acao" />
+            <input type="hidden" value="{ID}" name="id" id="idCard" />
+            <button class="btn btn-primary" type="submit">SALVAR</button>
+    </div>
+        </form>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>DADOS DO ROTEIRO</legend>
+        <form class="form" id="frmEdit" method="post" action="roteiro.response.php" enctype="multipart/form-data" >
+        <div class="row">
+        <div class="form-field span6">
+            <div class="control-group">
+                <label for="grupo" class="control-label">TÍTULO:</label>
+                <p>Título que aparece no roteiro</p>
+                <input name="title" type="text" class="input-xlarge" value="{TITLE}"/>
+            </div>
+        </div>
+        <div class="form-field span6">
+            <div class="control-group">
+                <label for="grupo" class="control-label">Imagem:</label>
+                <p>(tamanho 1680x555)</p>
+                <input name="image" type="file" class="input-xlarge"/>
+                <img src='../img/packages/{IMAGE}' style="height: 100px;"/>
+                <p>{IMAGE}</p>
+            </div>
+            
+        </div>
+        </div>
+        <div class="row">
+            <div class="form-field span12">
+                <div class="control-group">
+                    <label for="description" class="control-label">DESCRIÇÃO:</label>
+                    <p>Descrição que aparece  no roteiro</p>
+                    <input name="description" type="text" class="input-xlarge" value="{DESCRIPTION}"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="hidden" value="dados" name="acao" id="acao" />
+            <input type="hidden" value="{ID}" name="id" id="idCard" />
+            <button class="btn btn-primary" type="submit">SALVAR</button>
+    </div>
+        </form>
+    </fieldset>
+    
+</section>

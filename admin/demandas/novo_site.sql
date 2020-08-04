@@ -159,3 +159,4 @@ ALTER TABLE `ag_grupo` ADD `local` VARCHAR(150) NULL AFTER `desconto_avista`, AD
 ALTER TABLE `ag_review` ADD `name` VARCHAR(150) NOT NULL AFTER `roteiro`, ADD `email` VARCHAR(150) NOT NULL AFTER `name`; 
 ALTER TABLE `ag_review` CHANGE `cliente` `cliente` INT(11) NULL; 
 ALTER TABLE `ag_roteiro` ADD `countDown` TINYINT NOT NULL DEFAULT '0' AFTER `description`; 
+ALTER TABLE `ag_roteiro` CHANGE `continent` `continent` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL; 
