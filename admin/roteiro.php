@@ -49,7 +49,8 @@ $rsVideos = $obVideo->getByRoteiro($obRoteiro->id);
 if(count($rsVideos)>0){
 $tpl->VIDEO = $rsVideos[0]->name;
 }
-$tpl->BLOCK("BLOCK_EDITAR");
+$tpl->block("BLOCK_EDITAR");
+$tpl->block("BLOCK_EDITAR_PILL");
 }
 $rsRoteiros = $obRoteiro->getRows();
 $rsGrupos = $obGrupo->getRows(0,999,array("id"=>"desc"),array("status"=>"=1"));
