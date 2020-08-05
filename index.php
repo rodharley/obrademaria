@@ -100,6 +100,8 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 	</div>
 </section> <!--end  popular packajge -->
 
+
+
 <section class="section-paddings popular-country">
 	<div class="container">
 		<div class="row">
@@ -136,14 +138,14 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 							<?php foreach($roteiros as $key => $r){	?>
 								<div class="col-sm-3 col-md-3 padding-bottom">
 									<div class="single-country">
-										<figure>
+										<figure >
 											<a href="package.php?id=<?=$r->id?>"><img src="img/packages/<?=$r->cardImage?>" alt="" class="img-responsive img-rounded">
 											</a>
 											<figcaption>
 												<div class="city-name">
 													<span><img src="images/icon/map.png" alt=""><?= $r->cardTitle ?></span>
 													<ul class="tower-bridge">
-														<li><?= $r->cardDescription?></li>
+														<li><?= $r->grupo->moeda->cifrao." ".$roteiro->money($r->grupo->getValorTotal(0),"atb")?></li>
 														<li><?=$r->grupo->ano?></li>
 													</ul>
 												</div>

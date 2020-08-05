@@ -1,6 +1,7 @@
 <?php
 $reviewsReview  = new Review();
 $reviews = $reviewsReview->getRandomicos(5);
+if(count($reviews)>0){
 ?>
 <!-- testimonial area start here -->
 <section class="testimonial-area image-bg-padding-100">
@@ -20,7 +21,7 @@ $reviews = $reviewsReview->getRandomicos(5);
 						<div class="carousel-images slider-nav">
                             <?php foreach($reviews as $key => $rev){ ?>
                             <div>
-								<img src="img/packages/<?=$rev->roteiro->cardImage?>" alt="1" class="img-circle">
+								<img src="img/packages/<?=$rev->roteiro->cardImage?>" alt="1" class="">
                             </div>
                             <? } ?>							
 						</div>
@@ -53,3 +54,4 @@ $reviews = $reviewsReview->getRandomicos(5);
 		</div>
 	</div>
 </section> <!-- testimonial area end here -->
+<?php } ?>
