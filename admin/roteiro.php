@@ -5,7 +5,7 @@ $codAcesso = 1;
 
 include("tupi.seguranca.php");
 
-$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 1;
+$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
 
 
 $obRoteiro = new Roteiro();
@@ -15,7 +15,9 @@ $obVideo = new Video();
 $tpl->RADIONAO = 'checked="true"';
 if($id != 0){
 if(!$obRoteiro->getById($id)){
-    $obRoteiro->getById(1);
+    //$obRoteiro->getById(1);
+    echo "roteiro nao encontrado";
+    exit();
 }
 $tpl->ID = $obRoteiro->id;
 $tpl->DURACAO = $obRoteiro->grupo->duracao;
