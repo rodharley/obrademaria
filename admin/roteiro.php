@@ -14,7 +14,7 @@ $obFoto = new Foto();
 $obVideo = new Video();
 $obEtinerario = new Etinerario();
 $tpl->RADIONAO = 'checked="true"';
-
+$tpl->PUBNAO = 'checked="true"';
 $tpl->ACITVE_0 = $aba == 0 ? 'active' : '';
 $tpl->ACITVE_1 = $aba == 1 ? 'active' : '';
 $tpl->ACITVE_2 = $aba == 2 ? 'active' : '';
@@ -38,6 +38,8 @@ $tpl->UNLIKES = $obRoteiro->unlikes;
 $tpl->LIKES = $obRoteiro->likes;
 $tpl->RADIOSIM =$obRoteiro->countDown == 1 ? 'checked="true"' : '';
 $tpl->RADIONAO =$obRoteiro->countDown == 0 ? 'checked="true"' : '';
+$tpl->PUBSIM =$obRoteiro->publish == 1 ? 'checked="true"' : '';
+$tpl->PUBNAO =$obRoteiro->publish == 0 ? 'checked="true"' : '';
 $tpl->CHECKED_OCE = strpos($obRoteiro->continent,"OCEANIA") !== false ? 'checked="true"' : '';
 $tpl->CHECKED_EUR = strpos($obRoteiro->continent,"EUROPA") !== false ? 'checked="true"' : '';
 $tpl->CHECKED_ASIA = strpos($obRoteiro->continent,"ÁSIA") !== false ? 'checked="true"' : '';

@@ -91,11 +91,19 @@
                     </div>
                     <div class="form-field span6">
                         <div class="control-group">
+                            <label for="publish" class="control-label">PUBLICADO:</label>
+                            <p>Se sim, aparece no site</p>
+                            <input type="radio" name="publish" value="1" {PUBSIM}/> SIM
+                            <input type="radio" name="publish" value="0" {PUBNAO}/> NÃO
+                        </div>
+                        
+                        <div class="control-group">
                             <label for="countdown" class="control-label">APARECER NO CRONÔMETRO DA TELA INICIAL:</label>
                             <p>Se selecionado ele aparece na tela inicial com o cronômetro</p>
                             <input type="radio" name="countdown" value="1" {RADIOSIM}/> SIM
                             <input type="radio" name="countdown" value="0" {RADIONAO}/> NÃO
                         </div>
+
                     </div>
                 </div>
                 <div class="row">

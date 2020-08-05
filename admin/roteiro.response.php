@@ -29,6 +29,7 @@ switch($_REQUEST['acao']){
         $obGrupo->save();
         
         $obRoteiro->grupo = $obGrupo;
+        $obRoteiro->publish = $_REQUEST['publish'];
         $obRoteiro->setCountDown($_REQUEST['countdown']);
         $obRoteiro->continent = implode(" E ",$_REQUEST['continent']);
         $obRoteiro->likes = $_REQUEST['likes'];

@@ -15,6 +15,7 @@ class Roteiro extends Persistencia {
     var $videos =null;
     var $reviews = null;
     var $photos =null;
+    var $publish;
 
 
     function setCountDown($value){
@@ -63,13 +64,13 @@ class Roteiro extends Persistencia {
     }
 
     function getContinentesDispoiveis (){
-        $sql = "select * from ag_roteiro group by continent";
+        $sql = "select * from ag_roteiro where publish = 1 group by continent";
         return $this->getSQL($sql);
     }
 
     function getRoteirosRandomicos($qtd){
-        $sql = "select * from ag_roteiro order by rand() limit 0,$qtd";
-        return $this->getSQL($sql);
+        $sql = "select * from ag_roteiro where publish = 1 order by rand() limit 0,$qtd";
+        return $this->getSQL($sql); 
     }
     function getByContinent($continent,$count){
         return $this->getRows(0,$count,array("likes"=>"desc"),array("continent"=>"='".$continent."'"));
@@ -81,7 +82,7 @@ class Roteiro extends Persistencia {
         }else{
             $sql = "select r.* from ag_roteiro r inner join ag_grupo g on g.id = r.grupo ";
         }
-        $sql .= "where 1 = 1 ";
+        $sql .= "where r.publish = 1 ";
 
         if($termo != ''){
             $sql .= " and (r.title like '%$termo%' or r.description like '%$termo%' or r.card_title like '%$termo%' or r.card_description like '%$termo%') ";

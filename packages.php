@@ -2,7 +2,7 @@
 include("admin/tupi.inicializar.php");
 $menusite = 1;
 $pagina = 1;
-if(isset($_REQUEST['pagina'])){
+if(isset($_REQUEST['pagina']) && $_REQUEST['pagina'] != ''){
 	$pagina = $_REQUEST['pagina'];
 }
 $obRoteiro = new Roteiro();
@@ -46,7 +46,7 @@ $rs = $obRoteiro->pesquisar(isset($_REQUEST['termo']) ? $_REQUEST['termo'] : '',
 			<div class="col-md-4 col-sm-6">
 				<div class="single-package">
 					<div class="package-image" style="min-height: 300px;">
-						<a href="#"><img src="img/packages/<?=$r->cardImage?>" alt="">
+						<a href="package.php?id=<?= $r->id?>"><img src="img/packages/<?=$r->cardImage?>" alt="">
 						</a>
 					</div>
 					<div class="package-content">
@@ -56,7 +56,7 @@ $rs = $obRoteiro->pesquisar(isset($_REQUEST['termo']) ? $_REQUEST['termo'] : '',
 					</div>
 					<div class="package-calto-action">
 						<ul class="ct-action">
-							<li><a href="package.php?id=<?= $r->id?>" class="travel-booking-btn hvr-shutter-out-horizontal">Compre Agora</a>
+							<li><a href="package.php?id=<?= $r->id?>" class="travel-booking-btn hvr-shutter-out-horizontal">Detalhes</a>
 							</li>
 							<li>
 								<?= $r->getStarsHtml()?>
@@ -72,12 +72,11 @@ $rs = $obRoteiro->pesquisar(isset($_REQUEST['termo']) ? $_REQUEST['termo'] : '',
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				<ul class="pagination">
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a>
+					<?php 
+					for($i = 1;$i<= $paginador['totalPaginas'];$i++) { ?>
+					<li class="<?= $i == $pagina ? 'active' : '' ?>"><a href="javascript:pesquisarPackages(<?=$i?>)"><?=$i?><?= $i == $pagina ? '<span class="sr-only">(current)</span>' : '' ?></a>
 					</li>
-					<li><a href="#">2</a>
-					</li>
-					<li><a href="#">3</a>
-					</li>
+					<? } ?>					
 				</ul>
 			</div><!-- pagination end here -->
 		</div>

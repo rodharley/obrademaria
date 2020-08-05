@@ -1,3 +1,10 @@
+<script>
+function pesquisarPackages(pagina){
+	$("#pagina").val(pagina);
+	$("#formSearch").submit();
+}
+
+</script>
 <section class="tabbased-search-area">
 	<?php
 	$ob = new Grupo();
@@ -8,7 +15,8 @@
 		<div class="row">
 			<div class="col-md-12">
 			<div class="hotels-form">
-							<form action="packages.php" method="post" >
+							<form action="packages.php" method="post" id="formSearch" >
+								<input type="hidden" name="pagina" id="pagina" value=""/>
 								<div class="hotel-input-6 input-b">
 									<input type="text" name="termo" id="keyword" value="<?=isset($_REQUEST['termo']) ? $_REQUEST['termo'] : ''?>" class="hotel-input-first" placeholder="Digite sua pesquisa">
 								</div>
@@ -42,7 +50,7 @@
 								</div> 
 								
 								<div class="searc-btn-7">
-									<button type="submit">Search</button>
+									<button type="submit">Pesquisar</button>
 								</div>
 							</form>
 						</div>

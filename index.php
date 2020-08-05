@@ -81,7 +81,7 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 					</div>
 					<div class="package-calto-action">
 						<ul class="ct-action">
-							<li><a href="package.php?id=<?=$rp->id?>" class="travel-booking-btn hvr-shutter-out-horizontal">Compre Agora</a>
+							<li><a href="package.php?id=<?=$rp->id?>" class="travel-booking-btn hvr-shutter-out-horizontal">Detalhes</a>
 							</li>
 							<li>
 								<i class="fa <?=$stars >=1 ? 'fa-star' : 'fa-star-o';?>"></i>
@@ -137,7 +137,7 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 								<div class="col-sm-3 col-md-3 padding-bottom">
 									<div class="single-country">
 										<figure>
-											<a href="#"><img src="img/packages/<?=$r->cardImage?>" alt="" class="img-responsive img-rounded">
+											<a href="package.php?id=<?=$r->id?>"><img src="img/packages/<?=$r->cardImage?>" alt="" class="img-responsive img-rounded">
 											</a>
 											<figcaption>
 												<div class="city-name">
@@ -148,7 +148,7 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 													</ul>
 												</div>
 												<div class="travel-book-btn">
-													<a href="package.php?id=<?=$r->id?>" class="travel-booking-btn hvr-shutter-out-horizontal">Compre Agora</a>
+													<a href="package.php?id=<?=$r->id?>" class="travel-booking-btn hvr-shutter-out-horizontal">Detalhes</a>
 												</div>
 											</figcaption>
 										</figure>

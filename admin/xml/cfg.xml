@@ -393,7 +393,8 @@ set
 		<atrib tbname="card_description" type="txt">cardDescription</atrib>
 		<atrib tbname="image" type="txt">image</atrib>	
 		<atrib tbname="title" type="txt">title</atrib>
-		<atrib tbname="description" type="txt">description</atrib>		
+		<atrib tbname="description" type="txt">description</atrib>
+		<atrib tbname="publish" type="int">publish</atrib>		
 		<atrib tbname="" type="set" lazy="true" clrelation="Review" clorder="date" clfk="roteiro">reviews</atrib>
 		<atrib tbname="" type="set" lazy="true" clrelation="Foto" clorder="id" clfk="roteiro">photos</atrib>
 		<atrib tbname="" type="set" lazy="true" clrelation="Video" clorder="id" clfk="roteiro">videos</atrib>
