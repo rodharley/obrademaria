@@ -11,12 +11,12 @@
 					</div>
 					<div class="footer-left">
 						<div class="footer-logo">
-							<p>Lorem ipsum dolor sit amet conset ctetur adipiscin elit Etiam at ipsum at ligula vestibulum sodales.</p>
+							<p>Mais que Viagens. Encontros com Deus.</p>
 						</div>
 						<ul class="footer-contact">
 							<li><img class="map" src="images/icon/map.png" alt="">SRTVS 701, Bloco II, Sala 208, Ed. Chateaubriand</li>
 							<li><img class="map" src="images/icon/phone.png" alt="">61 3201-5116 | 61 98352-0475</li>
-							<li><img class="map" src="images/icon/gmail.png" alt="">vendas@obrademariadf.com.br</li>
+							<li><img class="map" src="images/icon/gmail.png" alt="">brasilia@obrademaria.com.br</li>
 						</ul>
 					</div>
 				</div>

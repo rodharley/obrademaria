@@ -7,7 +7,7 @@
 						<ul class="header-top-contact">
 							<li><i class="fa fa-map-marker" aria-hidden="true"></i>SRTVS 701, Bloco II, Sala 208, Ed. Chateaubriand</li>
 							<li><i class="fa fa-phone" aria-hidden="true"></i>61 3201-5116 | 61 98352-0475</li>
-							<li><i class="fa fa-envelope-o" aria-hidden="true"></i>vendas@obrademariadf.com.br</li>
+							<li><i class="fa fa-envelope-o" aria-hidden="true"></i>brasilia@obrademaria.com.br</li>
 						</ul>
 					</div>
 				</div>

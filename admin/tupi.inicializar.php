@@ -7,7 +7,7 @@ header('Content-Type: text/html; charset=iso-8859-1');
 
 //incluindo todas as classes
 include("class/ready.php");
-
+include("plugins/wideimage/WideImage.php");
 include("vendor/autoload.php");
 include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Commons.php");
 include("vendor/drupalista-br/checkoutcielo-library/src/Checkout/Address.php");

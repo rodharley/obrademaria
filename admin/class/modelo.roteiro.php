@@ -42,11 +42,23 @@ class Roteiro extends Persistencia {
         $this->delete($this->id);
     }
     function salvaCardImage($file){
+        //redimencionar
+        
+       
+
+        
+
+
         if($file['name'] != ''){            
             $names = explode(".",$file['name']);
             $nome = $this->grupo->id."_cardimage.".$names[count($names)-1];
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->cardImage = $nome;
+
+            $picture = WideImage::load($this->getFolder().$nome);
+            $resize = $picture->resize(360,310, 'fill');
+            $resize->saveToFile($this->getFolder().$nome);
+            
         }
     }
 
@@ -56,6 +68,9 @@ class Roteiro extends Persistencia {
             $nome = $this->grupo->id."_image.".$names[count($names)-1];
             $this->uploadArquivo($file,$nome,str_replace("admin/","",$this->URI)."img/packages/");
             $this->image = $nome;
+            $picture = WideImage::load($this->getFolder().$nome);
+            $resize = $picture->resize(1680,550, 'fill');
+            $resize->saveToFile($this->getFolder().$nome);
         }
     }
 
