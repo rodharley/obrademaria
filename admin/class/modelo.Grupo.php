@@ -106,6 +106,11 @@ class Grupo extends Persistencia{
 	$sql = "select distinct g.* from ag_grupo g inner join ag_participante p on g.id = p.grupo inner join ag_pagamento pag on pag.participante = p.id where pag.bitCancelado = 0 and pag.dataPagamento between '".$datai."' and '".$dataf."' union select distinct g.* from ag_grupo g inner join ag_participante p on g.id = p.grupo inner join ag_pagamento pag on pag.participante = p.id inner join ag_cheque ch on ch.idPagamento = pag.id where pag.bitCancelado = 0 and ch.data between '".$datai."' and '".$dataf."'";
 		return $this->getSQL($sql);
 	}
+
+	public function getGrupoSemRoteiro(){
+		$sql = "select distinct g.* from ag_grupo g left outer join ag_roteiro p on g.id = p.grupo where p.id is null and g.idStatus = 1";
+			return $this->getSQL($sql);
+		}
 	
 	public function recuperaTotal($ano){
 		$sql = "select count(id) as total from ag_grupo ";

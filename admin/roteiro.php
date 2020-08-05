@@ -6,13 +6,23 @@ $codAcesso = 1;
 include("tupi.seguranca.php");
 
 $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
-
+$aba = isset($_REQUEST['aba']) ? $_REQUEST['aba'] : 0;
 
 $obRoteiro = new Roteiro();
 $obGrupo = new Grupo();
 $obFoto = new Foto();
 $obVideo = new Video();
+$obEtinerario = new Etinerario();
 $tpl->RADIONAO = 'checked="true"';
+
+$tpl->ACITVE_0 = $aba == 0 ? 'active' : '';
+$tpl->ACITVE_1 = $aba == 1 ? 'active' : '';
+$tpl->ACITVE_2 = $aba == 2 ? 'active' : '';
+$tpl->ACITVE_3 = $aba == 3 ? 'active' : '';
+$tpl->ACITVE_4 = $aba == 4 ? 'active' : '';
+
+
+
 if($id != 0){
 if(!$obRoteiro->getById($id)){
     //$obRoteiro->getById(1);
@@ -47,15 +57,30 @@ foreach($rsfotos as $key => $value){
     $tpl->ID_FOTO = $value->id;
     $tpl->block("BLOCK_FOTO");
 }
+
+
+foreach($obRoteiro->itineraryes as $key => $value){
+    $tpl->IT_ORDER = $value->order;
+    $tpl->IT_TITLE = $value->title;
+    $tpl->IT_DESCRIPTION = $value->description;
+    $tpl->IT_ID = $value->id;
+    $tpl->block("BLOCK_ETINERARIO");
+}
+
 $rsVideos = $obVideo->getByRoteiro($obRoteiro->id);
 if(count($rsVideos)>0){
 $tpl->VIDEO = $rsVideos[0]->name;
 }
 $tpl->block("BLOCK_EDITAR");
 $tpl->block("BLOCK_EDITAR_PILL");
+//$rsGrupos = $obGrupo->getRows(0,999,array("id"=>"desc"),array("status"=>"=1"));
+}
+$rsGrupos = $obGrupo->getGrupoSemRoteiro();
+if($id != 0){
+    array_push($rsGrupos,$obRoteiro->grupo);
 }
 $rsRoteiros = $obRoteiro->getRows();
-$rsGrupos = $obGrupo->getRows(0,999,array("id"=>"desc"),array("status"=>"=1"));
+
 foreach ($rsRoteiros as $key => $value) {
     $tpl->ID_ROTEIRO = $value->id;
     $tpl->NOME_ROTEIRO = $value->cardTitle;

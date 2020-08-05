@@ -14,7 +14,12 @@
             if(confirm("Tem certeza que deseja excluir essa foto")){
                     window.location.href = 'roteiro.response.php?acao=excluirfoto&id='+$("#roteiro").val()+'&idfoto='+$(this).attr('id');
                 }
-        })
+        });
+        $(".removeItinerary").click(function(){
+            if(confirm("Tem certeza que deseja excluir esse etinerário")){
+                    window.location.href = 'roteiro.response.php?acao=ecluirItinerary&id='+$("#roteiro").val()+'&iditineray='+$(this).attr('id');
+                }
+        });
     });
 </script>
 <section>
@@ -43,15 +48,16 @@
     </div>
    
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#home" data-toggle="tab">DADOS GERAIS</a></li>
+        <li class="{ACITVE_0}"><a href="#home" data-toggle="tab">DADOS GERAIS</a></li>
         <!-- BEGIN BLOCK_EDITAR_PILL -->
-        <li><a href="#profile" data-toggle="tab">DADOS CARD</a></li>
-        <li><a href="#messages" data-toggle="tab">DADOS ROTEIRO</a></li>
-        <li><a href="#settings" data-toggle="tab">FOTOS</a></li>
+        <li class="{ACITVE_1}"><a href="#profile" data-toggle="tab">DADOS CARD</a></li>
+        <li class="{ACITVE_2}"><a href="#messages" data-toggle="tab">DADOS ROTEIRO</a></li>
+        <li class="{ACITVE_3}"><a href="#settings" data-toggle="tab">FOTOS</a></li>
+        <li class="{ACITVE_4}"><a href="#itineraries" data-toggle="tab">ETINERÁRIOS</a></li>
         <!-- END BLOCK_EDITAR_PILL -->
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="home">
+        <div class="tab-pane {ACITVE_0}" id="home">
             <fieldset>
                 <legend>DADOS GERAIS</legend>
                 <form class="form" id="frmEdit" method="post" action="roteiro.response.php">
@@ -59,7 +65,7 @@
                         <div class="form-field span12">
                             <div class="control-group">
                                 <label for="grupo" class="control-label">GRUPO:</label>
-                                <select name="grupo" id="grupo" class="span12">
+                                <select required name="grupo" id="grupo" class="span12">
                                     <!-- BEGIN BLOCK_GRUPO -->
                                     <option value="{ID_GRUPO}" {SELECTED_GRUPO} >{NOME_GRUPO}</option>
                                     <!-- END BLOCK_GRUPO-->
@@ -70,14 +76,14 @@
                 <div class="row">
                     <div class="form-field span6">
                         <div class="control-group">
-                            <label for="grupo" class="control-label">CONTINENTE:</label>
+                            <label for="continent[]" class="control-label">CONTINENTE:</label>
                             <p class="text-sm">Para filtrar os roteiros por continente</p>
                             <div class="controls">
-                            <input type="checkbox" name="continent[]" value="ÁFRICA" {CHECKED_AFRICA}/>  África
-                            <input type="checkbox" name="continent[]" value="AMÉRICA DO NORTE" {CHECKED_AMN}/> Ámérica do Norte
-                            <input type="checkbox" name="continent[]" value="AMÉRICA DO SUL" {CHECKED_AMS}/> Ámerica do Sul
-                            <input type="checkbox" name="continent[]" value="ÁSIA" {CHECKED_ASIA}/> Ásia
-                            <input type="checkbox" name="continent[]" value="EUROPA" {CHECKED_EUR}/> Europa
+                            <input type="checkbox" name="continent[]" value="ÁFRICA" {CHECKED_AFRICA}/>  África<br/>
+                            <input type="checkbox" name="continent[]" value="AMÉRICA DO NORTE" {CHECKED_AMN}/> Ámérica do Norte<br/>
+                            <input type="checkbox" name="continent[]" value="AMÉRICA DO SUL" {CHECKED_AMS}/> Ámerica do Sul<br/>
+                            <input type="checkbox" name="continent[]" value="ÁSIA" {CHECKED_ASIA}/> Ásia<br/>
+                            <input type="checkbox" name="continent[]" value="EUROPA" {CHECKED_EUR}/> Europa<br/>
                             <input type="checkbox" name="continent[]" value="OCEANIA" {CHECKED_OCE}/> Oceania
                             
                             </div>
@@ -85,7 +91,7 @@
                     </div>
                     <div class="form-field span6">
                         <div class="control-group">
-                            <label for="grupo" class="control-label">APARECER NO CRONÔMETRO DA TELA INICIAL:</label>
+                            <label for="countdown" class="control-label">APARECER NO CRONÔMETRO DA TELA INICIAL:</label>
                             <p>Se selecionado ele aparece na tela inicial com o cronômetro</p>
                             <input type="radio" name="countdown" value="1" {RADIOSIM}/> SIM
                             <input type="radio" name="countdown" value="0" {RADIONAO}/> NÃO
@@ -95,46 +101,46 @@
                 <div class="row">
                         <div class="form-field span3">
                             <div class="control-group">
-                                <label for="grupo" class="control-label">Likes:</label>
+                                <label for="likes" class="control-label">Likes:</label>
                                 <p class="text-mutted">número de likes</p>
-                                <input type="number"  class="form-control" name="likes" value="{LIKES}"/>
+                                <input required type="number"  class="form-control span3 input-xlarge" name="likes" value="{LIKES}"/>
                             </div>
                         </div>
                         <div class="form-field span3">
                             <div class="control-group">
                                 <label for="grupo" class="control-label">UnLikes:</label>
                                 <p class="text-mutted">número de unlikes</p>
-                                <input type="number" class="form-control" name="unlikes" value="{UNLIKES}"/>
+                                <input required type="number" class="form-control span3 input-xlarge" name="unlikes" value="{UNLIKES}"/>
                             </div>
                         </div>
                         <div class="form-field span6">
                             <div class="control-group">
                                 <label for="grupo" class="control-label">Local:</label>
                                 <p class="text-mutted">Cidade principal para o filtro da pesquisa</p>
-                                <input type="text" class="form-control" name="local" value="{LOCAL}"/>
+                                <input required type="text" class="form-control span6 input-xlarge" name="local" value="{LOCAL}"/>
                             </div>
                         </div>
                 </div>
                 <div class="row">                
-                        <div class="form-field span4">
+                        <div class="form-field span3">
                             <div class="control-group">
                                 <label for="grupo" class="control-label">Idade mínima:</label>
                                 <p class="text-mutted">idade mínima do participante</p>
-                                <input type="number" name="idadeMinima"  class="form-control" value="{IDADE_MINIMA}"/>
+                                <input required type="number" name="idadeMinima"  class="form-control span3 input-xlarge" value="{IDADE_MINIMA}"/>
                             </div>
                         </div>
-                        <div class="form-field span4">
+                        <div class="form-field span3">
                             <div class="control-group">
                                 <label for="grupo" class="control-label">Máximo de Participantes:</label>
                                 <p class="text-mutted">para calcular as vagas restantes </p>
-                                <input type="number" name="maxPessoa"  class="form-control" value="{MAX_PESSOA}"/>
+                                <input required type="number" name="maxPessoa"  class="form-control span3 input-xlarge" value="{MAX_PESSOA}"/>
                             </div>
                         </div>
-                        <div class="form-field span4">
+                        <div class="form-field span3">
                             <div class="control-group">
                                 <label for="grupo" class="control-label">Duração (dias):</label>
                                 <p class="text-mutted">quantidade de dias  </p>
-                                <input type="number" name="duracao"  class="form-control" value="{DURACAO}"/>
+                                <input required type="number" name="duracao"  class="form-control input-xlarge span3" value="{DURACAO}"/>
                             </div>
                         </div>
                 </div>
@@ -147,7 +153,7 @@
             </fieldset>
         </div>
         <!-- BEGIN BLOCK_EDITAR -->
-        <div class="tab-pane" id="profile">
+        <div class="tab-pane {ACITVE_1}" id="profile">
             <fieldset>
                 <legend>DADOS DO CARD</legend>
                 <form class="form" id="frmEdit" method="post" action="roteiro.response.php" enctype="multipart/form-data" >
@@ -156,14 +162,14 @@
                     <div class="control-group">
                         <label for="grupo" class="control-label">TÍTULO DO CARD:</label>
                         <p>Título que aparece no card do roteiro na pesquisa e página inicial</p>
-                        <input name="cardTitle" type="text" class="input-xlarge" value="{CARD_TITLE}"/>
+                        <input required name="cardTitle" type="text" class="form-control span6 input-xlarge" value="{CARD_TITLE}"/>
                     </div>
                 </div>
                 <div class="form-field span6">
                     <div class="control-group">
                         <label for="grupo" class="control-label">Imagem do Card:</label>
                         <p>(tamanho 400x300)</p>
-                        <input name="cardImage" type="file" class="input-xlarge"/>
+                        <input name="cardImage" type="file" class="form-control span6 input-xlarge"/>
                         <img src='../img/packages/{CARD_IMAGE}' style="height: 100px;"/>
                         <p>{CARD_IMAGE}</p>
                     </div>
@@ -175,7 +181,7 @@
                         <div class="control-group">
                             <label for="grupo" class="control-label">DESCRIÇÃO DO CARD:</label>
                             <p>Descrição que aparece no card do roteiro na pesquisa e página inicial</p>
-                            <input name="cardDescription" type="text" class="input-xlarge" value="{CARD_DESCRIPTION}"/>
+                            <input required name="cardDescription" type="text" class="form-control span12 input-xlarge" value="{CARD_DESCRIPTION}"/>
                         </div>
                     </div>
                 </div>
@@ -187,7 +193,7 @@
                 </form>
             </fieldset>
         </div>
-        <div class="tab-pane" id="messages">
+        <div class="tab-pane {ACITVE_2}" id="messages">
             <fieldset>
                 <legend>DADOS DO ROTEIRO</legend>
                 <form class="form" id="frmEdit" method="post" action="roteiro.response.php" enctype="multipart/form-data" >
@@ -196,14 +202,14 @@
                     <div class="control-group">
                         <label for="grupo" class="control-label">TÍTULO:</label>
                         <p>Título que aparece no roteiro</p>
-                        <input name="title" type="text" class="input-xlarge" value="{TITLE}"/>
+                        <input required name="title" type="text" class="form-control span6 input-xlarge" value="{TITLE}"/>
                     </div>
                 </div>
                 <div class="form-field span6">
                     <div class="control-group">
                         <label for="grupo" class="control-label">Imagem:</label>
                         <p>(tamanho 1680x555)</p>
-                        <input name="image" type="file" class="input-xlarge"/>
+                        <input name="image" type="file" class="form-control span6  input-xlarge"/>
                         <img src='../img/packages/{IMAGE}' style="height: 100px;"/>
                         <p>{IMAGE}</p>
                     </div>
@@ -215,16 +221,16 @@
                         <div class="control-group">
                             <label for="description" class="control-label">DESCRIÇÃO:</label>
                             <p>Descrição que aparece  no roteiro</p>
-                            <input name="description" type="text" class="input-xlarge span12" value="{DESCRIPTION}"/>
+                            <input required name="description" type="text" class="input-xlarge form-control span12" value="{DESCRIPTION}"/>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-field span12">
                         <div class="control-group">
-                            <label for="description" class="control-label">LINK DE VIDEO:</label>
+                            <label for="video" class="control-label">LINK DE VIDEO:</label>
                             <p>Video do roteiro</p>
-                            <input name="video" type="text" class="input-xlarge span12" value="{VIDEO}" placeholder="Http://..."/>
+                            <input required name="video" type="text" class="input-xlarge form-control span12" value="{VIDEO}" placeholder="Http://..."/>
                         </div>
                     </div>
                 </div>
@@ -236,16 +242,16 @@
                 </form>
             </fieldset>
         </div>
-        <div class="tab-pane" id="settings">
+        <div class="tab-pane {ACITVE_3}" id="settings">
             <fieldset>
                 <legend>FOTOS</legend>
                 <form class="form" id="frmEdit" method="post" action="roteiro.response.php" enctype="multipart/form-data" >
                 <div class="row">
-                 <div class="form-field span6">
+                 <div class="form-field span12">
                     <div class="control-group">
                         <label for="foto" class="control-label">Foto:</label>
                         <p>(tamanho qualquer)</p>
-                        <input name="foto" type="file" class="input-xlarge"/>                
+                        <input required name="foto" type="file" class="form-control span12 input-xlarge"/>                
                     </div>
                     
                 </div>
@@ -268,6 +274,53 @@
                 </form>
             </fieldset>
         </div>
+        <div class="tab-pane {ACITVE_4}" id="itineraries">
+            <fieldset>
+                <legend>ETINERÁRIOS</legend>
+                <form class="form" id="frmEdit" method="post" action="roteiro.response.php" enctype="multipart/form-data" >
+                <div class="row">
+                 <div class="form-field span2">
+                    <div class="control-group">
+                        <label for="order" class="control-label">Ordem:</label>
+                        <p>Ordem do etinerário</p>
+                        <input required name="order" type="number" class="input-xlarge form-control span2"/>                
+                    </div>                    
+                </div>
+                <div class="form-field span4">
+                    <div class="control-group">
+                        <label for="title" class="control-label">Título:</label>
+                        <p>Título do etinerário</p>
+                        <input required id="title" name="title" type="text" class="input-xlarge span4"/>                
+                    </div>                    
+                </div>
+                <div class="form-field span6">
+                    <div class="control-group">
+                        <label for="description" class="control-label">Descrição:</label>
+                        <p>Descrição do etinerário</p>
+                        <input required id="description" name="description" type="text" class="input-xlarge span6"/>                
+                    </div>                    
+                </div>
+                </div>
+                <div class="form-actions">
+                    <input type="hidden" value="itinerary" name="acao" id="acao" />
+                    <input type="hidden" value="{ID}" name="id" id="idItinerary" />
+                    <button class="btn btn-primary" type="submit">ADICIONAR</button>
+                </div>
+                <div class="row">
+                    <div class="span12">
+                    <table class="table">
+                        <tr><th>Ordem</th><th>Título</th><th>Descrição</th><th>-</th></tr>
+                    <!-- BEGIN BLOCK_ETINERARIO -->
+                    <tr><td>{IT_ORDER}</td><td>{IT_TITLE}</td><td>{IT_DESCRIPTION}</td><td><button type="button" class="btn btn-danger removeItinerary" id={IT_ID} ><i class="icon-trash icon-white"></i></button></td></tr>
+                    <!-- END BLOCK_ETINERARIO -->
+                </table>
+                </div>
+            </div>
+                </form>
+            </fieldset>
+        </div>
+
+
         <!-- END BLOCK_EDITAR -->
       </div>
 </section>

@@ -8,6 +8,9 @@ $obRoteiro = new Roteiro();
 $obGrupo = new Grupo();
 $obFoto = new Foto();
 $obVideo = new Video();
+$obEtinerario = new Etinerario();
+
+$aba="0";
 if($id != ''){
 $obRoteiro->getById($id);
 }
@@ -15,7 +18,7 @@ $obRoteiro->getById($id);
 
 switch($_REQUEST['acao']){
     case 'excluir':
-        $obRoteiro->excluir();
+        $obRoteiro->excluir();        
     break;
     case 'dadosGerais':
         $obGrupo->getById($_REQUEST['grupo']);
@@ -41,6 +44,7 @@ switch($_REQUEST['acao']){
         $obRoteiro->cardDescription = $_REQUEST['cardDescription'];
         $obRoteiro->salvaCardImage($_FILES['cardImage']);
         $obRoteiro->save();
+        $aba= "1";
 
     break;
     case 'dados':
@@ -66,16 +70,26 @@ switch($_REQUEST['acao']){
         }
         }
        $obRoteiro->save();
-
+       $aba= "2";
    break;
    case 'foto':
-    $obFoto->salvaFoto($_FILES['foto'],$obRoteiro);    
-break;
+    $obFoto->salvaFoto($_FILES['foto'],$obRoteiro); 
+    $aba= "3";   
+    break;
     case 'excluirfoto':
         $obFoto->getById($_REQUEST['idfoto']);
         $obFoto->excluir();
+        $aba= "3";
     break;
+    case 'itinerary':
+        $obEtinerario->salva($_REQUEST['order'],$_REQUEST['title'],$_REQUEST['description'],$obRoteiro);    
+        $aba= "4";
+        break;
+        case 'ecluirItinerary':            
+            $obEtinerario->excluir($_REQUEST['iditineray']);
+            $aba= "4";
+        break;
 }
 $_SESSION['tupi.mensagem'] = 67;
-header('Location:roteiro.php?id='.$obRoteiro->id);
+header('Location:roteiro.php?aba='.$aba.'&id='.$obRoteiro->id);
 exit();
