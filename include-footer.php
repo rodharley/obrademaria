@@ -50,5 +50,9 @@
     <script src="js/colors.js"></script>
     <!-- customSelect Js -->
     <script src="js/jquery-customselect.js"></script>
+    <!-- google map api -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6sBJvPMjAf9eTPzWE53dZDBppxTUOuMU"></script>
+    <!-- map js -->
+    <script src="js/google-map.js"></script>  
     <!-- custom js -->
     <script src="js/custom.js"></script>
