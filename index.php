@@ -52,7 +52,7 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 </section> <!-- slider area end here -->
 
 <?php include('include-search.php')?>
-
+<?php if(count($roteirosPartida)>0){ ?>
 <section class="popular-packages pb-70 pt-100">
 	<div class="container">
 		<div class="row">
@@ -99,9 +99,9 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 		</div>
 	</div>
 </section> <!--end  popular packajge -->
+<?php }?>
 
-
-
+<?php if(count($continentes) > 0){ ?>
 <section class="section-paddings popular-country">
 	<div class="container">
 		<div class="row">
@@ -167,6 +167,7 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 		</div>
 	</div>
 </section>
+<?php }?>
 <? include('include-countdown-area.php');?>
 <? include('include-reviews-area.php');?>
 <? include('include-footer-area.php');?>

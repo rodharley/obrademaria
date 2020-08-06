@@ -14,7 +14,7 @@
 				<div class="header-top-right text-right">
 					<div class="col-md-2 col-sm-2 col-xs-12 book-tab">
 						<div class="book-btn">
-							<a href="#">Vendas Online</a>
+							<a href="packages.php">Vendas Online</a>
 						</div>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 							<li class="<?= $menusite == 1 ? 'active' : '';?>"><a href="packages.php">Roteiros</a>
 								
 							</li>
-							<li><a href="index.php#aobra">A Obra de Maria</a>
+							<li><a href="aboutus.php">A Obra de Maria</a>
 								
 							</li>
 							<li><a target="_blank" href="http://online.pubhtml5.com/vvvl/vhrc/">Revista</a>
