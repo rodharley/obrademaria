@@ -1,0 +1,116 @@
+<script>
+    $(document).ready(function(){
+        $("#slider").change(function(){
+            window.location.href = 'slider.php?id='+$("#slider").val();
+        });
+        $("#excluirSlide").click(function(){
+            if($("#slider").val() != 0){
+                if(confirm("Tem certeza que deseja excluir esse slider")){
+                    window.location.href = 'slider.response.php?acao=excluir&id='+$("#slider").val();
+                }
+            }
+        });
+        
+    });
+</script>
+<section>
+    <h1>Roteiros<br/><small>EDITAR OS DADOS DO ROTEIRO.</small></h1>
+    <div class="row">
+        <div class="form-field span10">
+            <div class="control-group">
+                <label for="grupo" class="control-label">SLIDER:</label>
+                    <select required name="slider" id="slider" class="span10">
+                        <option value="0" style="background-color: aqua;" >NOVO SLIDER</option>
+                        <!-- BEGIN BLOCK_SLIDER -->
+                        <option value="{ID_SLIDER}" {SELECTED_SLIDER} >{TITLE_SLIDER}</option>
+                        <!-- END BLOCK_SLIDER-->
+                        </select>      
+                
+            </div>
+        </div>
+
+
+        <div class="form-field span2">
+            <div class="control-group">
+                <label for="excluirSlide" class="control-label">EXCLUIR:</label>
+                <button class="btn btn-danger" id="excluirSlide">Excluir</button>
+            </div>
+        </div>
+    </div>
+   
+    <fieldset>
+        <legend>DADOS</legend>
+        <form class="form" id="frmEdit" method="post" action="slider.response.php" enctype="multipart/form-data">
+            <div class="row">
+                <div class="form-field span12">
+                    <div class="control-group">
+                        <label for="roteiro" class="control-label">ROTEIRO:</label>
+                        <select name="roteiro" id="roteiro" class="span12" >                   
+                            <!-- BEGIN BLOCK_ROTEIRO -->
+                            <option value="{ID_ROTEIRO}" {SELECTED_ROTEIRO} >{TITLE_ROTEIRO}</option>
+                            <!-- END BLOCK_ROTEIRO-->
+                        </select>
+                    </div>
+                </div>
+            </div>
+        <div class="row">                    
+            <div class="form-field span6">
+                <div class="control-group">
+                    <label for="publish" class="control-label">PUBLICADO:</label>
+                    <p>Se sim, aparece no site</p>
+                    <input type="radio" name="publish" value="1" {PUBSIM}/> SIM
+                    <input type="radio" name="publish" value="0" {PUBNAO}/> NÃO
+                </div>
+            </div>
+            <div class="form-field span6">
+                <div class="control-group">
+                    <label for="grupo" class="control-label">Imagem do Slide:</label>
+                    <p>(tamanho 1680x990)</p>
+                    <input name="image" type="file" class="form-control span6 input-xlarge"/>
+                    <img src='../img/slider/{IMAGE}' style="height: 100px;"/>
+                    <p>{IMAGE}</p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+                <div class="form-field span6">
+                    <div class="control-group">
+                        <label for="likes" class="control-label">Título:</label>
+                        <p class="text-mutted">título do slide</p>
+                        <input required type="text"  class="form-control span6 input-xlarge" name="title" value="{TITLE}"/>
+                    </div>
+                </div>
+                <div class="form-field span6">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">Sub-Título:</label>
+                        <p class="text-mutted">sub título do slide</p>
+                        <input required type="text" class="form-control span6 input-xlarge" name="subtitle" value="{SUB_TITLE}"/>
+                    </div>
+                </div>                        
+        </div>
+        <div class="row">                
+                <div class="form-field span4">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">Texto do botão:</label>
+                        <p class="text-mutted">texto do botão no slide</p>
+                        <input required type="text" name="textButtom"  class="form-control span4 input-xlarge" value="{TEXT_BUTTOM}"/>
+                    </div>
+                </div>
+                <div class="form-field span8">
+                    <div class="control-group">
+                        <label for="grupo" class="control-label">Descrição:</label>
+                        <p class="text-mutted">descrição no slide</p>
+                        <input required type="text" name="description"  class="form-control span3 input-xlarge" value="{DESCRIPTION}"/>
+                    </div>
+                </div>                        
+        </div>
+        <div class="form-actions">
+                <input type="hidden" value="save" name="acao" id="acao" />
+                <input type="hidden" value="{ID}" name="id" id="idSLIDER" />
+                <button class="btn btn-primary" type="submit">SALVAR</button>
+        </div>
+        </form>
+    </fieldset>
+
+</section>

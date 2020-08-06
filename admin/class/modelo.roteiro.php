@@ -43,13 +43,14 @@ class Roteiro extends Persistencia {
     }
     function salvaCardImage($file){
         //redimencionar
-        
-       
-
-        
+             
 
 
         if($file['name'] != ''){            
+
+            if($this->cardImage!= null && $this->cardImage != '')
+                $this->apagaImagem($this->cardImage,$this->getFolder());
+
             $names = explode(".",$file['name']);
             $nome = $this->grupo->id."_cardimage.".$names[count($names)-1];
             $this->uploadArquivo($file,$nome,$this->getFolder());
@@ -64,9 +65,11 @@ class Roteiro extends Persistencia {
 
     function salvaImage($file){
         if($file['name'] != ''){            
+            if($this->image!= null && $this->image != '')
+                $this->apagaImagem($this->image,$this->getFolder());
             $names = explode(".",$file['name']);
             $nome = $this->grupo->id."_image.".$names[count($names)-1];
-            $this->uploadArquivo($file,$nome,str_replace("admin/","",$this->URI)."img/packages/");
+            $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->image = $nome;
             $picture = WideImage::load($this->getFolder().$nome);
             $resize = $picture->resize(1680,550, 'fill');
@@ -161,4 +164,9 @@ class Roteiro extends Persistencia {
         $html .= '"></i>';
         return $html;
     }
+
+    public function getRoteirosSemSlider(){
+		$sql = "select distinct g.* from ag_roteiro g left outer join ag_slide p on g.id = p.roteiro where p.id is null";
+			return $this->getSQL($sql);
+		}
 }

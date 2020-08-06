@@ -408,6 +408,7 @@ set
 		<atrib tbname="sub_title" type="txt">subTitle</atrib>
 		<atrib tbname="description" type="txt">description</atrib>
 		<atrib tbname="buttom_text" type="txt">buttomText</atrib>		
+		<atrib tbname="publish" type="int">publish</atrib>		
 </class>
 	<class name="StatusCheque" tbname="ag_statuscheque" tbid="id" lazy="false">
 		<atrib tbname="id" type="id">id</atrib>	

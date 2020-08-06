@@ -1,7 +1,7 @@
 <?php
 include("tupi.inicializar.php");
 include("tupi.template.inicializar.php");
-$codAcesso = 1;
+$codAcesso = 51;
 
 include("tupi.seguranca.php");
 

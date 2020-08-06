@@ -1,6 +1,6 @@
 <?php
 include("tupi.inicializar.php");
-$codAcesso = 1;
+$codAcesso = 51;
 include("tupi.seguranca.php");
 
 $id =$_REQUEST['id'];
@@ -18,7 +18,10 @@ $obRoteiro->getById($id);
 
 switch($_REQUEST['acao']){
     case 'excluir':
-        $obRoteiro->excluir();        
+        $obRoteiro->excluir();     
+        $_SESSION['tupi.mensagem'] = 67;
+        header('Location:roteiro.php');
+        exit();   
     break;
     case 'dadosGerais':
         $obGrupo->getById($_REQUEST['grupo']);
