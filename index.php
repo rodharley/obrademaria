@@ -2,7 +2,7 @@
 include("admin/tupi.inicializar.php"); 
 $roteiro = new Roteiro();
 $slide = new Slide();
-$sliders = $slide->getRows();
+$sliders = $slide->getRows(0,99,array(),array("publish"=>"=1"));
 $continentes = $roteiro->getContinentesDispoiveis();
 $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 ?>
@@ -14,6 +14,7 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 </div>	
 <?php include('include-menu.php'); ?>
 <!-- slider area start here -->
+<?php if(count($sliders)>0){?>
 <section class="slider-area">
 	<div class="rev_slider_wrapper">
 		<div id="rev_slider_1" class="rev_slider" style="display:none">
@@ -50,7 +51,7 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 		</div> <!-- end slider container -->
 	</div> <!-- END end slider container wrapper -->
 </section> <!-- slider area end here -->
-
+<?php } ?>
 <?php include('include-search.php')?>
 <?php if(count($roteirosPartida)>0){ ?>
 <section class="popular-packages pb-70 pt-100">
