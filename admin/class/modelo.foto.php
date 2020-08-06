@@ -11,10 +11,14 @@ class Foto extends Persistencia {
 
         if($file['name'] != ''){            
             $names = explode(".",$file['name']);
-            $nome = $this->roteiro->grupo->id."_foto.".$names[count($names)-1];
+            $nome = $this->retornaNomeUnico($roteiro->id."_foto.".$names[count($names)-1],$this->getFolder());
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->name = $nome;
             $this->roteiro = $roteiro;
+
+            $picture = WideImage::load($this->getFolder().$nome);
+            $resize = $picture->resize(360, null, 'fill');
+            $resize->saveToFile($this->getFolder().$nome);
             $this->save();
         }
     }
