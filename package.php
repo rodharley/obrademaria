@@ -84,15 +84,16 @@ if(isset($_GET['id'])){
 
 				<div class="package-tab-menu">
 					<ul class="package-tab-menu" role="tablist" id="tab7">
-						<li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Descrição</a>
+					<li role="presentation"  class="active"><a href="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a>
+						</li>	
+					<li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Descrição</a>
 						</li>
-						<li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Etinerário</a>
+						<li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Roteiro</a>
 						</li>
-						<li role="presentation" ><a href="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a>
-						</li>
+						
 						<li role="presentation"><a href="#video" aria-controls="video" role="tab" data-toggle="tab">Videos</a>
 						</li>
-						<li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews (<?= count($obRoteiro->reviews)?>)</a>
+						<li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Comentários (<?= count($obRoteiro->reviews)?>)</a>
 						</li>
 					</ul>
 				</div><!-- tab menu end -->
@@ -101,7 +102,34 @@ if(isset($_GET['id'])){
 				<div class="row">
 					<!-- tabs content -->
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane fade in active" id="description">
+					<div role="tabpanel" class="tab-pane fade in active" id="fotos">
+						<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<div class="tour-description">
+										<h4>Fotos</h4>
+										<div class="grid-3 ">
+										<?php foreach ($obRoteiro->photos as $key => $foto) {
+											# code...
+										?>
+										<a href="img/fotos/<?=$foto->name?>">
+										<div class="col-sm-<?=$key==0? '12' :'6'?> col-md-<?=$key==0? '6' :'3'?> grid-item">
+										
+										<figure>
+										
+											<img src="img/fotos/<?=$foto->name?>" alt="">
+											
+										</figure>
+
+										</div>	
+										</a>
+										<?php }?>
+									</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						<div role="tabpanel" class="tab-pane fade " id="description">
 							
 							<div class="row">
 								<!-- left content -->
@@ -170,27 +198,7 @@ if(isset($_GET['id'])){
 							</div>
 						</div>
 
-						<div role="tabpanel" class="tab-pane fade" id="fotos">
-							<div class="row">
-								<div class="col-md-12 col-sm-12">
-									<div class="tour-description">
-										<h4>Fotos</h4>
-										<div class="grid-3 ">
-										<?php foreach ($obRoteiro->photos as $key => $foto) {
-											# code...
-										?>
-										<div class="col-sm-<?=$key==0? '12' :'6'?> col-md-<?=$key==0? '6' :'3'?> grid-item">
-										<figure>
-											<img src="img/fotos/<?=$foto->name?>" alt="">
-											
-										</figure>
-										</div>	
-										<?php }?>
-									</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						
 
 						<!-- video tab content start -->
 						<div role="tabpanel" class="tab-pane fade" id="video">
