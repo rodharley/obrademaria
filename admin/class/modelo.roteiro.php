@@ -91,7 +91,7 @@ class Roteiro extends Persistencia {
         return $this->getSQL($sql); 
     }
     function getByContinent($continent,$count){
-        return $this->getRows(0,$count,array("likes"=>"desc"),array("continent"=>"='".$continent."'"));
+        return $this->getRows(0,$count,array("likes"=>"desc"),array("publish"=>"=1","continent"=>"='".$continent."'"));
     }
 
     function pesquisar($termo='',$ano='', $local='',$contador=false,$init=0,$end=99999){
