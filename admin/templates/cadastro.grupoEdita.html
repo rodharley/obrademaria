@@ -232,7 +232,10 @@ $("#ano").mask("9999");
   </div>
     <div class="accordion" id="accordion">
       <div class="accordion-group">
-        <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Pacote Opcional </a> </div>
+        <div class="accordion-heading"> 
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Pacote Opcional </a> 
+          
+        </div>
         <div id="collapseOne" class="accordion collapse" style="height: 0; ">
           <div class="accordion-inner">
             <div class="control-group">
@@ -279,6 +282,106 @@ $("#ano").mask("9999");
             </div>
 			</div>
 			</div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="accordion-group">
+        <div class="accordion-heading"> 
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> Forma de Pagamento </a> 
+        </div>
+        <div id="collapseTwo" class="accordion collapse" style="height: 0; ">
+          <div class="accordion-inner">
+                <h4>Boleto</h4>
+                <div class="row">
+                  <div class="span5">
+                    <div class="control-group">
+                      <label for="bitBoleto" class="control-label">Ativar:</label>
+                      <div class="controls">
+                        <input type="radio" name="bitBoleto" id="bitBoletoSim" value="1" {bitBoletoSim} class="required"> Sim 
+                        <input type="radio" name="bitBoleto" id="bitBoletoNao" value="0" {bitBoletoNao} class="required"> Não
+                      </div>
+                    </div>
+                  </div>
+                  <div class="span6">			
+                    <div class="control-group">
+                      <label for="parcelaBoleto" class="control-label">Parcela Máxima:</label>
+                      <div class="controls">                
+                        <input type="number" id="parcelaBoleto" class="input-xlarge" name="parcelaBoleto" value="{parcelaBoleto}" placeholder="Máximo de parcelas">
+                      </div>
+                    </div>
+              </div>
+                </div>
+                <hr/>
+                <h4>Cartão</h4>
+                <div class="row">
+                  <div class="span5">
+                    <div class="control-group">
+                      <label for="bitCartao" class="control-label">Ativar:</label>
+                      <div class="controls">
+                        <input type="radio" name="bitCartao" id="bitCartaoSim" value="1" {bitCartaoSim} class="required"> Sim 
+                        <input type="radio" name="bitCartao" id="bitCartaoNao" value="0" {bitCartaoNao} class="required"> Não
+                      </div>
+                    </div>
+                  </div>
+                  <div class="span6">			
+                    <div class="control-group">
+                      <label for="parcelaCartao" class="control-label">Parcela Máxima:</label>
+                      <div class="controls">                
+                        <input type="number" id="parcelaCartao" class="input-xlarge" name="parcelaCartao" value="{parcelaCartao}" placeholder="Máximo de parcelas">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr/>
+                <h4>Cheque</h4>
+                <div class="row">
+                  <div class="span5">
+                    <div class="control-group">
+                      <label for="bitCheque" class="control-label">Ativar:</label>
+                      <div class="controls">
+                        <input type="radio" name="bitCheque" id="bitChequeSim" value="1" {bitChequeSim} class="required"> Sim 
+                        <input type="radio" name="bitCheque" id="bitChequeNao" value="0" {bitChequeNao} class="required"> Não
+                      </div>
+                    </div>
+                  </div>
+                  <div class="span6">			
+                    <div class="control-group">
+                      <label for="parcelaCheque" class="control-label">Parcela Máxima:</label>
+                      <div class="controls">                
+                        <input type="number" id="parcelaCheque" class="input-xlarge" name="parcelaCheque" value="{parcelaCheque}" placeholder="Máximo de parcelas">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h4>Customizado</h4>
+                <div class="row">
+                  <div class="span5">
+                    <div class="control-group">
+                      <label for="bitCustomizado" class="control-label">Ativar:</label>
+                      <div class="controls">
+                        <input type="radio" name="bitCustomizado" id="bitCustomizadoSim" value="1" {bitCustomizadoSim} class="required"> Sim 
+                        <input type="radio" name="bitCustomizado" id="bitCustomizadoNao" value="0" {bitCustomizadoNao} class="required"> Não
+                      </div>
+                    </div>
+                  </div>
+                  <div class="span6">			
+                    <div class="control-group">
+                      <label for="nomeCustomizado" class="control-label">Nome:</label>
+                      <div class="controls">                
+                        <input type="text" id="nomeCustomizado" class="input-xlarge" name="nomeCustomizado" value="{nomeCustomizado}" placeholder="Nome da forma  de pagamento">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span11">
+                    <div class="controls">                
+                      <textarea rows="10" id="textCustomizado" class="ckeditor span8" name="textCustomizado">{textCustomizado}</textarea>
+                    </div>
+                  </div>
+                  </div>
+                </div>
           </div>
         </div>
       </div>

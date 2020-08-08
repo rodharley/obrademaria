@@ -105,4 +105,8 @@ CREATE TABLE IF NOT EXISTS `ag_checkout_cielo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 ALTER TABLE `ag_checkout_cielo`
   ADD CONSTRAINT `fk_cielo_venda` FOREIGN KEY (`venda`) REFERENCES `ag_venda_site` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+ALTER TABLE `ag_grupo` ADD `bit_boleto` TINYINT(1) NULL DEFAULT '0' AFTER `duracao`, ADD `bit_cartao` TINYINT(1) NULL DEFAULT '0' AFTER `bit_boleto`, ADD `bit_cheque` TINYINT(1) NULL DEFAULT '0' AFTER `bit_cartao`, ADD `bit_customizado` TINYINT(1) NULL DEFAULT '0' AFTER `bit_cheque`, ADD `parcela_boleto` TINYINT(2) NULL DEFAULT '12' AFTER `bit_customizado`, ADD `parcela_cartao` TINYINT(2) NULL DEFAULT '12' AFTER `parcela_boleto`, ADD `parcela_cheque` TINYINT(2) NULL DEFAULT '12' AFTER `parcela_cartao`, ADD `nome_customizado` VARCHAR(150) NULL AFTER `parcela_cheque`, ADD `text_customizado` VARCHAR(1000) NULL AFTER `nome_customizado`; 
+
 COMMIT;

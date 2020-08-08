@@ -261,7 +261,16 @@ set
 		<atrib tbname="local" type="txt">local</atrib>
 		<atrib tbname="idade_minima" type="int">idadeMinima</atrib>
 		<atrib tbname="max_pessoa" type="int">maxPessoa</atrib>
-		<atrib tbname="duracao" type="int">duracao</atrib>		
+		<atrib tbname="duracao" type="int">duracao</atrib>
+		<atrib tbname="bit_boleto" type="int">bitBoleto</atrib>
+		<atrib tbname="bit_cartao" type="int">bitCartao</atrib>
+		<atrib tbname="bit_cheque" type="int">bitCheque</atrib>
+		<atrib tbname="bit_customizado" type="int">bitCustomizado</atrib>
+		<atrib tbname="parcela_boleto" type="int">parcelaBoleto</atrib>
+		<atrib tbname="parcela_cartao" type="int">parcelaCartao</atrib>
+		<atrib tbname="parcela_cheque" type="int">parcelaCheque</atrib>
+		<atrib tbname="nome_customizado" type="txt">nomeCustomizado</atrib>
+		<atrib tbname="text_customizado" type="txt">textCustomizado</atrib>		
 		</class>
 
 	<class name="LogAcesso" tbname="ag_logacesso" tbid="id" lazy="false">

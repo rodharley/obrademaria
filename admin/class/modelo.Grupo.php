@@ -34,6 +34,15 @@ class Grupo extends Persistencia{
 	var $idadeMinima;
 	var $maxPessoa;
 	var $duracao;
+	var $bitBoleto;
+	var $bitCartao;
+	var $bitCheque;
+	var $bitCustomizado;
+	var $parcelaBoleto;
+	var $parcelaCartao;
+	var $parcelaCheque;
+	var $nomeCustomizado;
+	var $textCustomizado;
 	
 	public function STATUS_ANDAMENTO(){
 		return 1;
@@ -164,6 +173,15 @@ class Grupo extends Persistencia{
 		$this->cotacaoEntrada = $this->money($_POST['cotacaoEntrada'] == '' ? 0 : $_POST['cotacaoEntrada'],"bta");
 		$this->cotacaoParcelado = $this->money($_POST['cotacaoParcelado'] == '' ? 0 : $_POST['cotacaoParcelado'],"bta");
 		$this->ano = $_REQUEST['ano'];
+		$this->bitBoleto = $_REQUEST['bitBoleto'];
+		$this->bitCartao = $_REQUEST['bitCartao'];
+		$this->bitCheque = $_REQUEST['bitCheque'];
+		$this->bitCustomizado = $_REQUEST['bitCustomizado'];
+		$this->parcelaBoleto = $_REQUEST['parcelaBoleto'];
+		$this->parcelaCartao = $_REQUEST['parcelaCartao'];
+		$this->parcelaCheque = $_REQUEST['parcelaCheque'];
+		$this->nomeCustomizado = $_REQUEST['nomeCustomizado'];
+		$this->textCustomizado = $_REQUEST['textCustomizado'];
 		//uploadArquivo roteiro
 		if($_FILES['roteiro']['name'] != ''){
 			$nomeImagem = date("d_m_Y_H_i_s").$this->removerAcento($_FILES['roteiro']['name']);
@@ -304,6 +322,16 @@ class Grupo extends Persistencia{
 		$this->destino = $_POST['destino'];
 		$this->plano = $_POST['plano'];
 		$this->ano = $_REQUEST['ano'];
+
+		$this->bitBoleto = $_REQUEST['bitBoleto'];
+		$this->bitCartao = $_REQUEST['bitCartao'];
+		$this->bitCheque = $_REQUEST['bitCheque'];
+		$this->bitCustomizado = $_REQUEST['bitCustomizado'];
+		$this->parcelaBoleto = $_REQUEST['parcelaBoleto'];
+		$this->parcelaCartao = $_REQUEST['parcelaCartao'];
+		$this->parcelaCheque = $_REQUEST['parcelaCheque'];
+		$this->nomeCustomizado = $_REQUEST['nomeCustomizado'];
+		$this->textCustomizado = $_REQUEST['textCustomizado'];
 		//uploadArquivo
 		if($_FILES['roteiro']['name'] != ''){
 			$nomeImagem = date("d_m_Y_H_i_s").$this->removerAcento($_FILES['roteiro']['name']);

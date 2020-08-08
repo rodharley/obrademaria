@@ -77,6 +77,22 @@ if(isset($_REQUEST['idGrupo'])){
 		$tpl->LOG = $log->txtLog;
 		$tpl->block('BLOCK_ITEM_LOG');
 	}
+
+
+
+	$tpl->bitBoletoSim = $oGrupo->bitBoleto == 1 ? 'checked="checked"' : '';
+	$tpl->bitBoletoNao = $oGrupo->bitBoleto == 0 ? 'checked="checked"' : '';
+	$tpl->bitCartaoSim = $oGrupo->bitCartao == 1 ? 'checked="checked"' : '';
+	$tpl->bitCartaoNao = $oGrupo->bitCartao == 0 ? 'checked="checked"' : '';
+	$tpl->bitChequeSim = $oGrupo->bitCheque == 1 ? 'checked="checked"' : '';
+	$tpl->bitChequeNao = $oGrupo->bitCheque == 0 ? 'checked="checked"' : '';
+	$tpl->bitCustomizadoSim = $oGrupo->bitCustomizado == 1 ? 'checked="checked"' : '';
+	$tpl->bitCustomizadoNao = $oGrupo->bitCustomizado == 0 ? 'checked="checked"' : '';
+	$tpl->parcelaBoleto = $oGrupo->parcelaBoleto;
+	$tpl->parcelaCartao = $oGrupo->parcelaCartao;
+	$tpl->parcelaCheque = $oGrupo->parcelaCheque;
+	$tpl->nomeCustomizado = $oGrupo->nomeCustomizado;
+	$tpl->textCustomizado = $oGrupo->textCustomizado;
 	
 $tpl->ACAO = "Alterar";
 $tpl->ID = $oGrupo->id;
