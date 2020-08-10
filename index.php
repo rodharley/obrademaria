@@ -102,6 +102,7 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 </section> <!--end  popular packajge -->
 <?php }?>
 
+<?PHP include('include-discount.php');?>
 <?php if(count($continentes) > 0){ ?>
 <section class="section-paddings popular-country">
 	<div class="container">

@@ -65,7 +65,7 @@ if(isset($_GET['id'])){
 							
 							 </span> (<?= count($obRoteiro->reviews)?> Reviews)
 						</li>						
-						<li><?= $obRoteiro->grupo->moeda->cifrao.' '.$obRoteiro->money($obRoteiro->grupo->getValorTotal(0),"atb")?></li>
+						<li>À Vista <?= $obRoteiro->grupo->moeda->cifrao.' '.$obRoteiro->money($obRoteiro->valorComDesconto(),"atb")?></li>
 					</ul>
 					<div class="blog-meta">
 							<ul class="post-social">

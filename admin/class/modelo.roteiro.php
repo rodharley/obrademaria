@@ -90,6 +90,13 @@ class Roteiro extends Persistencia {
         $sql = "select * from ag_roteiro where publish = 1 order by rand() limit 0,$qtd";
         return $this->getSQL($sql); 
     }
+
+
+    function getDescontosRandomicos($qtd){
+        $sql = "select r.* from ag_roteiro r inner join ag_grupo g on g.id = r.grupo where r.publish = 1 && g.desconto_avista > 0 order by rand() limit 0,$qtd";
+        return $this->getSQL($sql); 
+    }
+
     function getByContinent($continent,$count){
         return $this->getRows(0,$count,array("likes"=>"desc"),array("publish"=>"=1","continent"=>"='".$continent."'"));
     }
@@ -168,5 +175,13 @@ class Roteiro extends Persistencia {
     public function getRoteirosSemSlider(){
 		$sql = "select distinct g.* from ag_roteiro g left outer join ag_slide p on g.id = p.roteiro where p.id is null";
 			return $this->getSQL($sql);
-		}
+        }
+        
+        public function valorComDesconto(){
+            if($this->grupo->descontoAVista > 0){
+            return $this->grupo->valorPacote - ($this->grupo->valorPacote*($this->grupo->descontoAVista/100));
+            }else{
+                return $this->grupo->valorPacote;
+            }
+        }
 }
