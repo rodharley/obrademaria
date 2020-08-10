@@ -18,7 +18,7 @@ if(isset($_REQUEST['idGrupo'])){
     $interval = $dataHoje->diff($dataEmbarque);
     $meses = $interval->format('%m');
     //pega as cotacoes
-    $tpl->PARCELAMAXIMA = $meses;
+    
     $tpl->COTACAO = $oGrupo->cotacaoAVista;
     $tpl->COTACAO_ENTRADA = $oGrupo->cotacaoEntrada;
     $tpl->COTACAO_PARCELADO = $oGrupo->cotacaoParcelado;
@@ -58,6 +58,40 @@ if(isset($_REQUEST['idGrupo'])){
     }
     $tpl->GRUPO_MOEDA = $oGrupo->moeda->cifrao;
     $tpl->GRUPO_OPCIONAL = $oGrupo->possuiPacoteOpcional;
+//forma de pagamento customizada
+
+if($oGrupo->bitCustomizado == 1){
+    $tpl->NOME_CUSTOMIZADA = $oGrupo->nomeCustomizado;
+    $tpl->TEXT_CUSTOMIZADO = $oGrupo->textCustomizado;
+    $tpl->block("BLOCK_FORMA_CUSTOMIZADA");
+}
+if($oGrupo->bitBoleto == 1){
+    $tpl->block('BLOCK_BOLETO_AVISTA');
+    $tpl->block('BLOCK_BOLETO_ENTRADA');
+    //$tpl->PARCELA_BOLETO_MAXIMA = $meses < $oGrupo->parcelaBoleto ? $meses : $oGrupo->parcelaBoleto;
+}
+if($oGrupo->bitCheque == 1){
+    $tpl->PARCELA_CHEQUE_MAXIMA = $oGrupo->parcelaCheque != null && $oGrupo->parcelaCheque != '' ? $meses < $oGrupo->parcelaCheque ? $meses : $oGrupo->parcelaCheque : 1;
+    $tpl->block('BLOCK_CHEQUE_AVISTA');
+    $tpl->block('BLOCK_CHEQUE_ENTRADA');
+    $tpl->block('BLOCK_CHEQUE_ENTRADA_PARCELA');
+    $tpl->block('BLOCK_CHEQUE_PARCELADO');    
+}else{
+    $tpl->PARCELA_CHEQUE_MAXIMA = 1;
+}
+if($oGrupo->bitCartao == 1){
+    $tpl->PARCELA_CARTAO_MAXIMA = $oGrupo->parcelaCartao != null && $oGrupo->parcelaCartao != '' ? $oGrupo->parcelaCartao : 1;
+    $tpl->block('BLOCK_CARTAO_ENTRADA_PARCELA');
+    $tpl->block('BLOCK_CARTAO_PARCELADO');
+}else{
+    $tpl->PARCELA_CARTAO_MAXIMA = 1;
+}
+
+
+
+
+//montando os contratos
+
     switch($oGrupo->modeloContrato){
         case 'contrato1.php':
             $tpl2 = new Template("templates/contrato1.html");
@@ -75,7 +109,7 @@ if(isset($_REQUEST['idGrupo'])){
 
     }
 
-    $tpl2->CIFRAO = $oGrupo->moeda->cifrao;
+$tpl2->CIFRAO = $oGrupo->moeda->cifrao;
 $tpl2->nomeCompleto = "##nomeCompleto##";
 $tpl2->nacionalidade = "##nacionalidade##";
 $tpl2->estado_civil = "##estado_civil##";

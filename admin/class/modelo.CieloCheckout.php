@@ -60,7 +60,7 @@ class MyCieloCheckout extends Persistencia {
         return $this->getRows(0,4,array(),array("venda"=>"=".$vendaId,"payment_status"=>"!=2"));
     }
 
-    function createLinkPagamento($obParticipante,$obGrupo,$obVenda,$valor){
+    function createLinkPagamento($obParticipante,$obGrupo,$obVenda,$valor,$mesesParcelaCartao){
         try {
             if($obVenda->opcional)
                 $nomeItem = $obGrupo->nomePacote."+".$obGrupo->nomePacoteOpcional;
@@ -123,6 +123,7 @@ class MyCieloCheckout extends Persistencia {
             $properties = [
               'BoletoDiscount' => 0,
               'DebitDiscount' => 0,
+              'MaxNumberOfInstallments' => $mesesParcelaCartao,              
             ];
             $Payment = new Payment($properties);
             

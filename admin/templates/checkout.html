@@ -81,16 +81,18 @@
         </div>
         <div class="custom-control custom-radio">
           <input value="formaEntrada" id="formaEntrada" name="forma" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="formaEntrada">Entrada + Parcelado no Cartão em até 12X <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_ENTRADA_CURRENCY}</span></label>
+          <label class="custom-control-label" for="formaEntrada">Entrada + Parcelado <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_ENTRADA_CURRENCY}</span></label>
         </div>
         <div class="custom-control custom-radio">
           <input value="formaParcelado" id="formaParcelado" name="forma" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="formaParcelado">Parcelado <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_PARCELADO_CURRENCY}</span></label>
         </div>
+        <!-- BEGIN BLOCK_FORMA_CUSTOMIZADA -->
         <div class="custom-control custom-radio">
           <input value="formaOutros" id="formaOutros" name="forma" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="formaOutros">Outras Formas (Apenas Reservar Lugar)</label>
+          <label class="custom-control-label" for="formaOutros">{NOME_CUSTOMIZADA}</label>
         </div>
+        <!-- END BLOCK_FORMA_CUSTOMIZADA -->
       </div>
       
       <hr class="mb-4">
@@ -102,20 +104,34 @@
           <input value="transferencia" id="transferenciaAVista" name="pagamentoAVista" type="radio" class="custom-control-input" checked="" required="">
           <label class="custom-control-label" for="transferenciaAVista">Transferência Bancária</label>
         </div>
+        <!-- BEGIN BLOCK_BOLETO_AVISTA -->
         <div class="custom-control custom-radio">
           <input value="boleto" id="boletoAVista" name="pagamentoAVista" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="boletoAVista">Boleto (GerenciaNet)</label>
         </div>
+        <!-- END BLOCK_BOLETO_AVISTA-->
+        <!-- BEGIN BLOCK_CHEQUE_AVISTA -->
         <div class="custom-control custom-radio">
           <input value="cheque" id="chequeAVista" name="pagamentoAVista" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="chequeAVista" id="chequeAVistaLabel">Cheque</label>
         </div> 
-        
+        <!-- END BLOCK_CHEQUE_AVISTA -->
+      </div>
+    </div>
+    <div id="tipoCustomizado">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Informações</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Como proceder:</h6>
+          <p class="card-text">
+            {TEXT_CUSTOMIZADO}
+          </p>
+          
+        </div>
       </div>
     </div>
     
     <div id="tipoEntrada">
-
       <h5 class="mb-3">Entrada: <span id="valor20" class="badge badge-success"></span></h5>
       <div class="row">
       <div class="col-md-6 mb-3">
@@ -138,39 +154,50 @@
           <input value="transferencia" id="entradatransferenciaEntrada" name="entradaPagamentoEntrada" type="radio" class="custom-control-input" checked="" required="">
           <label class="custom-control-label" for="entradatransferenciaEntrada">Transferência Bancária</label>
         </div>
+        <!-- BEGIN BLOCK_BOLETO_ENTRADA -->
         <div class="custom-control custom-radio">
           <input value="boleto" id="entradaBoletoEntrada" name="entradaPagamentoEntrada" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="entradaBoletoEntrada">Boleto (GerenciaNet)</label>
         </div>
+        <!-- END BLOCK_BOLETO_ENTRADA -->
+        <!-- BEGIN BLOCK_CHEQUE_ENTRADA -->
         <div class="custom-control custom-radio">
           <input value="cheque" id="entradachequeEntrada" name="entradaPagamentoEntrada" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="entradachequeEntrada" id="entradachequeEntradaLabel">Cheque</label>
         </div> 
+        <!-- END BLOCK_CHEQUE_ENTRADA -->
       </div>
       <h5 class="mb-3">Parcelamento: <span id="valor80" class="badge badge-success"></span></h5>
+      <!-- BEGIN BLOCK_CARTAO_ENTRADA_PARCELA -->
       <div class="custom-control custom-radio">
         <input value="credit_card" id="creditoEntrada" name="pagamentoEntrada" checked type="radio" class="custom-control-input" required="">
-        <label class="custom-control-label" for="creditoEntrada" id="creditoEntradaLabel">Cartão de crédito (Cielo até 12 vezes sem juros)</label>
+        <label class="custom-control-label" for="creditoEntrada" id="creditoEntradaLabel">Cartão de crédito <span class="badge badge-success">(até {PARCELA_CARTAO_MAXIMA} vezes)</span></label>
       </div>
+      <!-- END BLOCK_CARTAO_ENTRADA_PARCELA -->
+      <!-- BEGIN BLOCK_CHEQUE_ENTRADA_PARCELA -->
       <div class="custom-control custom-radio">
         <input value="cheque" id="chequeEntrada" name="pagamentoEntrada" type="radio" class="custom-control-input" checked="" required="">
-        <label class="custom-control-label" for="chequeEntrada" id="chequeEntradaLabel">Cheque</label>
+        <label class="custom-control-label" for="chequeEntrada" id="chequeEntradaLabel">Cheque <span class="badge badge-success">(em {PARCELA_CHEQUE_MAXIMA} vezes)</span></label>
       </div>  
+      <!-- END BLOCK_CHEQUE_ENTRADA_PARCELA -->
     </div>
 
 
     <div id="tipoParcelado">
-      <h5 class="mb-3">Parcelado em <span id="qtdParcelas" class="badge badge-success"> {PARCELAMAXIMA} vezes</span></h5>
+      <h5 class="mb-3">Parcelado</h5>
       <div class="d-block my-3">
+        <!-- BEGIN BLOCK_CHEQUE_PARCELADO -->
         <div class="custom-control custom-radio">
           <input value="cheque" id="cheque" name="pagamentoParcelado" type="radio" class="custom-control-input" checked="" required="">
-          <label class="custom-control-label" for="cheque" id="chequeParceladoLabel">Cheque</label>
-        </div>    
+          <label class="custom-control-label" for="cheque" id="chequeParceladoLabel">Cheque <span class="badge badge-success">(em {PARCELA_CHEQUE_MAXIMA} vezes)</span></label>
+        </div>   
+        <!-- END BLOCK_CHEQUE_PARCELADO --> 
+        <!-- BEGIN BLOCK_CARTAO_PARCELADO -->
         <div class="custom-control custom-radio">
           <input value="credit_card" id="creditoParcelado" name="pagamentoParcelado" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="creditoParcelado" id="creditoEntradaLabel">Cartão de crédito (Cielo até 12 vezes sem juros)</label>
+          <label class="custom-control-label" for="creditoParcelado" id="creditoParceladoLabel">Cartão de crédito <span class="badge badge-success">(em {PARCELA_CARTAO_MAXIMA} vezes)</span></label>
         </div>   
-        
+        <!-- END BLOCK_CARTAO_PARCELADO -->
         <!--div class="custom-control custom-radio">
           <input value="3" id="paypal" name="pagamento" type="radio" class="custom-control-input" required="">
           <label class="custom-control-label" for="paypal">Paypal</label>
@@ -551,8 +578,8 @@
            quantidade = {QUANTIDADE};
            cupom =0;
            haveOptional = {GRUPO_OPCIONAL};
-           parcelamaxima = {PARCELAMAXIMA};
-
+           parcelaChequeMaxima = {PARCELA_CHEQUE_MAXIMA};
+           parcelaCartaoMaxima = {PARCELA_CARTAO_MAXIMA};
            valorPacote = {GRUPO_VALOR};
            valorAdesao = {GRUPO_VALOR_ADESAO};
            valorEmbarque = {GRUPO_VALOR_EMBARQUE};
@@ -677,6 +704,7 @@ function blockAcomp(numero,disabled){
           $("#tipoAVista").hide();
           $("#tipoParcelado").hide();
           $("#tipoEntrada").hide();
+          $("#tipoCustomizado").show('slow');
         }
 
         if($("#formaAVista").prop("checked")){
@@ -695,6 +723,7 @@ function blockAcomp(numero,disabled){
           $("#tipoAVista").show('slow');
           $("#tipoParcelado").hide();
           $("#tipoEntrada").hide();
+          $("#tipoCustomizado").hide();
         }
         if($("#formaEntrada").prop("checked")){
           dollar = cotacaoEntrada;
@@ -703,27 +732,33 @@ function blockAcomp(numero,disabled){
           if(idmoeda != 2){            
             $("#valor20").html("R$ "+floatToCurrency(totalGeral*dollar*percententrada)); 
             $("#valor80").html("R$ "+floatToCurrency(totalGeral*dollar*resto));
-            $("#chequeEntradaLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar*resto)/parcelamaxima));
+            $("#chequeEntradaLabel").html("Cheque <span class='badge badge-success'>"+parcelaChequeMaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar*resto)/parcelaChequeMaxima)+"</span>");
+            $("#creditoEntradaLabel").html("Cartão de crédito <span class='badge badge-success'>"+parcelaCartaoMaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar*resto)/parcelaCartaoMaxima)+"</span>");
             }else{
               $("#valor20").html("R$ "+totalGeral*percententrada);
               $("#valor80").html("R$ "+floatToCurrency(totalGeral*resto));
-              $("#chequeEntradaLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*resto)/parcelamaxima));
+              $("#chequeEntradaLabel").html("Cheque <span class='badge badge-success'>"+parcelaChequeMaxima+" vezes de R$ "+floatToCurrency((totalGeral*resto)/parcelaChequeMaxima)+"</span>");
+              $("#creditoEntradaLabel").html("Cartão de crédito <span class='badge badge-success'>"+parcelaCartaoMaxima+" vezes de R$ "+floatToCurrency((totalGeral*resto)/parcelaCartaoMaxima)+"</span>");
             }
           
           $("#tipoAVista").hide();
           $("#tipoParcelado").hide();
           $("#tipoEntrada").show('slow');
+          $("#tipoCustomizado").hide();
         }
         if($("#formaParcelado").prop("checked")){
           dollar = cotacaoParcelado;
           if(idmoeda != 2){  
-          $("#chequeParceladoLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar)/parcelamaxima));
+          $("#chequeParceladoLabel").html("Cheque <span  class='badge badge-success'>"+parcelaChequeMaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar)/parcelaChequeMaxima)+"</span>");
+          $("#creditoParceladoLabel").html("Cartão de crédito <span  class='badge badge-success'>"+parcelaCartaoMaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar)/parcelaCartaoMaxima)+"</span>");
           }else{
-            $("#chequeParceladoLabel").html("Cheque "+parcelamaxima+" vezes de R$ "+floatToCurrency((totalGeral)/parcelamaxima));  
+            $("#chequeParceladoLabel").html("Cheque <span class='badge badge-success'>"+parcelaChequeMaxima+" vezes de R$ "+floatToCurrency((totalGeral)/parcelaChequeMaxima)+"</span>");  
+            $("#creditoParceladoLabel").html("Cheque <span class='badge badge-success'>"+parcelaCartaoMaxima+" vezes de R$ "+floatToCurrency((totalGeral)/parcelaCartaoMaxima)+"</span>");  
           }
           $("#tipoAVista").hide();
           $("#tipoParcelado").show('slow');
           $("#tipoEntrada").hide();
+          $("#tipoCustomizado").hide();
         }
         
         if(idmoeda != 2){
