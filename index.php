@@ -2,7 +2,7 @@
 include("admin/tupi.inicializar.php"); 
 $roteiro = new Roteiro();
 $slide = new Slide();
-$sliders = $slide->getRows(0,99,array(),array("publish"=>"=1"));
+$sliders = $slide->getSQL("select s.* from ag_slide s inner join ag_roteiro r on r.id = s.roteiro inner join ag_grupo g on g.id = r.grupo where s.publish = 1 order by g.dataEmbarque asc");
 $continentes = $roteiro->getContinentesDispoiveis();
 $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 ?>
@@ -22,7 +22,7 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 				<?php foreach ($sliders as $key => $item) {
 					# code...
 				?>
-				<li data-index="rs-301<?=$key?>" data-transition="fade" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="1000"  data-thumb="images/slider/slider-back-01.jpg"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1000" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+				<li data-autoplay="true" data-autoplayTimeout="5000" data-index="rs-301<?=$key?>" data-transition="fade" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="1000"  data-thumb="images/slider/slider-back-01.jpg"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1000" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
 					<div class="slider-overlay"></div>
 					<!-- MAIN IMAGE -->
 					<img src="img/slider/<?= $item->image ?>" alt="Sky" class="rev-slidebg">
