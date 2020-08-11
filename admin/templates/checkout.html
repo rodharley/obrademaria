@@ -753,7 +753,7 @@ function blockAcomp(numero,disabled){
           $("#creditoParceladoLabel").html("Cartão de crédito <span  class='badge badge-success'>"+parcelaCartaoMaxima+" vezes de R$ "+floatToCurrency((totalGeral*dollar)/parcelaCartaoMaxima)+"</span>");
           }else{
             $("#chequeParceladoLabel").html("Cheque <span class='badge badge-success'>"+parcelaChequeMaxima+" vezes de R$ "+floatToCurrency((totalGeral)/parcelaChequeMaxima)+"</span>");  
-            $("#creditoParceladoLabel").html("Cheque <span class='badge badge-success'>"+parcelaCartaoMaxima+" vezes de R$ "+floatToCurrency((totalGeral)/parcelaCartaoMaxima)+"</span>");  
+            $("#creditoParceladoLabel").html("Cartão de crédito <span class='badge badge-success'>"+parcelaCartaoMaxima+" vezes de R$ "+floatToCurrency((totalGeral)/parcelaCartaoMaxima)+"</span>");  
           }
           $("#tipoAVista").hide();
           $("#tipoParcelado").show('slow');
