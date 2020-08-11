@@ -118,7 +118,7 @@ class Roteiro extends Persistencia {
         if($local != ''){
             $sql .= " and g.local = '$local'";
         }
-        $sql .= " order by g.ano asc";
+        $sql .= " order by g.dataEmbarque asc";
 
         $sql .= " limit $init, $end";
 

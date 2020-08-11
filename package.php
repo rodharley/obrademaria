@@ -86,7 +86,7 @@ if(isset($_GET['id'])){
 					<ul class="package-tab-menu" role="tablist" id="tab7">
 					<li role="presentation"  class="active"><a href="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a>
 						</li>	
-					<li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Descrição</a>
+					<li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Sobre o Roteiro</a>
 						</li>
 						<li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Roteiro</a>
 						</li>
@@ -135,7 +135,7 @@ if(isset($_GET['id'])){
 								<!-- left content -->
 								<div class="col-md-7 col-sm-7">
 									<div class="tour-description">
-										<h4>Descrição do Roteiro</h4>
+										
 										<p><?=$obRoteiro->description?></p>
 									</div>									
 								</div><!-- left-content -->
@@ -178,7 +178,7 @@ if(isset($_GET['id'])){
 							<div class="row">
 								<div class="col-md-12 col-sm-12">
 									<div class="tour-description">
-										<h4>Etinerário do Roteiro</h4>
+										
 										<div class="main-timeline">
 											<!-- single timeline -->
 											<?php foreach ($obRoteiro->itineraryes as $key => $etinerario) {
