@@ -59,8 +59,26 @@ if(isset($_REQUEST['idGrupo'])){
     $tpl->GRUPO_MOEDA = $oGrupo->moeda->cifrao;
     $tpl->GRUPO_OPCIONAL = $oGrupo->possuiPacoteOpcional;
 //forma de pagamento customizada
+$avista = 0;
+$parcelado = 0;
+if($oGrupo->bitBoleto == 1 || $oGrupo->bitCheque == 1 || $oGrupo->bitTransferencia == 1){
+    $tpl->FORMA_AVISTA_CHECKED = 'checked="checked"';
+    $tpl->block("BLOCK_FORMA_AVISTA");
+    $avista = 1;
+}
+if($oGrupo->bitCartao == 1 || $oGrupo->bitCheque == 1){
+    if($avista == 0){
+    $tpl->FORMA_ENTRADA_CHECKED = 'checked="checked"';
+    }
+    $tpl->block("BLOCK_FORMA_ENTRADA");
+    $tpl->block("BLOCK_FORMA_PARCELADO");
+    $parcelado = 1;
+}
 
 if($oGrupo->bitCustomizado == 1){
+    if($avista == 0 && $parcelado == 0){
+        $tpl->FORMA_CUSTOMIZADA_CHECKED = 'checked="checked"';
+    }
     $tpl->NOME_CUSTOMIZADA = $oGrupo->nomeCustomizado;
     $tpl->TEXT_CUSTOMIZADO = $oGrupo->textCustomizado;
     $tpl->block("BLOCK_FORMA_CUSTOMIZADA");
@@ -68,7 +86,7 @@ if($oGrupo->bitCustomizado == 1){
 if($oGrupo->bitBoleto == 1){
     $tpl->block('BLOCK_BOLETO_AVISTA');
     $tpl->block('BLOCK_BOLETO_ENTRADA');
-    //$tpl->PARCELA_BOLETO_MAXIMA = $meses < $oGrupo->parcelaBoleto ? $meses : $oGrupo->parcelaBoleto;
+ 
 }
 if($oGrupo->bitCheque == 1){
     $tpl->PARCELA_CHEQUE_MAXIMA = $oGrupo->parcelaCheque != null && $oGrupo->parcelaCheque != '' ? $meses < $oGrupo->parcelaCheque ? $meses : $oGrupo->parcelaCheque : 1;

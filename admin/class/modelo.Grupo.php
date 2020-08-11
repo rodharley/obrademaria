@@ -43,6 +43,7 @@ class Grupo extends Persistencia{
 	var $parcelaCheque;
 	var $nomeCustomizado;
 	var $textCustomizado;
+	var $bitTransferencia;
 	
 	public function STATUS_ANDAMENTO(){
 		return 1;
@@ -176,6 +177,7 @@ class Grupo extends Persistencia{
 		$this->bitBoleto = $_REQUEST['bitBoleto'];
 		$this->bitCartao = $_REQUEST['bitCartao'];
 		$this->bitCheque = $_REQUEST['bitCheque'];
+		$this->bitTransferencia = $_REQUEST['bitTransferencia'];
 		$this->bitCustomizado = $_REQUEST['bitCustomizado'];
 		$this->parcelaBoleto = $_REQUEST['parcelaBoleto'];
 		$this->parcelaCartao = $_REQUEST['parcelaCartao'];
@@ -322,7 +324,7 @@ class Grupo extends Persistencia{
 		$this->destino = $_POST['destino'];
 		$this->plano = $_POST['plano'];
 		$this->ano = $_REQUEST['ano'];
-
+		$this->bitTransferencia = $_REQUEST['bitTransferencia'];
 		$this->bitBoleto = $_REQUEST['bitBoleto'];
 		$this->bitCartao = $_REQUEST['bitCartao'];
 		$this->bitCheque = $_REQUEST['bitCheque'];

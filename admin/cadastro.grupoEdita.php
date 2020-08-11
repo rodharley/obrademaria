@@ -79,7 +79,8 @@ if(isset($_REQUEST['idGrupo'])){
 	}
 
 
-
+	$tpl->bitTransferenciaSim = $oGrupo->bitTransferencia == 1 ? 'checked="checked"' : '';
+	$tpl->bitTransferenciaNao = $oGrupo->bitTransferencia == 0 ? 'checked="checked"' : '';
 	$tpl->bitBoletoSim = $oGrupo->bitBoleto == 1 ? 'checked="checked"' : '';
 	$tpl->bitBoletoNao = $oGrupo->bitBoleto == 0 ? 'checked="checked"' : '';
 	$tpl->bitCartaoSim = $oGrupo->bitCartao == 1 ? 'checked="checked"' : '';

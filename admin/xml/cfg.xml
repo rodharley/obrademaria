@@ -279,6 +279,7 @@ set
 		<atrib tbname="bit_cheque" type="int">bitCheque</atrib>
 		<atrib tbname="bit_customizado" type="int">bitCustomizado</atrib>
 		<atrib tbname="parcela_boleto" type="int">parcelaBoleto</atrib>
+		<atrib tbname="bit_transferencia" type="int">bitTransferencia</atrib>
 		<atrib tbname="parcela_cartao" type="int">parcelaCartao</atrib>
 		<atrib tbname="parcela_cheque" type="int">parcelaCheque</atrib>
 		<atrib tbname="nome_customizado" type="txt">nomeCustomizado</atrib>

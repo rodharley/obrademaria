@@ -226,4 +226,6 @@ CREATE TABLE IF NOT EXISTS `ag_galeria_foto` (
 --
 ALTER TABLE `ag_galeria_foto`
   ADD CONSTRAINT `fk_galeria_foto` FOREIGN KEY (`galeria`) REFERENCES `ag_galeria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `ag_grupo` ADD `bit_transferencia` TINYINT NOT NULL DEFAULT '1' AFTER `text_customizado`; 
 COMMIT;
