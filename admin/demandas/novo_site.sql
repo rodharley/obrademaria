@@ -170,3 +170,60 @@ INSERT INTO `ag_menuperfil` (`id`, `idMenu`, `idPerfil`) VALUES (NULL, '52', '1'
 INSERT INTO `ag_menuperfil` (`id`, `idMenu`, `idPerfil`) VALUES (NULL, '50', '15'), (NULL, '51', '15');
 INSERT INTO `ag_menuperfil` (`id`, `idMenu`, `idPerfil`) VALUES (NULL, '52', '15');
 ALTER TABLE `ag_slide` ADD `publish` TINYINT(1) NOT NULL DEFAULT '0' AFTER `buttom_text`; 
+
+
+DROP TABLE IF EXISTS `ag_galeria`;
+CREATE TABLE IF NOT EXISTS `ag_galeria` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `grupo` int(11) NOT NULL,
+  `publish` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fk_grupo_galeria` (`grupo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+ALTER TABLE `ag_galeria` ADD CONSTRAINT `fk_grupo_galeria` FOREIGN KEY (`grupo`) REFERENCES `ag_grupo`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
+INSERT INTO `ag_menu` (`id`, `idMenuPai`, `descricao`, `url`) VALUES ('53', '50', 'Galerias', 'galeria.php'); 
+INSERT INTO `ag_menuperfil` (`id`, `idMenu`, `idPerfil`) VALUES (NULL, '53', '1'), (NULL, '53', '15'); 
+-- phpMyAdmin SQL Dump
+-- version 4.9.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 11-Ago-2020 às 18:09
+-- Versão do servidor: 8.0.18
+-- versão do PHP: 7.3.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Banco de dados: `obrademariadf1`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ag_galeria_foto`
+--
+
+DROP TABLE IF EXISTS `ag_galeria_foto`;
+CREATE TABLE IF NOT EXISTS `ag_galeria_foto` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `galeria` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_galeria_foto` (`galeria`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `ag_galeria_foto`
+--
+ALTER TABLE `ag_galeria_foto`
+  ADD CONSTRAINT `fk_galeria_foto` FOREIGN KEY (`galeria`) REFERENCES `ag_galeria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;

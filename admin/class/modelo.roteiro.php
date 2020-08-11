@@ -17,6 +17,9 @@ class Roteiro extends Persistencia {
     var $photos =null;
     var $publish;
 
+    function getByGrupo($idGrupo){
+        return $this->getRows(0,999,array(),array("grupo"=>"=".$idGrupo));
+    }
 
     function setCountDown($value){
         if($value == 1){

@@ -271,6 +271,10 @@ public function printInfoTransferencia(){
         Itaú<br/>
         <img src="img/bancos/itau.png" width="48"/>
         Ag. 522 - Cc 6071-4
+        <p>Após realizar a transferência, enviar comprovante para:
+        WhatsApp:<br/>
+    <img src="img/whatsapp.png" width="48"/>
+    +55 61 98100-7508
     </div></div>';
 }
 public function printInfoCheque(){

@@ -9,6 +9,7 @@ $obGrupo = new Grupo();
 $obCidade = new Cidade();
 $obParticipante = new Participante();
 $obPagamento = new Pagamento();
+$obRoteiro = new Roteiro();
 try{
 //grupo
 $obCheckout->conn->autocommit(false);
@@ -206,6 +207,19 @@ if($obCheckout->conn->commit()){
     $html .= "Você está recebendo este email porque acabou de se inscrever em nosso roteiro de peregrinação : ".$obGrupo->nomePacote.".<br/><br/>";
     $html .= "Sua inscrição foi realizada com sucesso!</br>Para dar continuidade, clique no link abaixo para realizar o pagamento ou entre em contato conosco!<br/>";
     $html .= "<a href='".$obGrupo->urlSite."/bilhete.php?charge_id=".$obVenda->id."'>Acessar minha reserva</a>";
+
+
+    //ROTEIRO 
+    $roteiros = $obRoteiro->getByGrupo($obGrupo->id);
+    if(count($roteiros) > 0){
+    $html .= "<h4>Roteiro do seu pacote turístico:</h4>";
+    $roteiro = $roteiros[0];
+    foreach($roteiro->itineraryes as $key => $it){
+        $html .= $it->order."-".$it->title."<br/>";
+        $html .= $it->description."<br/><br/>";
+    }
+    }
+
     $tplemail = new Template("../../templates/tpl_email_ecommerce.html");
     $tplemail->CONTEUDO = $html;
     $obVenda->mail_html($_REQUEST['email'],$obVenda->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());

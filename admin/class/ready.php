@@ -57,4 +57,6 @@ include('modelo.etinerario.php');
 include('modelo.foto.php');
 include('modelo.review.php');
 include('modelo.video.php');
+include('modelo.galeria.php');
+include('modelo.galeriaFoto.php');
 ?>

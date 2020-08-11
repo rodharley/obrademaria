@@ -212,6 +212,18 @@ set
 		<atrib tbname="name" type="txt">name</atrib>
 		<atrib tbname="roteiro" type="fk" lazy="true" clrelation="Roteiro">roteiro</atrib>
 </class>
+<class name="Galeria" tbname="ag_galeria" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>
+		<atrib tbname="name" type="txt">name</atrib>
+		<atrib tbname="publish" type="int">publish</atrib>
+		<atrib tbname="grupo" type="fk" lazy="true" clrelation="Grupo">grupo</atrib>
+		<atrib tbname="" type="set" lazy="true" clrelation="GaleriaFoto" clorder="id" clfk="galeria">photos</atrib>
+</class>
+<class name="GaleriaFoto" tbname="ag_galeria_foto" tbid="id" lazy="true">
+		<atrib tbname="id" type="id">id</atrib>
+		<atrib tbname="name" type="txt">name</atrib>
+		<atrib tbname="galeria" type="fk" lazy="true" clrelation="Galeria">galeria</atrib>
+</class>
 <class name="GerenciaNetCheckOut" tbname="ag_gerencianet" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>
 		<atrib tbname="id_participante" type="fk" lazy="true" clrelation="Participante">participante</atrib>

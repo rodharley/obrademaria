@@ -1,0 +1,139 @@
+<script>
+    $(document).ready(function(){
+        $("#galeria").change(function(){
+            window.location.href = 'galeria.php?id='+$("#galeria").val();
+        });
+        $("#excluirGaleria").click(function(){
+            if($("#galeria").val() != 0){
+                if(confirm("Tem certeza que deseja excluir essa Galeria")){
+                    window.location.href = 'galeria.response.php?acao=excluir&id='+$("#galeria").val();
+                }
+            }
+        });
+        $(".excluirFoto").click(function(){
+            if(confirm("Tem certeza que deseja excluir essa foto")){
+                    window.location.href = 'galeria.response.php?acao=excluirfoto&id='+$("#galeria").val()+'&idfoto='+$(this).attr('id');
+                }
+        });
+        $(".removeItinerary").click(function(){
+            if(confirm("Tem certeza que deseja excluir esse etinerário")){
+                    window.location.href = 'roteiro.response.php?acao=ecluirItinerary&id='+$("#roteiro").val()+'&iditineray='+$(this).attr('id');
+                }
+        });
+    });
+</script>
+<section>
+    <h1>Galerias<br/><small>EDITAR GALERIAS DE FOTOS.</small></h1>
+    <div class="row">
+        <div class="form-field span10">
+            <div class="control-group">
+                <label for="roteiro" class="control-label">Galerias:</label>
+                <select name="galeria" id="galeria" class="span10" >
+                    <option value="0" style="background-color: aqua;" >NOVA GALERIA</option>
+                    <!-- BEGIN BLOCK_GALERIA -->
+                    <option value="{ID_GALERIA}" {SELECTED_GALERIA} >{NOME_GALERIA}</option>
+                    <!-- END BLOCK_GALERIA-->
+                </select>
+                
+            </div>
+        </div>
+
+
+        <div class="form-field span2">
+            <div class="control-group">
+                <label for="roteiro" class="control-label">EXCLUIR:</label>
+                <button class="btn btn-danger" id="excluirGaleria">Excluir</button>
+            </div>
+        </div>
+    </div>
+   
+    <ul class="nav nav-tabs">
+        <li class="{ACITVE_0}"><a href="#home" data-toggle="tab">DADOS GERAIS</a></li>
+        <!-- BEGIN BLOCK_EDITAR_PILL -->
+        <li class="{ACITVE_1}"><a href="#settings" data-toggle="tab">FOTOS</a></li>
+        <!-- END BLOCK_EDITAR_PILL -->
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane {ACITVE_0}" id="home">
+            <fieldset>
+                <legend>DADOS GERAIS</legend>
+                <form class="form" id="frmEdit" method="post" action="galeria.response.php">
+                    <div class="row">
+                        <div class="form-field span12">
+                            <div class="control-group">
+                                <label for="grupo" class="control-label">GRUPO:</label>
+                                <select required name="grupo" id="grupo" class="span12">
+                                    <!-- BEGIN BLOCK_GRUPO -->
+                                    <option value="{ID_GRUPO}" {SELECTED_GRUPO} >{NOME_GRUPO}</option>
+                                    <!-- END BLOCK_GRUPO-->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="row">
+                        <div class="form-field span8">
+                            <div class="control-group">
+                                <label for="likes" class="control-label">Título:</label>
+                                <p class="text-mutted">título da galeria</p>
+                                <input required type="text"  class="form-control span8 input-xlarge" name="name" value="{NAME}"/>
+                            </div>
+                        </div>
+                        <div class="form-field span4">
+                            <div class="control-group">
+                                <label for="publish" class="control-label">Publicado:</label>
+                                <p>Se sim, aparece no site</p>
+                                <input type="radio" name="publish" value="1" {PUBSIM}/> SIM
+                                <input type="radio" name="publish" value="0" {PUBNAO}/> NÃO
+                            </div>
+                        </div>
+                        
+                </div>                
+                <div class="form-actions">
+                        <input type="hidden" value="dadosGerais" name="acao" id="acao" />
+                        <input type="hidden" value="{ID}" name="id" id="idGeral" />
+                        <button class="btn btn-primary" type="submit">SALVAR</button>
+                </div>
+                </form>
+            </fieldset>
+        </div>
+        <!-- BEGIN BLOCK_EDITAR -->
+        
+        <div class="tab-pane {ACITVE_1}" id="settings">
+            <fieldset>
+                <legend>FOTOS</legend>
+                <form class="form" id="frmEdit" method="post" action="galeria.response.php" enctype="multipart/form-data" >
+                <div class="row">
+                 <div class="form-field span12">
+                    <div class="control-group">
+                        <label for="foto" class="control-label">Foto:</label>
+                        <p>(tamanho qualquer)</p>
+                        <input required name="foto" type="file" class="form-control span12 input-xlarge"/>                
+                    </div>
+                    
+                </div>
+                </div>
+                <div class="form-actions">
+                    <input type="hidden" value="foto" name="acao" id="acao" />
+                    <input type="hidden" value="{ID}" name="id" id="idFoto" />
+                    <button class="btn btn-primary" type="submit">ENVIAR FOTO</button>
+                </div>
+                <div class="row">
+                    <!-- BEGIN BLOCK_FOTO -->
+                    <div class="span3">
+                       <img src="../img/galery/{FOTO}" style="height: 100px;"/>
+                       <button type="button" class="btn btn-danger excluirFoto" id="{ID_FOTO}"><i class="icon-trash icon-white"></i></button>
+                        
+                    </div>
+                    <!-- END BLOCK_FOTO -->
+                </div>
+                
+                </form>
+            </fieldset>
+        </div>
+        
+
+
+        <!-- END BLOCK_EDITAR -->
+      </div>
+</section>
