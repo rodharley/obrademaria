@@ -40,7 +40,10 @@ include('include-header.php');?>
 <div class="to-top pos-rtive">
 	<a href="#"><i class = "fa fa-angle-up"></i></a>
 </div> <!-- Scroll to top jump button end-->
-
  <?php include('include-footer.php');?>
+ <!-- google map api -->
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6sBJvPMjAf9eTPzWE53dZDBppxTUOuMU"></script>
+    <!-- map js -->
+    <script src="js/google-map.js"></script> 
 </body>
 </html>
