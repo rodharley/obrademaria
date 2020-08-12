@@ -26,8 +26,9 @@ class Slide extends Persistencia {
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->image = $nome;
             $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize(1680,990, 'fill');
-            $resize->saveToFile($this->getFolder().$nome);
+            $resize = $picture->resize(1680,null, 'fill');
+            $crop = $resize->crop(0,'25%',1680,990);
+            $crop->saveToFile($this->getFolder().$nome);
         }
     }
     

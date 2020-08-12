@@ -16,9 +16,30 @@ class Foto extends Persistencia {
             $this->name = $nome;
             $this->roteiro = $roteiro;
 
+            $qtd = count($roteiro->photos)+1;
+
+                $x = floor($qtd/8);
+                if($qtd == 1+intval($x*8)){
+                    $width = 700;
+                    $heigth = 466;
+
+                }else if($qtd == 4+intval($x*8)){
+                    $width = 281;
+                    $heigth = 386;
+
+                }else{
+
+                    $width = 281;
+                    $heigth = 190;
+                } 
+
+               
+
             $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize(360, null, 'fill');
+            $resize = $picture->resize($width, $heigth, 'fill');
             $resize->saveToFile($this->getFolder().$nome);
+
+
             $this->save();
         }
     }

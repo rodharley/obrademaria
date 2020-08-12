@@ -60,8 +60,9 @@ class Roteiro extends Persistencia {
             $this->cardImage = $nome;
 
             $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize(360,310, 'fill');
-            $resize->saveToFile($this->getFolder().$nome);
+            $resize = $picture->resize(360,null, 'fill');
+            $crop = $resize->crop(0,'25%',360,310);
+            $crop->saveToFile($this->getFolder().$nome);
             
         }
     }
@@ -75,8 +76,9 @@ class Roteiro extends Persistencia {
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->image = $nome;
             $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize(1680,550, 'fill');
-            $resize->saveToFile($this->getFolder().$nome);
+            $resize = $picture->resize(1680,null, 'fill');
+            $crop = $resize->crop(0,'25%',1680,550);
+            $crop->saveToFile($this->getFolder().$nome);
         }
     }
 
