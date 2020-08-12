@@ -9,6 +9,7 @@ $obGrupo = new Grupo();
 $obFoto = new Foto();
 $obVideo = new Video();
 $obEtinerario = new Etinerario();
+$obReview = new Review();
 
 $aba="0";
 if($id != ''){
@@ -85,6 +86,15 @@ switch($_REQUEST['acao']){
         $obFoto->excluir();
         $aba= "3";
     break;
+    case 'review':
+        $obReview->salvaReview($_FILES['foto'],$_REQUEST['name'],$_REQUEST['data'],$_REQUEST['coment'],$obRoteiro); 
+        $aba= "5";   
+        break;
+        case 'excluirreview':
+            $obReview->getById($_REQUEST['idReview']);
+            $obReview->excluir();
+            $aba= "5";
+        break;
     case 'itinerary':
         $obEtinerario->salva($_REQUEST['order'],$_REQUEST['title'],$_REQUEST['description'],$obRoteiro);    
         $aba= "4";

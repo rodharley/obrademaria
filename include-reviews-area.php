@@ -21,7 +21,7 @@ if(count($reviews)>0){
 						<div class="carousel-images slider-nav">
                             <?php foreach($reviews as $key => $rev){ ?>
                             <div>
-								<img src="img/packages/<?=$rev->roteiro->cardImage?>" alt="1" class="">
+								<img src="img/reviews/<?=$rev->photo?>" alt="1" class="">
                             </div>
                             <? } ?>							
 						</div>
@@ -33,6 +33,7 @@ if(count($reviews)>0){
                     <?php foreach($reviews as $key => $rev){ ?>
                         <div class="testimonial-message">
 							<div class="message">
+								<h4 class="color-two"><?= $rev->roteiro->cardTitle?></h4>
 								<p><?= $rev->review?></p>
 							</div>
 							<div class="rating">

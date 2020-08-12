@@ -76,9 +76,48 @@ if(isset($_GET['id'])){
 							</ul>
 						</div>
 					<?php if(count($obRoteiro->photos) > 0){ ?>
-					<div class="package-features-image">
+					<div class="row">
+						<div class="col-md-6  col-sm-12">
+						<div class="package-features-image">
 						<img src="img/fotos/<?=$obRoteiro->photos[0]->name?>" alt="" class="img-responsove border-raduis-3">
 					</div>
+						</div>
+						<div class="col-md-6  col-sm-12 tab-content">
+						<div class="additional-info">
+										<div class="info-title">
+											<h4>Informaçoes Adicionais</h4>
+											<div class="row">
+												<div class="col-md-7 col-sm-7">
+													<div class="info-list">
+														<p><span><i class="fa fa-money"></i></span>Adesão</p>
+														<p><span><i class="fa fa-money"></i></span>Taxa de Embarque</p>
+														<p><span><i class="fa fa-map-marker"></i></span>Local</p>
+														<p><span><i class="fa fa-clock-o"></i></span>Duração</p>
+														<p><span><i class="fa fa-user"></i></span>Idade Mín.</p>
+														<p><span><i class="fa fa-users"></i></span>Máx. de Pessoas</p>
+														<p><span><i class="fa fa-plane"></i></span>Embrarque</p>
+														<p><span><i class="fa fa-calendar-check-o"></i></span>Chegada</p>
+														
+													</div>
+												</div>
+												<div class="col-md-5 col-sm-5">
+													<div class="info-details">														
+														<p><?= $obRoteiro->grupo->moeda->cifrao." ".$obRoteiro->money($obRoteiro->grupo->valorAdesao,"atb")?></p>
+														<p><?= $obRoteiro->grupo->moeda->cifrao." ".$obRoteiro->money($obRoteiro->grupo->valorTaxaEmbarque,"atb")?></p>
+														<p><?= $obRoteiro->grupo->local?></p>
+														<p><?= $obRoteiro->grupo->duracao?> dias</p>
+														<p><?= $obRoteiro->grupo->idadeMinima?>+</p>
+														<p><?= $obRoteiro->grupo->maxPessoa?></p>
+														<p><?= $obRoteiro->convdata($obRoteiro->grupo->dataEmbarque,"mtn");?></p>
+														<p><?= $obRoteiro->convdata($obRoteiro->grupo->dataChegada,"mtn");?></p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						</div>
+					</div>
+					
 					<?php }?>
 				</div><!-- tab menu strat -->
 
@@ -133,44 +172,14 @@ if(isset($_GET['id'])){
 							
 							<div class="row">
 								<!-- left content -->
-								<div class="col-md-7 col-sm-7">
+								<div class="col-md-12 col-sm-12">
 									<div class="tour-description">
 										
 										<p><?=$obRoteiro->description?></p>
 									</div>									
 								</div><!-- left-content -->
 
-								<!-- right content -->
-								<div class="col-md-5 col-sm-5">
-									<div class="additional-info">
-										<div class="info-title">
-											<h4>Informaçoes Adicionais</h4>
-											<div class="row">
-												<div class="col-md-7 col-sm-7">
-													<div class="info-list">
-														<p><span><i class="fa fa-map-marker"></i></span>Local</p>
-														<p><span><i class="fa fa-clock-o"></i></span>Duração</p>
-														<p><span><i class="fa fa-user"></i></span>Idade Mín.</p>
-														<p><span><i class="fa fa-users"></i></span>Máx. de Pessoas</p>
-														<p><span><i class="fa fa-plane"></i></span>Embrarque</p>
-														<p><span><i class="fa fa-calendar-check-o"></i></span>Chegada</p>
-														
-													</div>
-												</div>
-												<div class="col-md-5 col-sm-5">
-													<div class="info-details">
-														<p><?= $obRoteiro->grupo->local?></p>
-														<p><?= $obRoteiro->grupo->duracao?> dias</p>
-														<p><?= $obRoteiro->grupo->idadeMinima?>+</p>
-														<p><?= $obRoteiro->grupo->maxPessoa?></p>
-														<p><?= $obRoteiro->convdata($obRoteiro->grupo->dataEmbarque,"mtn");?></p>
-														<p><?= $obRoteiro->convdata($obRoteiro->grupo->dataChegada,"mtn");?></p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div><!-- right content -->
+								
 							</div>
 						</div>
 
@@ -239,7 +248,7 @@ if(isset($_GET['id'])){
 													<div class="single-comments">
 														<div class="main">
 															<div class="head">
-															<img src="images/abstract-user.png" alt="#" />
+															<img src="img/reviews/<?=$review->photo?>" alt="#" />
 																<h4><?=$review->name?></h4>
 															</div>
 															<div class="body">
@@ -253,7 +262,7 @@ if(isset($_GET['id'])){
 												</div><!--/ End Comments -->
 											
 											
-												<div class="comment-respond">
+												<!-- div class="comment-respond">
 													<div class="comment-reply-title">
 														<h3>Deixe seu comentário</h3>
 													</div>
@@ -280,7 +289,7 @@ if(isset($_GET['id'])){
 															<input type="hidden" name="roteiro" value="<?=$obRoteiro->id?>"/>
 														</form>
 													</div>
-												</div>
+												</div -->
 											
 										
 									</div>

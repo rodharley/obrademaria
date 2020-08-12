@@ -233,4 +233,10 @@ ALTER TABLE `ag_grupo` ADD `bit_transferencia` TINYINT NOT NULL DEFAULT '1' AFTE
 -- 12/08/2020
 ALTER TABLE `ag_galeria_foto` ADD `type` INT NOT NULL DEFAULT '0' AFTER `galeria`; 
 ALTER TABLE `ag_galeria_foto` ADD `description` VARCHAR(500) NULL AFTER `type`; 
+
+ALTER TABLE `ag_review` DROP FOREIGN KEY fk_review_cliente;
+ALTER TABLE `ag_review` DROP INDEX `fk_review_cliente`;
+ALTER TABLE `ag_review` DROP `email`;
+ALTER TABLE `ag_review` DROP `cliente`;
+ALTER TABLE `ag_review` ADD `photo` VARCHAR(255) NOT NULL AFTER `name`; 
 COMMIT;

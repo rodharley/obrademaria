@@ -20,6 +20,7 @@ $tpl->ACITVE_1 = $aba == 1 ? 'active' : '';
 $tpl->ACITVE_2 = $aba == 2 ? 'active' : '';
 $tpl->ACITVE_3 = $aba == 3 ? 'active' : '';
 $tpl->ACITVE_4 = $aba == 4 ? 'active' : '';
+$tpl->ACITVE_5 = $aba == 5 ? 'active' : '';
 
 
 
@@ -59,6 +60,18 @@ foreach($rsfotos as $key => $value){
     $tpl->ID_FOTO = $value->id;
     $tpl->block("BLOCK_FOTO");
 }
+
+foreach($obRoteiro->reviews as $key => $value){
+    $tpl->FOTO_REVIEW = $value->photo;
+    $tpl->ID_REVIEW = $value->id;
+    $tpl->COMENT_REVIEW = $value->review;
+    $tpl->COMENT_NAME = $value->name;
+    $tpl->COMENT_DATE = $obRoteiro->convdata($value->date,"mtnh");
+    $tpl->block("BLOCK_REVIEW");
+}
+
+
+
 
 
 foreach($obRoteiro->itineraryes as $key => $value){

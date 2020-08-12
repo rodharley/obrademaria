@@ -400,9 +400,8 @@ set
 		<atrib tbname="id" type="id">id</atrib>
 		<atrib tbname="review" type="txt">review</atrib>
 		<atrib tbname="name" type="txt">name</atrib>
-		<atrib tbname="email" type="txt">email</atrib>
+		<atrib tbname="photo" type="txt">photo</atrib>
 		<atrib tbname="date" type="txt">date</atrib>
-		<atrib tbname="cliente" type="fk" lazy="true" clrelation="Cliente">cliente</atrib>	
 		<atrib tbname="roteiro" type="fk" lazy="true" clrelation="Roteiro">roteiro</atrib>
 </class>
 <class name="Roteiro" tbname="ag_roteiro" tbid="id" lazy="true">
