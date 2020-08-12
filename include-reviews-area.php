@@ -21,7 +21,7 @@ if(count($reviews)>0){
 						<div class="carousel-images slider-nav">
                             <?php foreach($reviews as $key => $rev){ ?>
                             <div>
-								<img src="img/reviews/<?=$rev->photo?>" alt="1" class="">
+								<img src="img/reviews/<?=$rev->photo?>" alt="1" class="img-circle">
                             </div>
                             <? } ?>							
 						</div>
