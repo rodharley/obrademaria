@@ -75,13 +75,15 @@ if(isset($_GET['id'])){
 								</li>
 							</ul>
 						</div>
-					<?php if(count($obRoteiro->photos) > 0){ ?>
+					
 					<div class="row">
+					<?php if(count($obRoteiro->photos) > 0){ ?>
 						<div class="col-md-6  col-sm-12">
 						<div class="package-features-image">
 						<img src="img/fotos/<?=$obRoteiro->photos[0]->name?>" alt="" class="img-responsove border-raduis-3">
 					</div>
 						</div>
+						<?php }?>
 						<div class="col-md-6  col-sm-12 tab-content">
 						<div class="additional-info">
 										<div class="info-title">
@@ -118,7 +120,7 @@ if(isset($_GET['id'])){
 						</div>
 					</div>
 					
-					<?php }?>
+					
 				</div><!-- tab menu strat -->
 
 				<div class="package-tab-menu">
