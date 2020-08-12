@@ -62,6 +62,7 @@ class MyCieloCheckout extends Persistencia {
 
     function createLinkPagamento($obParticipante,$obGrupo,$obVenda,$valor,$mesesParcelaCartao){
         try {
+          
             if($obVenda->opcional)
                 $nomeItem = $obGrupo->nomePacote."+".$obGrupo->nomePacoteOpcional;
                 else
@@ -123,7 +124,7 @@ class MyCieloCheckout extends Persistencia {
             $properties = [
               'BoletoDiscount' => 0,
               'DebitDiscount' => 0,
-              'MaxNumberOfInstallments' => $mesesParcelaCartao,              
+              'MaxNumberOfInstallments' => intval($mesesParcelaCartao),              
             ];
             $Payment = new Payment($properties);
             
@@ -155,9 +156,10 @@ class MyCieloCheckout extends Persistencia {
               'Options' => $Options,
             ];
             $Order = new Order($properties);
-             
+
             $headers = array('Accept' => 'application/json','MerchantId'=>$this->cieloClientID,'Content-Type'=>'application/json; charset=utf-8');
-		        $query = Unirest\Request\Body::json($Order);
+            $query = Unirest\Request\Body::json($Order);
+
             $response = Unirest\Request::post($this->endpointCielo.'/orders', $headers, $query);
             
             if($response->code != 200 && $response->code != 201){

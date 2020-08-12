@@ -71,7 +71,9 @@ if($oGrupo->bitCartao == 1 || $oGrupo->bitCheque == 1){
     $tpl->FORMA_ENTRADA_CHECKED = 'checked="checked"';
     }
     $tpl->block("BLOCK_FORMA_ENTRADA");
-    $tpl->block("BLOCK_FORMA_PARCELADO");
+    if($oGrupo->bitCheque == 1){
+        $tpl->block("BLOCK_FORMA_PARCELADO");
+    }
     $parcelado = 1;
 }
 
