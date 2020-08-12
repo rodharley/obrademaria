@@ -100,7 +100,7 @@ if($oGrupo->bitCheque == 1){
 if($oGrupo->bitCartao == 1){
     $tpl->PARCELA_CARTAO_MAXIMA = $oGrupo->parcelaCartao != null && $oGrupo->parcelaCartao != '' ? $oGrupo->parcelaCartao : 1;
     $tpl->block('BLOCK_CARTAO_ENTRADA_PARCELA');
-    $tpl->block('BLOCK_CARTAO_PARCELADO');
+    //$tpl->block('BLOCK_CARTAO_PARCELADO');
 }else{
     $tpl->PARCELA_CARTAO_MAXIMA = 1;
 }
