@@ -31,7 +31,7 @@ switch($_REQUEST['acao']){
     break;
     
    case 'foto':
-    $obGaleria->salvaFoto($_FILES['foto']); 
+    $obGaleria->salvaFoto($_FILES['foto'],$_REQUEST['description']); 
     $aba= "1";   
     break;
     case 'excluirfoto':

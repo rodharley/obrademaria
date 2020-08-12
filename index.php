@@ -172,7 +172,9 @@ $roteirosPartida = $roteiro->pesquisar('','','',false,0,6);
 <?php }?>
 <? include('include-countdown-area.php');?>
 <? include('include-reviews-area.php');?>
+<? include('include-galerys-area.php');?>
 <? include('include-footer-area.php');?>
+
 <div class="to-top pos-rtive">
 	<a href="#"><i class = "fa fa-angle-up"></i></a>
 </div><!-- Scroll to top-->    

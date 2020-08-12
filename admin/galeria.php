@@ -28,6 +28,7 @@ $tpl->PUBNAO =$obGaleria->publish == 0 ? 'checked="true"' : '';
 foreach($obGaleria->photos as $key => $value){
     $tpl->FOTO = $value->name;
     $tpl->ID_FOTO = $value->id;
+    $tpl->DESCRIPTION_FOTO = $value->description;
     $tpl->block("BLOCK_FOTO");
 }
 $tpl->block("BLOCK_EDITAR");

@@ -228,4 +228,9 @@ ALTER TABLE `ag_galeria_foto`
   ADD CONSTRAINT `fk_galeria_foto` FOREIGN KEY (`galeria`) REFERENCES `ag_galeria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `ag_grupo` ADD `bit_transferencia` TINYINT NOT NULL DEFAULT '1' AFTER `text_customizado`; 
+
+
+-- 12/08/2020
+ALTER TABLE `ag_galeria_foto` ADD `type` INT NOT NULL DEFAULT '0' AFTER `galeria`; 
+ALTER TABLE `ag_galeria_foto` ADD `description` VARCHAR(500) NULL AFTER `type`; 
 COMMIT;

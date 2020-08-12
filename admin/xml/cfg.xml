@@ -222,6 +222,8 @@ set
 <class name="GaleriaFoto" tbname="ag_galeria_foto" tbid="id" lazy="true">
 		<atrib tbname="id" type="id">id</atrib>
 		<atrib tbname="name" type="txt">name</atrib>
+		<atrib tbname="description" type="txt">description</atrib>
+		<atrib tbname="type" type="int">type</atrib>
 		<atrib tbname="galeria" type="fk" lazy="true" clrelation="Galeria">galeria</atrib>
 </class>
 <class name="GerenciaNetCheckOut" tbname="ag_gerencianet" tbid="id" lazy="true">

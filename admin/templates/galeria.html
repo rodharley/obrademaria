@@ -104,11 +104,19 @@
                 <legend>FOTOS</legend>
                 <form class="form" id="frmEdit" method="post" action="galeria.response.php" enctype="multipart/form-data" >
                 <div class="row">
-                 <div class="form-field span12">
+                    <div class="form-field span6">
+                        <div class="control-group">
+                            <label for="foto" class="control-label">Descrição:</label>
+                            <p>Descrição ou crédito da foto </p>
+                            <input name="description" type="text" class="form-control span6 input-xlarge"/>                
+                        </div>
+                        
+                    </div>
+                 <div class="form-field span6">
                     <div class="control-group">
                         <label for="foto" class="control-label">Foto:</label>
                         <p>(tamanho qualquer)</p>
-                        <input required name="foto" type="file" class="form-control span12 input-xlarge"/>                
+                        <input required name="foto" type="file" class="form-control span6 input-xlarge"/>                
                     </div>
                     
                 </div>
@@ -122,6 +130,7 @@
                     <!-- BEGIN BLOCK_FOTO -->
                     <div class="span3">
                        <img src="../img/galery/{FOTO}" style="height: 100px;"/>
+                       <p>{DESCRIPTION_FOTO}</p>
                        <button type="button" class="btn btn-danger excluirFoto" id="{ID_FOTO}"><i class="icon-trash icon-white"></i></button>
                         
                     </div>
