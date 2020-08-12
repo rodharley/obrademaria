@@ -33,8 +33,15 @@ class Review extends Persistencia {
             $this->roteiro = $roteiro;
 
             $picture = WideImage::load($this->getFolder().$nomefoto);
-            $resize = $picture->resize(300, 300, 'fill');
-            $resize->saveToFile($this->getFolder().$nomefoto);
+            if($picture->getHeight() > $picture->getWidth()){
+            $resize = $picture->resize(300,null, 'fill');
+            $crop = $resize->crop(0,'25%',300,300);
+            }else{
+                $resize = $picture->resize(null,300, 'fill');
+            $crop = $resize->crop('25%',0,300,300);
+            }
+            $crop->saveToFile($this->getFolder().$nomefoto);
+
             $this->save();
         }
     }
