@@ -23,6 +23,21 @@ $oStatusGrupo = new StatusGrupo();
 $tpl->ACAO = "Incluir";
 $idMoedaAtual = 0;
 $idEstatusAtual = 0;
+
+	$tpl->bitTransferenciaNao = 'checked="checked"';
+	
+	$tpl->bitBoletoNao = 'checked="checked"';
+	
+	$tpl->bitCartaoNao =  'checked="checked"';
+	
+	$tpl->bitChequeNao = 'checked="checked"';
+	
+	$tpl->bitCustomizadoNao = 'checked="checked"';
+	$tpl->parcelaBoleto = 1;
+	$tpl->parcelaCartao = 1;
+	$tpl->parcelaCheque = 1;
+	$tpl->nomeCustomizado = '';
+	$tpl->textCustomizado = '';
 if(isset($_REQUEST['idGrupo'])){
 	$oGrupo->getById($oGrupo->md5_Decrypt($_REQUEST['idGrupo']));	
 	$tpl->nomePacote = $oGrupo->nomePacote;
