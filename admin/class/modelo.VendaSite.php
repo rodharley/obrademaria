@@ -288,8 +288,8 @@ public function printInfoCustomizado(){
 public function printInfoCheque(){
     return '<div class="card"><div class="card-body">
     Pagamentos em cheque, deve entrar em contato <br/>
-    Obra de Maria DF 
-    Telefone:<br/> +55 61 3201-5116
+    Obra de Maria DF<br/> 
+    Telefone:<br/> +55 61 3201-5116<br/>
     WhatsApp:<br/>
     <img src="img/whatsapp.png" width="48"/>
     +55 61 9 8352-0475
