@@ -274,7 +274,7 @@ class MyCieloCheckout extends Persistencia {
           $this->test_transaction = $order->test_transaction;
           $this->save();
    switch($order->payment_status){
-       case '7':          
+       case '2':          
            $this->gerarPagamentos($order->amount);
            //enviando email com dados da compra:
           $html = "Parabéns peregrino ".$this->venda->participante->nomeCompleto.", Seu Pagamento de R$ ".$this->money($this->amount,"atb")." foi aprovado!<br/><br/>";
