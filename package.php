@@ -359,7 +359,7 @@ if(isset($_GET['id'])){
 							<p>Entre em contato conosco</p>
 							<ul class="contact-for-add">
 								<li><img src="images/icon/phone.png" alt="">61 3201-5116</li>
-								<li><img src="images/icon/gmail.png" alt="">vendas@obrademariadf.com.br</li>
+								<li><img src="images/icon/gmail.png" alt="">brasilia@obrademaria.com.br</li>
 							</ul>
 						</div>
 					</div>
