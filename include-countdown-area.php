@@ -8,7 +8,7 @@ if($return){
 		<div class="row">
 			<div class="col-md-12 col-sm-12-col-xs-12">
 				<div class="count-down-titile">
-					<h3>Viagem Especial para <span class="color-one"><?=$cdRoteiro->grupo->local?></span> Promocional <br> <span class="color-two"><?= $cdRoteiro->cardTitle?></span> </h3>
+					<h3>Viagem Especial para <span class="color-one"><?=$cdRoteiro->grupo->local?></span><br> <span class="color-two"><?= $cdRoteiro->cardTitle?></span> </h3>
 				</div>
 				<div class="count-timer text-center">
 					<div class="time-wrapper">
