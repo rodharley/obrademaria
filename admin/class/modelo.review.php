@@ -39,17 +39,7 @@ class Review extends Persistencia {
             $this->review = $coment;
             $this->roteiro = $roteiro;
             $this->local = $roteiro->cardTitle;
-
-            $picture = WideImage::load($this->getFolder().$nomefoto);
-            if($picture->getHeight() > $picture->getWidth()){
-            $resize = $picture->resize(300,null, 'fill');
-            $crop = $resize->crop(0,'25%',300,300);
-            }else{
-                $resize = $picture->resize(null,300, 'fill');
-            $crop = $resize->crop('25%',0,300,300);
-            }
-            $crop->saveToFile($this->getFolder().$nomefoto);
-
+            $this->resizeImage($this->getFolder(),$nomefoto,300,300);
             $this->save();
         }
     }
@@ -72,15 +62,7 @@ class Review extends Persistencia {
             $nomefoto = $this->retornaNomeUnico("cliente.".$names[count($names)-1],$this->getFolder());
             $this->uploadArquivo($file,$nomefoto,$this->getFolder());
             $this->photo = $nomefoto;
-            $picture = WideImage::load($this->getFolder().$nomefoto);
-            if($picture->getHeight() > $picture->getWidth()){
-            $resize = $picture->resize(300,null, 'fill');
-            $crop = $resize->crop(0,'25%',300,300);
-            }else{
-                $resize = $picture->resize(null,300, 'fill');
-            $crop = $resize->crop('25%',0,300,300);
-            }
-            $crop->saveToFile($this->getFolder().$nomefoto);
+            $this->resizeImage($this->getFolder(),$nomefoto,300,300);
 
             
         }

@@ -1284,6 +1284,53 @@ function trataRequestAntiInjection(){
 	}
 }
 
+public function resizeImage($url,$image,$width,$height){
+	$picture = WideImage::load($url.$image);
+	if($width >= $height){
+		//imagem final horizontal
+		$resize = $picture->resize($width,null, 'fill');
+		
+		if($resize->getHeight() >= $height){
+			$left = 0;
+			$top = floor(($resize->getHeight()-$height)/2);
+			$crop = $resize->crop($left,$top,$width,$height);
+		}else{
+			$resize2 = $resize->resize(null,$height, 'fill');
+			$top = 0;
+			$left = floor(($resize2->getWidth()-$width)/2);
+			$crop = $resize2->crop($left,$top,$width,$height);
+		}
+	}else{
+		//imagem final vertical
+		$resize = $picture->resize(null,$height, 'fill');
+		if($resize->getWidth() >= $width){
+			$top = 0;
+			$left = floor(($resize->getWidth()-$width)/2);
+			$crop = $resize->crop($left,$top,$width,$height);
+		}else{
+			$resize2 = $resize->resize($width,null, 'fill');
+			$left = 0;
+			$top = floor(($resize2->getHeight()-$height)/2);
+			$crop = $resize2->crop($left,$top,$width,$height);
+		}
+	}
+
+	/*
+	if($picture->getWidth() > $picture->getHeight()){
+		$resize = $picture->resize(null,$height, 'fill');
+		$top = 0;
+		$left = floor(($resize->getWidth()-$width)/2);
+		$crop = $resize->crop($left,$top,$width,$height);
+	}else{
+		$resize = $picture->resize($width,null, 'fill');
+		$left = 0;
+		$top = floor(($resize->getHeight()-$height)/2);
+		$crop = $resize->crop($left,$top,$width,$height);
+	}*/
+	$crop->saveToFile($url.$image);
+
+}
+
 
 }
 

@@ -60,11 +60,7 @@ class Roteiro extends Persistencia {
             $nome = $this->grupo->id."_cardimage.".$names[count($names)-1];
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->cardImage = $nome;
-
-            $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize(360,310, 'fill');
-            //$crop = $resize->crop(0,'25%',360,310);
-            $resize->saveToFile($this->getFolder().$nome);
+            $this->resizeImage($this->getFolder(),$nome,360,310);          
             
         }
     }
@@ -77,10 +73,7 @@ class Roteiro extends Persistencia {
             $nome = $this->grupo->id."_image.".$names[count($names)-1];
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->image = $nome;
-            $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize(1680,null, 'fill');
-            $crop = $resize->crop(0,'25%',1680,550);
-            $crop->saveToFile($this->getFolder().$nome);
+            $this->resizeImage($this->getFolder(),$nome,1680,550);            
         }
     }
 
@@ -99,11 +92,7 @@ class Roteiro extends Persistencia {
             $nome = $this->grupo->id."_padreimage.".$names[count($names)-1];
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->padreImage = $nome;
-
-            $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize(700,466, 'fill');
-            //$crop = $resize->crop(0,'25%',360,310);
-            $resize->saveToFile($this->getFolder().$nome);
+            $this->resizeImage($this->getFolder(),$nome,700,466);            
             
         }
     }

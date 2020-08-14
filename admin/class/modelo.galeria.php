@@ -51,10 +51,8 @@ class Galeria extends Persistencia {
             $foto->galeria = $this;
             $foto->type = $type;   
             $foto->description = $description;        
-
-            $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize($width, $heigth, 'fill');
-            $resize->saveToFile($this->getFolder().$nome);
+            
+            $this->resizeImage($this->getFolder(),$nome,$width,$heigth);
             $foto->save();
         }
     }

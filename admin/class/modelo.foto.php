@@ -33,11 +33,7 @@ class Foto extends Persistencia {
                     $heigth = 190;
                 } 
 
-               
-
-            $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize($width, $heigth, 'fill');
-            $resize->saveToFile($this->getFolder().$nome);
+                $this->resizeImage($this->getFolder(),$nome,$width,$heigth);
 
 
             $this->save();
