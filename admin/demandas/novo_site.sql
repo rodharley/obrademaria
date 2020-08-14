@@ -252,4 +252,5 @@ ALTER TABLE `ag_roteiro` ADD `padre_name` VARCHAR(200) NULL AFTER `publish`, ADD
 INSERT INTO `ag_menu` (`id`, `idMenuPai`, `descricao`, `url`) VALUES ('55', '1', 'Configurações', 'configuracoes.php');
 INSERT INTO `ag_menuperfil` (`id`, `idMenu`, `idPerfil`) VALUES (NULL, '55', '1'), (NULL, '55', '15');
 INSERT INTO `ag_agendamento` (`id`, `descricao`, `data`, `destinatarios`) VALUES ('7', 'UrlRevista', '2020-08-13', 'http://online.pubhtml5.com/vvvl/vhrc/');
+ALTER TABLE `ag_grupo` CHANGE `text_customizado` `text_customizado` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
 COMMIT;

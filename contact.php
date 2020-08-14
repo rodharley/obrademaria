@@ -42,7 +42,9 @@ include('include-header.php');?>
 </div> <!-- Scroll to top jump button end-->
  <?php include('include-footer.php');?>
  <!-- google map api -->
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKq53gqv-hIiASlmMwfayTBUAcOJwueRw" type="text/javascript"></script>
+ 
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAApbBNySZlpfUSG_HR43e_xd0rQbcZHNM" type="text/javascript"></script>
+ <!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKq53gqv-hIiASlmMwfayTBUAcOJwueRw" type="text/javascript"></script-->
  
     <!-- map js -->
     <script src="js/google-map.js"></script> 

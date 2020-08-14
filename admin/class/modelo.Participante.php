@@ -652,9 +652,25 @@ class Participante extends Persistencia{
 		return $total;
 	}
 
-	public function saveBySite($obGrupo,$obCliente,$opcional){
+	public function saveBySite($obGrupo,$obCliente,$opcional,$forma){
+		$desconto = 0;
+		if($forma == 'formaAVista'){
+			$desconto = $obGrupo->descontoAVista; 
+			
+		}
+
+		if($desconto > 0){
+            if($opcional){
+               $pacote = $obGrupo->valorPacote+$obGrupo->valorPacoteOpcional;
+            }else{
+                $pacote = $obGrupo->valorPacote;
+            }
+        $valorDescontado = ($pacote)*($desconto/100);
+        }else{
+        $valorDescontado = 0;
+        }
 		$this->dataInscricao = date("Y-m-d");
-		$this->valorTotal = $obGrupo->getValorTotal($opcional);
+		$this->valorTotal = $obGrupo->getValorTotal($opcional)-$valorDescontado;
 		$this->custoTotal = $obGrupo->getCustoTotal($opcional);
 		$this->grupo = $obGrupo;
 		$this->cliente = $obCliente;

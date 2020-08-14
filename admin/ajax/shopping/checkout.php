@@ -42,7 +42,7 @@ if($obParticipante->getByIdCliente($idCliente,$obGrupo->id)){
     throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obCliente->nomeCompleto." já está cadastrado neste pacote turístico");
 }
 //incluir como participante no grupo
-$idParticipante  = $obParticipante->saveBySite($obGrupo,$obCliente,isset($_REQUEST['opcional'])?1:0);
+$idParticipante  = $obParticipante->saveBySite($obGrupo,$obCliente,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
 
 //outros participantes
 $idPartAcomp1 = 0;
@@ -59,7 +59,7 @@ if($_REQUEST['quantidade'] > 1){
             throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
         }
 
-        $idPartAcomp1  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0);
+        $idPartAcomp1  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
 
     }
     if(isset($_REQUEST['acompanhante2'])){
@@ -71,7 +71,7 @@ if($_REQUEST['quantidade'] > 1){
             throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
         }
 
-        $idPartAcomp2  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0);
+        $idPartAcomp2  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
 
     }
     if(isset($_REQUEST['acompanhante3'])){
@@ -83,7 +83,7 @@ if($_REQUEST['quantidade'] > 1){
             throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
         }
 
-        $idPartAcomp3  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0);
+        $idPartAcomp3  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
 
     }
     if(isset($_REQUEST['acompanhante4'])){
@@ -95,7 +95,7 @@ if($_REQUEST['quantidade'] > 1){
             throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
         }
 
-        $idPartAcomp4  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0);
+        $idPartAcomp4  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
 
     }
 }

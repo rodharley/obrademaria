@@ -7,8 +7,8 @@
 
                 function initialize() {
                     var mapOptions = {
-                        zoom: 10,
-                        scrollwheel: false,
+                        zoom: 15,
+                        scrollwheel: true,
                         center: new google.maps.LatLng(-15.7989087,-47.8955424),
                     };
                     var map = new google.maps.Map(document.getElementById('googleMap'),
@@ -18,6 +18,7 @@
                     position: map.getCenter(),
                     animation:google.maps.Animation.BOUNCE,
                     icon: 'images/mapp.png',
+                    
                     map: map
                     });
 
