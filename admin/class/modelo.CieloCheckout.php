@@ -62,7 +62,13 @@ class MyCieloCheckout extends Persistencia {
 
     function createLinkPagamento($obParticipante,$obGrupo,$obVenda,$valor,$mesesParcelaCartao){
         try {
-          
+
+
+            $telefone = substr($this->limpaDigitos($obParticipante->cliente->celular != "" ? $obParticipante->cliente->celular : $obParticipante->cliente->telefoneResidencial),0,11);
+            if(strlen($telefone) < 10 ||  strlen($telefone) >11){
+              throw new Exception("Telefone do cliente inválido, deve conter de 10 a 11 dígitos!");
+            }
+
             if($obVenda->opcional)
                 $nomeItem = $obGrupo->nomePacote."+".$obGrupo->nomePacoteOpcional;
                 else
@@ -133,7 +139,7 @@ class MyCieloCheckout extends Persistencia {
               'Identity' => $obParticipante->cliente->cpf,
               'FullName' => utf8_encode($obParticipante->cliente->nomeCompleto),
               'Email' => $obParticipante->cliente->email,
-              'Phone' => substr($this->limpaDigitos($obParticipante->cliente->celular != "" ? $obParticipante->cliente->celular : $obParticipante->cliente->telefoneResidencial),0,11),
+              'Phone' => $telefone,
             ];
             $Customer = new Customer($properties);
             
@@ -159,7 +165,6 @@ class MyCieloCheckout extends Persistencia {
 
             $headers = array('Accept' => 'application/json','MerchantId'=>$this->cieloClientID,'Content-Type'=>'application/json; charset=utf-8');
             $query = Unirest\Request\Body::json($Order);
-
             $response = Unirest\Request::post($this->endpointCielo.'/orders', $headers, $query);
             
             if($response->code != 200 && $response->code != 201){

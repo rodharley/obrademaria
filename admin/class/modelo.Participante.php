@@ -668,5 +668,96 @@ class Participante extends Persistencia{
 		$newid = $this->save();
 		return $newid;
 	}
+
+
+
+
+	function gerarContratoMyDocsSite(){
+		try{
+		$oGrupo = $this->grupo;
+		$oCliente = $this->cliente;
+		//contratos em nuvem
+		if($this->pacoteOpcional == 1){
+			$taxaAdesao = $this->money($oGrupo->valorAdesao + $oGrupo->valorAdesaoOpcional,"atb");
+		}else{
+			$taxaAdesao = $this->money($oGrupo->valorAdesao,"atb");
+		}
+		switch ($oGrupo->modeloContrato) {
+			case 'contrato1.php':
+				# code...
+				$layout = "1";
+				break;
+				case 'contrato2.php':
+				# code...
+				$layout = "6";
+				break;
+				case 'contrato3.php':
+				# code...
+				$layout = "7";
+				break;
+				case 'contrato4.php':
+				# code...
+				$layout = "8";
+				break;
+			default:
+				# code...
+				$layout = "1";
+				break;
+		}
+
+		$data = array("identificadorLayout"=>$layout,
+			"numeroControleEmpresa"=>$this->id,
+			"documentoCliente"=>$oCliente->cpf,
+			"nomeCliente"=>utf8_encode($oCliente->nomeCompleto),
+			"emailCliente"=>$oCliente->email,
+			"variaveis"=> array(
+				array("nome"=>"nomeCompleto","valor"=>utf8_encode($oCliente->nomeCompleto)),
+				array("nome"=>"estado_civil","valor"=>utf8_encode($oCliente->estadoCivil->descricao)),
+				array("nome"=>"rg","valor"=>$oCliente->rg),
+				array("nome"=>"rgOrgaoExpedidor","valor"=>$oCliente->orgaoEmissorRg),
+				array("nome"=>"cpf","valor"=>$oCliente->cpf),
+				array("nome"=>"endereco","valor"=>utf8_encode($oCliente->endereco)),
+				array("nome"=>"cidade","valor"=>utf8_encode($oCliente->cidadeEndereco)),
+				array("nome"=>"uf","valor"=>$oCliente->estadoNascimento),
+				array("nome"=>"nacionalidade","valor"=>utf8_encode($oCliente->paisEndereco)),				
+				array("nome"=>"taxaAdesao","valor"=>$taxaAdesao),
+				array("nome"=>"CIFRAO","valor"=>$oGrupo->moeda->cifrao),
+				array("nome"=>"total","valor"=>$this->money($this->valorTotal,"atb")),
+				array("nome"=>"totalPassagem","valor"=>'0,00'),
+				array("nome"=>"nometestemunha1","valor"=>''),
+				array("nome"=>"nometestemunha2","valor"=>''),
+				array("nome"=>"rgtestemunha1","valor"=>''),
+				array("nome"=>"rgtestemunha2","valor"=>''),
+				array("nome"=>"dia","valor"=>date("d")),
+				array("nome"=>"mes","valor"=>utf8_encode($this->mesExtenso(date("m")))),
+				array("nome"=>"ano","valor"=>date("Y"))));				
+			
+				
+		$ret = $this->loginContratosEmnuvem();
+		$headers = array('Accept' => 'application/json','X-Token'=>$ret->jwt,'Content-Type'=>'application/json; charset=utf-8');
+		$query = Unirest\Request\Body::json($data);
+	
+		$response = Unirest\Request::post($this->endpointcn.'documentos/criar-documento', $headers, $query);
+		 $oLog = new LogUsuario();
+		 $user = new Usuario();
+		$user->id =3;
+		$data = date("Y-m-d H:i:s");
+		$movimento = "LOG NUMERO ".$this->id." CONTRATO EM NUVEM: ".$response->code."-".$response->raw_body;
+		$oLog->usuario = $user;
+		$oLog->data = $data;
+		$oLog->movimento = $movimento;
+		$oLog->save();
+		 
+		 if($response->code == 200){		
+			$this->idcn =$response->body->identificadorDocumento;
+			$this->save();			
+		 }
+		 
+		 return '1';
+		}catch(Exception $e){
+			return $e->getMessage();
+		}
+		 
+	}
 }
 ?>

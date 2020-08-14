@@ -48,7 +48,7 @@ if(isset($_REQUEST['idGrupo'])){
 	$tpl->valorAdesao = $oGrupo->money($oGrupo->valorAdesao,'atb');
 	$tpl->valorCusto = $oGrupo->money($oGrupo->valorCusto,'atb');
 	$tpl->cotacaoCusto = $oGrupo->money($oGrupo->cotacaoCusto,'atb');
-
+	$tpl->cotacaoCustomizado = $oGrupo->money($oGrupo->cotacaoCustomizado,'atb');
 	$tpl->cotacaoAVista = $oGrupo->money($oGrupo->cotacaoAVista,'atb');
 	$tpl->cotacaoParcelado = $oGrupo->money($oGrupo->cotacaoParcelado,'atb');
 	$tpl->cotacaoEntrada = $oGrupo->money($oGrupo->cotacaoEntrada,'atb');

@@ -24,8 +24,9 @@ if(!$obGrupo->getById($_REQUEST['idGrupo'])){
 $dataHoje = Datetime::createFromFormat('Y-m-d',date("Y-m-d"));
 $dataEmbarque = Datetime::createFromFormat('Y-m-d',$obGrupo->dataEmbarque);
 $interval = $dataHoje->diff($dataEmbarque);
+$meses = ($interval->y*12)+$interval->m;
 if($obGrupo->bitCheque == 1 && $obGrupo->parcelaCheque != null && $obGrupo->parcelaCheque != '' && $obGrupo->parcelaCheque > 1 ){
-    $mesesParcelaCheque = $interval->format('%m') < $obGrupo->parcelaCheque ? $interval->format('%m') : $obGrupo->parcelaCheque;
+    $mesesParcelaCheque = $meses < $obGrupo->parcelaCheque ? $meses : $obGrupo->parcelaCheque;
 }else{
     $mesesParcelaCheque = 1;
 }
@@ -222,8 +223,22 @@ if($obCheckout->conn->commit()){
 
     $tplemail = new Template("../../templates/tpl_email_ecommerce.html");
     $tplemail->CONTEUDO = $html;
-    $obVenda->mail_html($_REQUEST['email'],$obVenda->REMETENTE, 'Vendas Obra de Maria DF', $tplemail->showString());
+    $obVenda->mail_html($_REQUEST['email'],$obVenda->REMETENTE, 'Obra de Maria DF', $tplemail->showString());
 
+
+    //email para a obra de maria
+    //enviando email com dados da compra:
+    $html = "VENDA REALIADA PELO SITE  ".$_REQUEST['nomeCompleto']."-".$obCliente->cpf."<br/><br/>";
+    $html .= "Grupo: ".$obGrupo->nomePacote.".<br/><br/>";
+    $html .= "Forma de Pagamento: ".$obVenda->printFormaPagamento()."<br/><br/>";
+    
+    $tplemail = new Template("../../templates/tpl_email_ecommerce.html");
+    $tplemail->CONTEUDO = $html;
+    $obVenda->mail_html($obVenda->DESTINATARIO,$obVenda->REMETENTE, 'Obra de Maria DF', $tplemail->showString());
+    $obCheckout->conn->begin_transaction();
+    //gerar o contrato no mydocs do participante 1:
+    $obParticipante->gerarContratoMyDocsSite();
+    $obCheckout->conn->commit();
     echo json_encode(array("code"=>"200","data"=>array("charge_id"=>$idVenda)));
 }else{
     echo json_encode(array("code"=>"500","data"=>array("mensagem"=>"Erro interno, tente novamente mais tarde")));

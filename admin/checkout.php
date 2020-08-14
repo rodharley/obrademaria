@@ -15,8 +15,10 @@ if(isset($_REQUEST['idGrupo'])){
     $oGrupo->getById($_REQUEST['idGrupo']);	
     $dataHoje = Datetime::createFromFormat('Y-m-d',date("Y-m-d"));
     $dataEmbarque = Datetime::createFromFormat('Y-m-d',$oGrupo->dataEmbarque);
+    
     $interval = $dataHoje->diff($dataEmbarque);
-    $meses = $interval->format('%m');
+    $meses = ($interval->y*12)+$interval->m;
+
     //pega as cotacoes
     
     $tpl->COTACAO = $oGrupo->cotacaoAVista;
@@ -91,6 +93,7 @@ if($oGrupo->bitBoleto == 1){
  
 }
 if($oGrupo->bitCheque == 1){
+    
     $tpl->PARCELA_CHEQUE_MAXIMA = $oGrupo->parcelaCheque != null && $oGrupo->parcelaCheque != '' ? $meses < $oGrupo->parcelaCheque ? $meses : $oGrupo->parcelaCheque : 1;
     $tpl->block('BLOCK_CHEQUE_AVISTA');
     $tpl->block('BLOCK_CHEQUE_ENTRADA');

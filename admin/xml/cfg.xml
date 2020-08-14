@@ -285,7 +285,8 @@ set
 		<atrib tbname="parcela_cartao" type="int">parcelaCartao</atrib>
 		<atrib tbname="parcela_cheque" type="int">parcelaCheque</atrib>
 		<atrib tbname="nome_customizado" type="txt">nomeCustomizado</atrib>
-		<atrib tbname="text_customizado" type="txt">textCustomizado</atrib>		
+		<atrib tbname="text_customizado" type="txt">textCustomizado</atrib>	
+		<atrib tbname="cotacao_customizado" type="txt">cotacaoCustomizado</atrib>	
 		</class>
 
 	<class name="LogAcesso" tbname="ag_logacesso" tbid="id" lazy="false">
@@ -402,6 +403,7 @@ set
 		<atrib tbname="name" type="txt">name</atrib>
 		<atrib tbname="photo" type="txt">photo</atrib>
 		<atrib tbname="date" type="txt">date</atrib>
+		<atrib tbname="local" type="txt">local</atrib>
 		<atrib tbname="roteiro" type="fk" lazy="true" clrelation="Roteiro">roteiro</atrib>
 </class>
 <class name="Roteiro" tbname="ag_roteiro" tbid="id" lazy="true">

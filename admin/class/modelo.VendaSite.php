@@ -39,7 +39,7 @@ class VendaSite extends Persistencia {
                     $cotacao = $grupo->cotacaoEntrada;
                 break;
                 default:
-                    $cotacao = $obAgenda->destinatarios;
+                    $cotacao = $grupo->cotacaoCustomizado;
             }       
           
         }
@@ -249,15 +249,18 @@ function printFormaPagamento(){
         case 'formaAVista':
             return "À Vista";
             break;
-            case 'formaEntrada':
-                return "Entrada + Parcelas";
-                break;
-                case 'formaParcelado':
-                    return "Parcelado";
-                    break;
+        case 'formaEntrada':
+         return "Entrada + Parcelas";
+        break;
+        case 'formaParcelado':
+         return "Parcelado";
+        break;
+        case 'formaOutros':
+            return $this->participante->grupo->nomeCustomizado;
+        break;
         default:
-            return "Outras";
-            break;
+            return 'Outras';
+        break;
     }
 }
 
@@ -275,6 +278,11 @@ public function printInfoTransferencia(){
         WhatsApp:<br/>
     <img src="img/whatsapp.png" width="48"/>
     +55 61 98100-7508
+    </div></div>';
+}
+public function printInfoCustomizado(){
+    return '<div class="card"><div class="card-body">
+    '.$this->participante->grupo->textCustomizado.'
     </div></div>';
 }
 public function printInfoCheque(){

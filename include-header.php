@@ -43,5 +43,5 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- modernizr css -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    <script src="//code.jivosite.com/widget/sSGNEUMtAm" async></script>
+    <!--script src="//code.jivosite.com/widget/sSGNEUMtAm" async></script-->
 </head>

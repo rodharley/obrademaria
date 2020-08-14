@@ -44,6 +44,7 @@ $tpl->PUBNAO =$obRoteiro->publish == 0 ? 'checked="true"' : '';
 $tpl->CHECKED_OCE = strpos($obRoteiro->continent,"OCEANIA") !== false ? 'checked="true"' : '';
 $tpl->CHECKED_EUR = strpos($obRoteiro->continent,"EUROPA") !== false ? 'checked="true"' : '';
 $tpl->CHECKED_ASIA = strpos($obRoteiro->continent,"ÁSIA") !== false ? 'checked="true"' : '';
+$tpl->CHECKED_AMC = strpos($obRoteiro->continent,"AMÉRICA CENTRAL") !== false ? 'checked="true"' : '';
 $tpl->CHECKED_AMS = strpos($obRoteiro->continent,"AMÉRICA DO SUL") !== false ? 'checked="true"' : '';
 $tpl->CHECKED_AMN = strpos($obRoteiro->continent,"AMÉRICA DO NORTE") !== false ? 'checked="true"' : '';
 $tpl->CHECKED_AFRICA = strpos($obRoteiro->continent,"ÁFRICA") !== false ? 'checked="true"' : '';

@@ -13,7 +13,7 @@ $mensagem = 'Grupo: '.$_REQUEST['grupo'].'<br/>'.'Nome: '.$_REQUEST['nome'].'<br
 $mensagem = 'Mensagem: '.$_REQUEST['message'];    
 }
 
-if($tupi->mail_html("brasilia@obrademaria.com.br",$_REQUEST['email'], 'Email do Site', $mensagem)){
+if($tupi->mail_html($tupi->DESTINATARIO,$_REQUEST['email'], 'Email do Site', $mensagem)){
     $_SESSION['userIpemail'] = $_SERVER['REMOTE_ADDR'];
     echo json_encode(array("code"=>"200","data"=>array("mensagem"=>utf8_encode("Email Enviado com sucesso!"))));
 }else{

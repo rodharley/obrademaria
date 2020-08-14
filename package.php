@@ -97,7 +97,7 @@ if(isset($_GET['id'])){
 														<p><span><i class="fa fa-clock-o"></i></span>Duração</p>
 														<p><span><i class="fa fa-user"></i></span>Idade Mín.</p>
 														<p><span><i class="fa fa-users"></i></span>Máx. de Pessoas</p>
-														<p><span><i class="fa fa-plane"></i></span>Embrarque</p>
+														<p><span><i class="fa fa-plane"></i></span>Partida</p>
 														<p><span><i class="fa fa-calendar-check-o"></i></span>Chegada</p>
 														
 													</div>

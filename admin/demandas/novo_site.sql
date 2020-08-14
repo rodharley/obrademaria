@@ -239,4 +239,12 @@ ALTER TABLE `ag_review` DROP INDEX `fk_review_cliente`;
 ALTER TABLE `ag_review` DROP `email`;
 ALTER TABLE `ag_review` DROP `cliente`;
 ALTER TABLE `ag_review` ADD `photo` VARCHAR(255) NOT NULL AFTER `name`; 
+
+-- 13/08/2020
+ALTER TABLE `ag_review` CHANGE `roteiro` `roteiro` BIGINT(20) NULL; 
+ALTER TABLE `ag_review` DROP FOREIGN KEY `fk_review_roteiro`; ALTER TABLE `ag_review` ADD CONSTRAINT `fk_review_roteiro` FOREIGN KEY (`roteiro`) REFERENCES `ag_roteiro`(`id`) ON DELETE SET NULL ON UPDATE CASCADE; 
+ALTER TABLE `ag_review` ADD `local` VARCHAR(255) NOT NULL AFTER `photo`; 
+INSERT INTO `ag_menu` (`id`, `idMenuPai`, `descricao`, `url`) VALUES ('54', '50', 'Comentários', 'comentario.php');
+INSERT INTO `ag_menuperfil` (`id`, `idMenu`, `idPerfil`) VALUES (NULL, '54', '1'), (NULL, '54', '15');
+ALTER TABLE `ag_grupo` ADD `cotacao_customizado` DECIMAL(10,2) NULL DEFAULT '1.00' AFTER `bit_transferencia`; 
 COMMIT;

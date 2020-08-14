@@ -44,6 +44,7 @@ class Grupo extends Persistencia{
 	var $nomeCustomizado;
 	var $textCustomizado;
 	var $bitTransferencia;
+	var $cotacaoCustomizado;
 	
 	public function STATUS_ANDAMENTO(){
 		return 1;
@@ -173,6 +174,7 @@ class Grupo extends Persistencia{
 		$this->cotacaoAVista = $this->money($_POST['cotacaoAVista'] == '' ? 0 : $_POST['cotacaoAVista'],"bta");
 		$this->cotacaoEntrada = $this->money($_POST['cotacaoEntrada'] == '' ? 0 : $_POST['cotacaoEntrada'],"bta");
 		$this->cotacaoParcelado = $this->money($_POST['cotacaoParcelado'] == '' ? 0 : $_POST['cotacaoParcelado'],"bta");
+		$this->cotacaoCustomizado = $this->money($_POST['cotacaoCustomizado'] == '' ? 0 : $_POST['cotacaoCustomizado'],"bta");
 		$this->ano = $_REQUEST['ano'];
 		$this->bitBoleto = $_REQUEST['bitBoleto'];
 		$this->bitCartao = $_REQUEST['bitCartao'];
@@ -320,7 +322,7 @@ class Grupo extends Persistencia{
 		$this->cotacaoAVista = $this->money($_POST['cotacaoAVista'] == '' ? 0 : $_POST['cotacaoAVista'],"bta");
 		$this->cotacaoEntrada = $this->money($_POST['cotacaoEntrada'] == '' ? 0 : $_POST['cotacaoEntrada'],"bta");
 		$this->cotacaoParcelado = $this->money($_POST['cotacaoParcelado'] == '' ? 0 : $_POST['cotacaoParcelado'],"bta");
-		
+		$this->cotacaoCustomizado = $this->money($_POST['cotacaoCustomizado'] == '' ? 0 : $_POST['cotacaoCustomizado'],"bta");
 		$this->destino = $_POST['destino'];
 		$this->plano = $_POST['plano'];
 		$this->ano = $_REQUEST['ano'];

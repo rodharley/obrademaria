@@ -129,7 +129,6 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Informações</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Como proceder:</h6>
           <p class="card-text">
             {TEXT_CUSTOMIZADO}
           </p>
@@ -211,8 +210,9 @@
         </div-->
       </div>
     </div>
+    
     <hr class="mb-4">
-      <ul class="list-group mb-3">
+      <ul class="list-group mb-3" id="blockMostraReal">
         <li class="list-group-item d-flex justify-content-between">
           <span class="text-muted">Desconto (R$)</span>
           <strong class="text-muted" id="lbl_desconto_real">0,00</strong>
@@ -711,6 +711,7 @@ function blockAcomp(numero,disabled){
           $("#tipoAVista").hide();
           $("#tipoParcelado").hide();
           $("#tipoEntrada").hide();
+          $('#blockMostraReal').hide();
           $("#tipoCustomizado").show('slow');
         }
 
@@ -731,6 +732,7 @@ function blockAcomp(numero,disabled){
           $("#tipoParcelado").hide();
           $("#tipoEntrada").hide();
           $("#tipoCustomizado").hide();
+          $('#blockMostraReal').show('slow');
         }
         if($("#formaEntrada").prop("checked")){
           dollar = cotacaoEntrada;
@@ -752,6 +754,7 @@ function blockAcomp(numero,disabled){
           $("#tipoParcelado").hide();
           $("#tipoEntrada").show('slow');
           $("#tipoCustomizado").hide();
+          $('#blockMostraReal').show('slow');
         }
         if($("#formaParcelado").prop("checked")){
           dollar = cotacaoParcelado;
@@ -766,6 +769,7 @@ function blockAcomp(numero,disabled){
           $("#tipoParcelado").show('slow');
           $("#tipoEntrada").hide();
           $("#tipoCustomizado").hide();
+          $('#blockMostraReal').show('slow');
         }
         
         if(idmoeda != 2){

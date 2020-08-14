@@ -72,6 +72,7 @@
             <span class="text-muted">Participantes</span>
             <strong class="text-muted">{QUANTIDADE}</strong>
           </li>  
+          <!-- BEGIN BLOCK_FORMA_PADRAO_REAL -->
           <li class="list-group-item d-flex justify-content-between">
             <span class="text-muted">Cotação do Dollar</span>
             <strong class="text-muted">{COTACAO}</strong>
@@ -84,6 +85,7 @@
             <span class="text-muted">Total (R$)</span>
             <strong class="text-muted" >{VALOR_TOTAL}</strong>
           </li>
+          <!-- END BLOCK_FORMA_PADRAO_REAL -->
         </ul>
       <hr class="mb-4">
       <h4 class="mb-3">Forma de Pagamento</h4>
@@ -94,8 +96,7 @@
       <h4 class="mb-3">Tipo de Pagamento</h4>
       <div class="d-block my-3">
         <!--  BEGIN BLOCK_OUTROS -->
-        <h6>Outros meios de pagamento</h6>  
-              {INFO_OUTROS}
+        {INFO_CUSTOMIZADO}
         <!--  END BLOCK_OUTROS -->
         <!--  BEGIN BLOCK_AVISTA -->   
               <!--  BEGIN BLOCK_TRANSFERENCIA_AVISTA -->  

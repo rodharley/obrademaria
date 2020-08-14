@@ -97,8 +97,8 @@ if(isset($_REQUEST['charge_id'])){
     $tpl->FORMA = $oVenda->printFormaPagamento();
     switch ($oVenda->formaPagamento) {
         case 'formaOutros':
-            $tpl->INFO_OUTROS = $oVenda->printInfoTransferencia();
-                    $tpl->block("BLOCK_OUTROS");
+            $tpl->INFO_CUSTOMIZADO = $oVenda->printInfoCustomizado();
+            $tpl->block("BLOCK_OUTROS");
         break;
         case 'formaAVista':            
             switch ($oVenda->tipoPagamento1) {
@@ -118,6 +118,7 @@ if(isset($_REQUEST['charge_id'])){
                 break;
             }
             $tpl->block("BLOCK_AVISTA");
+            $tpl->block('BLOCK_FORMA_PADRAO_REAL');
         break;
         case 'formaEntrada':
             switch ($oVenda->tipoPagamento1) {
@@ -165,6 +166,7 @@ if(isset($_REQUEST['charge_id'])){
                 break;
             }
             $tpl->block("BLOCK_ENTRADA");
+            $tpl->block('BLOCK_FORMA_PADRAO_REAL');
         break;
         case 'formaParcelado':
             switch ($oVenda->tipoPagamento1) {
@@ -180,7 +182,7 @@ if(isset($_REQUEST['charge_id'])){
                     $tpl->block("BLOCK_CARTAO_PARCELADO");
                 break;
             }
-            
+            $tpl->block('BLOCK_FORMA_PADRAO_REAL');
         break;
         default:
             # code...

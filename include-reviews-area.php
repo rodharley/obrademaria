@@ -10,7 +10,7 @@ if(count($reviews)>0){
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="section-title-white text-center mbt-100">
-						<h2>O que nossos peregrinos contam sobre nós</h2>
+						<h2>Experiências e Testemunhos de Nossos Peregrinos</h2>
 					</div>
 				</div>
 			</div>
@@ -33,15 +33,13 @@ if(count($reviews)>0){
                     <?php foreach($reviews as $key => $rev){ ?>
                         <div class="testimonial-message">
 							<div class="message">
-								<h4 class="color-two"><?= $rev->roteiro->cardTitle?></h4>
+								<h4 class="color-two"><?= $rev->local?></h4>
 								<p><?= $rev->review?></p>
 							</div>
-							<div class="rating">
-							<?= $rev->roteiro->getStarsHtml()?>
-							</div>
-							<div class="client-bio">
+							
+								<div class="client-bio">
 								<h4><?= $rev->name?></h4>
-								<span><?= $rev->date?></span>
+								<span><?= $reviewsReview->convdata($rev->date,"mtnh")?></span>
 							</div>
 						</div> <!-- client testimonial end -->
                             <? } ?>	    
