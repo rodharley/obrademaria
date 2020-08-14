@@ -277,7 +277,7 @@ public function printInfoTransferencia(){
         <p>Após realizar a transferência, enviar comprovante para:
         WhatsApp:<br/>
     <img src="img/whatsapp.png" width="48"/>
-    +55 61 98100-7508
+    +55 61 9 8352-0475
     </div></div>';
 }
 public function printInfoCustomizado(){
@@ -292,7 +292,7 @@ public function printInfoCheque(){
     Telefone:<br/> +55 61 3201-5116
     WhatsApp:<br/>
     <img src="img/whatsapp.png" width="48"/>
-    +55 61 98100-7508
+    +55 61 9 8352-0475
     </div></div>';
 }
 

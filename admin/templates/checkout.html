@@ -468,9 +468,9 @@
             <select name="cidade" class="custom-select d-block w-100" id="cidade" required="">
               <option value="">Selecione...</option>
           </select>
-            <div class="invalid-feedback label-error">
-              Por favor selecione uma cidade.
-            </div>
+          <div class="invalid-feedback label-error">
+            Por favor selecione uma cidade.
+           </div>
           </div>        
           
         </div>
@@ -534,22 +534,10 @@
 
         window.addEventListener('load', function() {
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
+          
           var forms2 = document.getElementsByClassName('needs-validation2');
           // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }else{
-                event.preventDefault();
-                event.stopPropagation();
-                mostraContrato();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
+          createValidationForm();
 
           var validation2 = Array.prototype.filter.call(forms2, function(form) {
             form.addEventListener('submit', function(event) {
@@ -640,7 +628,7 @@
         });
 
         $('#uf').change(function(){
-    	    $('#cidade').load('ajax/comboCidadesPorUf.php?idUf='+$('#uf').val()); 
+    	    $('#cidade').load('ajax/shopping/comboCidadesPorUf.php?idUf='+$('#uf').val()); 
         });
         $("#cpf").change(function(){
 
@@ -652,6 +640,24 @@
         atualizaTela();
 
       });
+function createValidationForm(){
+  var forms = document.getElementsByClassName('needs-validation');
+  var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }else{
+                event.preventDefault();
+                event.stopPropagation();
+                mostraContrato();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+}
+
+
 
 function blockAcomp(numero,disabled){
   let nome = $("#acompanhante"+numero);
@@ -831,8 +837,21 @@ function blockAcomp(numero,disabled){
         
         if(cliente.estadoEndereco != null){
         $("#uf").val(cliente.estadoEndereco.trim());       
-        
-        $('#cidade').load('ajax/comboCidadesPorUf.php?selected='+cliente.cidadeEndereco.trim()+'&idUf='+$('#uf').val());
+        //funcao de sucesso
+          var funcSuccess = function(data) {
+          console.log(cliente.cidadeEndereco.trim());
+          createValidationForm();
+          var dd = document.getElementById('cidade');
+            for (var i = 0; i < dd.options.length; i++) {
+                if (dd.options[i].text === cliente.cidadeEndereco.trim()) {
+                    dd.selectedIndex = i;
+                    break;
+                }
+            }
+         // $('#cidade').val().change();
+        }
+
+        $('#cidade').load('ajax/shopping/comboCidadesPorUf.php?idUf='+$('#uf').val(),null,funcSuccess);
         }
         
         
