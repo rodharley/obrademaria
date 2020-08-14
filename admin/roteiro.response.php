@@ -56,6 +56,8 @@ switch($_REQUEST['acao']){
         $obRoteiro->title = $_REQUEST['title'];
        $obRoteiro->description = $_REQUEST['description'];
        $obRoteiro->salvaImage($_FILES['image']);
+       $obRoteiro->padreName = $_REQUEST['padreName'];
+       $obRoteiro->salvaPadreImage($_FILES['padreImage']);
        if($_REQUEST['video'] != ''){
            $rsvideos = $obVideo->getByRoteiro($obRoteiro->id);
            if(count($rsvideos)>0){

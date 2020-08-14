@@ -16,6 +16,8 @@ class Roteiro extends Persistencia {
     var $reviews = null;
     var $photos =null;
     var $publish;
+    var $padreName;
+    var $padreImage;
 
     function getByGrupo($idGrupo){
         return $this->getRows(0,999,array(),array("grupo"=>"=".$idGrupo));
@@ -60,9 +62,9 @@ class Roteiro extends Persistencia {
             $this->cardImage = $nome;
 
             $picture = WideImage::load($this->getFolder().$nome);
-            $resize = $picture->resize(360,null, 'fill');
-            $crop = $resize->crop(0,'25%',360,310);
-            $crop->saveToFile($this->getFolder().$nome);
+            $resize = $picture->resize(360,310, 'fill');
+            //$crop = $resize->crop(0,'25%',360,310);
+            $resize->saveToFile($this->getFolder().$nome);
             
         }
     }
@@ -82,6 +84,29 @@ class Roteiro extends Persistencia {
         }
     }
 
+
+    function salvaPadreImage($file){
+        //redimencionar
+             
+
+
+        if($file['name'] != ''){            
+
+            if($this->padreImage!= null && $this->padreImage != '')
+                $this->apagaImagem($this->padreImage,$this->getFolder());
+
+            $names = explode(".",$file['name']);
+            $nome = $this->grupo->id."_padreimage.".$names[count($names)-1];
+            $this->uploadArquivo($file,$nome,$this->getFolder());
+            $this->padreImage = $nome;
+
+            $picture = WideImage::load($this->getFolder().$nome);
+            $resize = $picture->resize(700,466, 'fill');
+            //$crop = $resize->crop(0,'25%',360,310);
+            $resize->saveToFile($this->getFolder().$nome);
+            
+        }
+    }
     function getCountDown (){        
         return $this->getRow(array("countDown"=>"=1"));
     }

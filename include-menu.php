@@ -1,3 +1,8 @@
+<?php
+$obAgmenu = new Agendamento();
+$obAgmenu->getById(7);
+$urlRevista = $obAgmenu->destinatarios;
+?>
 <header>
 	<div class="header-top-area">
 		<div class="container">
@@ -43,7 +48,7 @@
 							<li><a href="aboutus.php">A Obra de Maria</a>
 								
 							</li>
-							<li><a target="_blank" href="http://online.pubhtml5.com/vvvl/vhrc/">Revista</a>
+							<li><a target="_blank" href="<?= $urlRevista?>">Revista</a>
 							</li>
 							<li class="<?= $menusite == 2 ? 'active' : '';?>"><a href="contact.php">Contato</a>
 							</li>

@@ -419,7 +419,9 @@ set
 		<atrib tbname="image" type="txt">image</atrib>	
 		<atrib tbname="title" type="txt">title</atrib>
 		<atrib tbname="description" type="txt">description</atrib>
-		<atrib tbname="publish" type="int">publish</atrib>		
+		<atrib tbname="publish" type="int">publish</atrib>	
+		<atrib tbname="padre_name" type="txt">padreName</atrib>
+		<atrib tbname="padre_image" type="txt">padreImage</atrib>
 		<atrib tbname="" type="set" lazy="true" clrelation="Review" clorder="date" clfk="roteiro">reviews</atrib>
 		<atrib tbname="" type="set" lazy="true" clrelation="Foto" clorder="id" clfk="roteiro">photos</atrib>
 		<atrib tbname="" type="set" lazy="true" clrelation="Video" clorder="id" clfk="roteiro">videos</atrib>

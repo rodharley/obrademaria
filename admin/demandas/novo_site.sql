@@ -247,4 +247,9 @@ ALTER TABLE `ag_review` ADD `local` VARCHAR(255) NOT NULL AFTER `photo`;
 INSERT INTO `ag_menu` (`id`, `idMenuPai`, `descricao`, `url`) VALUES ('54', '50', 'Comentários', 'comentario.php');
 INSERT INTO `ag_menuperfil` (`id`, `idMenu`, `idPerfil`) VALUES (NULL, '54', '1'), (NULL, '54', '15');
 ALTER TABLE `ag_grupo` ADD `cotacao_customizado` DECIMAL(10,2) NULL DEFAULT '1.00' AFTER `bit_transferencia`; 
+
+ALTER TABLE `ag_roteiro` ADD `padre_name` VARCHAR(200) NULL AFTER `publish`, ADD `padre_image` VARCHAR(255) NULL AFTER `padre_name`; 
+INSERT INTO `ag_menu` (`id`, `idMenuPai`, `descricao`, `url`) VALUES ('55', '1', 'Configurações', 'configuracoes.php');
+INSERT INTO `ag_menuperfil` (`id`, `idMenu`, `idPerfil`) VALUES (NULL, '55', '1'), (NULL, '55', '15');
+INSERT INTO `ag_agendamento` (`id`, `descricao`, `data`, `destinatarios`) VALUES ('7', 'UrlRevista', '2020-08-13', 'http://online.pubhtml5.com/vvvl/vhrc/');
 COMMIT;

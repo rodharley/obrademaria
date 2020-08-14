@@ -77,10 +77,11 @@ if(isset($_GET['id'])){
 						</div>
 					
 					<div class="row">
-					<?php if(count($obRoteiro->photos) > 0){ ?>
+					<?php if($obRoteiro->padreImage != null && $obRoteiro->padreImage != ''){ ?>
 						<div class="col-md-6  col-sm-12">
 						<div class="package-features-image">
-						<img src="img/fotos/<?=$obRoteiro->photos[0]->name?>" alt="" class="img-responsove border-raduis-3">
+						<img src="img/packages/<?=$obRoteiro->padreImage?>" alt="" class="img-responsove border-raduis-3">
+						<h5><?= $obRoteiro->padreName?></h5>
 					</div>
 						</div>
 						<?php }?>

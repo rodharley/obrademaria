@@ -54,6 +54,8 @@ $tpl->CARD_TITLE = $obRoteiro->cardTitle;
 $tpl->IMAGE = $obRoteiro->image;
 $tpl->DESCRIPTION = $obRoteiro->description;
 $tpl->TITLE = $obRoteiro->title;
+$tpl->PADRE_NAME = $obRoteiro->padreName;
+$tpl->PADRE_IMAGE = $obRoteiro->padreImage;
 
 $rsfotos = $obFoto->getByRoteiro($obRoteiro->id);
 foreach($rsfotos as $key => $value){
