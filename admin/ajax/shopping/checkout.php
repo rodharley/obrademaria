@@ -228,7 +228,7 @@ if($obCheckout->conn->commit()){
 
     //email para a obra de maria
     //enviando email com dados da compra:
-    $html = "VENDA REALIADA PELO SITE  ".$_REQUEST['nomeCompleto']."-".$obCliente->cpf."<br/><br/>";
+    $html = "VENDA REALIZADA PELO SITE  ".$_REQUEST['nomeCompleto']."-".$obCliente->cpf."<br/><br/>";
     $html .= "Grupo: ".$obGrupo->nomePacote.".<br/><br/>";
     $html .= "Data do Embarque: ".$obGrupo->convdata($obGrupo->dataEmbarque,"mtn").".<br/><br/>";
     $html .= "Forma de Pagamento: ".$obVenda->printFormaPagamento()."<br/><br/>";
