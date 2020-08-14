@@ -67,6 +67,13 @@ if(isset($_GET['id'])){
 						</li>						
 						<li>À Vista <?= $obRoteiro->grupo->moeda->cifrao.' '.$obRoteiro->money($obRoteiro->valorComDesconto(),"atb")?></li>
 					</ul>
+					<? if($obRoteiro->grupo->valorAdesao > 0 || $obRoteiro->grupo->valorTaxaEmbarque > 0){ ?>
+					<div class="row">
+						<div class="col-md-12  col-sm-12">
+							<h3 class="color-two text-right">+ ADESÃO E TAXA DE EMBARQUE</h3>
+						</div>
+					</div>
+					<? }?>
 					<div class="blog-meta">
 							<ul class="post-social">
 								<li><a href="javascript:void(0);" id="do_unlike"><i class="fa fa-thumbs-o-down"></i><span class="lbl_unlike"><?= $obRoteiro->unlikes?></span></a>
@@ -75,16 +82,24 @@ if(isset($_GET['id'])){
 								</li>
 							</ul>
 						</div>
-					
+						
 					<div class="row">
+					<div class="col-md-6  col-sm-12">
 					<?php if($obRoteiro->padreImage != null && $obRoteiro->padreImage != ''){ ?>
-						<div class="col-md-6  col-sm-12">
+						
 						<div class="package-features-image">
 						<img src="img/packages/<?=$obRoteiro->padreImage?>" alt="" class="img-responsove border-raduis-3">
 						<h5><?= $obRoteiro->padreName?></h5>
-					</div>
 						</div>
-						<?php }?>
+						<?php }else if(count($obRoteiro->photos) >0 ){							
+							?>
+
+						<div class="package-features-image">
+						<img src="img/fotos/<?=$obRoteiro->photos[0]->name?>" alt="" class="img-responsove border-raduis-3">
+						
+						</div>
+						<? }?>
+						</div>
 						<div class="col-md-6  col-sm-12 tab-content">
 						<div class="additional-info">
 										<div class="info-title">
