@@ -742,7 +742,7 @@ class Participante extends Persistencia{
 		 $user = new Usuario();
 		$user->id =3;
 		$data = date("Y-m-d H:i:s");
-		$movimento = "LOG NUMERO ".$this->id." CONTRATO EM NUVEM: ".$response->code."-".$response->raw_body;
+		$movimento = "LOG NUMERO ".$this->id." CONTRATO EM NUVEM: ".json_encode($response);
 		$oLog->usuario = $user;
 		$oLog->data = $data;
 		$oLog->movimento = $movimento;
