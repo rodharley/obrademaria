@@ -1,6 +1,6 @@
 <?php
 $reviewsReview  = new Review();
-$reviews = $reviewsReview->getRandomicos(5);
+$reviews = $reviewsReview->getRandomicos(50);
 if(count($reviews)>0){
 ?>
 <!-- testimonial area start here -->

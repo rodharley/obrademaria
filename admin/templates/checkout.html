@@ -78,7 +78,7 @@
         <!-- BEGIN BLOCK_FORMA_AVISTA -->
         <div class="custom-control custom-radio">
           <input value="formaAVista" id="formaAVista" name="forma" type="radio" class="custom-control-input" {FORMA_AVISTA_CHECKED} required="">
-          <label class="custom-control-label" for="formaAVista">A Vista {TEXT_DESCONTO_A_VISTA} <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_CURRENCY}</span></label>
+          <label class="custom-control-label" for="formaAVista">A Vista <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_CURRENCY}</span></label>
         </div>
         <!-- END BLOCK_FORMA_AVISTA -->
         <!-- BEGIN BLOCK_FORMA_ENTRADA -->
@@ -109,20 +109,26 @@
       <div class="d-block my-3">
         <div class="custom-control custom-radio">
           <input value="transferencia" id="transferenciaAVista" name="pagamentoAVista" type="radio" class="custom-control-input" checked="" required="">
-          <label class="custom-control-label" for="transferenciaAVista">Transferência Bancária</label>
+          <label class="custom-control-label" for="transferenciaAVista">Transferência Bancária {TEXT_DESCONTO_A_VISTA}</label>
         </div>
         <!-- BEGIN BLOCK_BOLETO_AVISTA -->
         <div class="custom-control custom-radio">
           <input value="boleto" id="boletoAVista" name="pagamentoAVista" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="boletoAVista">Boleto (GerenciaNet)</label>
+          <label class="custom-control-label" for="boletoAVista">Boleto (GerenciaNet)  {TEXT_DESCONTO_A_VISTA}</label>
         </div>
         <!-- END BLOCK_BOLETO_AVISTA-->
         <!-- BEGIN BLOCK_CHEQUE_AVISTA -->
         <div class="custom-control custom-radio">
           <input value="cheque" id="chequeAVista" name="pagamentoAVista" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="chequeAVista" id="chequeAVistaLabel">Cheque</label>
+          <label class="custom-control-label" for="chequeAVista" id="chequeAVistaLabel">Cheque {TEXT_DESCONTO_A_VISTA}</label>
         </div> 
         <!-- END BLOCK_CHEQUE_AVISTA -->
+        <!-- BEGIN BLOCK_CARTAO_AVISTA -->
+      <div class="custom-control custom-radio">
+        <input value="credit_card" id="creditoAVista" name="pagamentoAVista" checked type="radio" class="custom-control-input" required="">
+        <label class="custom-control-label" for="creditoAVista" id="creditoAVistaLabel">Cartão de crédito</label>
+      </div>
+      <!-- END BLOCK_CARTAO_AVISTA -->
       </div>
     </div>
     <div id="tipoCustomizado">
@@ -188,14 +194,14 @@
       <!-- END BLOCK_CHEQUE_ENTRADA_PARCELA -->
     </div>
 
-
+    
     <div id="tipoParcelado">
       <h5 class="mb-3">Parcelado</h5>
       <div class="d-block my-3">
         <!-- BEGIN BLOCK_CHEQUE_PARCELADO -->
         <div class="custom-control custom-radio">
-          <input value="cheque" id="cheque" name="pagamentoParcelado" type="radio" class="custom-control-input" checked="" required="">
-          <label class="custom-control-label" for="cheque" id="chequeParceladoLabel">Cheque <span class="badge badge-success">(em {PARCELA_CHEQUE_MAXIMA} vezes)</span></label>
+          <input value="cheque" id="chequeParcelado" name="pagamentoParcelado" type="radio" class="custom-control-input" checked="" required="">
+          <label class="custom-control-label" for="chequeParcelado" id="chequeParceladoLabel">Cheque <span class="badge badge-success">(em {PARCELA_CHEQUE_MAXIMA} vezes)</span></label>
         </div>   
         <!-- END BLOCK_CHEQUE_PARCELADO --> 
         <!-- BEGIN BLOCK_CARTAO_PARCELADO -->
@@ -608,6 +614,10 @@
         {
           atualizaTela();
         });
+        $("#transferenciaAVista, #boletoAVista, #chequeAVista, #creditoAVista,#creditoParcelado,#chequeParcelado,#chequeEntrada,#creditoEntrada,#entradachequeEntrada,#entradaBoletoEntrada,#entradatransferenciaEntrada").click(function()
+        {
+          atualizaTela();
+        });
         $("#percentualEntrada").change(function(){
           atualizaTela();
         });
@@ -723,7 +733,8 @@ function blockAcomp(numero,disabled){
 
         if($("#formaAVista").prop("checked")){
           dollar = cotacao;
-          if(desconto != 0){
+          $isCartao = $('#creditoAVista').prop("checked");
+          if(desconto != 0 && !$isCartao){
             if(haveOptional && $("#opcional").prop("checked")){
             descontoFinal = (valorPacote+valorOpcional)*(desconto/100) * quantidade;
             }else{

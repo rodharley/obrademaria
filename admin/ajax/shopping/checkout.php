@@ -36,70 +36,6 @@ if($obGrupo->bitCartao == 1 && $obGrupo->parcelaCartao != null && $obGrupo->parc
     $mesesParcelaCartao = 1;
 }
 
-//incluir o cliente
-$idCliente = $obCliente->saveBySite($_REQUEST);
-if($obParticipante->getByIdCliente($idCliente,$obGrupo->id)){
-    throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obCliente->nomeCompleto." já está cadastrado neste pacote turístico");
-}
-//incluir como participante no grupo
-$idParticipante  = $obParticipante->saveBySite($obGrupo,$obCliente,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
-
-//outros participantes
-$idPartAcomp1 = 0;
-$idPartAcomp2 = 0;
-$idPartAcomp3 = 0;
-$idPartAcomp4 = 0;
-if($_REQUEST['quantidade'] > 1){
-    if(isset($_REQUEST['acompanhante1'])){
-        $obAcomp = new Cliente();
-        $obParticipanteAcomp = new Participante();
-        $idAcomp1 = $obAcomp->saveAcompanhanteBySite($_REQUEST['acompanhante1'],$_REQUEST['email1'],isset($_REQUEST['mailmarketing']) ? 1 : 0);
-        
-        if($obParticipante->getByIdCliente($idAcomp1,$obGrupo->id)){
-            throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
-        }
-
-        $idPartAcomp1  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
-
-    }
-    if(isset($_REQUEST['acompanhante2'])){
-        $obAcomp = new Cliente();
-        $obParticipanteAcomp = new Participante();
-        $idAcomp1 = $obAcomp->saveAcompanhanteBySite($_REQUEST['acompanhante2'],$_REQUEST['email2'],isset($_REQUEST['mailmarketing']) ? 1 : 0);
-        
-        if($obParticipante->getByIdCliente($idAcomp1,$obGrupo->id)){
-            throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
-        }
-
-        $idPartAcomp2  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
-
-    }
-    if(isset($_REQUEST['acompanhante3'])){
-        $obAcomp = new Cliente();
-        $obParticipanteAcomp = new Participante();
-        $idAcomp1 = $obAcomp->saveAcompanhanteBySite($_REQUEST['acompanhante3'],$_REQUEST['email3'],isset($_REQUEST['mailmarketing']) ? 1 : 0);
-
-        if($obParticipante->getByIdCliente($idAcomp1,$obGrupo->id)){
-            throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
-        }
-
-        $idPartAcomp3  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
-
-    }
-    if(isset($_REQUEST['acompanhante4'])){
-        $obAcomp = new Cliente();
-        $obParticipanteAcomp = new Participante();
-        $idAcomp1 = $obAcomp->saveAcompanhanteBySite($_REQUEST['acompanhante4'],$_REQUEST['email4'],isset($_REQUEST['mailmarketing']) ? 1 : 0);
-
-        if($obParticipante->getByIdCliente($idAcomp1,$obGrupo->id)){
-            throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
-        }
-
-        $idPartAcomp4  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$_REQUEST['forma']);
-
-    }
-}
-
 $formaPagamento = $_REQUEST['forma'];
 switch($_REQUEST['forma']){
     case 'formaAVista':
@@ -123,6 +59,75 @@ switch($_REQUEST['forma']){
 
 
 
+//incluir o cliente
+$idCliente = $obCliente->saveBySite($_REQUEST);
+if($obParticipante->getByIdCliente($idCliente,$obGrupo->id)){
+    throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obCliente->nomeCompleto." já está cadastrado neste pacote turístico");
+}
+//incluir como participante no grupo
+$idParticipante  = $obParticipante->saveBySite($obGrupo,$obCliente,isset($_REQUEST['opcional'])?1:0,$formaPagamento,$tipoPagamento1);
+
+//outros participantes
+$idPartAcomp1 = 0;
+$idPartAcomp2 = 0;
+$idPartAcomp3 = 0;
+$idPartAcomp4 = 0;
+if($_REQUEST['quantidade'] > 1){
+    if(isset($_REQUEST['acompanhante1'])){
+        $obAcomp = new Cliente();
+        $obParticipanteAcomp = new Participante();
+        $idAcomp1 = $obAcomp->saveAcompanhanteBySite($_REQUEST['acompanhante1'],$_REQUEST['email1'],isset($_REQUEST['mailmarketing']) ? 1 : 0);
+        
+        if($obParticipante->getByIdCliente($idAcomp1,$obGrupo->id)){
+            throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
+        }
+
+        $idPartAcomp1  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$formaPagamento,$tipoPagamento1);
+
+    }
+    if(isset($_REQUEST['acompanhante2'])){
+        $obAcomp = new Cliente();
+        $obParticipanteAcomp = new Participante();
+        $idAcomp1 = $obAcomp->saveAcompanhanteBySite($_REQUEST['acompanhante2'],$_REQUEST['email2'],isset($_REQUEST['mailmarketing']) ? 1 : 0);
+        
+        if($obParticipante->getByIdCliente($idAcomp1,$obGrupo->id)){
+            throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
+        }
+
+        $idPartAcomp2  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$formaPagamento,$tipoPagamento1);
+
+    }
+    if(isset($_REQUEST['acompanhante3'])){
+        $obAcomp = new Cliente();
+        $obParticipanteAcomp = new Participante();
+        $idAcomp1 = $obAcomp->saveAcompanhanteBySite($_REQUEST['acompanhante3'],$_REQUEST['email3'],isset($_REQUEST['mailmarketing']) ? 1 : 0);
+
+        if($obParticipante->getByIdCliente($idAcomp1,$obGrupo->id)){
+            throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
+        }
+
+        $idPartAcomp3  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$formaPagamento,$tipoPagamento1);
+
+    }
+    if(isset($_REQUEST['acompanhante4'])){
+        $obAcomp = new Cliente();
+        $obParticipanteAcomp = new Participante();
+        $idAcomp1 = $obAcomp->saveAcompanhanteBySite($_REQUEST['acompanhante4'],$_REQUEST['email4'],isset($_REQUEST['mailmarketing']) ? 1 : 0);
+
+        if($obParticipante->getByIdCliente($idAcomp1,$obGrupo->id)){
+            throw new Exception("Não é possível adquirir o pacote pois o cliente ".$obAcomp->nomeCompleto." com email: ".$obAcomp->email." já está cadastrado neste pacote turístico");
+        }
+
+        $idPartAcomp4  = $obParticipanteAcomp->saveBySite($obGrupo,$obAcomp,isset($_REQUEST['opcional'])?1:0,$formaPagamento,$tipoPagamento1);
+
+    }
+}
+
+
+
+
+
+
 $idVenda = $obVenda->createVenda($obParticipante,$obGrupo,isset($_REQUEST['opcional'])?1:0,$_REQUEST['quantidade'],$formaPagamento,$tipoPagamento1,$tipoPagamento2,$idPartAcomp1,$idPartAcomp2,$idPartAcomp3,$idPartAcomp4);
 
 switch($_REQUEST['forma']){
@@ -131,13 +136,20 @@ break;
 case 'formaAVista':
     $valorPagamento = $obVenda->total;
     if($_REQUEST['pagamentoAVista'] == 'transferencia'){
-        $obVenda->incluirPagamentoSiteTransferencia($valorPagamento,"Pagamentos pela internet a vista");
+        //$obVenda->incluirPagamentoSiteTransferencia($valorPagamento,"Pagamentos pela internet a vista");
     } else if($_REQUEST['pagamentoAVista'] == 'boleto'){
         $chargeBoleto = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$valorPagamento);
         $linkBoleto = $obCheckout->createLinkPagamento($chargeBoleto['data']['charge_id'],'','banking_billet');
 
     }elseif($_REQUEST['pagamentoAVista'] == 'cheque'){
-        $obVenda->incluirPagamentoSiteCheque($valorPagamento,date("Y-m-d"),"Pagamentos pela internet a vista");
+        //$obVenda->incluirPagamentoSiteCheque($valorPagamento,date("Y-m-d"),"Pagamentos pela internet a vista");
+    }if($_REQUEST['pagamentoAVista'] == 'credit_card')
+    {
+         //$obCheckout = new GerenciaNetCheckOut();
+        //$chargeCartao = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$obVenda->total/$obVenda->quantidade);
+        //$linkCartao = $obCheckout->createLinkPagamento($chargeCartao['data']['charge_id'],'','credit_card');
+        $response = $obCielo->createLinkPagamento($obParticipante,$obGrupo,$obVenda,$obVenda->total/$obVenda->quantidade,1);
+        $linkCartao = $response->settings->checkoutUrl;
     }else{
         throw new Exception("Tipo de Pagamento não encontrado");
     }
@@ -147,13 +159,13 @@ case 'formaEntrada':
     $valorResto = ($obVenda->total)*(1-$_REQUEST['percentualEntrada']);
     
     if($_REQUEST['entradaPagamentoEntrada'] == 'transferencia'){
-        $obVenda->incluirPagamentoSiteTransferencia($valorEntrada,"Pagamentos pela internet entrada");
+        //$obVenda->incluirPagamentoSiteTransferencia($valorEntrada,"Pagamentos pela internet entrada");
     }elseif($_REQUEST['entradaPagamentoEntrada'] == 'boleto'){
         $chargeBoleto = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,($valorEntrada/$obVenda->quantidade));
         $linkBoleto = $obCheckout->createLinkPagamento($chargeBoleto['data']['charge_id'],'','banking_billet');
 
     }elseif($_REQUEST['entradaPagamentoEntrada'] == 'cheque'){
-        $obVenda->incluirPagamentoSiteCheque($valorEntrada, date("Y-m-d"),"Pagamentos pela internet entrada");
+        //$obVenda->incluirPagamentoSiteCheque($valorEntrada, date("Y-m-d"),"Pagamentos pela internet entrada");
     }else{
         throw new Exception("Tipo de Pagamento não encontrado");
     }
@@ -169,11 +181,11 @@ case 'formaEntrada':
 
     }elseif($_REQUEST['pagamentoEntrada'] == 'cheque'){
         $valorParcela = $valorResto/$mesesParcelaCheque;
-        for($i=1;$i<=$mesesParcelaCheque;$i++){
+        /*for($i=1;$i<=$mesesParcelaCheque;$i++){
             $dataAtual = DateTime::createFromFormat("Y-m-d",date("Y-m-d"));
             $dataAtual->add(new DateInterval("P".$i."M"));
             $obVenda->incluirPagamentoSiteCheque($valorParcela,$dataAtual->format("Y-m-d"),"Pagamentos pela internet parcelamento");
-        }
+        }*/
     }else{
         throw new Exception("Tipo de Pagamento não encontrado");
     }
@@ -190,11 +202,11 @@ case 'formaParcelado':
         $linkCartao = $response->settings->checkoutUrl;
     }elseif($_REQUEST['pagamentoParcelado'] == 'cheque'){
         $valorParcela = ($obVenda->total)/$mesesParcelaCheque;
-        for($i=1;$i<=$mesesParcelaCheque;$i++){
+       /* for($i=1;$i<=$mesesParcelaCheque;$i++){
             $dataAtual = DateTime::createFromFormat("Y-m-d",date("Y-m-d"));
             $dataAtual->add(new DateInterval("P".$i."M"));
             $obVenda->incluirPagamentoSiteCheque($valorParcela,$dataAtual->format("Y-m-d"),"Pagamentos pela internet parcelado");
-        }
+        }*/
     }
     
 break;

@@ -652,9 +652,9 @@ class Participante extends Persistencia{
 		return $total;
 	}
 
-	public function saveBySite($obGrupo,$obCliente,$opcional,$forma){
+	public function saveBySite($obGrupo,$obCliente,$opcional,$forma,$tipoPag){
 		$desconto = 0;
-		if($forma == 'formaAVista'){
+		if($forma == 'formaAVista' && $tipoPag != 'credit_card'){
 			$desconto = $obGrupo->descontoAVista; 
 			
 		}

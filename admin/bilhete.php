@@ -116,6 +116,13 @@ if(isset($_REQUEST['charge_id'])){
                     $tpl->INFO_TRANSFERENCIA = $oVenda->printInfoTransferencia();
                     $tpl->block("BLOCK_TRANSFERENCIA_AVISTA");
                 break;
+                case 'credit_card':
+                    foreach ($vendasCielo as $key => $charge) {                        
+                        $tpl->URLGN_CARTAO = $charge->checkoutUrl;                           
+                                           
+                  }
+                    $tpl->block("BLOCK_CARTAO_PARCELADO");
+                break;
             }
             $tpl->block("BLOCK_AVISTA");
             $tpl->block('BLOCK_FORMA_PADRAO_REAL');

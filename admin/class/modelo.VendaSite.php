@@ -29,7 +29,9 @@ class VendaSite extends Persistencia {
         if($grupo->moeda->id != 2){    
             switch($formaPagamento){
                 case 'formaAVista':  
-                    $desconto = $grupo->descontoAVista;                 
+                    if($tipoPagamento1 != 'credit_card'){
+                    $desconto = $grupo->descontoAVista;  
+                    }               
                     $cotacao = $grupo->cotacaoAVista;
                 break;
                 case 'formaParcelado':

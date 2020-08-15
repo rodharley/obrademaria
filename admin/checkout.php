@@ -63,7 +63,7 @@ if(isset($_REQUEST['idGrupo'])){
 //forma de pagamento customizada
 $avista = 0;
 $parcelado = 0;
-if($oGrupo->bitBoleto == 1 || $oGrupo->bitCheque == 1 || $oGrupo->bitTransferencia == 1){
+if($oGrupo->bitBoleto == 1 || $oGrupo->bitCheque == 1 || $oGrupo->bitTransferencia == 1 || $oGrupo->bitCartao == 1){
     $tpl->FORMA_AVISTA_CHECKED = 'checked="checked"';
     $tpl->block("BLOCK_FORMA_AVISTA");
     $avista = 1;
@@ -105,7 +105,7 @@ if($oGrupo->bitCheque == 1){
 if($oGrupo->bitCartao == 1){
     $tpl->PARCELA_CARTAO_MAXIMA = $oGrupo->parcelaCartao != null && $oGrupo->parcelaCartao != '' ? $oGrupo->parcelaCartao : 1;
     $tpl->block('BLOCK_CARTAO_ENTRADA_PARCELA');
-    //$tpl->block('BLOCK_CARTAO_PARCELADO');
+    $tpl->block('BLOCK_CARTAO_AVISTA');
 }else{
     $tpl->PARCELA_CARTAO_MAXIMA = 1;
 }
