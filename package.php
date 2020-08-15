@@ -52,6 +52,8 @@ if(isset($_GET['id'])){
 					<div class="single-package-title">
 						<h2><?= $obRoteiro->title?></h2>
 					</div>
+					<div class="row">
+						<div class="col-md-12  col-sm-12">
 					<ul class="package-content">
 						<li>Embarque: <?= $obRoteiro->convdata($obRoteiro->grupo->dataEmbarque,"mtn")?></li>
 						<li>
@@ -67,6 +69,15 @@ if(isset($_GET['id'])){
 						</li>						
 						<li>À Vista <?= $obRoteiro->grupo->moeda->cifrao.' '.$obRoteiro->money($obRoteiro->valorComDesconto(),"atb")?></li>
 					</ul>
+					<!--div class="blog-meta">
+							<ul class="post-social">
+								<li><a href="javascript:void(0);" id="do_unlike"><i class="fa fa-thumbs-o-down"></i><span class="lbl_unlike"><?= $obRoteiro->unlikes?></span></a>
+								</li>
+								<li><a href="javascript:void(0);" id="do_like"><i class="fa fa-thumbs-o-up"></i><span class="lbl_like"><?= $obRoteiro->likes?></span></a>
+								</li>
+							</ul>
+						</div-->
+					</div></div>
 					<? if($obRoteiro->grupo->valorAdesao > 0 || $obRoteiro->grupo->valorTaxaEmbarque > 0){ ?>
 					<div class="row">
 						<div class="col-md-12  col-sm-12">
@@ -74,14 +85,7 @@ if(isset($_GET['id'])){
 						</div>
 					</div>
 					<? }?>
-					<div class="blog-meta">
-							<ul class="post-social">
-								<li><a href="javascript:void(0);" id="do_unlike"><i class="fa fa-thumbs-o-down"></i><span class="lbl_unlike"><?= $obRoteiro->unlikes?></span></a>
-								</li>
-								<li><a href="javascript:void(0);" id="do_like"><i class="fa fa-thumbs-o-up"></i><span class="lbl_like"><?= $obRoteiro->likes?></span></a>
-								</li>
-							</ul>
-						</div>
+					
 						
 					<div class="row">
 					<div class="col-md-6  col-sm-12">
