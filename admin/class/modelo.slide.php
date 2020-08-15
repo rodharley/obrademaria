@@ -22,7 +22,7 @@ class Slide extends Persistencia {
             $names = explode(".",$file['name']);
             if($this->image!= null && $this->image != '')
                 $this->apagaImagem($this->image,$this->getFolder());
-            $nome = $this->roteiro->id."_slide.".$names[count($names)-1];
+            $nome = $this->roteiro->id."_slide.".date('YmdHis').'.'.$names[count($names)-1];
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->image = $nome;
             $this->resizeImage($this->getFolder(),$nome,1680,990);            

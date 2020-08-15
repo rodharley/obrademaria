@@ -27,7 +27,7 @@ class Galeria extends Persistencia {
 
         if($file['name'] != ''){            
             $names = explode(".",$file['name']);
-            $nome = $this->retornaNomeUnico($this->grupo->id."_foto.".$names[count($names)-1],$this->getFolder());
+            $nome = $this->retornaNomeUnico($this->grupo->id."_foto.".date('YmdHis').'.'.$names[count($names)-1],$this->getFolder());
             $this->uploadArquivo($file,$nome,$this->getFolder());
              
             $qtd = count($this->photos)+1;

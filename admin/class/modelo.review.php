@@ -31,7 +31,7 @@ class Review extends Persistencia {
 
         if($file['name'] != ''){            
             $names = explode(".",$file['name']);
-            $nomefoto = $this->retornaNomeUnico($roteiro->id."_cliente.".$names[count($names)-1],$this->getFolder());
+            $nomefoto = $this->retornaNomeUnico($roteiro->id."_cliente.".date('YmdHis').'.'.$names[count($names)-1],$this->getFolder());
             $this->uploadArquivo($file,$nomefoto,$this->getFolder());
             $this->name = $name;
             $this->photo = $nomefoto;
@@ -59,7 +59,7 @@ class Review extends Persistencia {
                 $this->apagaImagem($this->photo,$this->getFolder());
 
             $names = explode(".",$file['name']);
-            $nomefoto = $this->retornaNomeUnico("cliente.".$names[count($names)-1],$this->getFolder());
+            $nomefoto = $this->retornaNomeUnico("cliente.".date('YmdHis').'.'.$names[count($names)-1],$this->getFolder());
             $this->uploadArquivo($file,$nomefoto,$this->getFolder());
             $this->photo = $nomefoto;
             $this->resizeImage($this->getFolder(),$nomefoto,300,300);

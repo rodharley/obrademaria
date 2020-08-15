@@ -11,7 +11,7 @@ class Foto extends Persistencia {
 
         if($file['name'] != ''){            
             $names = explode(".",$file['name']);
-            $nome = $this->retornaNomeUnico($roteiro->id."_foto.".$names[count($names)-1],$this->getFolder());
+            $nome = $this->retornaNomeUnico($roteiro->id."_foto.".date('YmdHis').'.'.$names[count($names)-1],$this->getFolder());
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->name = $nome;
             $this->roteiro = $roteiro;

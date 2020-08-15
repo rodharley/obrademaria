@@ -57,7 +57,7 @@ class Roteiro extends Persistencia {
                 $this->apagaImagem($this->cardImage,$this->getFolder());
 
             $names = explode(".",$file['name']);
-            $nome = $this->grupo->id."_cardimage.".$names[count($names)-1];
+            $nome = $this->grupo->id."_cardimage.".date('YmdHis').'.'.$names[count($names)-1];
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->cardImage = $nome;
             $this->resizeImage($this->getFolder(),$nome,360,310);          
@@ -70,7 +70,7 @@ class Roteiro extends Persistencia {
             if($this->image!= null && $this->image != '')
                 $this->apagaImagem($this->image,$this->getFolder());
             $names = explode(".",$file['name']);
-            $nome = $this->grupo->id."_image.".$names[count($names)-1];
+            $nome = $this->grupo->id."_image.".date('YmdHis').'.'.$names[count($names)-1];
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->image = $nome;
             $this->resizeImage($this->getFolder(),$nome,1680,550);            
@@ -89,7 +89,7 @@ class Roteiro extends Persistencia {
                 $this->apagaImagem($this->padreImage,$this->getFolder());
 
             $names = explode(".",$file['name']);
-            $nome = $this->grupo->id."_padreimage.".$names[count($names)-1];
+            $nome = $this->grupo->id."_padreimage.".date('YmdHis').'.'.$names[count($names)-1];
             $this->uploadArquivo($file,$nome,$this->getFolder());
             $this->padreImage = $nome;
             $this->resizeImage($this->getFolder(),$nome,700,466);            
