@@ -27,8 +27,11 @@ class Galeria extends Persistencia {
 
         if($file['name'] != ''){            
             $names = explode(".",$file['name']);
-            $nome = $this->retornaNomeUnico($this->grupo->id."_foto.".date('YmdHis').'.'.$names[count($names)-1],$this->getFolder());
+            $timer = date('YmdHis');
+            $nome = $this->retornaNomeUnico($this->grupo->id."_foto.".$timer.'.'.$names[count($names)-1],$this->getFolder());
+            $nomeThumb = $this->retornaNomeUnico($this->grupo->id."_fotoThumb.".$timer.'.'.$names[count($names)-1],$this->getFolder());
             $this->uploadArquivo($file,$nome,$this->getFolder());
+            $this->uploadArquivo($file,$nomeThumb,$this->getFolder());
              
             $qtd = count($this->photos)+1;
 
@@ -48,11 +51,12 @@ class Galeria extends Persistencia {
                 } 
                 $foto = new GaleriaFoto();
             $foto->name = $nome;
+            $foto->nameThumb = $nomeThumb;
             $foto->galeria = $this;
             $foto->type = $type;   
             $foto->description = $description;        
             
-            $this->resizeImage($this->getFolder(),$nome,$width,$heigth);
+            $this->resizeImage($this->getFolder(),$nomeThumb,$width,$heigth);
             $foto->save();
         }
     }
@@ -66,6 +70,8 @@ class Galeria extends Persistencia {
         if($foto->getById($idFoto)){
         if($foto->name!= null && $foto->name != '')
             $this->apagaImagem($foto->name,$this->getFolder());
+        if($foto->nameThumb!= null && $foto->nameThumb != '')
+            $this->apagaImagem($foto->nameThumb,$this->getFolder());
         $foto->delete($idFoto);
         }
     }

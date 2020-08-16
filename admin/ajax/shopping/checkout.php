@@ -143,7 +143,7 @@ case 'formaAVista':
 
     }elseif($_REQUEST['pagamentoAVista'] == 'cheque'){
         //$obVenda->incluirPagamentoSiteCheque($valorPagamento,date("Y-m-d"),"Pagamentos pela internet a vista");
-    }if($_REQUEST['pagamentoAVista'] == 'credit_card')
+    }elseif($_REQUEST['pagamentoAVista'] == 'credit_card')
     {
          //$obCheckout = new GerenciaNetCheckOut();
         //$chargeCartao = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$obVenda->total/$obVenda->quantidade);

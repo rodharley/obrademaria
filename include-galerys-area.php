@@ -19,7 +19,7 @@ if(count($galerias) > 0){
 		<div class="col-md-4 col-sm-6">
 			<div class="single-place">
 				<figure>
-					<a href="#"><img src="img/galery/<?=$g->photos[0]->name?>" alt=""/>
+					<a href="#"><img src="img/galery/<?=$g->photos[0]->nameThumb?>" alt=""/>
 					</a>
 					<figcaption>
 						<h4><?=$g->name?></h4>		

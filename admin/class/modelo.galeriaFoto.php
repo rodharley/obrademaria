@@ -2,6 +2,7 @@
 class GaleriaFoto extends Persistencia {
     var $galeria = null;
     var $name;
+    var $nameThumb;
     var $type;
     var $description;
 

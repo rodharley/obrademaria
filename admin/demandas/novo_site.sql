@@ -253,4 +253,5 @@ INSERT INTO `ag_menu` (`id`, `idMenuPai`, `descricao`, `url`) VALUES ('55', '1',
 INSERT INTO `ag_menuperfil` (`id`, `idMenu`, `idPerfil`) VALUES (NULL, '55', '1'), (NULL, '55', '15');
 INSERT INTO `ag_agendamento` (`id`, `descricao`, `data`, `destinatarios`) VALUES ('7', 'UrlRevista', '2020-08-13', 'http://online.pubhtml5.com/vvvl/vhrc/');
 ALTER TABLE `ag_grupo` CHANGE `text_customizado` `text_customizado` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `ag_galeria_foto` ADD `name_tumb` VARCHAR(255) NOT NULL AFTER `description`;
 COMMIT;

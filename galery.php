@@ -51,7 +51,7 @@ $ob->getById($_REQUEST['id']);
 			<a href="img/galery/<?=$item->name?>">
 			<div class="<?= $item->type == 0 ? 'col-sm-12 col-md-6' : 'col-sm-6 col-md-3'?> grid-item">
 				<figure>
-					<img src="img/galery/<?=$item->name?>" alt="">
+					<img src="img/galery/<?=$item->nameThumb?>" alt="">
 					<figcaption>
 						
 						<h4>Local <span><?=$ob->grupo->local?></span></h4>
