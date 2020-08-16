@@ -288,6 +288,7 @@ set
 		<atrib tbname="nome_customizado" type="txt">nomeCustomizado</atrib>
 		<atrib tbname="text_customizado" type="txt">textCustomizado</atrib>	
 		<atrib tbname="cotacao_customizado" type="txt">cotacaoCustomizado</atrib>	
+		<atrib tbname="bit_adesao_customizado" type="int">bitAdesaoCustomizado</atrib>		
 		</class>
 
 	<class name="LogAcesso" tbname="ag_logacesso" tbid="id" lazy="false">

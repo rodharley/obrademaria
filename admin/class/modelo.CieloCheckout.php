@@ -146,7 +146,7 @@ class MyCieloCheckout extends Persistencia {
             // Instantiate options' object.
             $properties = [
               'AntifraudEnabled' => TRUE,
-              'ReturnUrl' => $this->urlSite."bilhete.php?charge_id=".$obVenda->id,
+              'ReturnUrl' => $this->urlSite."bilhete.php?returnSuccess=1&charge_id=".$obVenda->id,
             ];
             $Options = new Options($properties);
             

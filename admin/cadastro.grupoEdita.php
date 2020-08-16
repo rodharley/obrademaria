@@ -33,6 +33,7 @@ $idEstatusAtual = 0;
 	$tpl->bitChequeNao = 'checked="checked"';
 	
 	$tpl->bitCustomizadoNao = 'checked="checked"';
+	$tpl->bitAdesaoCustomizadoNao = 'checked="checked"';
 	$tpl->parcelaBoleto = 1;
 	$tpl->parcelaCartao = 1;
 	$tpl->parcelaCheque = 1;
@@ -104,6 +105,8 @@ if(isset($_REQUEST['idGrupo'])){
 	$tpl->bitChequeNao = $oGrupo->bitCheque == 0 ? 'checked="checked"' : '';
 	$tpl->bitCustomizadoSim = $oGrupo->bitCustomizado == 1 ? 'checked="checked"' : '';
 	$tpl->bitCustomizadoNao = $oGrupo->bitCustomizado == 0 ? 'checked="checked"' : '';
+	$tpl->bitAdesaoCustomizadoSim = $oGrupo->bitAdesaoCustomizado == 1 ? 'checked="checked"' : '';
+	$tpl->bitAdesaoCustomizadoNao = $oGrupo->bitAdesaoCustomizado == 0 ? 'checked="checked"' : '';
 	$tpl->parcelaBoleto = $oGrupo->parcelaBoleto;
 	$tpl->parcelaCartao = $oGrupo->parcelaCartao;
 	$tpl->parcelaCheque = $oGrupo->parcelaCheque;

@@ -531,17 +531,41 @@ else
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function mail_html($destinatario,$origem, $titulo, $mensagem) 
+function mail_html($destinatario,$origem, $titulo, $mensagem,$file ="") 
 
 { 
-
-    
+	
     try{
+	
+	$boundary      = "PHP-mixed-".md5(time());
+    $boundWithPre  = "\n--".$boundary;
+
     $headers = "MIME-Version: 1.1\n";
-$headers .= "Content-type: text/html; charset=iso-8859-1\n";
-$headers .= "From: Obra de Maria <$origem>"."\n"; // remetente
-$headers .= "Return-Path: Obra de Maria <$origem>"."\n"; // return-path
-$email = @mail("$destinatario", "$titulo", "$mensagem", $headers, "-r".$origem);    
+	$headers .= "Content-type: text/html; charset=iso-8859-1\n";
+	$headers .= "From: Obra de Maria <$origem>"."\n"; // remetente
+	$headers .= "Return-Path: Obra de Maria <$origem>"."\n"; // return-path
+
+	$message   = $boundWithPre;
+    $message  .= "\n Content-Type: text/html; charset=iso-8859-1\n";
+	$message  .= "\n $mensagem";
+	
+	if($file != ''){
+		$fileAttachment = trim($file);
+		$pathInfo       = pathinfo($fileAttachment);
+		$attchmentName  = "roteiro_".date("YmdHms").(
+		(isset($pathInfo['extension']))? ".".$pathInfo['extension'] : ""
+		);
+		$attachment    = chunk_split(base64_encode(file_get_contents($fileAttachment)));  
+		$message .= $boundWithPre;
+		$message .= "\nContent-Type: application/octet-stream; name=\"".$attchmentName."\"";
+		$message .= "\nContent-Transfer-Encoding: base64\n";
+		$message .= "\nContent-Disposition: attachment\n";
+		$message .= $attachment;
+		$message .= $boundWithPre."--";
+	}
+	
+
+	$email = @mail("$destinatario", "$titulo", "$message", $headers, "-r".$origem);    
             
     return $email;
     }catch(exception $e){

@@ -387,13 +387,23 @@ $("#ano").mask("9999");
                         <input type="radio" name="bitCustomizado" id="bitCustomizadoNao" value="0" {bitCustomizadoNao} class="required"> Não
                       </div>
                     </div>
-                  </div>
-                  
+                  </div>                  
                   <div class="span6">			
                     <div class="control-group">
                       <label for="nomeCustomizado" class="control-label">Nome:</label>
                       <div class="controls">                
                         <input type="text" id="nomeCustomizado" class="input-xlarge" name="nomeCustomizado" value="{nomeCustomizado}" placeholder="Nome da forma  de pagamento">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span5">
+                    <div class="control-group">
+                      <label for="bitCustomizado" class="control-label">Cobrar Taxa de Adesão:</label>
+                      <div class="controls">
+                        <input type="radio" name="bitAdesaoCustomizado" id="bitAdesaoCustomizadoSim" value="1" {bitAdesaoCustomizadoSim} class="required"> Sim 
+                        <input type="radio" name="bitAdesaoCustomizado" id="bitAdesaoCustomizadoNao" value="0" {bitAdesaoCustomizadoNao} class="required"> Não
                       </div>
                     </div>
                   </div>

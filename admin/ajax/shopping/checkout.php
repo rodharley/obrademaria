@@ -51,7 +51,7 @@ switch($_REQUEST['forma']){
         $tipoPagamento2 = '';
     break;
     case 'formaOutros':
-        $tipoPagamento1 = 'Outros meios de pagamento';
+        $tipoPagamento1 = isset($_REQUEST['pagamentoCustomizado']) ? $_REQUEST['pagamentoCustomizado'] : 'Outros meios de pagamento';
         $tipoPagamento2 = '';
     break;
     }
@@ -132,6 +132,29 @@ $idVenda = $obVenda->createVenda($obParticipante,$obGrupo,isset($_REQUEST['opcio
 
 switch($_REQUEST['forma']){
  case 'formaOutros':
+    if($obGrupo->bitAdesaoCustomizado == 1){
+        $valorPagamento = 0;
+        if($obVenda->opcional == 1){
+            $valorPagamento = ($obGrupo->valorAdesao+$obGrupo->valorAdesaoOpcional)*$obVenda->cotacao;
+          }else{
+            $valorPagamento = ($obGrupo->valorAdesao+$obGrupo->valorAdesaoOpcional)*$obVenda->cotacao;
+          }
+       
+        if($tipoPagamento1 == 'credit_card')
+        {
+            
+            $response = $obCielo->createLinkPagamento($obParticipante,$obGrupo,$obVenda,$valorPagamento,1);
+            $linkCartao = $response->settings->checkoutUrl;
+        } else if($tipoPagamento1 == 'boleto'){
+            $chargeBoleto = $obCheckout->createCharge($obParticipante,$obGrupo,$obVenda,$valorPagamento);
+            $linkBoleto = $obCheckout->createLinkPagamento($chargeBoleto['data']['charge_id'],'','banking_billet');
+    
+        }
+        
+        else{
+            throw new Exception("Tipo de Pagamento não encontrado");
+        }
+    }
 break;  
 case 'formaAVista':
     $valorPagamento = $obVenda->total;
@@ -235,7 +258,11 @@ if($obCheckout->conn->commit()){
 
     $tplemail = new Template("../../templates/tpl_email_ecommerce.html");
     $tplemail->CONTEUDO = $html;
-    $obVenda->mail_html($_REQUEST['email'],$obVenda->REMETENTE, 'Obra de Maria DF', $tplemail->showString());
+    if(file_exists($obGrupo->URI."docs/".$obGrupo->roteiroAnexo)){
+        $obVenda->mail_html($_REQUEST['email'],$obVenda->REMETENTE, 'Obra de Maria DF', $tplemail->showString(),$obGrupo->URI."docs/".$obGrupo->roteiroAnexo);
+    }else{
+        $obVenda->mail_html($_REQUEST['email'],$obVenda->REMETENTE, 'Obra de Maria DF', $tplemail->showString());
+    }
 
 
     //email para a obra de maria

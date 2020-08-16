@@ -45,7 +45,7 @@ class Grupo extends Persistencia{
 	var $textCustomizado;
 	var $bitTransferencia;
 	var $cotacaoCustomizado;
-	
+	var $bitAdesaoCustomizado;
 	public function STATUS_ANDAMENTO(){
 		return 1;
 	}
@@ -186,6 +186,7 @@ class Grupo extends Persistencia{
 		$this->parcelaCheque = $_REQUEST['parcelaCheque'];
 		$this->nomeCustomizado = $_REQUEST['nomeCustomizado'];
 		$this->textCustomizado = $_REQUEST['textCustomizado'];
+		$this->bitAdesaoCustomizado = $_REQUEST['bitAdesaoCustomizado'];
 		//uploadArquivo roteiro
 		if($_FILES['roteiro']['name'] != ''){
 			$nomeImagem = date("d_m_Y_H_i_s").$this->removerAcento($_FILES['roteiro']['name']);
@@ -336,6 +337,7 @@ class Grupo extends Persistencia{
 		$this->parcelaCheque = $_REQUEST['parcelaCheque'];
 		$this->nomeCustomizado = $_REQUEST['nomeCustomizado'];
 		$this->textCustomizado = $_REQUEST['textCustomizado'];
+		$this->bitAdesaoCustomizado = $_REQUEST['bitAdesaoCustomizado'];
 		//uploadArquivo
 		if($_FILES['roteiro']['name'] != ''){
 			$nomeImagem = date("d_m_Y_H_i_s").$this->removerAcento($_FILES['roteiro']['name']);

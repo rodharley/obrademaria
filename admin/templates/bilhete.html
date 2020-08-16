@@ -4,7 +4,7 @@
   <div class="py-5 text-center">
     <h2>Vendas - Obra de Maria DF</h2>
   <p class="lead"><h4>Parabéns</h4>
-    Reserva realizada com sucesso!</p>
+    <h5>{TITULO_PAGINA}</h5></p>
     </div>
   <div class="row">
     <div class="col-md-4 order-md-2 mb-4">
@@ -95,9 +95,25 @@
       <hr class="mb-4">
       <h4 class="mb-3">Tipo de Pagamento</h4>
       <div class="d-block my-3">
+
         <!--  BEGIN BLOCK_OUTROS -->
         {INFO_CUSTOMIZADO}
+
+         <!--  BEGIN BLOCK_BOLETO_CUSTOMIZADO -->
+         <hr class="mb-4"> 
+         <h6>Boleto</h6>       
+         <a class="btn btn-primary btn-lg btn-block" href="{URLGN_BOLETO}" target="_blank" >IMPRIMIR BOLETO</a>
+       <!-- END BLOCK_BOLETO_CUSTOMIZADO -->
+
+       <!--  BEGIN BLOCK_CARTAO_CUSTOMIZADO -->
+       <hr class="mb-4">
+       <h6>Cartão de crédito</h6>
+       <a class="btn btn-primary btn-lg btn-block" href="{URLGN_CARTAO}" target="_blank" >PAGAR COM CARTÃO</a>
+       <!--  END BLOCK_CARTAO_CUSTOMIZADO--> 
         <!--  END BLOCK_OUTROS -->
+
+
+
         <!--  BEGIN BLOCK_AVISTA -->   
               <!--  BEGIN BLOCK_TRANSFERENCIA_AVISTA -->  
               <h6>Transferência bancária</h6>  
@@ -115,6 +131,11 @@
               <h6>Boleto</h6>       
                 <a class="btn btn-primary btn-lg btn-block" href="{URLGN_BOLETO}" target="_blank" >IMPRIMIR BOLETO</a>
               <!-- END BLOCK_BOLETO_AVISTA --> 
+
+               <!--  BEGIN BLOCK_CARTAO_AVISTA -->
+              <h6>Cartão de crédito</h6>
+              <a class="btn btn-primary btn-lg btn-block" href="{URLGN_CARTAO}" target="_blank" >PAGAR COM CARTÃO</a>
+              <!--  END BLOCK_CARTAO_AVISTA--> 
                       
         <!--  END BLOCK_AVISTA --> 
 

@@ -24,9 +24,11 @@ if(isset($_REQUEST['idGrupo'])){
     $tpl->COTACAO = $oGrupo->cotacaoAVista;
     $tpl->COTACAO_ENTRADA = $oGrupo->cotacaoEntrada;
     $tpl->COTACAO_PARCELADO = $oGrupo->cotacaoParcelado;
+    $tpl->COTACAO_CUSTOMIZADO = $oGrupo->cotacaoCustomizado;
     $tpl->COTACAO_CURRENCY = $oGrupo->money($oGrupo->cotacaoAVista,"atb");
     $tpl->COTACAO_ENTRADA_CURRENCY = $oGrupo->money($oGrupo->cotacaoEntrada,"atb");
     $tpl->COTACAO_PARCELADO_CURRENCY = $oGrupo->money($oGrupo->cotacaoParcelado,"atb");
+    $tpl->COTACAO_CUSTOMIZADO_CURRENCY = $oGrupo->money($oGrupo->cotacaoCustomizado,"atb");
     $tpl->DESCONTO_A_VISTA = $oGrupo->descontoAVista;
     $tpl->TEXT_DESCONTO_A_VISTA = $oGrupo->descontoAVista != 0 ? '('.$oGrupo->descontoAVista.'% de Desconto)' : '';
     $tpl->BACKGROUND = 'img/grupos/'.$oGrupo->imagemDestaque;
@@ -86,6 +88,12 @@ if($oGrupo->bitCustomizado == 1){
     $tpl->NOME_CUSTOMIZADA = $oGrupo->nomeCustomizado;
     $tpl->TEXT_CUSTOMIZADO = $oGrupo->textCustomizado;
     $tpl->block("BLOCK_FORMA_CUSTOMIZADA");
+    if($oGrupo->bitAdesaoCustomizado == 1){
+        $tpl->block("BLOCK_PAGAMENTO_ADESAO");
+        $tpl->HAVE_ADESAO_CUSTOMIZADO = 1;
+    }else{
+        $tpl->HAVE_ADESAO_CUSTOMIZADO = 0;
+    }
 }
 if($oGrupo->bitBoleto == 1){
     $tpl->block('BLOCK_BOLETO_AVISTA');

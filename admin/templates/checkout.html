@@ -97,7 +97,7 @@
         <!-- BEGIN BLOCK_FORMA_CUSTOMIZADA -->
         <div class="custom-control custom-radio">
           <input value="formaOutros" id="formaOutros" name="forma" type="radio" class="custom-control-input" {FORMA_CUSTOMIZADA_CHECKED} required="">
-          <label class="custom-control-label" for="formaOutros">{NOME_CUSTOMIZADA}</label>
+          <label class="custom-control-label" for="formaOutros">{NOME_CUSTOMIZADA} <span class="badge badge-success {DISPLAY_DOLLAR}">Dollar: {COTACAO_CUSTOMIZADO_CURRENCY}</span></label>
         </div>
         <!-- END BLOCK_FORMA_CUSTOMIZADA -->
       </div>
@@ -132,15 +132,32 @@
       </div>
     </div>
     <div id="tipoCustomizado">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Informações</h5>
-          <p class="card-text">
-            {TEXT_CUSTOMIZADO}
-          </p>
-          
+      <div class="d-block my3">
+        <!-- BEGIN BLOCK_PAGAMENTO_ADESAO -->
+        <h5 class="text-center">PAGUE AGORA A TAXA DE ADESÃO PARA GARANTIR SUA VAGA ( CARTÃO DE CREDITO OU BOLETO )</h5>
+        <div class="custom-control custom-radio">
+          <input value="credit_card" id="creditoCustomizado" name="pagamentoCustomizado" type="radio" class="custom-control-input" checked="checked" required="">
+          <label class="custom-control-label" for="creditoCustomizado" id="creditoCustomizadoLabel">Cartão de crédito</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input value="boleto" id="boletoCustomizado" name="pagamentoCustomizado" type="radio" class="custom-control-input" required="">
+          <label class="custom-control-label" for="boletoCustomizado">Boleto (GerenciaNet) </label>
+        </div>
+        
+      
+      <hr class="mb-4">
+        <!-- END BLOCK_PAGAMENTO_ADESAO-->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Informações</h5>
+            <p class="card-text">
+              {TEXT_CUSTOMIZADO}
+            </p>
+            
+          </div>
         </div>
       </div>
+      
     </div>
     
     <div id="tipoEntrada">
@@ -574,11 +591,13 @@
            cotacao = {COTACAO};
            cotacaoEntrada = {COTACAO_ENTRADA};
            cotacaoParcelado = {COTACAO_PARCELADO};
+           cotacaoCustomizado = {COTACAO_CUSTOMIZADO};
            cifrao = '{GRUPO_MOEDA} ';
            idmoeda = {GRUPO_IDMOEDA};
            quantidade = {QUANTIDADE};
            cupom =0;
            haveOptional = {GRUPO_OPCIONAL};
+           HaveAdesaoCustomizado = {HAVE_ADESAO_CUSTOMIZADO};
            parcelaChequeMaxima = {PARCELA_CHEQUE_MAXIMA};
            parcelaCartaoMaxima = {PARCELA_CARTAO_MAXIMA};
            valorPacote = {GRUPO_VALOR};
@@ -614,7 +633,7 @@
         {
           atualizaTela();
         });
-        $("#transferenciaAVista, #boletoAVista, #chequeAVista, #creditoAVista,#creditoParcelado,#chequeParcelado,#chequeEntrada,#creditoEntrada,#entradachequeEntrada,#entradaBoletoEntrada,#entradatransferenciaEntrada").click(function()
+        $("#boletoCustomizado, #creditoCustomizado, #transferenciaAVista, #boletoAVista, #chequeAVista, #creditoAVista,#creditoParcelado,#chequeParcelado,#chequeEntrada,#creditoEntrada,#entradachequeEntrada,#entradaBoletoEntrada,#entradatransferenciaEntrada").click(function()
         {
           atualizaTela();
         });
@@ -684,6 +703,7 @@ function blockAcomp(numero,disabled){
       function atualizaTela(){
         descontoFinal = 0;
         totalGeral = 0;
+        adesaoFinal = 0;
         if(quantidade == 1){
           $("#boxAcompanhante").hide('slow');
           blockAcomp(1,true);
@@ -716,18 +736,31 @@ function blockAcomp(numero,disabled){
         }
         if(haveOptional && $("#opcional").prop("checked")){
           totalGeral = quantidade*(valorPacote+valorAdesao+valorEmbarque+valorOpcional+valorOpcionalAdesao+valorOpcionalEmbarque);
-          
+          adesaoFinal = quantidade*(valorAdesao+valorOpcionalAdesao);
         }else{
           totalGeral =quantidade*(valorPacote+valorAdesao+valorEmbarque);
+          adesaoFinal = quantidade*(valorAdesao);
         }
         $("#lbl_total").html(floatToCurrency((totalGeral)));
-
         let dollar =cotacao;
+
+
+
+
+
         if($("#formaOutros").prop("checked")){
+          dollar = cotacaoCustomizado;
           $("#tipoAVista").hide();
           $("#tipoParcelado").hide();
           $("#tipoEntrada").hide();
-          $('#blockMostraReal').hide();
+          if(HaveAdesaoCustomizado == 1){
+            totalGeral = adesaoFinal;
+            descontoFinal = 0;
+            $('#blockMostraReal').show('slow');
+          }else{
+            $('#blockMostraReal').hide();
+          }
+          
           $("#tipoCustomizado").show('slow');
         }
 
@@ -789,6 +822,7 @@ function blockAcomp(numero,disabled){
           $('#blockMostraReal').show('slow');
         }
         
+        
         if(idmoeda != 2){
         $("#lbl_desconto_real").html("R$ "+floatToCurrency((descontoFinal*dollar)));
         $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral*dollar)));
@@ -796,6 +830,7 @@ function blockAcomp(numero,disabled){
           $("#lbl_desconto_real").html("R$ "+floatToCurrency((descontoFinal)));
           $("#lbl_total_real").html("R$ "+floatToCurrency((totalGeral)));
         }
+        
         $("#lbl_quantidade").html($("#quantidade").val());
       }
 

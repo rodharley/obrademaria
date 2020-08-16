@@ -23,6 +23,14 @@ if(isset($_REQUEST['charge_id'])){
     $tpl->STATUS_COLOR = 'warning';
     $tpl->STATUS_NAME = 'EM ABERTO';
 
+
+    $msgSucesso = 'RESERVA CONFIRMADA COM SUCESSO!';
+    $msgCartao = 'REALIZE O PAGAMENTO DO CARTÃO PARA CONFIRMAR SUA RESERVA';
+    $msgBoleto = 'IMPRIMA E PAGUE SEU BOLETO PARA CONFIRMAR SUA RESERVA';
+    $msgDefault = 'EM CASO DE DÚVIDAS ENTRE EM CONTATO COM A OBRADEMARIA DF';
+    
+   
+
     //VERIFICA OS PAGAMENTOS ONLINE
     /*$pagNaoPagos = $oPagamento->getPagamentosParticipanteNaoPagos($oVenda->participante->id);
     if(count($pagNaoPagos) == 0){        
@@ -98,36 +106,97 @@ if(isset($_REQUEST['charge_id'])){
     switch ($oVenda->formaPagamento) {
         case 'formaOutros':
             $tpl->INFO_CUSTOMIZADO = $oVenda->printInfoCustomizado();
+            $status = '';
+            switch ($oVenda->tipoPagamento1) {
+                case 'boleto':
+                    foreach ($vendaserenciaNet as $key => $charge) {
+        
+                        if($charge->payment_method == 'banking_billet'){
+                            $tpl->URLGN_BOLETO = $charge->payment_url;
+                            $status = $charge->status;
+                        }                      
+                        
+                    }
+                    if($status != 'paid'){
+                    $tpl->block("BLOCK_BOLETO_CUSTOMIZADO");
+                    $tpl->TITULO_PAGINA = $msgBoleto;
+                    }else{
+                    $tpl->TITULO_PAGINA = $msgSucesso;    
+                    }
+                break;
+               
+                
+                case 'credit_card':
+                    foreach ($vendasCielo as $key => $charge) {                        
+                        $tpl->URLGN_CARTAO = $charge->checkoutUrl; 
+                        $status = $charge->payment_status;                          
+                                           
+                  }
+                  if($status != 2){
+                    $tpl->block("BLOCK_CARTAO_CUSTOMIZADO");
+                    $tpl->TITULO_PAGINA = $msgCartao;
+                  }else{
+                    $tpl->TITULO_PAGINA = $msgSucesso;       
+                  }
+                break;
+                default:
+                $tpl->TITULO_PAGINA = $msgSucesso;
+            break;
+            }
+
+
             $tpl->block("BLOCK_OUTROS");
         break;
-        case 'formaAVista':            
+        case 'formaAVista':  
+            $status = '';          
             switch ($oVenda->tipoPagamento1) {
                 case 'cheque':
                     $tpl->INFO_CHEQUE = $oVenda->printInfoCheque();
                     $tpl->block("BLOCK_CHEQUE_AVISTA");
+                    $tpl->TITULO_PAGINA = $msgDefault;
                 break;  
                 case 'boleto':
-                    if($charge->payment_method == 'banking_billet'){
-                        $tpl->URLGN_BOLETO = $charge->payment_url;                        
-                    } 
-                    $tpl->block("BLOCK_BOLETO_AVISTA");
+                    foreach ($vendaserenciaNet as $key => $charge) {
+        
+                        if($charge->payment_method == 'banking_billet'){
+                            $tpl->URLGN_BOLETO = $charge->payment_url;
+                            $status = $charge->status;
+                        }                      
+                        
+                    }
+                    if($status != 'paid'){
+                        $tpl->TITULO_PAGINA = $msgBoleto;
+                        $tpl->block("BLOCK_BOLETO_AVISTA");
+                        }else{
+                        $tpl->TITULO_PAGINA = $msgSucesso;    
+                        }
+                    
                 break;
                 case 'transferencia':
                     $tpl->INFO_TRANSFERENCIA = $oVenda->printInfoTransferencia();
                     $tpl->block("BLOCK_TRANSFERENCIA_AVISTA");
+                    $tpl->TITULO_PAGINA = $msgDefault;
                 break;
                 case 'credit_card':
                     foreach ($vendasCielo as $key => $charge) {                        
-                        $tpl->URLGN_CARTAO = $charge->checkoutUrl;                           
+                        $tpl->URLGN_CARTAO = $charge->checkoutUrl;   
+                        $status = $charge->payment_status;                         
                                            
                   }
-                    $tpl->block("BLOCK_CARTAO_PARCELADO");
+                  if($status != 2){
+                    $tpl->TITULO_PAGINA = $msgCartao;
+                    $tpl->block("BLOCK_CARTAO_AVISTA");
+                  }else{
+                    $tpl->TITULO_PAGINA = $msgSucesso;       
+                  }
+                    
                 break;
             }
             $tpl->block("BLOCK_AVISTA");
             $tpl->block('BLOCK_FORMA_PADRAO_REAL');
         break;
         case 'formaEntrada':
+            $status ='';
             switch ($oVenda->tipoPagamento1) {
                 case 'boleto':
                     foreach ($vendaserenciaNet as $key => $charge) {
@@ -135,10 +204,17 @@ if(isset($_REQUEST['charge_id'])){
                         if($charge->payment_method == 'banking_billet'){
                             $tpl->URLGN_BOLETO = $charge->payment_url;
                             $tpl->ENTRADA = $oVenda->money($charge->total,"atb");
+                            $status = $charge->status;
                         }                      
                         
                     }
-                    $tpl->block("BLOCK_BOLETO_ENTRADA");
+                    if($status != 'paid'){
+                        $tpl->TITULO_PAGINA = $msgBoleto;
+                        $tpl->block("BLOCK_BOLETO_ENTRADA");
+                        }else{
+                        $tpl->TITULO_PAGINA = $msgSucesso;    
+                        }
+                   
                     
                     break;
                 case 'cheque':
@@ -146,7 +222,7 @@ if(isset($_REQUEST['charge_id'])){
                     $rsPag = $oPagamento->getValorPagamentosPorTipoeParticipante($oVenda->participante->id,$oTp->CHEQUE(),'entrada');
                     $total = $oVenda->DAO_GerarArray($rsPag);
                     $tpl->ENTRADA = $oVenda->money($total['total'],"atb");
-                    
+                    $tpl->TITULO_PAGINA = $msgDefault;
                     $tpl->block("BLOCK_CHEQUE_ENTRADA");
                     break;
                 case 'transferencia':
@@ -155,6 +231,7 @@ if(isset($_REQUEST['charge_id'])){
                     $total = $oVenda->DAO_GerarArray($rsPag);
                     $tpl->ENTRADA = $oVenda->money($total['total'],"atb");
                     $tpl->block("BLOCK_TRANSFERENCIA_ENTRADA");
+                    $tpl->TITULO_PAGINA = $msgDefault;
                     break;                
             }
 
@@ -168,25 +245,43 @@ if(isset($_REQUEST['charge_id'])){
                     foreach ($vendasCielo as $key => $charge) {                        
                           $tpl->URLGN_CARTAO = $charge->checkoutUrl;                           
                                              
-                    }
-                    $tpl->block("BLOCK_CARTAO_ENTRADA_RESTO");
+                          $status = $charge->payment_status;                         
+                                           
+                        }
+                        if($status != 2){
+                          $tpl->TITULO_PAGINA = $msgCartao;
+                          $tpl->block("BLOCK_CARTAO_ENTRADA_RESTO");
+                        }else{
+                          $tpl->TITULO_PAGINA = $msgSucesso;       
+                        }
+                    
                 break;
             }
             $tpl->block("BLOCK_ENTRADA");
             $tpl->block('BLOCK_FORMA_PADRAO_REAL');
         break;
         case 'formaParcelado':
+            $status ='';
             switch ($oVenda->tipoPagamento1) {
                 case 'cheque':
                     $tpl->INFO_CHEQUE = $oVenda->printInfoCheque();
                     $tpl->block("BLOCK_PARCELADO");
+                    $tpl->TITULO_PAGINA = $msgDefault;
                 break;
                 case 'credit_card':
                     foreach ($vendasCielo as $key => $charge) {                        
                         $tpl->URLGN_CARTAO = $charge->checkoutUrl;                           
                                            
-                  }
-                    $tpl->block("BLOCK_CARTAO_PARCELADO");
+                        $status = $charge->payment_status;                         
+                                           
+                    }
+                    if($status != 2){
+                      $tpl->TITULO_PAGINA = $msgCartao;
+                      $tpl->block("BLOCK_CARTAO_PARCELADO");
+                    }else{
+                      $tpl->TITULO_PAGINA = $msgSucesso;       
+                    }
+                  
                 break;
             }
             $tpl->block('BLOCK_FORMA_PADRAO_REAL');
@@ -194,6 +289,10 @@ if(isset($_REQUEST['charge_id'])){
         default:
             # code...
         break;
+    }
+
+    if(isset($_REQUEST['returnSuccess'])){
+        $tpl->TITULO_PAGINA = "RESERVA CONFIRMADA COM SUCESSO!";
     }
 /*
     foreach ($vendaserenciaNet as $key => $charge) {
